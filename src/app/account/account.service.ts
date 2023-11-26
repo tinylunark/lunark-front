@@ -4,7 +4,7 @@ import { Account } from './model/account.model';
 const ACCOUNTS: Account[] = [
   {
     "id": 1,
-    "email": "milutinm462@gmail.com",
+    "email": "admin@example.com",
     "password": "pass",
     "name": "Neko",
     "surname": "Nekic",
@@ -17,8 +17,8 @@ const ACCOUNTS: Account[] = [
   },
   {
     "id": 2,
-    "email": "host@gmail.com",
-    "password": "correct-horse-battery-staple",
+    "email": "host@example.com",
+    "password": "pass",
     "name": "Mirna",
     "surname": "Studsluzbic",
     "address": "Fruskogorska 1, Novi Sad",
