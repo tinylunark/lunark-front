@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import '@material/web/button/filled-button.js';
+import { AccountService } from '../account.service';
 
 @Component({
   selector: 'app-login-dialog',
@@ -14,10 +15,12 @@ export class LoginDialog {
     email: new FormControl('', [Validators.required]),
     password: new FormControl('', [Validators.required]),
   });
-  constructor(public dialogRef: MatDialogRef<LoginDialog>) { }
+  constructor(public dialogRef: MatDialogRef<LoginDialog>, private accountService: AccountService) { }
 
   signIn() {
-    if(this.loginForm.valid) {
+    const email = this.loginForm.value.email || ""; 
+    const password = this.loginForm.value.password || "";
+    if(this.loginForm.valid && this.accountService.getUser(email, password)) {
       this.dialogRef.close('Logged in!');
     }
   }
