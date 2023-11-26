@@ -20,8 +20,9 @@ export class LoginDialog {
   signIn() {
     const email = this.loginForm.value.email || ""; 
     const password = this.loginForm.value.password || "";
-    if(this.loginForm.valid && this.accountService.getUser(email, password)) {
-      this.dialogRef.close('Logged in!');
+    const account = this.accountService.getUser(email, password)
+    if(this.loginForm.valid && account) {
+      this.dialogRef.close(account);
     }
   }
 }

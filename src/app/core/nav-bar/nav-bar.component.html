@@ -1,8 +1,40 @@
 <div class="icon-bar">
-  <a class="active" href="#"><i class="cil-home"></i></a>
-  <a class="active" href="#"><i class="cil-search"></i></a>
-  <a class="active" href="#"><i class="cil-bell"></i></a>
-  <a class="active" href="#"><i class="cil-heart"></i></a>
-  <a class="active" (click)="onAccountClick()"><i class="at-account"></i></a>
+  <div *ngIf="this.role == 'unregistered'">
+    <a class="active" href="#"><i class="cil-home"></i></a>
+    <a class="active" href="#"><i class="cil-search"></i></a>
+    <a class="active" href="#"><i class="cil-bell"></i></a>
+    <a class="active" href="#"><i class="cil-heart"></i></a>
+    <a class="active" (click)="onAccountClick()"><i class="at-account"></i></a>
+  </div>
+
+  <div *ngIf="this.role == 'guest'">
+    <a class="active" href="#"><i class="cil-home"></i></a>
+    <a class="active" href="#"><i class="cil-search"></i></a>
+    <a class="active" href="#"><i class="cil-bell"></i></a>
+    <a class="active" href="#"><i class="cil-heart"></i></a>
+    <a class="active"><i class="at-account"></i></a>
+    <a class="active" href="#"><i class="cil-check"></i></a>
+  </div>
+  
+  <div *ngIf="this.role == 'host'">
+    <a class="active" href="#"><i class="cil-home"></i></a>
+    <a class="active" href="#"><i class="cil-plus"></i></a>
+    <a class="active" href="#"><i class="cil-folder"></i></a>
+    <a class="active" href="#"><i class="cil-list-filter"></i></a>
+    <a class="active" href="#"><i class="cil-check"></i></a>
+    <a class="active" href="#"><i class="cil-bell"></i></a>
+    <a class="active" href="#"><i class="cil-heart"></i></a>
+    <a class="active" href="#"><i class="cil-fax"></i></a>
+    <a class="active"><i class="at-account"></i></a>
+  </div>
+
+  <div *ngIf="this.role == 'admin'">
+    <a class="active" href="#"><i class="cil-home"></i></a>
+    <a class="active" href="#"><i class="cil-book"></i></a>
+    <a class="active" href="#"><i class="cil-comment-square"></i></a>
+    <a class="active" href="#"><i class="cil-list-filter"></i></a>
+    <a class="active" href="#"><i class="cil-globe-alt"></i></a>
+    <a class="active"><i class="at-account"></i></a>
+  </div>
   <a class="active logout-link" href="#"><i class="cil-account-logout"></i></a>
 </div>
