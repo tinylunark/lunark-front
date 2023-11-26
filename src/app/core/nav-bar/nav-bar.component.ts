@@ -14,7 +14,9 @@ export class NavBarComponent {
   }
   onAccountClick() {
     // Open login dialog
-    const dialogRef = this.dialog.open(LoginDialog);
+    const dialogRef = this.dialog.open(LoginDialog,{
+      width: '40%'
+    });
   }
 
 }

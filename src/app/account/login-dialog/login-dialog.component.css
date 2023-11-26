@@ -2,3 +2,29 @@ form {
     display: flex;
     flex-direction: column;
 }
+
+[mat-dialog-title] {
+    text-align: center;
+    font-family: bayon;
+    font-weight: 400;
+    font-size: 3rem;
+}
+
+#sign-up {
+    color: #00838F;
+}
+
+h1 {
+    padding-top: 4%;
+    padding-bottom: 4%;
+}
+
+p {
+    margin: 0;
+}
+
+#sign-in {
+    margin:auto;
+    width: 70%;
+    padding-bottom: 4%;
+}
