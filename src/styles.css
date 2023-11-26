@@ -8,6 +8,11 @@
   src: url('./assets/fonts/bayon.ttf') format('truetype');
 }
 
+:root, p {
+  --mdc-dialog-supporting-text-color: #f0edee;
+  --mdc-dialog-subhead-color: #f0edee;
+}
+
 body {
   background-color: #1e1e1e;
   overflow: hidden;

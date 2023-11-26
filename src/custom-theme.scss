@@ -10,25 +10,6 @@
 // Be sure that you only ever include this mixin once!
 @include mat.core();
 
-$light-focused: rgba(white, 0.12);
-$dark-theme-background-palette: (
-  status-bar: black,
-  app-bar:    map.get(mat.$grey-palette, 900),
-  background: #303030,
-  hover:      rgba(white, 0.04), // TODO(kara): check style with Material Design UX
-  card:       map.get(mat.$grey-palette, 800),
-  dialog:     #121212,
-  disabled-button: rgba(white, 0.12),
-  raised-button: map.get(mat.$grey-palette, 800),
-  focused-button: $light-focused,
-  selected-button: map.get(mat.$grey-palette, 900),
-  selected-disabled-button: map.get(mat.$grey-palette, 800),
-  disabled-button-toggle: black,
-  unselected-chip: map.get(mat.$grey-palette, 700),
-  disabled-list-option: rgba(white, 0.12),
-  tooltip: map.get(mat.$grey-palette, 700)
-);
-
 $lunark-palette: (
   50: #e0f7fa,
   100: #b2ebf2,
@@ -75,6 +56,7 @@ $lunark-front-theme: mat.define-dark-theme((
   density: 0
 ));
 
+// Sets dialog background color
 $dialog-background-color: #121212;
 $color: map.get($lunark-front-theme, "color");
 $colorBackground: map.get($color, "background");
@@ -90,3 +72,8 @@ $lunark-front-theme: map.set($lunark-front-theme, "color", $color);
 @include mat.all-component-themes($lunark-front-theme);
 
 @include mat.typography-hierarchy($lunark-front-theme);
+
+mat-form-field {
+  --mdc-outlined-text-field-outline-color: #f0edee;
+  --mdc-outlined-text-field-label-text-color: #f0edee;
+}

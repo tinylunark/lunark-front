@@ -10,6 +10,10 @@ form {
     font-size: 3rem;
 }
 
+[mat-dialog-content] {
+    padding-top: 1%;
+}
+
 #sign-up {
     color: #00838F;
 }
@@ -27,4 +31,5 @@ p {
     margin:auto;
     margin-bottom: 4%;
     width:70%;
+    border-radius: 9999px;
 }
