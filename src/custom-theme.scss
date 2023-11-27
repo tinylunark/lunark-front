@@ -56,6 +56,17 @@ $lunark-front-theme: mat.define-dark-theme((
   density: 0
 ));
 
+$lunark-front-theme-bigger-text: mat.define-dark-theme((
+  color: (
+    primary: $lunark-front-primary,
+    accent: $lunark-front-accent,
+    warn: $lunark-front-warn,
+  ),
+  typography: mat.define-typography-config(
+    $body-2: mat.define-typography-level(20px, 20px, 400)
+  ),
+));
+
 // Sets dialog background color
 $dialog-background-color: #121212;
 $color: map.get($lunark-front-theme, "color");
@@ -76,4 +87,6 @@ $lunark-front-theme: map.set($lunark-front-theme, "color", $color);
 mat-form-field {
   --mdc-outlined-text-field-outline-color: #f0edee;
   --mdc-outlined-text-field-label-text-color: #f0edee;
-}
+} 
+
+@include mat.radio-typography($lunark-front-theme-bigger-text);

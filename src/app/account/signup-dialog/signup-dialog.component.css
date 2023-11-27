@@ -19,3 +19,20 @@ h1 {
     padding-top: 4%;
     padding-bottom: 4%;
 }
+
+#role-radio-group {
+    display: flex
+}
+
+#role-radio-group > mat-radio-button {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#sign-up {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 4%;
+    border-radius: 9999px;
+    width: 70%;
+}
