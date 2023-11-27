@@ -22,7 +22,9 @@ export class NavBarComponent {
     });
     dialogRef.afterClosed().subscribe(result => {
       const account = result as Account;
-      console.log(`Logged in as ${account.role}`);
+      if (!account) {
+        return;
+      }
       this.role = account.role;
     });
   }
