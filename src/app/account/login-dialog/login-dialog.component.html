@@ -10,7 +10,7 @@
       <input matInput type="password" name="password" formControlName="password" />
     </mat-form-field>
   </form>
-  <p>New to lunark? <a id="sign-up" (click)="openSignUpDialog()" mat-dialog-close color="primary">Sign up now</a>.</p>
+  <p>New to lunark? <a id="sign-up" href="#" (click)="$event.preventDefault();openSignUpDialog()" mat-dialog-close color="primary">Sign up now</a>.</p>
 </div>
 <div mat-dialog-actions>
   <button mat-flat-button color="primary" (click)="signIn()" id="sign-in">Sign in</button>

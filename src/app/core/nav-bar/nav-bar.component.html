@@ -4,7 +4,7 @@
     <a class="active" href="#"><i class="cil-search"></i></a>
     <a class="active" href="#"><i class="cil-bell"></i></a>
     <a class="active" href="#"><i class="cil-heart"></i></a>
-    <a class="active" (click)="onAccountClick()"><i class="at-account"></i></a>
+    <a class="active" href="#" (click)="$event.preventDefault();onAccountClick()"><i class="at-account"></i></a>
   </div>
 
   <div *ngIf="this.role == 'guest'">
