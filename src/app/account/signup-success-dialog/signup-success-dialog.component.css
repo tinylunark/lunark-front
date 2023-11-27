@@ -1,0 +1,10 @@
+button {
+    margin: auto;
+    border-radius: 9999px;
+    width: 12%;
+}
+
+[mat-dialog-title] {
+    font-family: bayon;
+    font-weight: 400;
+}

@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { AccountService } from '../account.service';
 import { Account } from '../model/account.model';
+import { SignupSuccessDialog } from '../signup-success-dialog/signup-success-dialog.component';
 
 export const passwordConfrimedValidator: ValidatorFn = (
   control: AbstractControl,
@@ -45,7 +46,7 @@ export class SignupDialog {
     validators: passwordConfrimedValidator
   });
 
-  constructor(public dialogRef: MatDialogRef<SignupDialog>, private accountService: AccountService) { }
+  constructor(public dialogRef: MatDialogRef<SignupDialog>, private accountService: AccountService, public dialog: MatDialog) { }
 
   signUp() {
     if(this.signupForm.valid) {
@@ -64,6 +65,7 @@ export class SignupDialog {
       this.accountService.add(newAccount);
 
       this.dialogRef.close();
+      this.dialog.open(SignupSuccessDialog);
     }
   }
 }
