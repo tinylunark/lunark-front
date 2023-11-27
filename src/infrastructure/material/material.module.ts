@@ -4,6 +4,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from "@angular/material/input";
 import { MatButtonModule } from "@angular/material/button";
 import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatRadioModule } from "@angular/material/radio";
 
 @NgModule({
   declarations: [],
@@ -13,12 +14,14 @@ import { MatFormFieldModule } from "@angular/material/form-field";
     MatInputModule,
     MatButtonModule,
     MatFormFieldModule,
+    MatRadioModule
   ],
   exports: [
     MatDialogModule,
     MatInputModule,
     MatButtonModule,
     MatFormFieldModule,
+    MatRadioModule
   ]
 })
 
