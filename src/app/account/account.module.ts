@@ -3,12 +3,14 @@ import { CommonModule } from '@angular/common';
 import { LoginDialog } from './login-dialog/login-dialog.component';
 import { MaterialModule } from '../../infrastructure/material/material.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { SignupDialog } from './signup-dialog/signup-dialog.component';
 
 
 
 @NgModule({
   declarations: [
-    LoginDialog
+    LoginDialog,
+    SignupDialog
   ],
   imports: [
     CommonModule,
@@ -16,7 +18,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule
   ],
   exports: [
-    LoginDialog
+    LoginDialog,
+    SignupDialog
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA

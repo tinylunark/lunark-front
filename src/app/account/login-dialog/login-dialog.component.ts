@@ -4,6 +4,7 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import '@material/web/button/filled-button.js';
 import { AccountService } from '../account.service';
+import { SignupDialog } from '../signup-dialog/signup-dialog.component';
 
 @Component({
   selector: 'app-login-dialog',
@@ -15,7 +16,7 @@ export class LoginDialog {
     email: new FormControl('', [Validators.required]),
     password: new FormControl('', [Validators.required]),
   });
-  constructor(public dialogRef: MatDialogRef<LoginDialog>, private accountService: AccountService) { }
+  constructor(public dialogRef: MatDialogRef<LoginDialog>, private accountService: AccountService, public dialog: MatDialog) { }
 
   signIn() {
     const email = this.loginForm.value.email || ""; 
@@ -24,5 +25,11 @@ export class LoginDialog {
     if(this.loginForm.valid && account) {
       this.dialogRef.close(account);
     }
+  }
+
+  openSignUpDialog() {
+    const signUpDialogRef = this.dialog.open(SignupDialog, {
+      "width": "40%"
+    });
   }
 }
