@@ -1,16 +1,40 @@
 <h1 mat-dialog-title>Sign up</h1>
 <div mat-dialog-content>
-  <form>
+  <form [formGroup]="signupForm">
+    <mat-form-field appearance="outline" color="accent"> 
+      <mat-label>First name</mat-label>
+      <input matInput type="text" name="firstName" formControlName="firstName" />
+    </mat-form-field>
+    <mat-form-field appearance="outline" color="accent">
+      <mat-label>Last name</mat-label>
+      <input matInput type="text" name="surname" formControlName="lastName" />
+    </mat-form-field>
     <mat-form-field appearance="outline" color="accent">
       <mat-label>Email</mat-label>
-      <input matInput type="text" name="email" formControlName="email" />
+      <input matInput type="email" name="email" formControlName="email" />
     </mat-form-field>
     <mat-form-field appearance="outline" color="accent"> 
       <mat-label>Password</mat-label>
       <input matInput type="password" name="password" formControlName="password" />
     </mat-form-field>
+    <mat-form-field appearance="outline" color="accent">
+      <mat-label>Confirm password</mat-label>
+      <input matInput type="password" name="confirmPassword" formControlName="confirmPassword" />
+    </mat-form-field>
+    <mat-form-field appearance="outline" color="accent">
+      <mat-label>Address</mat-label>
+      <input matInput type="text" name="address" formControlName="address" />
+    </mat-form-field>
+    <mat-form-field appearance="outline" color="accent">
+      <mat-label>Phone number</mat-label>
+      <input matInput type="text" name="phoneNumber" formControlName="phoneNumber" />
+    </mat-form-field>
+    <mat-radio-group appearance="outline" color="accent" formControlName="role">
+      <mat-radio-button value="guest">I am a <b>guest</b></mat-radio-button>
+      <mat-radio-button value="host">I am a <b>host</b></mat-radio-button>
+    </mat-radio-group>
   </form>
 </div>
 <div mat-dialog-actions>
-  <button mat-flat-button color="primary" id="sign-up">Sign up</button>
+  <button mat-flat-button color="primary" (click)="signUp()" id="sign-up">Sign up</button>
 </div>
