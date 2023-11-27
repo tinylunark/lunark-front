@@ -4,13 +4,6 @@ form {
     flex-direction: column;
 }
 
-[mat-dialog-title] {
-    text-align: center;
-    font-family: bayon;
-    font-weight: 400;
-    font-size: 3rem;
-}
-
 [mat-dialog-content] {
     padding-top: 1%;
 }
@@ -30,9 +23,6 @@ h1 {
 }
 
 #sign-up {
-    margin-left: auto;
-    margin-right: auto;
     margin-bottom: 4%;
-    border-radius: 9999px;
     width: 70%;
 }

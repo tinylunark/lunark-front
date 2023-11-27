@@ -3,19 +3,8 @@ form {
     flex-direction: column;
 }
 
-[mat-dialog-title] {
-    text-align: center;
-    font-family: bayon;
-    font-weight: 400;
-    font-size: 3rem;
-}
-
 [mat-dialog-content] {
     padding-top: 1%;
-}
-
-#sign-up {
-    color: #00838F;
 }
 
 h1 {
@@ -28,8 +17,6 @@ p {
 }
 
 #sign-in {
-    margin:auto;
     margin-bottom: 4%;
     width:70%;
-    border-radius: 9999px;
 }

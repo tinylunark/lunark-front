@@ -30,3 +30,20 @@ mat-dialog-container {
   border-radius: 10px;
   padding: 3px;
 }
+
+.mat-mdc-dialog-container h1.mdc-dialog__title {
+  text-align: center;
+  font-family: bayon;
+  font-weight: 400;
+  font-size: 3rem;
+}
+
+[mat-dialog-actions] button {
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 9999px;
+}
+
+[color="primary"] {
+  color: #00838f;
+}
