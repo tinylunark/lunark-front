@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { AccountService } from '../account.service';
+import { Account } from '../model/account.model';
 
 export const passwordConfrimedValidator: ValidatorFn = (
   control: AbstractControl,
@@ -48,6 +49,20 @@ export class SignupDialog {
 
   signUp() {
     if(this.signupForm.valid) {
+      const newAccount: Account = {
+        name: this.signupForm.value.firstName || "",
+        surname: this.signupForm.value.lastName || "",
+        email: this.signupForm.value.email || "",
+        password: this.signupForm.value.password || "",
+        address: this.signupForm.value.address || "",
+        phoneNumber: this.signupForm.value.phoneNumber || "",
+        role: this.signupForm.value.role || "",
+        verified: true,
+        notificationsEnabled: true,
+        blocked: false
+      }
+      this.accountService.add(newAccount);
+
       this.dialogRef.close();
     }
   }
