@@ -67,12 +67,14 @@ $lunark-front-theme-bigger-text: mat.define-dark-theme((
   ),
 ));
 
-// Sets dialog background color
+// Sets background colors
 $dialog-background-color: #121212;
+$background-color: #1f1f1f;
 $color: map.get($lunark-front-theme, "color");
 $colorBackground: map.get($color, "background");
 $colorBackground: map.set($colorBackground, "dialog", $dialog-background-color);
 $colorBackground: map.set($colorBackground, "raised-button", $dialog-background-color);
+$colorBackground: map.set($colorBackground, "background", $background-color);
 $color: map.set($color, "background", $colorBackground);
 $lunark-front-theme: map.set($lunark-front-theme, "color", $color);
 
