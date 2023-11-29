@@ -1,5 +1,5 @@
 .header-text {
-  position: fixed;
+  position: absolute;
   margin-right: 50px;
   margin-top: 1em;
   right: 0;
@@ -9,7 +9,7 @@
 .main-text {
   text-align: center;
   position: absolute;
-  top: 58%;
+  top: 70%;
   left: 50%;
   transform: translate(-50%, -38%);
 }
@@ -24,3 +24,10 @@ p span {
   color: #00B3B3;
 }
 
+.hero-image {
+  min-width: 100vw;
+  min-height: 85vh;
+  background-image: url(../../../assets/earth3.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}

@@ -16,9 +16,10 @@ import {AsyncPipe} from "@angular/common";
     PropertyDetailComponent,
     SearchComponent
   ],
-  exports: [
-    SearchComponent
-  ],
+    exports: [
+        SearchComponent,
+        PropertiesComponent
+    ],
   imports: [
     SharedModule,
     PropertiesRoutingModule,
