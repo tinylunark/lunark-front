@@ -4,8 +4,6 @@ import {PropertiesComponent} from "./properties/properties.component";
 import {PropertyDetailComponent} from "./property-detail/property-detail.component";
 
 const routes: Routes = [
-  { path: 'properties', component: PropertiesComponent },
-  { path: 'search', component: PropertiesComponent },
   { path: 'properties/:id', component: PropertyDetailComponent },
 ];
 
