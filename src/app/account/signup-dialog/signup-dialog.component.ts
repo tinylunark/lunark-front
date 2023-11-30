@@ -65,7 +65,9 @@ export class SignupDialog {
       this.accountService.add(newAccount);
 
       this.dialogRef.close();
-      this.dialog.open(SignupSuccessDialog);
+      this.dialog.open(SignupSuccessDialog, {
+          backdropClass: "backdropBackground"
+      });
     }
   }
 }

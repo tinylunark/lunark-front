@@ -92,7 +92,6 @@ app-helper-menu span {
 }
 
 mat-dialog-container {
-
   box-shadow: 0px 4px 19px 9px rgba(240, 237, 238, 0.25);
   border: 1px #F0EDEE solid;
   border-radius: 10px;
@@ -109,6 +108,9 @@ mat-dialog-container {
 [mat-dialog-actions] button {
   margin-left: auto;
   margin-right: auto;
+}
+
+button.mdc-button {
   border-radius: 9999px;
 }
 
@@ -119,3 +121,12 @@ mat-dialog-container {
 ::-webkit-scrollbar {
     display: none;
 }
+
+.backdropBackground {
+  backdrop-filter: blur(10px);
+}
+
+.mat-mdc-dialog-container {
+  background-color: #1f1f1f;
+}
+

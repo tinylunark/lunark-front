@@ -25,7 +25,8 @@ export class NavBarComponent {
   openLoginDialog() {
     // Open login dialog
     const dialogRef = this.dialog.open(LoginDialog,{
-      width: '40%'
+      width: "40%",
+      backdropClass: "backdropBackground"
     });
     dialogRef.afterClosed().subscribe(result => {
       const account = result as Account;
