@@ -1,5 +1,5 @@
-<app-container>
-  <mat-grid-list fxFill cols="4" rowHeight="2:1">
+<div class="detail-container">
+  <mat-grid-list fxFill cols="4" rowHeight="1.5:1">
     <mat-grid-tile colspan="2" rowspan="2">
       <img [src]="property?.photoUrls?.at(0) ?? placeholderImage" alt="Photo of a property." />
     </mat-grid-tile>
@@ -8,7 +8,7 @@
     </mat-grid-tile>
   </mat-grid-list>
 
-  <div fxFill fxLayout="row" fxLayoutAlign="space-around start">
+  <div class="detail-text" fxFill fxLayout="row" fxLayoutAlign="space-around start">
     <div fxLayout="column" fxLayoutAlign="start start">
       <div fxLayout="row" fxLayoutAlign="space-between start" fxLayoutGap="20px">
         <h1 >{{property?.name}}</h1>
@@ -16,7 +16,7 @@
           <mat-icon>star</mat-icon><span>{{property?.averageRating?.toPrecision(2)}}</span>
         </div>
       </div>
-      <h3 class="primary-color">{{property?.location?.city}}, {{property?.location?.country}}</h3>
+      <h3>{{property?.location?.city}}, {{property?.location?.country}}</h3>
       <p>{{property?.description}}</p>
     </div>
 
@@ -43,4 +43,4 @@
       </div>
     </form>
   </div>
-</app-container>
+</div>

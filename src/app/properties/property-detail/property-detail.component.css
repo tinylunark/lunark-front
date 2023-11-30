@@ -1,3 +1,11 @@
+mat-grid-list {
+  margin-bottom: 4em;
+}
+
+.detail-text {
+  margin-bottom: 3em;
+}
+
 mat-grid-tile img {
   height: 100%;
   width: 100%;
@@ -5,11 +13,12 @@ mat-grid-tile img {
 
 h1 {
   font-family: bayon, sans-serif;
-  font-size: 2rem;
+  font-size: 3rem;
 }
 
 h3 {
   font-size: 1.5rem;
+  color: #00838f;
 }
 
 app-container {
@@ -21,4 +30,18 @@ app-container {
 
 p {
   max-width: 80%;
+}
+
+/* TODO: use the container component */
+.detail-container {
+  margin: 2em auto;
+  display: flex;
+  position: relative;
+  min-height: 85vh;
+  max-width: 80%;
+  border: 2px solid #fff;
+  box-shadow: 0 0px 20px #fff, 0 0 9px #fff;
+  border-radius: 15px;
+  flex-direction: column;
+  padding: 3em;
 }
