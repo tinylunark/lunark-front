@@ -93,7 +93,6 @@ app-helper-menu span {
 }
 
 mat-dialog-container {
-
   box-shadow: 0px 4px 19px 9px rgba(240, 237, 238, 0.25);
   border: 1px #F0EDEE solid;
   border-radius: 10px;
@@ -115,4 +114,12 @@ mat-dialog-container {
 
 [color="primary"] {
   color: #00838f;
+}
+
+.backdropBackground {
+  backdrop-filter: blur(10px);
+}
+
+.mat-mdc-dialog-container {
+  background-color: #1f1f1f;
 }

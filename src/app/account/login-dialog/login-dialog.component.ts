@@ -29,7 +29,8 @@ export class LoginDialog {
 
   openSignUpDialog() {
     const signUpDialogRef = this.dialog.open(SignupDialog, {
-      "width": "40%"
+      width: "40%",
+      backdropClass: "backdropBackground"
     });
   }
 }
