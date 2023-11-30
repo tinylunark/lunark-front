@@ -9,7 +9,7 @@
 .main-text {
   text-align: center;
   position: absolute;
-  top: 70%;
+  top: 65%;
   left: 50%;
   transform: translate(-50%, -38%);
 }
@@ -26,8 +26,14 @@ p span {
 
 .hero-image {
   min-width: 100vw;
+  position: absolute;
   min-height: 85vh;
   background-image: url(../../../assets/earth3.jpg);
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+.landing-search {
+  position: relative;
+  top: 66%;
 }

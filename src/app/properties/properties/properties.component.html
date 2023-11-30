@@ -1,12 +1,9 @@
-<app-container>
+<div id="container">
   <app-search></app-search>
-  <div class="grid" gdColumns="1fr 1fr 1fr" gdGap="15px">
+  <div class="grid">
     <mat-card
-      *ngFor="let property of properties">
-      <img
-        mat-card-image
-        [src]="property.photoUrls.at(0) ?? placeholderImage"
-        alt="Image of a property." />
+        *ngFor="let property of properties">
+      <img mat-card-image [src]="property.photoUrls.at(0) ?? placeholderImage" alt="Image of a property." />
       <mat-card-header>
         <mat-card-title>{{property.name}}</mat-card-title>
         <mat-card-subtitle class="mat-subtitle-1">{{property.location.city}}, {{property.location.country}}</mat-card-subtitle>
@@ -20,4 +17,4 @@
       </mat-card-footer>
     </mat-card>
   </div>
-</app-container>
+</div>

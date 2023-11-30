@@ -1,36 +1,42 @@
-mat-card{
-  display:flex;
+#container {
+  margin: 0 auto;
+  top: 0;
+}
+
+.mat-card {
+  display: flex;
   flex-direction: column;
-  max-width: 400px;
+  max-width: 20em;
   border-radius: 20px;
   border: 2px solid #f0edee;
   background-color: #2d2d2d;
+  margin: 0;
+  padding: 0;
+  margin-right: 1em;
 }
 
-mat-card:hover{
+.mat-card:last-child {
+  margin-right: 0;
+}
+
+.mat-card:hover {
   border: 2px solid #00838f;
 }
 
-
-mat-card-header {
+.mat-card-header {
   font-family: rubik-regular;
   flex-shrink: 0;
 }
 
-mat-card-subtitle {
+.mat-card-subtitle {
   font-family: rubik-regular;
   color: #00838f;
-
 }
 
-mat-card-content{
-  flex-grow: 1;
-}
-
-mat-card-footer {
+.mat-card-footer {
   display: flex;
   justify-content: space-between;
-  margin: 2em 1em 1em;
+  margin: 2em;
 }
 
 #price {
@@ -38,18 +44,30 @@ mat-card-footer {
   align-self: center;
 }
 
-app-container {
-  margin-top: 2em;
-  padding: 2em;
-  flex-direction: column;
-}
-
 .grid {
   margin-top: 1.5em;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1em;
+  justify-content: space-between;
+  align-items: stretch;
 }
 
-mat-card img{
-  object-fit: cover; /*this makes the image in src fit to the size specified below*/
-  width: 100%; /* Here you can use wherever you want to specify the width and also the height of the <img>*/
-  height: 200px;
+@media (max-width: 1200px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.mat-card img {
+  object-fit: cover;
+  min-width: 100%;
+  min-height: 14em;
+}
+
