@@ -51,10 +51,6 @@
   font-family: rubik-regular;
 }
 
-.price {
-  font-size: 2em;
-}
-
 @media (max-width: 1200px) {
   .grid {
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -74,7 +70,7 @@
 
 .price {
   align-self: center;
-  font-size: 2em;
+  font-size: 1em;
 }
 
 .header {
@@ -84,6 +80,7 @@
 
 .location {
   color:  #00838f;
+  font-size: 0.8em;
 }
 
 @media (max-width: 1200px) {

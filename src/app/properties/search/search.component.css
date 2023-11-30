@@ -1,3 +1,31 @@
-mat-form-field {
+.field-input {
   margin-bottom: -1.25em;
+}
+
+.search-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  width: 4em;
+  height: 4em;
+  font-family: rubik-bold;
+  text-transform: uppercase;
+  position: relative;
+}
+
+.search-button mat-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-40%, -55%);
+}
+
+.search-button mat-icon {
+  color: #fff;
+  font-size: 24px;
+}
+
+:host ::ng-deep .mdc-text-field--outlined {
+  --mdc-outlined-text-field-container-shape: 28px;
 }

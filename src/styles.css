@@ -3,9 +3,7 @@
 
 @font-face {
   font-family: 'bayon';
-  src: url('./assets/fonts/bayon.ttf') format('truetype');
-}
-
+  src: url('./assets/fonts/bayon.ttf') format('truetype'); }
 @font-face {
   font-family: 'rubik-regular';
   src: url('./assets/fonts/rubik/Rubik-Regular.ttf') format('truetype');
@@ -25,6 +23,7 @@ body {
   background-color: #1e1e1e;
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+  overflow-x: hidden;
 }
 
 .backgroundImage {

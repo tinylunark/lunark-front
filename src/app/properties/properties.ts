@@ -7,8 +7,8 @@ const imagesDir = environment.assetsDir + '/images/';
 const properties: Property[] = [
   {
     id: 1,
-    name: 'Modern Urban Oasis',
-    location: locations.at(2)!,
+    name: 'Italy old Castle',
+    location: locations.at(0)!,
     description: '',
     photoUrls: [
       imagesDir + 'stock1.jpg'
@@ -18,22 +18,22 @@ const properties: Property[] = [
   },
   {
     id: 2,
-    name: 'Cozy Bohemian Hideaway',
+    name: 'Summer Luxury Apartment',
     location: locations.at(1)!,
     description: '',
     photoUrls: [
-      imagesDir + 'stock2.jpg'
+      imagesDir + 'stock2.jpeg'
     ],
     pricePerNight: 150,
     averageRating: 5.0
   },
   {
     id: 3,
-    name: 'Seaside Serenity with Panoramic Views',
-    location: locations.at(0)!,
+    name: 'Minimalist Premium',
+    location: locations.at(2)!,
     description: '',
     photoUrls: [
-      imagesDir + 'stock3.webp'
+      imagesDir + 'stock3.jpg'
     ],
     pricePerNight: 170,
     averageRating: 4.5

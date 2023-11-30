@@ -1,13 +1,13 @@
 #container {
   display: flex;
   position: relative;
-  min-width: 93vw;
-  min-height: 82vh;
+  min-width: 92vw;
+  min-height: 85vh;
   max-width: 90%;
   border: 2px solid #fff;
   margin-top: 6em;
   margin-left: 7em;
-  margin-right: 4em;
+  margin-right: 6em;
   margin-bottom: 0.5em;
   box-shadow: 0 0px 20px #fff, 0 0 9px #fff;
   border-radius: 15px;
@@ -17,7 +17,6 @@
 }
 
 #padder {
-  padding: 2em;
   display: flex;
   flex-direction: inherit;
   gap: inherit;

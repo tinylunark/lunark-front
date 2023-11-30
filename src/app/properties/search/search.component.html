@@ -1,33 +1,31 @@
-<form action="" method="get" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10px">
-  <mat-form-field appearance="outline">
-    <mat-label>Location</mat-label>
-    <mat-icon matSuffix>map</mat-icon>
-    <input matInput type="text" [matAutocomplete]="auto" [formControl]="locationControl">
-    <mat-autocomplete #auto="matAutocomplete">
-      <mat-option
-        *ngFor="let location of filteredOptions | async"
-        [value]="location">{{location}}</mat-option>
-    </mat-autocomplete>
-  </mat-form-field>
-  <mat-form-field appearance="outline">
-    <mat-label>Number of guests</mat-label>
-    <mat-icon matSuffix>group</mat-icon>
-    <input matInput>
-  </mat-form-field>
-  <mat-form-field appearance="outline">
-    <mat-label>Date range</mat-label>
-    <mat-date-range-input [rangePicker]="picker">
-      <input matStartDate placeholder="Start date">
-      <input matEndDate placeholder="End date">
-    </mat-date-range-input>
-    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-    <mat-date-range-picker #picker></mat-date-range-picker>
-  </mat-form-field>
-    <button mat-mini-fab color="accent">
-      <mat-icon>edit</mat-icon>
-    </button>
-    <button mat-raised-button color="primary">
+<div id="container">
+  <form action="" method="get" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10px">
+    <mat-form-field class="field-input"appearance="outline">
+      <mat-label>Location</mat-label>
+      <mat-icon matSuffix>map</mat-icon>
+      <input matInput type="text" [matAutocomplete]="auto" [formControl]="locationControl">
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option
+            *ngFor="let location of filteredOptions | async"
+            [value]="location">{{location}}</mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+    <mat-form-field class="field-input" appearance="outline">
+      <mat-label>Number of guests</mat-label>
+      <mat-icon matSuffix>group</mat-icon>
+      <input matInput>
+    </mat-form-field>
+    <mat-form-field class="field-input"appearance="outline">
+      <mat-label>Date range</mat-label>
+      <mat-date-range-input [rangePicker]="picker">
+        <input matStartDate placeholder="Start date">
+        <input matEndDate placeholder="End date">
+      </mat-date-range-input>
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-date-range-picker #picker></mat-date-range-picker>
+    </mat-form-field>
+    <button mat-raised-button class="search-button" color="primary">
       <mat-icon>search</mat-icon>
-      Search
     </button>
-</form>
+  </form>
+</div>
