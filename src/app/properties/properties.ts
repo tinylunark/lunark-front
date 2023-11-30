@@ -13,7 +13,7 @@ const properties: Property[] = [
     photoUrls: [
       imagesDir + 'stock1.jpg'
     ],
-    pricePerNight: 100,
+    pricePerNight: 400,
     averageRating: 4.5
   },
   {
@@ -24,7 +24,7 @@ const properties: Property[] = [
     photoUrls: [
       imagesDir + 'stock2.jpeg'
     ],
-    pricePerNight: 150,
+    pricePerNight: 600,
     averageRating: 5.0
   },
   {
@@ -35,24 +35,24 @@ const properties: Property[] = [
     photoUrls: [
       imagesDir + 'stock3.jpg'
     ],
-    pricePerNight: 170,
+    pricePerNight: 200,
     averageRating: 4.5
   },
   {
     id: 4,
-    name: 'Luxury Loft in the Sky',
-    location: locations.at(2)!,
+    name: 'Beautiful White House',
+    location: locations.at(5)!,
     description: '',
     photoUrls: [
       imagesDir + 'stock4.jpg'
     ],
-    pricePerNight: 100,
+    pricePerNight: 500,
     averageRating: 4.5
   },
   {
     id: 5,
-    name: 'Historic Elegance in the Heart of Old Town',
-    location: locations.at(1)!,
+    name: 'Mexico Big',
+    location: locations.at(3)!,
     description: '',
     photoUrls: [
       imagesDir + 'stock5.jpg'
