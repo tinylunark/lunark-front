@@ -1,5 +1,5 @@
 <div class="detail-container">
-  <mat-grid-list fxFill cols="4" rowHeight="1.5:1">
+  <mat-grid-list fxFill cols="4" rowHeight="1.5:1" gutterSize="1em">
     <mat-grid-tile colspan="2" rowspan="2">
       <img [src]="property?.photoUrls?.at(0) ?? placeholderImage" alt="Photo of a property." />
     </mat-grid-tile>
@@ -8,11 +8,11 @@
     </mat-grid-tile>
   </mat-grid-list>
 
-  <div class="detail-text" fxFill fxLayout="row" fxLayoutAlign="space-around start">
+  <div class="detail-text" fxFill fxLayout="row" fxLayoutAlign="space-between start">
     <div fxLayout="column" fxLayoutAlign="start start">
       <div fxLayout="row" fxLayoutAlign="space-between start" fxLayoutGap="20px">
         <h1 >{{property?.name}}</h1>
-        <div fxLayout="row" fxLayoutAlign="center center">
+        <div fxLayout="row" fxLayoutAlign="center center" class="rating">
           <mat-icon>star</mat-icon><span>{{property?.averageRating?.toPrecision(2)}}</span>
         </div>
       </div>

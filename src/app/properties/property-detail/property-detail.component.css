@@ -4,6 +4,7 @@ mat-grid-list {
 
 .detail-text {
   margin-bottom: 3em;
+  padding: 0 3em;
 }
 
 mat-grid-tile img {
@@ -44,4 +45,8 @@ p {
   border-radius: 15px;
   flex-direction: column;
   padding: 3em;
+}
+
+.rating {
+  font-size: 1.5rem;
 }
