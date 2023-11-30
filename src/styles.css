@@ -115,3 +115,7 @@ mat-dialog-container {
 [color="primary"] {
   color: #00838f;
 }
+
+::-webkit-scrollbar {
+    display: none;
+}
