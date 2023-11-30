@@ -8,13 +8,15 @@ import { MaterialModule } from "../../infrastructure/material/material.module";
 import { CoreModule } from '../core/core.module';
 import { SearchComponent } from './search/search.component';
 import { AsyncPipe } from "@angular/common";
+import { SearchPageComponent } from './search-page/search-page.component';
 
 
 @NgModule({
   declarations: [
     PropertiesComponent,
     PropertyDetailComponent,
-    SearchComponent
+    SearchComponent,
+    SearchPageComponent
   ],
     exports: [
         SearchComponent,
