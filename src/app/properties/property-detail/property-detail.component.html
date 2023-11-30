@@ -4,7 +4,7 @@
       <img [src]="property?.photoUrls?.at(0) ?? placeholderImage" alt="Photo of a property." />
     </mat-grid-tile>
     <mat-grid-tile *ngFor="let urlOrder of [1, 2, 3, 4]">
-      <img [src]="property?.photoUrls?.at(urlOrder) ?? placeholderImage" alt="Photo of a property." />
+      <img [src]="environment.assetsDir + '/images/common' + urlOrder + '.png'" alt="Photo of a property." />
     </mat-grid-tile>
   </mat-grid-list>
 

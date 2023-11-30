@@ -30,4 +30,5 @@ export class PropertyDetailComponent {
   }
 
   protected readonly Array = Array;
+  protected readonly environment = environment;
 }
