@@ -109,6 +109,9 @@ mat-dialog-container {
 [mat-dialog-actions] button {
   margin-left: auto;
   margin-right: auto;
+}
+
+button.mdc-button {
   border-radius: 9999px;
 }
 
