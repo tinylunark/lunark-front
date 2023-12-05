@@ -1,0 +1,45 @@
+#container {
+  text-align: center;
+  display:flex;
+  flex-direction: column;
+  padding: 2em;
+}
+
+p {
+  font-family: rubik-bold;
+  text-align: center;
+  font-size: 1.4em;
+}
+
+.upload-card:hover{
+  cursor: pointer;
+  border: 1px solid #00838f;
+}
+
+.upload-card {
+  border: 1px solid white;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  height: 300px;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon {
+  margin-top: 20px;
+  font-size: 90px;
+}
+
+.title {
+  font-size: 1.6em;
+  padding-top: 3em;
+  word-spacing: 3px;
+}
+
+.small-text {
+  font: rubik-bold;
+  font-size: 1em;
+  text-decoration: underline;
+}
