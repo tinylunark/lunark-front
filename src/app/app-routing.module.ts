@@ -7,7 +7,8 @@ const routes: Routes = [
   { path: 'profile', loadChildren: () => import('./profile/profile.module').then(m => m.ProfileModule) },
   { path: 'properties', loadChildren: () => import('./properties/properties.module').then(m => m.PropertiesModule) },
   { path: 'search', loadChildren: () => import('./properties/properties.module').then(m => m.PropertiesModule) },
-  { path: '**', loadChildren: () => import('./core/core.module').then(m => m.CoreModule) },
+  { path: '**', redirectTo: '404' },
+  { path: '404', loadChildren: () => import('./core/core.module').then(m => m.CoreModule) },
 ];
 
 @NgModule({

@@ -3,7 +3,7 @@ import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
 import {NgModule} from "@angular/core";
 
 const routes: Routes = [
-  { path: '**', component: PageNotFoundComponent },
+  { path: '404', component: PageNotFoundComponent },
 ];
 
 @NgModule({
