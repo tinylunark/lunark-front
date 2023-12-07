@@ -1,10 +1,10 @@
 <div class="detail-container">
   <mat-grid-list fxFill cols="4" rowHeight="1.5:1" gutterSize="1em">
     <mat-grid-tile colspan="2" rowspan="2">
-      <img [src]="property?.photoUrls?.at(0) ?? placeholderImage" alt="Photo of a property." />
+      <img [src]="images.at(0) ?? placeholderImage" alt="Photo of a property." />
     </mat-grid-tile>
     <mat-grid-tile *ngFor="let urlOrder of [1, 2, 3, 4]">
-      <img [src]="environment.assetsDir + '/images/common' + urlOrder + '.png'" alt="Photo of a property." />
+      <img [src]="images.at(urlOrder) ?? placeholderImage" alt="Photo of a property." />
     </mat-grid-tile>
   </mat-grid-list>
 
@@ -16,7 +16,7 @@
           <mat-icon>star</mat-icon><span>{{property?.averageRating?.toPrecision(2)}}</span>
         </div>
       </div>
-      <h3>{{property?.location?.city}}, {{property?.location?.country}}</h3>
+      <h3>{{property?.address?.city}}, {{property?.address?.country}}</h3>
       <p>{{property?.description}}</p>
     </div>
 

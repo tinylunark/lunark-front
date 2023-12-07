@@ -2,10 +2,10 @@
   <app-search></app-search>
   <div class="grid">
     <mat-card class="card" *ngFor="let property of properties" routerLink="/properties/{{property.id}}">
-      <img mat-card-image class="image" [src]="property.photoUrls.at(0) ?? placeholderImage" alt="Image of a property." />
+      <img mat-card-image class="image" [src]="images.get(property.id) ?? placeholderImage" alt="Image of a property." />
       <mat-card-header class="header">
         <mat-card-title class="title">{{property.name}}</mat-card-title>
-        <mat-card-subtitle class="location">{{property.location.city}}, {{property.location.country}}</mat-card-subtitle>
+        <mat-card-subtitle class="location">{{property.address.city}}, {{property.address.country}}</mat-card-subtitle>
       </mat-card-header>
       <mat-card-content>
         <p>{{property.description}}</p>
