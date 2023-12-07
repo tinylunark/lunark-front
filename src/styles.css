@@ -1,9 +1,11 @@
 @import "../node_modules/@coreui/icons/css/free.css";
 @import "../node_modules/@vectopus/atlas-icons/style.css";
+@import "../node_modules/material-icons/iconfont/material-icons.css";
 
 @font-face {
   font-family: 'bayon';
   src: url('./assets/fonts/bayon.ttf') format('truetype'); }
+
 @font-face {
   font-family: 'rubik-regular';
   src: url('./assets/fonts/rubik/Rubik-Regular.ttf') format('truetype');
