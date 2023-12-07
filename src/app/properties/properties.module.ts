@@ -9,6 +9,11 @@ import { CoreModule } from '../core/core.module';
 import { SearchComponent } from './search/search.component';
 import { AsyncPipe } from "@angular/common";
 import { SearchPageComponent } from './search-page/search-page.component';
+import { PropertyNewComponent } from './property-new/property-new.component';
+import { PropertyManagementModule } from './property-management/property-management.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatInputModule } from '@angular/material/input';
 
 
 @NgModule({
@@ -16,19 +21,26 @@ import { SearchPageComponent } from './search-page/search-page.component';
     PropertiesComponent,
     PropertyDetailComponent,
     SearchComponent,
-    SearchPageComponent
+    SearchPageComponent,
+    PropertyNewComponent,
   ],
-    exports: [
-        SearchComponent,
-        PropertiesComponent
-    ],
   imports: [
+    MatAutocompleteModule,
+    MatInputModule,
     SharedModule,
     PropertiesRoutingModule,
     FlexLayoutModule,
     MaterialModule,
+    PropertyManagementModule,
     CoreModule,
-    AsyncPipe
+    AsyncPipe,
+    FormsModule,
+    ReactiveFormsModule,
+  ],
+  exports: [
+    SearchComponent,
+    PropertiesComponent,
+    PropertyNewComponent,
   ]
 })
 export class PropertiesModule {
