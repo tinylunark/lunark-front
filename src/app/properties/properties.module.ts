@@ -14,6 +14,7 @@ import { PropertyManagementModule } from './property-management/property-managem
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatInputModule } from '@angular/material/input';
+import { PropertyPriceAndAvailabilityEditComponent } from './property-price-and-availability-edit/property-price-and-availability-edit.component';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import { MatInputModule } from '@angular/material/input';
     SearchComponent,
     SearchPageComponent,
     PropertyNewComponent,
+    PropertyPriceAndAvailabilityEditComponent
   ],
   imports: [
     MatAutocompleteModule,
