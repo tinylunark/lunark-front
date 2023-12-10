@@ -16,25 +16,25 @@ export class SearchComponent {
   constructor(private propertyService: PropertyService) {
   }
 
-  ngOnInit(): void {
-    this.getLocations();
-
-    this.filteredOptions = this.locationControl.valueChanges.pipe(
-      startWith(''),
-      map(value => this._filter(value || '')),
-    );
-  }
-
-  getLocations(): void {
-    this.propertyService.getLocations()
-      .subscribe(locations => this.locationOptions = locations.map(
-        (location) => `${location.city}, ${location.country}`
-      ));
-  }
-
-  private _filter(value: string): string[] {
-    const filterValue = value.toLowerCase();
-
-    return this.locationOptions.filter(option => option.toLowerCase().includes(filterValue));
-  }
+  // ngOnInit(): void {
+  //   this.getLocations();
+  //
+  //   this.filteredOptions = this.locationControl.valueChanges.pipe(
+  //     startWith(''),
+  //     map(value => this._filter(value || '')),
+  //   );
+  // }
+  //
+  // getLocations(): void {
+  //   this.propertyService.getLocations()
+  //     .subscribe(([]) => this.locationOptions = locations.map(
+  //       (location) => `${location.city}, ${location.country}`
+  //     ));
+  // }
+  //
+  // private _filter(value: string): string[] {
+  //   const filterValue = value.toLowerCase();
+  //
+  //   return this.locationOptions.filter(option => option.toLowerCase().includes(filterValue));
+  // }
 }

@@ -7,6 +7,8 @@ import { HelperMenuComponent } from './helper-menu/helper-menu.component';
 import { AccountModule } from '../account/account.module';
 import { MaterialModule } from '../../infrastructure/material/material.module';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import {CoreRoutingModule} from "./core-routing.module";
 
 @NgModule({
   declarations: [
@@ -14,19 +16,22 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
     NavBarComponent,
     HeaderComponent,
     ContainerComponent,
+    PageNotFoundComponent,
   ],
   imports: [
     CommonModule,
     AccountModule,
     MaterialModule,
     RouterLink,
-    RouterLinkActive
+    RouterLinkActive,
+    CoreRoutingModule,
   ],
   exports: [
     HelperMenuComponent,
     NavBarComponent,
     HeaderComponent,
     ContainerComponent,
+    PageNotFoundComponent,
   ]
 })
 export class CoreModule { }

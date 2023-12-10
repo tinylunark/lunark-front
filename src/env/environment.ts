@@ -1,4 +1,4 @@
 export const environment = {
-  apiHost: 'http://localhost:8080/',
+  apiHost: 'http://localhost:8080/api',
   assetsDir: '../assets'
 }

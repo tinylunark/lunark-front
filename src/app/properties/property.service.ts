@@ -1,26 +1,28 @@
 import { Injectable } from '@angular/core';
 import {Observable, of} from "rxjs";
 import Property from "../shared/models/property.model";
-import properties from "./properties";
 import Location from "../shared/models/location.model";
-import locations from "./locations";
+import {HttpClient} from "@angular/common/http";
+import {environment} from "../../env/environment";
+import {ApiPaths} from "../shared/api/api-paths.enum";
 
 @Injectable({
   providedIn: 'root'
 })
 export class PropertyService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   getProperties(): Observable<Property[]> {
-    return of(properties);
+    return this.http.get<Property[]>(`${environment.apiHost}/${ApiPaths.Properties}`);
   }
 
-  getProperty(id: number): Observable<Property | undefined> {
-    return of(properties.find(p => p.id === id));
+  getProperty(id: number): Observable<Property> {
+    return this.http.get<Property>(`${environment.apiHost}/${ApiPaths.Properties}/${id}`);
   }
 
-  getLocations(): Observable<Location[]> {
-    return of(locations);
+  getImage(imageId: number, propertyId: number): Observable<Blob> {
+    return this.http.get(`${environment.apiHost}/${ApiPaths.Properties}/${propertyId}/images/${imageId}`,
+      {responseType: 'blob'});
   }
 }
