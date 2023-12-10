@@ -1,8 +1,8 @@
 <app-header text="Edit Calendar"></app-header>
 <app-container>
-  <app-helper-menu [items]="menuItems" >
+  <app-helper-menu [items]="menuItems" (selectedItemChange)="selectedMenuItemChanged($event)">
   </app-helper-menu>
   <div>
-    <inline-range-calendar></inline-range-calendar>
+    <inline-range-calendar (selectedRangeValueChange)="selectedDateRangeChanged($event)"></inline-range-calendar>
   </div>
 </app-container>

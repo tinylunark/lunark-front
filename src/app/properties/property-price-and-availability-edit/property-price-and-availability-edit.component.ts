@@ -14,8 +14,12 @@ export class PropertyPriceAndAvailabilityEditComponent {
 
   dateRange: DateRange<Date> = new DateRange<Date>(this.beginDate, this.endDate);
 
-  selectedChange(event: DateRange<Date>): void {
+  selectedDateRangeChanged(event: DateRange<Date>): void {
     this.dateRange = event;
     console.log(this.dateRange);
+  }
+
+  selectedMenuItemChanged(item: string): void {
+    console.log(item);
   }
 }
