@@ -10,6 +10,7 @@ import { DateRange } from '@angular/material/datepicker';
 export class PropertyPriceAndAvailabilityEditComponent {
   private beginDate: Date = new Date();
   private endDate: Date = new Date();
+  menuItems: string[] = ['Calendar', 'Price Table']
 
   dateRange: DateRange<Date> = new DateRange<Date>(this.beginDate, this.endDate);
 

@@ -132,3 +132,9 @@ button.mdc-button {
   background-color: #1f1f1f;
 }
 
+app-container {
+  margin-top: 8em;
+  margin-left: 6em;
+  margin-right: 4em;
+  margin-bottom: 1em;
+}
