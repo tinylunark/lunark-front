@@ -6,6 +6,5 @@ import { Component, Input } from '@angular/core';
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
-  @Input()
-  text: string = 'your profile';
+  @Input() text: string = 'your profile';
 }

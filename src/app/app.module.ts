@@ -7,10 +7,11 @@ import { LandingModule } from './landing/landing.module';
 import { ProfileModule } from './profile/profile.module';
 import { PropertiesModule } from "./properties/properties.module";
 import { AppRoutingModule } from "./app-routing.module";
-import {FlexLayoutModule} from "@angular/flex-layout";
+import { FlexLayoutModule } from "@angular/flex-layout";
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {PageNotFoundInterceptor} from "./http-interceptors/page-not-found.interceptor";
-
 
 @NgModule({
   declarations: [
@@ -19,13 +20,17 @@ import {PageNotFoundInterceptor} from "./http-interceptors/page-not-found.interc
   imports: [
     LandingModule,
     CoreModule,
+    FormsModule,
+    HttpClientModule,
     ProfileModule,
     BrowserModule,
     BrowserAnimationsModule,
     CoreModule,
     PropertiesModule,
     AppRoutingModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    ReactiveFormsModule,
+    MatAutocompleteModule,
   ],
   providers: [
     importProvidersFrom(HttpClientModule),
