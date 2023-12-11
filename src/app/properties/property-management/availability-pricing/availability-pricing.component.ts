@@ -23,6 +23,9 @@ export class AvailabilityPricingComponent {
 
   @Input()
   cancellationDeadline: number = 0;
+  
+  @Input()
+  pricingMode: string = 'PER_PERSON';
 
   increment(type: 'minimum') {
     if (type === 'minimum') {

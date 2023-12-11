@@ -9,9 +9,9 @@
   <button mat-flat-button color="primary" id="change-availability-button">Add/Change</button>
 
   <div class="price-type-radio">
-    <mat-radio-group aria-label="Select an option">
-      <mat-radio-button value="whole_unit">Price is for whole unit</mat-radio-button>
-      <mat-radio-button value="per_person">Price is per person</mat-radio-button>
+    <mat-radio-group aria-label="Select an option" [value]="pricingMode">
+      <mat-radio-button value="WHOLE_UNIT">Price is for whole unit</mat-radio-button>
+      <mat-radio-button value="PER_PERSON">Price is per person</mat-radio-button>
     </mat-radio-group>
   </div>
 
