@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { DateRange } from '@angular/material/datepicker';
+import PropertyAvailabilityEntry from '../../../shared/models/property-availability-entry.model';
 
 
 @Component({
@@ -14,17 +15,24 @@ export class AvailabilityPricingComponent {
     price: new FormControl('', [Validators.required]),
   });
 
-  minimumValue = 0;
+  @Input()
+  availabilityEntries: PropertyAvailabilityEntry[] = [];
+
+  @Input()
+  autoApproveEnabled: boolean = false;
+
+  @Input()
+  cancellationDeadline: number = 0;
 
   increment(type: 'minimum') {
     if (type === 'minimum') {
-      this.minimumValue++;
+      this.cancellationDeadline++;
     }
   }
 
   decrement(type: 'minimum') {
-    if (type === 'minimum' && this.minimumValue > 0) {
-      this.minimumValue--;
+    if (type === 'minimum' && this.cancellationDeadline > 0) {
+      this.cancellationDeadline--;
     }
   }
 

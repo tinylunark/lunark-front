@@ -1,4 +1,5 @@
 import Location from "./location.model";
+import PropertyAvailabilityEntry from "./property-availability-entry.model";
 
 export default interface Property {
   id: number;
@@ -15,4 +16,8 @@ export default interface Property {
   description: string;
   pricePerNight: number;
   averageRating: number;
+  availabilityEntries: PropertyAvailabilityEntry[];
+  cancellationDeadline: number;
+  pricingMode: string;
+  autoApproveEnabled: boolean;
 }

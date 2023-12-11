@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PropertyService } from '../property.service';
 import PropertyAvailabilityEntry from '../../shared/models/property-availability-entry.model';
@@ -17,14 +17,12 @@ export interface AvailiabilityTableRow {
 export class AvailabilityTableComponent implements OnInit {
   displayedColumns: string[] = ['from', 'to', 'price', 'delete'];
   dataSource: AvailiabilityTableRow[] = [];
+  @Input() availabilityEntries: PropertyAvailabilityEntry[] = [];
 
   constructor(private propertyService: PropertyService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.propertyService.getAvailability(id).subscribe(availabilityEntries => {
-      this.convertAvaialabilityEntriesToRows(availabilityEntries);
-    });
+    this.convertAvaialabilityEntriesToRows(this.availabilityEntries);
   }
 
   convertAvaialabilityEntriesToRows(availabilityEntries: PropertyAvailabilityEntry[]): void {
