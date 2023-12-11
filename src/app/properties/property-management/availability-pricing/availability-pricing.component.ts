@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { DateRange } from '@angular/material/datepicker';
 import PropertyAvailabilityEntry from '../../../shared/models/property-availability-entry.model';
+import { SharedService } from '../../../shared/shared.service';
 
 
 @Component({
@@ -27,6 +28,11 @@ export class AvailabilityPricingComponent {
   @Input()
   pricingMode: string = 'PER_PERSON';
 
+  dateRange: DateRange<Date> = new DateRange<Date>(null, null);
+
+  constructor(private sharedService: SharedService) {
+  }
+
   increment(type: 'minimum') {
     if (type === 'minimum') {
       this.cancellationDeadline++;
@@ -39,10 +45,10 @@ export class AvailabilityPricingComponent {
     }
   }
 
-  dateRange: DateRange<Date> = new DateRange<Date>(null, null);
 
   selectedDateRangeChanged(event: DateRange<Date>): void {
     this.dateRange = event;
     console.log(this.dateRange);
   }
+
 }
