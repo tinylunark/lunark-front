@@ -33,11 +33,6 @@ export class PropertyPriceAndAvailabilityEditComponent implements OnInit {
     });
   }
 
-  selectedDateRangeChanged(event: DateRange<Date>): void {
-    this.dateRange = event;
-    console.log(this.dateRange);
-  }
-
   selectedMenuItemChanged(item: string): void {
     this.selectedMenuItem = item;
     console.log(item);
