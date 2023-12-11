@@ -35,16 +35,7 @@ import { AvailabilityTableComponent } from './availability-table/availability-ta
   ],
   imports: [
     CommonModule,
-    MatFormFieldModule,
-    MatInputModule,
     FormsModule,
-    ReactiveFormsModule,
-    MatAutocompleteModule,
-    MatDatepickerModule,
-    MatCardModule,
-    MatNativeDateModule,
-    MatRadioModule,
-    MatCheckboxModule,
     MaterialModule
   ],
   exports: [
