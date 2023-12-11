@@ -15,6 +15,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatInputModule } from '@angular/material/input';
 import { PropertyPriceAndAvailabilityEditComponent } from './property-price-and-availability-edit/property-price-and-availability-edit.component';
+import { EditCalendarComponent } from './edit-calendar/edit-calendar.component';
+import { AvailabilityTableComponent } from './availability-table/availability-table.component';
 
 
 @NgModule({
@@ -24,6 +26,8 @@ import { PropertyPriceAndAvailabilityEditComponent } from './property-price-and-
     SearchComponent,
     SearchPageComponent,
     PropertyNewComponent,
+    EditCalendarComponent,
+    AvailabilityTableComponent,
     PropertyPriceAndAvailabilityEditComponent
   ],
   imports: [

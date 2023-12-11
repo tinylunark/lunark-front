@@ -1,32 +1,3 @@
 <div id="container">
 <p>edit-calendar works!</p>
-<inline-range-calendar (selectedRangeValueChange)="selectedDateRangeChanged($event)"></inline-range-calendar>
-<mat-form-field class="big-field" appearance="outline" >
-    <mat-label>Price</mat-label>
-    <input matInput type="text" name="price" />
-</mat-form-field>
-
-<div class="price-type-radio">
-<mat-radio-group aria-label="Select an option">
-    <mat-radio-button value="whole_unit">Price is for whole unit</mat-radio-button>
-    <mat-radio-button value="per_person">Price is per person</mat-radio-button>
-</mat-radio-group>
-</div>
-
-<div class="counter-input">
-    <label for="minimum">Cancellation deadline:</label>
-    <div class="counter-logic">
-        <button>
-        <span class="material-icons-outlined">do_not_disturb_on</span>
-        </button>
-        <span>2</span>
-        <button>
-        <span class="material-icons-outlined">add_circle_outline</span>
-        </button>
-    </div>
-</div>
-
-<section class="example-section">
-  <mat-checkbox>Allow instant booking</mat-checkbox>
-</section>
-</div>
+<app-availability-pricing></app-availability-pricing>

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import {MatRadioModule} from '@angular/material/radio';
+import { DateRange } from '@angular/material/datepicker';
 
 
 @Component({
@@ -10,8 +10,8 @@ import {MatRadioModule} from '@angular/material/radio';
 })
 export class AvailabilityPricingComponent {
   selected!: Date | null;
-  infoForm = new FormGroup({
-    propertyName: new FormControl('', [Validators.required]),
+  priceForm = new FormGroup({
+    price: new FormControl('', [Validators.required]),
   });
 
   minimumValue = 0;
@@ -26,5 +26,12 @@ export class AvailabilityPricingComponent {
     if (type === 'minimum' && this.minimumValue > 0) {
       this.minimumValue--;
     }
+  }
+
+  dateRange: DateRange<Date> = new DateRange<Date>(null, null);
+
+  selectedDateRangeChanged(event: DateRange<Date>): void {
+    this.dateRange = event;
+    console.log(this.dateRange);
   }
 }

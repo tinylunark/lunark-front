@@ -14,6 +14,7 @@ import {MatCardModule} from "@angular/material/card";
 import {MatSidenavModule} from "@angular/material/sidenav";
 import {FormsModule} from "@angular/forms";
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
+import {MatCheckboxModule} from "@angular/material/checkbox";
 import { InlineRangeCalendarComponent } from './inline-range-calendar/inline-range-calendar.component';
 
 @NgModule({
@@ -38,7 +39,8 @@ import { InlineRangeCalendarComponent } from './inline-range-calendar/inline-ran
     MatSidenavModule,
     FormsModule,
     MatAutocompleteModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatCheckboxModule
   ],
   exports: [
     MatDialogModule,
@@ -60,6 +62,7 @@ import { InlineRangeCalendarComponent } from './inline-range-calendar/inline-ran
     FormsModule,
     MatAutocompleteModule,
     MatNativeDateModule,
+    MatCheckboxModule,
     InlineRangeCalendarComponent
   ]
 })
