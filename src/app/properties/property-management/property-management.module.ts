@@ -18,6 +18,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MaterialModule } from '../../../infrastructure/material/material.module';
+import { AvailabilityTableComponent } from './availability-table/availability-table.component';
 
 
 @NgModule({
@@ -30,6 +31,7 @@ import { MaterialModule } from '../../../infrastructure/material/material.module
     GalleryComponent,
     DescriptionComponent,
     AvailabilityPricingComponent,
+    AvailabilityTableComponent
   ],
   imports: [
     CommonModule,
@@ -54,6 +56,7 @@ import { MaterialModule } from '../../../infrastructure/material/material.module
     GalleryComponent,
     DescriptionComponent,
     AvailabilityPricingComponent,
+    AvailabilityTableComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

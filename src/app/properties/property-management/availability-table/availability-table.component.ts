@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { PropertyService } from '../property.service';
-import PropertyAvailabilityEntry from '../../shared/models/property-availability-entry.model';
+import { PropertyService } from '../../property.service';
+import PropertyAvailabilityEntry from '../../../shared/models/property-availability-entry.model';
 
 export interface AvailiabilityTableRow {
   from: Date;
