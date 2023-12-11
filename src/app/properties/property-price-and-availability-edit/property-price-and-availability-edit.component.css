@@ -9,3 +9,8 @@ app-availability-pricing {
     justify-content: center;
     width: 60%;
 }
+
+app-availability-table {
+    margin-top: 2em;
+    width: 100%;
+}
