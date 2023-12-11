@@ -33,7 +33,9 @@ export class AvailabilityTableComponent implements OnInit {
     };
     let rows: AvailiabilityTableRow[] = [];
     for (let entry of availabilityEntries) {
-      if (entry.price == currentRow.price) {
+      const entryDate = new Date(entry.date);
+      const currentRowToDate = new Date(currentRow.to);
+      if (entry.price == currentRow.price && entryDate.getTime() - currentRowToDate.getTime() <= 86400000) {
         currentRow.to = entry.date;
       } else {
         rows.push(currentRow);
