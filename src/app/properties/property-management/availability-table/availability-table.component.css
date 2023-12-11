@@ -1,3 +1,9 @@
 table {
     background-color: transparent;
 }
+
+h2 {
+  font-family: rubik-bold;
+  font-size: 1.4em;
+  text-align: center;
+}
