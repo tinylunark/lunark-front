@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {importProvidersFrom, NgModule} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
@@ -11,7 +11,8 @@ import { AppRoutingModule } from "./app-routing.module";
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
-
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
+import {PageNotFoundInterceptor} from "./http-interceptors/page-not-found.interceptor";
 
 @NgModule({
   declarations: [
@@ -32,7 +33,15 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
     ReactiveFormsModule,
     MatAutocompleteModule,
   ],
-  providers: [],
+  providers: [
+    importProvidersFrom(HttpClientModule),
+    HttpClientModule,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: PageNotFoundInterceptor,
+      multi: true
+    },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
