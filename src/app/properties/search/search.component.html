@@ -24,6 +24,9 @@
       <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-date-range-picker #picker></mat-date-range-picker>
     </mat-form-field>
+    <button mat-mini-fab color="accent" (click)="openFilterDialog()">
+      <mat-icon>edit</mat-icon>
+    </button>
     <button mat-raised-button class="search-button" color="primary">
       <mat-icon>search</mat-icon>
     </button>

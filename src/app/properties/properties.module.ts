@@ -14,6 +14,9 @@ import { PropertyManagementModule } from './property-management/property-managem
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatInputModule } from '@angular/material/input';
+import { FilterDialogComponent } from './filter-dialog/filter-dialog.component';
+import {MatSelectModule} from "@angular/material/select";
+import {MatCheckboxModule} from "@angular/material/checkbox";
 
 
 @NgModule({
@@ -23,6 +26,7 @@ import { MatInputModule } from '@angular/material/input';
     SearchComponent,
     SearchPageComponent,
     PropertyNewComponent,
+    FilterDialogComponent,
   ],
   imports: [
     MatAutocompleteModule,
@@ -36,6 +40,8 @@ import { MatInputModule } from '@angular/material/input';
     AsyncPipe,
     FormsModule,
     ReactiveFormsModule,
+    MatSelectModule,
+    MatCheckboxModule,
   ],
   exports: [
     SearchComponent,

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {Observable, of} from "rxjs";
-import Property from "../shared/models/property.model";
+import {Property} from "../shared/models/property.model";
 import Location from "../shared/models/location.model";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../env/environment";

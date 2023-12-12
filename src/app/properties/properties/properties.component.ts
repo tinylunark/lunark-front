@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {PropertyService} from "../property.service";
-import Property from "../../shared/models/property.model";
+import {Property} from "../../shared/models/property.model";
 import {environment} from "../../../env/environment";
 import {first} from "rxjs";
 

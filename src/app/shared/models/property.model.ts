@@ -1,6 +1,6 @@
 import Location from "./location.model";
 
-export default interface Property {
+export interface Property {
   id: number;
   name: string;
   address: {
@@ -13,6 +13,12 @@ export default interface Property {
     mimeType: string
   }[];
   description: string;
-  pricePerNight: number;
-  averageRating: number;
+  type: PropertyType;
+  averageRating?: number;
+  pricePerNight?: number;
+}
+
+export enum PropertyType {
+  Hut = "HUT",
+  Apartment = "APARTMENT"
 }

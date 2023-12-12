@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import {PropertyService} from "../property.service";
 import {map, Observable, startWith} from "rxjs";
 import {FormControl} from "@angular/forms";
+import {MatDialog} from "@angular/material/dialog";
+import {FilterDialogComponent} from "../filter-dialog/filter-dialog.component";
 
 @Component({
   selector: 'app-search',
@@ -13,7 +15,10 @@ export class SearchComponent {
   locationOptions: string[] = [];
   filteredOptions?: Observable<string[]>;
 
-  constructor(private propertyService: PropertyService) {
+  constructor(
+    private propertyService: PropertyService,
+    private dialog: MatDialog,
+  ) {
   }
 
   // ngOnInit(): void {
@@ -37,4 +42,13 @@ export class SearchComponent {
   //
   //   return this.locationOptions.filter(option => option.toLowerCase().includes(filterValue));
   // }
+
+  openFilterDialog(): void {
+    const dialogRef = this.dialog.open(FilterDialogComponent);
+
+    // dialogRef.afterClosed().subscribe(result => {
+    //   console.log('The dialog was closed');
+    //   this.animal = result;
+    // });
+  }
 }
