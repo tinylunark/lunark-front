@@ -11,9 +11,7 @@ import { AsyncPipe } from "@angular/common";
 import { SearchPageComponent } from './search-page/search-page.component';
 import { PropertyNewComponent } from './property-new/property-new.component';
 import { PropertyManagementModule } from './property-management/property-management.module';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatAutocompleteModule } from '@angular/material/autocomplete';
-import { MatInputModule } from '@angular/material/input';
+import { PropertyPriceAndAvailabilityEditComponent } from './property-price-and-availability-edit/property-price-and-availability-edit.component';
 
 
 @NgModule({
@@ -23,10 +21,9 @@ import { MatInputModule } from '@angular/material/input';
     SearchComponent,
     SearchPageComponent,
     PropertyNewComponent,
+    PropertyPriceAndAvailabilityEditComponent
   ],
   imports: [
-    MatAutocompleteModule,
-    MatInputModule,
     SharedModule,
     PropertiesRoutingModule,
     FlexLayoutModule,
@@ -34,8 +31,6 @@ import { MatInputModule } from '@angular/material/input';
     PropertyManagementModule,
     CoreModule,
     AsyncPipe,
-    FormsModule,
-    ReactiveFormsModule,
   ],
   exports: [
     SearchComponent,

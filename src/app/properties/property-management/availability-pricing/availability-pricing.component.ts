@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import {MatRadioModule} from '@angular/material/radio';
+import { DateRange } from '@angular/material/datepicker';
+import PropertyAvailabilityEntry from '../../../shared/models/property-availability-entry.model';
 
 
 @Component({
@@ -10,21 +11,38 @@ import {MatRadioModule} from '@angular/material/radio';
 })
 export class AvailabilityPricingComponent {
   selected!: Date | null;
-  infoForm = new FormGroup({
-    propertyName: new FormControl('', [Validators.required]),
+  priceForm = new FormGroup({
+    price: new FormControl('', [Validators.required]),
   });
 
-  minimumValue = 0;
+  @Input()
+  availabilityEntries: PropertyAvailabilityEntry[] = [];
+
+  @Input()
+  autoApproveEnabled: boolean = false;
+
+  @Input()
+  cancellationDeadline: number = 0;
+  
+  @Input()
+  pricingMode: string = 'PER_PERSON';
 
   increment(type: 'minimum') {
     if (type === 'minimum') {
-      this.minimumValue++;
+      this.cancellationDeadline++;
     }
   }
 
   decrement(type: 'minimum') {
-    if (type === 'minimum' && this.minimumValue > 0) {
-      this.minimumValue--;
+    if (type === 'minimum' && this.cancellationDeadline > 0) {
+      this.cancellationDeadline--;
     }
+  }
+
+  dateRange: DateRange<Date> = new DateRange<Date>(null, null);
+
+  selectedDateRangeChanged(event: DateRange<Date>): void {
+    this.dateRange = event;
+    console.log(this.dateRange);
   }
 }

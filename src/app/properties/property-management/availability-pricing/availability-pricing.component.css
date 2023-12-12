@@ -1,11 +1,11 @@
 .demo-inline-calendar-card,
 .big-field,
 .price-type-radio{
-  width: 300px;
   border-radius: 10px;
 }
 .price-type-radio {
   border: 1px solid white;
+  margin-top: 2em;
 }
 
 #container {
@@ -23,7 +23,6 @@ p {
 
 
 .counter-input {
-  width: 280px;
   border: 2px solid white;
   border-radius: 7px;
   padding: 10px;
@@ -59,5 +58,3 @@ span {
   display: flex;
   align-items: center;
 }
-
-

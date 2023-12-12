@@ -27,11 +27,6 @@ import { ProfileRoutingModule } from './profile-routing.module';
   imports: [
     CommonModule,
     CoreModule,
-    MatInputModule,
-    MatButtonModule,
-    MatFormFieldModule,
-    MatNativeDateModule,
-    MatDatepickerModule,
     MaterialModule,
     ProfileRoutingModule,
   ],
