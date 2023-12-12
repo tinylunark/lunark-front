@@ -30,6 +30,7 @@ export class PropertyPriceAndAvailabilityEditComponent implements OnInit {
       this.autoApproveEnabled = property.autoApproveEnabled;
       this.pricingMode = property.pricingMode;
       this.cancellationDeadline = property.cancellationDeadline;
+      console.log(this.availabilityEntries);
     });
   }
 
@@ -39,6 +40,9 @@ export class PropertyPriceAndAvailabilityEditComponent implements OnInit {
   }
 
   onAvailabilityEntriesAdded(event: PropertyAvailabilityEntry[]): void {
-    console.log(event);
+    let availabilityEntryMap: Map<Date, PropertyAvailabilityEntry> = new Map<Date, PropertyAvailabilityEntry>(this.availabilityEntries.map(entry => [entry.date, entry]));
+    event.map(entry => availabilityEntryMap.set(entry.date, entry));
+    console.log(Array.from(availabilityEntryMap.values()));
+    this.availabilityEntries = Array.from(availabilityEntryMap.values()).sort((a, b) => a.date.getTime() - b.date.getTime());
   }
 }

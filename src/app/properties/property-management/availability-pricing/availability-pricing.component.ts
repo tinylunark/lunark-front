@@ -63,6 +63,7 @@ export class AvailabilityPricingComponent {
   }
 
   onAddChange(): void {
+    //TODO: Allow only one day to be changed as well
     if (this.dateRange.start && this.dateRange.end && this.priceForm.valid) {
       let newEntries: PropertyAvailabilityEntry[] = [];
       let currentDate = new Date(this.dateRange.start);
@@ -76,6 +77,7 @@ export class AvailabilityPricingComponent {
 
       this.resetAvailabilityAddForm();
 
+      this.sharedService.openSnack("Changes saved ✅");
       this.newAvailabilityEntries.emit(newEntries);
     } else {
       this.sharedService.openSnack("Please fill in all fields");

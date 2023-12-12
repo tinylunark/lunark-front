@@ -19,7 +19,7 @@ export class AvailabilityTableComponent implements OnInit {
   dataSource: AvailiabilityTableRow[] = [];
   @Input() availabilityEntries: PropertyAvailabilityEntry[] = [];
 
-  constructor(private propertyService: PropertyService, private route: ActivatedRoute) { }
+  constructor() { }
 
   ngOnInit(): void {
     this.convertAvaialabilityEntriesToRows(this.availabilityEntries);
@@ -33,9 +33,7 @@ export class AvailabilityTableComponent implements OnInit {
     };
     let rows: AvailiabilityTableRow[] = [];
     for (let entry of availabilityEntries) {
-      const entryDate = new Date(entry.date);
-      const currentRowToDate = new Date(currentRow.to);
-      if (entry.price == currentRow.price && entryDate.getTime() - currentRowToDate.getTime() <= 86400000) {
+      if (entry.price == currentRow.price && entry.date.getTime() - currentRow.to.getTime() <= 86400000) {
         currentRow.to = entry.date;
       } else {
         rows.push(currentRow);
