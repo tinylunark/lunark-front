@@ -6,7 +6,7 @@
     <app-availability-pricing (newAvailabilityEntries)="onAvailabilityEntriesAdded($event)" [cancellationDeadline]="cancellationDeadline" [availabilityEntries]="availabilityEntries" [autoApproveEnabled]="autoApproveEnabled" [pricingMode]="pricingMode"></app-availability-pricing>
   </div>
   <div *ngIf="selectedMenuItem === 'Price Table'" class="selectedComponentContainer">
-    <app-availability-table [availabilityEntries]="availabilityEntries"></app-availability-table>
+    <app-availability-table [availabilityEntries]="availabilityEntries" (deletedRange)="onDelete($event)"></app-availability-table>
   </div>
   <app-snack-bar/>
 </app-container>

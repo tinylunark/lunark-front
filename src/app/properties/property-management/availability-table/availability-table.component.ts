@@ -1,7 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PropertyService } from '../../property.service';
 import PropertyAvailabilityEntry from '../../../shared/models/property-availability-entry.model';
+import { DateRange } from '@angular/material/datepicker';
 
 export interface AvailiabilityTableRow {
   from: Date;
@@ -14,15 +15,23 @@ export interface AvailiabilityTableRow {
   templateUrl: './availability-table.component.html',
   styleUrl: './availability-table.component.css'
 })
-export class AvailabilityTableComponent implements OnInit {
+export class AvailabilityTableComponent implements OnInit, OnChanges {
   displayedColumns: string[] = ['from', 'to', 'price', 'delete'];
   dataSource: AvailiabilityTableRow[] = [];
+
   @Input() availabilityEntries: PropertyAvailabilityEntry[] = [];
+  @Output() deletedRange = new EventEmitter<DateRange<Date>>();
 
   constructor() { }
 
   ngOnInit(): void {
     this.convertAvaialabilityEntriesToRows(this.availabilityEntries);
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['availabilityEntries']) {
+      this.convertAvaialabilityEntriesToRows(changes['availabilityEntries'].currentValue);
+    }
   }
 
   convertAvaialabilityEntriesToRows(availabilityEntries: PropertyAvailabilityEntry[]): void {
@@ -47,5 +56,9 @@ export class AvailabilityTableComponent implements OnInit {
 
     rows.push(currentRow);
     this.dataSource = rows;
+  }
+
+  onDelete(row: AvailiabilityTableRow): void {
+    this.deletedRange.emit(new DateRange<Date>(row.from, row.to));
   }
 }

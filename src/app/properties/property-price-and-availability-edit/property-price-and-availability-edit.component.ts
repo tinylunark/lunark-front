@@ -53,11 +53,21 @@ export class PropertyPriceAndAvailabilityEditComponent implements OnInit {
     this.propertyService.changeAvailability(this.id, newAvailabilityEntries).subscribe({
       next: (response) => {
         this.availabilityEntries = response;
+        this.sharedService.openSnack("Changes saved ✅");
       },
       error: (error) => {
         console.log(error);
         this.sharedService.openSnack("Could not update prices and availability ❌");
       }
     })
+  }
+
+  onDelete(range: DateRange<Date>): void {
+    let startTime: number = range.start?.getTime() || 0;
+    let endTime: number = range.end?.getTime() || 0;
+    if (startTime && endTime){
+      let newAvailabilityEntries = this.availabilityEntries.filter(entry => entry.date.getTime() < startTime || entry.date.getTime() > endTime);
+      this.editAvailabilityEntries(newAvailabilityEntries);
+    }
   }
 }

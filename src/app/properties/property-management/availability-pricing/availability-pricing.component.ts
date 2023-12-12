@@ -76,7 +76,6 @@ export class AvailabilityPricingComponent {
 
       this.resetAvailabilityAddForm();
 
-      this.sharedService.openSnack("Changes saved ✅");
       this.newAvailabilityEntries.emit(newEntries);
     } else {
       this.sharedService.openSnack("Please fill in all fields");
