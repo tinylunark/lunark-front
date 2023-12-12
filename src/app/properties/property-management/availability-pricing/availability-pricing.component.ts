@@ -63,12 +63,11 @@ export class AvailabilityPricingComponent {
   }
 
   onAddChange(): void {
-    //TODO: Allow only one day to be changed as well
-    if (this.dateRange.start && this.dateRange.end && this.priceForm.valid) {
+    if (this.dateRange.start && this.priceForm.valid) {
       let newEntries: PropertyAvailabilityEntry[] = [];
       let currentDate = new Date(this.dateRange.start);
 
-      while(currentDate <= this.dateRange.end) {
+      while(currentDate <= (this.dateRange.end || this.dateRange.start)) {
         newEntries.push({date: currentDate, price: +(this.priceForm.value.price || 0)});
         let nextDate = new Date(currentDate);
         nextDate.setDate(currentDate.getDate() + 1);
