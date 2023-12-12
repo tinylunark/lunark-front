@@ -58,3 +58,7 @@ span {
   display: flex;
   align-items: center;
 }
+
+#delete-availability-button {
+  margin-top: 1em;
+}

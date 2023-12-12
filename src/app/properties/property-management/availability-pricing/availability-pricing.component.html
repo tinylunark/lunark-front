@@ -8,6 +8,8 @@
 
   <button mat-flat-button color="primary" id="change-availability-button" (click)="onAddChange()">Add/Change</button>
 
+  <button mat-flat-button color="warn" id="delete-availability-button" (click)="onDelete()">Delete</button>
+
   <div class="price-type-radio">
     <mat-radio-group aria-label="Select an option" [value]="pricingMode">
       <mat-radio-button value="WHOLE_UNIT">Price is for whole unit</mat-radio-button>

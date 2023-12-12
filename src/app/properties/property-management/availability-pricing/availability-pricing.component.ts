@@ -37,6 +37,9 @@ export class AvailabilityPricingComponent {
   @Output()
   newAvailabilityEntries = new EventEmitter<PropertyAvailabilityEntry[]>();
 
+  @Output() 
+  deletedRange = new EventEmitter<DateRange<Date>>();
+
   constructor(private sharedService: SharedService) {
   }
 
@@ -82,4 +85,9 @@ export class AvailabilityPricingComponent {
     }
   }
 
+  onDelete(): void {
+    if (this.dateRange.start && this.dateRange.end) {
+      this.deletedRange.emit(this.dateRange);
+    }
+  }
 }

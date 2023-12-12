@@ -25,16 +25,23 @@ export class AvailabilityTableComponent implements OnInit, OnChanges {
   constructor() { }
 
   ngOnInit(): void {
+    console.log("Init", this.availabilityEntries);
     this.convertAvaialabilityEntriesToRows(this.availabilityEntries);
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['availabilityEntries']) {
+      console.log("Changed", changes['availabilityEntries'].currentValue);
       this.convertAvaialabilityEntriesToRows(changes['availabilityEntries'].currentValue);
     }
   }
 
   convertAvaialabilityEntriesToRows(availabilityEntries: PropertyAvailabilityEntry[]): void {
+    if (availabilityEntries.length == 0) {
+      this.dataSource = [];
+      return;
+    }
+
     let currentRow: AvailiabilityTableRow = {
       from: availabilityEntries[0].date,
       to: availabilityEntries[0].date,
