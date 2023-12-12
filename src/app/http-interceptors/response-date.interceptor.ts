@@ -11,6 +11,7 @@ function isNotEmpty(val: GenericObject | {} | null): val is GenericObject {
 export class ResponseDateInterceptor implements HttpInterceptor {
 
   private _isoDateFormat = /^\d{4}-\d{2}-\d{2}$/;
+  private timeZoneOffset = (new Date()).getTimezoneOffset();
 
   intercept(req: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     return next.handle(req).pipe(map( (val: HttpEvent<unknown>) => {
@@ -31,6 +32,10 @@ export class ResponseDateInterceptor implements HttpInterceptor {
     return this._isoDateFormat.test(value);
   }
 
+  toMidinghtInCurrentTimeZone(date: Date) {
+    return new Date(date.getTime() + this.timeZoneOffset * 60000);
+  }
+
   convert(body: GenericObject){
     if (body === null || body === undefined) {
       return;
@@ -42,7 +47,7 @@ export class ResponseDateInterceptor implements HttpInterceptor {
     for (const key of Object.keys(body)) {
       const value = body[key];
       if (typeof value === 'string' && this.isIsoDateString(value)) {
-        body[key] = new Date(value);
+        body[key] = this.toMidinghtInCurrentTimeZone(new Date(value));
       } else if (typeof value === 'object' && isNotEmpty(value)) {
         this.convert(value);
       }
