@@ -3,7 +3,7 @@
   <app-helper-menu [items]="menuItems" (selectedItemChange)="selectedMenuItemChanged($event)">
   </app-helper-menu>
   <div *ngIf="selectedMenuItem === 'Calendar'" class="selectedComponentContainer">
-    <app-availability-pricing [cancellationDeadline]="cancellationDeadline" [availabilityEntries]="availabilityEntries" [autoApproveEnabled]="autoApproveEnabled" [pricingMode]="pricingMode"></app-availability-pricing>
+    <app-availability-pricing (newAvailabilityEntries)="onAvailabilityEntriesAdded($event)" [cancellationDeadline]="cancellationDeadline" [availabilityEntries]="availabilityEntries" [autoApproveEnabled]="autoApproveEnabled" [pricingMode]="pricingMode"></app-availability-pricing>
   </div>
   <div *ngIf="selectedMenuItem === 'Price Table'" class="selectedComponentContainer">
     <app-availability-table [availabilityEntries]="availabilityEntries"></app-availability-table>

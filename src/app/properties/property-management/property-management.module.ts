@@ -19,7 +19,6 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MaterialModule } from '../../../infrastructure/material/material.module';
 import { AvailabilityTableComponent } from './availability-table/availability-table.component';
-import { SharedService } from '../../shared/shared.service';
 import { SharedModule } from '../../shared/shared.module';
 
 

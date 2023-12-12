@@ -37,4 +37,8 @@ export class PropertyPriceAndAvailabilityEditComponent implements OnInit {
     this.selectedMenuItem = item;
     console.log(item);
   }
+
+  onAvailabilityEntriesAdded(event: PropertyAvailabilityEntry[]): void {
+    console.log(event);
+  }
 }
