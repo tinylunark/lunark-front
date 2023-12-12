@@ -20,7 +20,7 @@
     </mat-form-field>
     <h3>Amenities</h3>
     <div fxLayout="row wrap">
-      <mat-checkbox *ngFor="let amenity of [1, 2, 3, 4, 5]">Wifi</mat-checkbox>
+      <mat-checkbox *ngFor="let amenity of amenities">{{amenity.name}}</mat-checkbox>
     </div>
   </form>
 </div>
