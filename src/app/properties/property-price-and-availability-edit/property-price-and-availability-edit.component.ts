@@ -40,9 +40,9 @@ export class PropertyPriceAndAvailabilityEditComponent implements OnInit {
   }
 
   onAvailabilityEntriesAdded(event: PropertyAvailabilityEntry[]): void {
-    let availabilityEntryMap: Map<Date, PropertyAvailabilityEntry> = new Map<Date, PropertyAvailabilityEntry>(this.availabilityEntries.map(entry => [entry.date, entry]));
-    event.map(entry => availabilityEntryMap.set(entry.date, entry));
-    console.log(Array.from(availabilityEntryMap.values()));
+    let availabilityEntryMap: Map<string, PropertyAvailabilityEntry> = new Map<string, PropertyAvailabilityEntry>(this.availabilityEntries.map(entry => [entry.date.toISOString(), entry]));
+    event.map(entry => availabilityEntryMap.set(entry.date.toISOString(), entry));
+    console.log(availabilityEntryMap);
     this.availabilityEntries = Array.from(availabilityEntryMap.values()).sort((a, b) => a.date.getTime() - b.date.getTime());
   }
 }
