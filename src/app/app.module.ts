@@ -12,6 +12,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {PageNotFoundInterceptor} from "./http-interceptors/page-not-found.interceptor";
+import {DateInterceptor} from "./http-interceptors/date.interceptor";
 
 @NgModule({
   declarations: [
@@ -38,6 +39,11 @@ import {PageNotFoundInterceptor} from "./http-interceptors/page-not-found.interc
     {
       provide: HTTP_INTERCEPTORS,
       useClass: PageNotFoundInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: DateInterceptor,
       multi: true
     },
   ],

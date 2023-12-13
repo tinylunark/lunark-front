@@ -19,6 +19,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MaterialModule } from '../../../infrastructure/material/material.module';
 import { AvailabilityTableComponent } from './availability-table/availability-table.component';
+import { SharedModule } from '../../shared/shared.module';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { AvailabilityTableComponent } from './availability-table/availability-ta
   imports: [
     CommonModule,
     FormsModule,
-    MaterialModule
+    MaterialModule,
+    SharedModule
   ],
   exports: [
     PropertyTypeComponent,

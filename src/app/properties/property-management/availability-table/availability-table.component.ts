@@ -1,7 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PropertyService } from '../../property.service';
 import PropertyAvailabilityEntry from '../../../shared/models/property-availability-entry.model';
+import { DateRange } from '@angular/material/datepicker';
 
 export interface AvailiabilityTableRow {
   from: Date;
@@ -14,18 +15,32 @@ export interface AvailiabilityTableRow {
   templateUrl: './availability-table.component.html',
   styleUrl: './availability-table.component.css'
 })
-export class AvailabilityTableComponent implements OnInit {
+export class AvailabilityTableComponent implements OnInit, OnChanges {
   displayedColumns: string[] = ['from', 'to', 'price', 'delete'];
   dataSource: AvailiabilityTableRow[] = [];
-  @Input() availabilityEntries: PropertyAvailabilityEntry[] = [];
 
-  constructor(private propertyService: PropertyService, private route: ActivatedRoute) { }
+  @Input() availabilityEntries: PropertyAvailabilityEntry[] = [];
+  @Output() deletedRange = new EventEmitter<DateRange<Date>>();
+
+  constructor() { }
 
   ngOnInit(): void {
+    console.log("Init", this.availabilityEntries);
     this.convertAvaialabilityEntriesToRows(this.availabilityEntries);
   }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['availabilityEntries']) {
+      this.convertAvaialabilityEntriesToRows(changes['availabilityEntries'].currentValue);
+    }
+  }
+
   convertAvaialabilityEntriesToRows(availabilityEntries: PropertyAvailabilityEntry[]): void {
+    if (availabilityEntries.length == 0) {
+      this.dataSource = [];
+      return;
+    }
+
     let currentRow: AvailiabilityTableRow = {
       from: availabilityEntries[0].date,
       to: availabilityEntries[0].date,
@@ -33,9 +48,7 @@ export class AvailabilityTableComponent implements OnInit {
     };
     let rows: AvailiabilityTableRow[] = [];
     for (let entry of availabilityEntries) {
-      const entryDate = new Date(entry.date);
-      const currentRowToDate = new Date(currentRow.to);
-      if (entry.price == currentRow.price && entryDate.getTime() - currentRowToDate.getTime() <= 86400000) {
+      if (entry.price == currentRow.price && entry.date.getTime() - currentRow.to.getTime() <= 86400000) {
         currentRow.to = entry.date;
       } else {
         rows.push(currentRow);
@@ -49,5 +62,9 @@ export class AvailabilityTableComponent implements OnInit {
 
     rows.push(currentRow);
     this.dataSource = rows;
+  }
+
+  onDelete(row: AvailiabilityTableRow): void {
+    this.deletedRange.emit(new DateRange<Date>(row.from, row.to));
   }
 }

@@ -1,7 +1,12 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { DateRange } from '@angular/material/datepicker';
 import PropertyAvailabilityEntry from '../../../shared/models/property-availability-entry.model';
+import { SharedService } from '../../../shared/shared.service';
+
+function delay(ms: number) {
+  return new Promise( resolve => setTimeout(resolve, ms) );
+}
 
 
 @Component({
@@ -27,6 +32,17 @@ export class AvailabilityPricingComponent {
   @Input()
   pricingMode: string = 'PER_PERSON';
 
+  dateRange: DateRange<Date> = new DateRange<Date>(null, null);
+
+  @Output()
+  newAvailabilityEntries = new EventEmitter<PropertyAvailabilityEntry[]>();
+
+  @Output() 
+  deletedRange = new EventEmitter<DateRange<Date>>();
+
+  constructor(private sharedService: SharedService) {
+  }
+
   increment(type: 'minimum') {
     if (type === 'minimum') {
       this.cancellationDeadline++;
@@ -39,10 +55,52 @@ export class AvailabilityPricingComponent {
     }
   }
 
-  dateRange: DateRange<Date> = new DateRange<Date>(null, null);
-
   selectedDateRangeChanged(event: DateRange<Date>): void {
     this.dateRange = event;
     console.log(this.dateRange);
+  }
+
+  resetAvailabilityAddForm(): void {
+    this.priceForm.reset();
+    this.dateRange = new DateRange<Date>(null, null);
+  }
+
+  onAddChange(): void {
+    const startOfToday = new Date();
+    startOfToday.setHours(0, 0, 0, 0);
+    if (this.dateRange.start && this.dateRange.start.getTime() <= startOfToday.getTime()) {
+      this.sharedService.openSnack("You cannot add availability for past dates ❌");
+      return;
+    }
+    if (this.dateRange.start && this.priceForm.valid) {
+      let newEntries: PropertyAvailabilityEntry[] = [];
+      let currentDate = new Date(this.dateRange.start);
+
+      while(currentDate <= (this.dateRange.end || this.dateRange.start)) {
+        newEntries.push({date: currentDate, price: +(this.priceForm.value.price || 0)});
+        let nextDate = new Date(currentDate);
+        nextDate.setDate(currentDate.getDate() + 1);
+        currentDate = nextDate;
+      }
+
+      this.resetAvailabilityAddForm();
+
+      this.newAvailabilityEntries.emit(newEntries);
+    } else {
+      this.sharedService.openSnack("Please fill in all fields");
+    }
+  }
+
+  onDelete(): void {
+    const startOfToday = new Date();
+    startOfToday.setHours(0, 0, 0, 0);
+    if (this.dateRange.start && this.dateRange.start.getTime() <= startOfToday.getTime()) {
+      this.sharedService.openSnack("You cannot delete availability for past dates ❌");
+      return;
+    }
+
+    if (this.dateRange.start && this.dateRange.end) {
+      this.deletedRange.emit(this.dateRange);
+    }
   }
 }

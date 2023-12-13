@@ -1,12 +1,14 @@
 <div id="container">
   <p>AVAILABILITY AND PRICING</p>
-  <inline-range-calendar (selectedRangeValueChange)="selectedDateRangeChanged($event)"></inline-range-calendar>
+  <inline-range-calendar [selectedRangeValue]="dateRange" (selectedRangeValueChange)="selectedDateRangeChanged($event)"></inline-range-calendar>
   <mat-form-field class="big-field" appearance="outline" [formGroup]="priceForm">
     <mat-label>Price</mat-label>
     <input matInput type="text" name="price" formControlName="price" />
   </mat-form-field>
 
-  <button mat-flat-button color="primary" id="change-availability-button">Add/Change</button>
+  <button mat-flat-button color="primary" id="change-availability-button" (click)="onAddChange()">Add/Change</button>
+
+  <button mat-flat-button color="warn" id="delete-availability-button" (click)="onDelete()">Delete</button>
 
   <div class="price-type-radio">
     <mat-radio-group aria-label="Select an option" [value]="pricingMode">
