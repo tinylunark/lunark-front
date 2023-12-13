@@ -1,7 +1,7 @@
 import Location from "./location.model";
 import PropertyAvailabilityEntry from "./property-availability-entry.model";
 
-export default interface Property {
+export interface Property {
   id: number;
   name: string;
   address: {
@@ -14,10 +14,16 @@ export default interface Property {
     mimeType: string
   }[];
   description: string;
-  pricePerNight: number;
-  averageRating: number;
+  type: PropertyType;
+  averageRating?: number;
+  pricePerNight?: number;
   availabilityEntries: PropertyAvailabilityEntry[];
   cancellationDeadline: number;
   pricingMode: string;
   autoApproveEnabled: boolean;
+}
+
+export enum PropertyType {
+  Hut = "HUT",
+  Apartment = "APARTMENT"
 }

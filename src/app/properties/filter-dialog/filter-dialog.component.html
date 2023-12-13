@@ -1,0 +1,32 @@
+<h1 mat-dialog-title>edit filters</h1>
+<div mat-dialog-content>
+  <form>
+    <mat-form-field appearance="outline" color="accent">
+      <mat-label>Minimum price</mat-label>
+      <input [(ngModel)]="data.minPrice" matInput type="number" name="minPrice" />
+    </mat-form-field>
+    <mat-form-field appearance="outline" color="accent">
+      <mat-label>Maximum price</mat-label>
+      <input [(ngModel)]="data.maxPrice" matInput type="number" name="maxPrice" />
+    </mat-form-field>
+    <mat-form-field appearance="outline" color="accent">
+      <mat-label>Type</mat-label>
+      <mat-select [(ngModel)]="data.type" [ngModelOptions]="{standalone: true}">
+        <mat-option>None</mat-option>
+        @for (item of Object.values(PropertyType); track item) {
+          <mat-option [value]="item">{{item}}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+    <h3>Amenities</h3>
+    <div fxLayout="row wrap">
+      <mat-checkbox
+        *ngFor="let amenity of amenities"
+        [checked]="data.amenityIds?.includes(amenity.id)"
+        (change)="onCheckboxClick(amenity.id)"
+      >
+        {{amenity.name}}
+      </mat-checkbox>
+    </div>
+  </form>
+</div>
