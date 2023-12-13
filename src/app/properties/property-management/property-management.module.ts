@@ -17,6 +17,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MaterialModule } from '../../../infrastructure/material/material.module';
+import { AvailabilityTableComponent } from './availability-table/availability-table.component';
 
 
 @NgModule({
@@ -29,19 +31,12 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     GalleryComponent,
     DescriptionComponent,
     AvailabilityPricingComponent,
+    AvailabilityTableComponent
   ],
   imports: [
     CommonModule,
-    MatFormFieldModule,
-    MatInputModule,
     FormsModule,
-    ReactiveFormsModule,
-    MatAutocompleteModule,
-    MatDatepickerModule,
-    MatCardModule,
-    MatNativeDateModule,
-    MatRadioModule,
-    MatCheckboxModule,
+    MaterialModule
   ],
   exports: [
     PropertyTypeComponent,
@@ -52,6 +47,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     GalleryComponent,
     DescriptionComponent,
     AvailabilityPricingComponent,
+    AvailabilityTableComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

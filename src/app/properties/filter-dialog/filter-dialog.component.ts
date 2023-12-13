@@ -15,7 +15,6 @@ export class FilterDialogComponent {
 
   constructor(
     private amenityService: AmenityService,
-    private dialogRef: MatDialogRef<FilterDialogComponent>,
     @Inject(MAT_DIALOG_DATA) protected data: PropertiesSearchDto,
   ) {
   }
@@ -44,5 +43,4 @@ export class FilterDialogComponent {
 
   protected readonly PropertyType = PropertyType;
   protected readonly Object = Object;
-  protected readonly console = console;
 }

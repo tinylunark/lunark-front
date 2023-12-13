@@ -1,33 +1,27 @@
 <div id="container">
   <p>AVAILABILITY AND PRICING</p>
-  <div class="grid-container">
-    <mat-card class="demo-inline-calendar-card" color="primary">
-      <mat-calendar [(selected)]="selected"></mat-calendar>
-    </mat-card>
-  </div>
-  <!-- Debug <p>Selected date: {{selected}}</p> -->
-  <br>
-  <div class="grid-item" [formGroup]="infoForm">
-    <mat-form-field class="big-field" appearance="outline" >
-      <mat-label>Price</mat-label>
-      <input matInput type="text" name="price" formControlName="price" />
-    </mat-form-field>
+  <inline-range-calendar (selectedRangeValueChange)="selectedDateRangeChanged($event)"></inline-range-calendar>
+  <mat-form-field class="big-field" appearance="outline" [formGroup]="priceForm">
+    <mat-label>Price</mat-label>
+    <input matInput type="text" name="price" formControlName="price" />
+  </mat-form-field>
 
-    <div class="price-type-radio">
-      <mat-radio-group aria-label="Select an option">
-        <mat-radio-button value="whole_unit">Price is for whole unit</mat-radio-button>
-        <mat-radio-button value="per_person">Price is per person</mat-radio-button>
-      </mat-radio-group>
-    </div>
+  <button mat-flat-button color="primary" id="change-availability-button">Add/Change</button>
+
+  <div class="price-type-radio">
+    <mat-radio-group aria-label="Select an option" [value]="pricingMode">
+      <mat-radio-button value="WHOLE_UNIT">Price is for whole unit</mat-radio-button>
+      <mat-radio-button value="PER_PERSON">Price is per person</mat-radio-button>
+    </mat-radio-group>
   </div>
 
   <div class="counter-input">
-    <label for="minimum">Minimum:</label>
+    <label for="minimum">Cancellation deadline:</label>
     <div class="counter-logic">
       <button (click)="decrement('minimum')">
         <span class="material-icons-outlined">do_not_disturb_on</span>
       </button>
-      <span>{{ minimumValue }}</span>
+      <span>{{ cancellationDeadline }}</span>
       <button (click)="increment('minimum')">
         <span class="material-icons-outlined">add_circle_outline</span>
       </button>
@@ -35,7 +29,9 @@
   </div>
 
   <section class="example-section">
-    <mat-checkbox class="example-margin">Allow instant booking</mat-checkbox>
+    <mat-checkbox class="example-margin" [checked]="autoApproveEnabled">Allow instant booking</mat-checkbox>
   </section>
+
+  <button mat-flat-button color="primary" id="save">Save</button>
 </div>
 

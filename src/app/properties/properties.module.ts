@@ -17,6 +17,7 @@ import { MatInputModule } from '@angular/material/input';
 import { FilterDialogComponent } from './filter-dialog/filter-dialog.component';
 import {MatSelectModule} from "@angular/material/select";
 import {MatCheckboxModule} from "@angular/material/checkbox";
+import { PropertyPriceAndAvailabilityEditComponent } from './property-price-and-availability-edit/property-price-and-availability-edit.component';
 
 
 @NgModule({
@@ -27,10 +28,9 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
     SearchPageComponent,
     PropertyNewComponent,
     FilterDialogComponent,
+    PropertyPriceAndAvailabilityEditComponent
   ],
   imports: [
-    MatAutocompleteModule,
-    MatInputModule,
     SharedModule,
     PropertiesRoutingModule,
     FlexLayoutModule,

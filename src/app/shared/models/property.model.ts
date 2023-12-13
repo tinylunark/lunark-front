@@ -1,4 +1,5 @@
 import Location from "./location.model";
+import PropertyAvailabilityEntry from "./property-availability-entry.model";
 
 export interface Property {
   id: number;
@@ -16,6 +17,10 @@ export interface Property {
   type: PropertyType;
   averageRating?: number;
   pricePerNight?: number;
+  availabilityEntries: PropertyAvailabilityEntry[];
+  cancellationDeadline: number;
+  pricingMode: string;
+  autoApproveEnabled: boolean;
 }
 
 export enum PropertyType {

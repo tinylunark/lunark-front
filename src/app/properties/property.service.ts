@@ -6,6 +6,7 @@ import {environment} from "../../env/environment";
 import {ApiPaths} from "../shared/api/api-paths.enum";
 import PropertiesSearchDto from "./properties-search.dto";
 import {Router, UrlSerializer} from "@angular/router";
+import PropertyAvailabilityEntry from '../shared/models/property-availability-entry.model';
 
 @Injectable({
   providedIn: 'root'
@@ -48,5 +49,9 @@ export class PropertyService {
   getImage(imageId: number, propertyId: number): Observable<Blob> {
     return this.http.get(`${environment.apiHost}/${ApiPaths.Properties}/${propertyId}/images/${imageId}`,
       {responseType: 'blob'});
+  }
+
+  getAvailability(propertyId: number): Observable<PropertyAvailabilityEntry[]> {
+    return this.http.get<PropertyAvailabilityEntry[]>(`${environment.apiHost}/${ApiPaths.Properties}/${propertyId}/pricesAndAvailability`);
   }
 }
