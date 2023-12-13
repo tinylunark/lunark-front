@@ -3,15 +3,15 @@
   <form>
     <mat-form-field appearance="outline" color="accent">
       <mat-label>Minimum price</mat-label>
-      <input matInput type="number" name="minPrice" />
+      <input [(ngModel)]="data.minPrice" matInput type="number" name="minPrice" />
     </mat-form-field>
     <mat-form-field appearance="outline" color="accent">
       <mat-label>Maximum price</mat-label>
-      <input matInput type="number" name="maxPrice" />
+      <input [(ngModel)]="data.maxPrice" matInput type="number" name="maxPrice" />
     </mat-form-field>
     <mat-form-field appearance="outline" color="accent">
       <mat-label>Type</mat-label>
-      <mat-select>
+      <mat-select [(ngModel)]="data.type" [ngModelOptions]="{standalone: true}">
         <mat-option>None</mat-option>
         @for (item of Object.values(PropertyType); track item) {
           <mat-option [value]="item">{{item}}</mat-option>
@@ -20,11 +20,13 @@
     </mat-form-field>
     <h3>Amenities</h3>
     <div fxLayout="row wrap">
-      <mat-checkbox *ngFor="let amenity of amenities">{{amenity.name}}</mat-checkbox>
+      <mat-checkbox
+        *ngFor="let amenity of amenities"
+        [checked]="data.amenityIds?.includes(amenity.id)"
+        (change)="onCheckboxClick(amenity.id)"
+      >
+        {{amenity.name}}
+      </mat-checkbox>
     </div>
   </form>
-</div>
-<div mat-dialog-actions>
-  <button mat-button color="accent">Cancel</button>
-  <button mat-flat-button color="primary">Apply</button>
 </div>

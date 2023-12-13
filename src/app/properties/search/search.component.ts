@@ -1,9 +1,8 @@
-import { Component } from '@angular/core';
+import {Component, EventEmitter, Output} from '@angular/core';
 import {PropertyService} from "../property.service";
-import {map, Observable, startWith} from "rxjs";
-import {FormControl} from "@angular/forms";
 import {MatDialog} from "@angular/material/dialog";
 import {FilterDialogComponent} from "../filter-dialog/filter-dialog.component";
+import PropertiesSearchDto from "../properties-search.dto";
 
 @Component({
   selector: 'app-search',
@@ -11,6 +10,9 @@ import {FilterDialogComponent} from "../filter-dialog/filter-dialog.component";
   styleUrl: './search.component.css'
 })
 export class SearchComponent {
+  searchDto: PropertiesSearchDto = {};
+
+  @Output() searchEmitter = new EventEmitter<PropertiesSearchDto>();
 
   constructor(
     private propertyService: PropertyService,
@@ -19,11 +21,12 @@ export class SearchComponent {
   }
 
   openFilterDialog(): void {
-    const dialogRef = this.dialog.open(FilterDialogComponent);
+    const dialogRef = this.dialog.open(FilterDialogComponent, {
+      data: this.searchDto,
+    });
+  }
 
-    // dialogRef.afterClosed().subscribe(result => {
-    //   console.log('The dialog was closed');
-    //   this.animal = result;
-    // });
+  onSearchClick(): void {
+    this.searchEmitter.emit(this.searchDto);
   }
 }

@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {PropertyService} from "../property.service";
 import {Property} from "../../shared/models/property.model";
 import {environment} from "../../../env/environment";
-import {first} from "rxjs";
+import PropertiesSearchDto from "../properties-search.dto";
 
 @Component({
   selector: 'app-properties',
@@ -13,6 +13,9 @@ export class PropertiesComponent {
   properties: Property[] = [];
   placeholderImage = environment.assetsDir + '/images/placeholder-image.webp';
   images: Map<number, string> = new Map;
+  searchDto: PropertiesSearchDto = {
+    amenityIds: [],
+  };
 
   constructor(private propertyService: PropertyService) {
   }
@@ -21,8 +24,8 @@ export class PropertiesComponent {
     this.getProperties();
   }
 
-  getProperties(): void {
-    this.propertyService.getProperties()
+  getProperties(searchDto?: PropertiesSearchDto): void {
+    this.propertyService.getProperties(searchDto)
       .subscribe(properties => {
         this.properties = properties;
         this.getImages();

@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import {Component, Inject} from '@angular/core';
 import {PropertyType} from "../../shared/models/property.model";
 import {AmenityService} from "../../amenity.service";
 import Amenity from "../../shared/models/amenity.model";
+import PropertiesSearchDto from "../properties-search.dto";
+import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-filter-dialog',
@@ -13,6 +15,8 @@ export class FilterDialogComponent {
 
   constructor(
     private amenityService: AmenityService,
+    private dialogRef: MatDialogRef<FilterDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) protected data: PropertiesSearchDto,
   ) {
   }
 
@@ -25,6 +29,20 @@ export class FilterDialogComponent {
       .subscribe(amenities => this.amenities = amenities);
   }
 
+  onCheckboxClick(amenityId: number): void {
+    if (!this.data.amenityIds) {
+      this.data.amenityIds = [];
+    }
+
+    if (this.data.amenityIds?.includes(amenityId)) {
+      const index = this.data.amenityIds?.indexOf(amenityId);
+      this.data.amenityIds?.splice(index, 1);
+    } else {
+      this.data.amenityIds?.push(amenityId);
+    }
+  }
+
   protected readonly PropertyType = PropertyType;
   protected readonly Object = Object;
+  protected readonly console = console;
 }

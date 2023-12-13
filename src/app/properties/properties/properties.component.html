@@ -1,5 +1,5 @@
 <div id="container">
-  <app-search></app-search>
+  <app-search (searchEmitter)="getProperties($event)"></app-search>
   <div class="grid">
     <mat-card class="card" *ngFor="let property of properties" routerLink="/properties/{{property.id}}">
       <img mat-card-image class="image" [src]="images.get(property.id) ?? placeholderImage" alt="Image of a property." />
