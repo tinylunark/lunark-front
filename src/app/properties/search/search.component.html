@@ -1,30 +1,28 @@
 <div id="container">
   <form action="" method="get" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10px">
-    <mat-form-field class="field-input"appearance="outline">
+    <mat-form-field class="field-input" appearance="outline">
       <mat-label>Location</mat-label>
       <mat-icon matSuffix>map</mat-icon>
-      <input matInput type="text" [matAutocomplete]="auto" [formControl]="locationControl">
-      <mat-autocomplete #auto="matAutocomplete">
-        <mat-option
-            *ngFor="let location of filteredOptions | async"
-            [value]="location">{{location}}</mat-option>
-      </mat-autocomplete>
+      <input [(ngModel)]="searchDto.location" name="location" matInput type="text">
     </mat-form-field>
     <mat-form-field class="field-input" appearance="outline">
       <mat-label>Number of guests</mat-label>
       <mat-icon matSuffix>group</mat-icon>
-      <input matInput>
+      <input [(ngModel)]="searchDto.guestNumber" name="guestNumber" matInput>
     </mat-form-field>
-    <mat-form-field class="field-input"appearance="outline">
+    <mat-form-field class="field-input" appearance="outline">
       <mat-label>Date range</mat-label>
       <mat-date-range-input [rangePicker]="picker">
-        <input matStartDate placeholder="Start date">
-        <input matEndDate placeholder="End date">
+        <input [(ngModel)]="searchDto.startDate" name="startDate" matStartDate placeholder="Start date">
+        <input [(ngModel)]="searchDto.endDate" name="endDate" matEndDate placeholder="End date">
       </mat-date-range-input>
       <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-date-range-picker #picker></mat-date-range-picker>
     </mat-form-field>
-    <button mat-raised-button class="search-button" color="primary">
+    <button mat-mini-fab color="accent" (click)="openFilterDialog()">
+      <mat-icon>edit</mat-icon>
+    </button>
+    <button mat-raised-button class="search-button" color="primary" (click)="onSearchClick()">
       <mat-icon>search</mat-icon>
     </button>
   </form>

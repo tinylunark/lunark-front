@@ -18,6 +18,7 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
 import { InlineRangeCalendarComponent } from './inline-range-calendar/inline-range-calendar.component';
 import {MatTableModule} from '@angular/material/table';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,9 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatNativeDateModule,
     MatCheckboxModule,
     MatTableModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatSelectModule,
+    ReactiveFormsModule
   ],
   exports: [
     MatDialogModule,
@@ -69,7 +72,9 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatCheckboxModule,
     InlineRangeCalendarComponent,
     MatTableModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatSelectModule,
+    ReactiveFormsModule
   ]
 })
 

@@ -11,6 +11,7 @@ import { AsyncPipe } from "@angular/common";
 import { SearchPageComponent } from './search-page/search-page.component';
 import { PropertyNewComponent } from './property-new/property-new.component';
 import { PropertyManagementModule } from './property-management/property-management.module';
+import { FilterDialogComponent } from './filter-dialog/filter-dialog.component';
 import { PropertyPriceAndAvailabilityEditComponent } from './property-price-and-availability-edit/property-price-and-availability-edit.component';
 
 
@@ -21,6 +22,7 @@ import { PropertyPriceAndAvailabilityEditComponent } from './property-price-and-
     SearchComponent,
     SearchPageComponent,
     PropertyNewComponent,
+    FilterDialogComponent,
     PropertyPriceAndAvailabilityEditComponent
   ],
   imports: [
@@ -31,6 +33,7 @@ import { PropertyPriceAndAvailabilityEditComponent } from './property-price-and-
     PropertyManagementModule,
     CoreModule,
     AsyncPipe,
+    MaterialModule
   ],
   exports: [
     SearchComponent,
