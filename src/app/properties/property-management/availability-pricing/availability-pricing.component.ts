@@ -66,6 +66,12 @@ export class AvailabilityPricingComponent {
   }
 
   onAddChange(): void {
+    const startOfToday = new Date();
+    startOfToday.setHours(0, 0, 0, 0);
+    if (this.dateRange.start && this.dateRange.start.getTime() <= startOfToday.getTime()) {
+      this.sharedService.openSnack("You cannot add availability for past dates ❌");
+      return;
+    }
     if (this.dateRange.start && this.priceForm.valid) {
       let newEntries: PropertyAvailabilityEntry[] = [];
       let currentDate = new Date(this.dateRange.start);
@@ -86,6 +92,13 @@ export class AvailabilityPricingComponent {
   }
 
   onDelete(): void {
+    const startOfToday = new Date();
+    startOfToday.setHours(0, 0, 0, 0);
+    if (this.dateRange.start && this.dateRange.start.getTime() <= startOfToday.getTime()) {
+      this.sharedService.openSnack("You cannot delete availability for past dates ❌");
+      return;
+    }
+
     if (this.dateRange.start && this.dateRange.end) {
       this.deletedRange.emit(this.dateRange);
     }

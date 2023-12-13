@@ -31,7 +31,6 @@ export class AvailabilityTableComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['availabilityEntries']) {
-      console.log("Changed", changes['availabilityEntries'].currentValue);
       this.convertAvaialabilityEntriesToRows(changes['availabilityEntries'].currentValue);
     }
   }
