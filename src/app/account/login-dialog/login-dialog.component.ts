@@ -8,6 +8,7 @@ import { SignupDialog } from '../signup-dialog/signup-dialog.component';
 import { AuthResponse } from '../model/auth-resposne.model';
 import { Router } from '@angular/router';
 import { environment } from '../../../env/environment';
+import { SharedService } from '../../shared/shared.service';
 
 @Component({
   selector: 'app-login-dialog',
@@ -19,7 +20,7 @@ export class LoginDialog {
     email: new FormControl('', [Validators.required]),
     password: new FormControl('', [Validators.required]),
   });
-  constructor(public dialogRef: MatDialogRef<LoginDialog>, private accountService: AccountService, public dialog: MatDialog, private router: Router) { }
+  constructor(public dialogRef: MatDialogRef<LoginDialog>, private accountService: AccountService, public dialog: MatDialog, private router: Router, private sharedService: SharedService) { }
 
   signIn() {
     const email = this.loginForm.value.email || ""; 
@@ -31,7 +32,10 @@ export class LoginDialog {
           this.accountService.setUser()
           this.router.navigate(['home'])
           this.dialogRef.close();
-        }
+        },
+        error: () => {
+          this.sharedService.openSnack("Wrong email or password!");
+        } 
       });
     }
   }
