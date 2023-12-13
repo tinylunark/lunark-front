@@ -38,7 +38,6 @@ export class PropertyService {
       }
     }
 
-    console.log(url);
     return this.http.get<Property[]>(url);
   }
 

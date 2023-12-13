@@ -11,12 +11,7 @@ import { AsyncPipe } from "@angular/common";
 import { SearchPageComponent } from './search-page/search-page.component';
 import { PropertyNewComponent } from './property-new/property-new.component';
 import { PropertyManagementModule } from './property-management/property-management.module';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatAutocompleteModule } from '@angular/material/autocomplete';
-import { MatInputModule } from '@angular/material/input';
 import { FilterDialogComponent } from './filter-dialog/filter-dialog.component';
-import {MatSelectModule} from "@angular/material/select";
-import {MatCheckboxModule} from "@angular/material/checkbox";
 import { PropertyPriceAndAvailabilityEditComponent } from './property-price-and-availability-edit/property-price-and-availability-edit.component';
 
 
@@ -38,10 +33,7 @@ import { PropertyPriceAndAvailabilityEditComponent } from './property-price-and-
     PropertyManagementModule,
     CoreModule,
     AsyncPipe,
-    FormsModule,
-    ReactiveFormsModule,
-    MatSelectModule,
-    MatCheckboxModule,
+    MaterialModule
   ],
   exports: [
     SearchComponent,
