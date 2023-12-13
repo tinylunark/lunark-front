@@ -30,6 +30,7 @@ export class LoginDialog {
           localStorage.setItem(environment.userLocalStorageKey, response.accessToken);
           this.accountService.setUser()
           this.router.navigate(['home'])
+          this.dialogRef.close();
         }
       });
     }
