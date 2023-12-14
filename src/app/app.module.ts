@@ -15,6 +15,7 @@ import {PageNotFoundInterceptor} from "./http-interceptors/page-not-found.interc
 import {DateInterceptor} from "./http-interceptors/date.interceptor";
 import { JWTInterceptor } from './http-interceptors/jwt.interceptor';
 import { SharedModule } from './shared/shared.module';
+import { UnauthorizedInterceptor } from './http-interceptors/unauthorized.interceptor';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,11 @@ import { SharedModule } from './shared/shared.module';
   providers: [
     importProvidersFrom(HttpClientModule),
     HttpClientModule,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: UnauthorizedInterceptor,
+      multi: true
+    },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: PageNotFoundInterceptor,
