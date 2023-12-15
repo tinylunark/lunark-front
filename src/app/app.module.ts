@@ -10,9 +10,9 @@ import { AppRoutingModule } from "./app-routing.module";
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
-import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
-import {PageNotFoundInterceptor} from "./http-interceptors/page-not-found.interceptor";
-import {DateInterceptor} from "./http-interceptors/date.interceptor";
+import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
+import { PageNotFoundInterceptor } from "./http-interceptors/page-not-found.interceptor";
+import { DateInterceptor } from "./http-interceptors/date.interceptor";
 import { JWTInterceptor } from './http-interceptors/jwt.interceptor';
 import { SharedModule } from './shared/shared.module';
 
