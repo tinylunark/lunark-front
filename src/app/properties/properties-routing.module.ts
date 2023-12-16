@@ -11,7 +11,7 @@ const routes: Routes = [
   { path: 'properties/:id', component: PropertyDetailComponent },
   { path: 'properties/:id/edit-price-and-availability', component: PropertyPriceAndAvailabilityEditComponent, canActivate: [authGuard], data: { role: ['host'] } },
   { path: 'search', component: SearchPageComponent },
-  { path: 'approve-changes', component: PropertyApprovalComponent, canActivate: [authGuard], data: {role: ['ADMIN'] },
+  { path: 'approve-changes', component: PropertyApprovalComponent, canActivate: [authGuard], data: {role: ['ADMIN'] } },
 ];
 
 @NgModule({
