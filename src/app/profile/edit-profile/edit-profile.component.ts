@@ -36,7 +36,10 @@ export class EditProfileComponent implements OnInit {
         }
       }
       );
-    } else {
+    } else if (!this.valid) {
+      this.sharedService.openSnack('Please fill in all required fields');
+    } 
+    else {
       console.error('Profile not found');
     }
   }
