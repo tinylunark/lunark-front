@@ -37,16 +37,4 @@ export class InfoFormComponent  {
     address: new FormControl('', [Validators.required]),
   });
 
-  onFormChange(): void {
-    const updatedProfile: Profile = {
-      name: this.infoForm.get('firstName')?.value || '',
-      surname: this.infoForm.get('lastName')?.value || '',
-      email: this.infoForm.get('email')?.value || '',
-      phoneNumber: this.infoForm.get('phoneNumber')?.value || '',
-      address: this.infoForm.get('address')?.value || '',
-    };
-
-    this.profile = updatedProfile;
-    this.profileChange.emit(this.profile);
-  }
 }
