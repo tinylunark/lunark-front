@@ -25,9 +25,10 @@ export class PropertyApprovalComponent {
   }
 
   getProperties(searchDto?: PropertiesSearchDto): void {
-    this.propertyService.getProperties(searchDto)
+    this.propertyService.getUnapprovedProperties(searchDto)
       .subscribe(properties => {
         this.properties = properties;
+        console.log(this.properties);
         this.getImages();
       });
   }
