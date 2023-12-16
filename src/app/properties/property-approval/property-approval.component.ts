@@ -24,6 +24,10 @@ export class PropertyApprovalComponent {
     this.getProperties();
   }
 
+approveProperty(property: Property): void {
+    console.log('Approved Property:', property.id);
+  }
+
   getProperties(searchDto?: PropertiesSearchDto): void {
     this.propertyService.getUnapprovedProperties(searchDto)
       .subscribe(properties => {
@@ -33,7 +37,6 @@ export class PropertyApprovalComponent {
       });
   }
 
-  /** Gets the first image of each property */
   getImages(): void {
     this.properties.forEach(property => {
       const firstImage = property.images.at(0);
