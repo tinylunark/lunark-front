@@ -63,7 +63,7 @@ export class PropertyService {
     return this.http.get<Property[]>(url);
   }
 
-  updateProperty(property: Property): Observable<Property> {
+  approveProperty(property: Property): Observable<Property> {
     return this.http.post<Property>(`${environment.apiHost}/${ApiPaths.Properties}/${ApiPaths.ApproveProperty}/${property.id}`, {});
   }
 
