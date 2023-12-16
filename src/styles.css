@@ -138,3 +138,7 @@ app-container {
   margin-right: 4em;
   margin-bottom: 1em;
 }
+
+mat-vertical-stepper.mat-stepper-vertical, mat-horizontal-stepper.mat-stepper-horizontal {
+  background-color: #1f1f1f;
+}

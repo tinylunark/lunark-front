@@ -1,48 +1,14 @@
 <div id="container">
   <p>AMENITIES</p>
   <div class="grid-container">
-    <div class="grid-item">
-      <button [ngClass]="{'active': isSelected('Free parking')}" (click)="toggleSelection('Free parking')">
-        <span class="material-icons">local_parking</span>
-        Free parking
-      </button>
-    </div>
-
-    <div class="grid-item">
-      <button [ngClass]="{'active': isSelected('Air conditioning')}" (click)="toggleSelection('Air conditioning')">
-        <span class="material-icons">ac_unit</span>
-        Air conditioning
-      </button>
-    </div>
-
-    <div class="grid-item">
-      <button [ngClass]="{'active': isSelected('Wifi')}" (click)="toggleSelection('Wifi')">
-        <span class="material-icons">wifi</span>
-        Wifi
-      </button>
-    </div>
-
-    <div class="grid-item">
-      <button [ngClass]="{'active': isSelected('Pool')}" (click)="toggleSelection('Pool')">
-        <span class="material-icons">pool</span>
-        Pool
-      </button>
-    </div>
-
-    <div class="grid-item">
-      <button [ngClass]="{'active': isSelected('Medical Services')}" (click)="toggleSelection('Medical Services')">
-        <span class="material-icons">medical_services</span>
-        Medical Services
-      </button>
-    </div>
-
-    <div class="grid-item">
-      <button [ngClass]="{'active': isSelected('Dedicated workspace')}" (click)="toggleSelection('Dedicated workspace')">
-        <span class="material-icons">desk</span>
-        Dedicated workspace
-      </button>
-    </div>
-
+    <ng-template ngFor let-amenity [ngForOf]="amenities">
+      <div class="grid-item">
+        <button [ngClass]="{'active': isSelected(amenity.name)}" (click)="toggleSelection(amenity.name)">
+          <span class="material-icons">{{amenity.icon}}</span>
+          {{amenity.name}}
+        </button>
+      </div>
+    </ng-template>
   </div>
 </div>
 
