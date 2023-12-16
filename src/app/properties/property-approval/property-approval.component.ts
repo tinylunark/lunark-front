@@ -22,7 +22,7 @@ export class PropertyApprovalComponent {
   }
 
   approveProperty(property: Property): void {
-    this.propertyService.updateProperty(property)
+    this.propertyService.approveProperty(property)
     .subscribe({
         next:  (_) => {
           this.getProperties();
@@ -31,7 +31,7 @@ export class PropertyApprovalComponent {
   }
 
   getProperties(): void {
-    this.propertyService.getUnapprovedProperties(searchDto)
+    this.propertyService.getUnapprovedProperties()
       .subscribe(properties => {
         this.properties = properties;
         this.getImages();
