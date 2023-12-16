@@ -19,7 +19,7 @@ import { Profile } from '../../shared/models/profile.model';
     MatNativeDateModule,
   ],
 })
-export class InfoFormComponent  {
+export class InfoFormComponent  implements OnChange {
   @Output() profileChange = new EventEmitter<Profile>();
   @Input() profile!: Profile;  
   
