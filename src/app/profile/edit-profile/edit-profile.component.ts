@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Profile } from '../../shared/models/profile.model';
 import { ProfileService } from './profile.service';
 import { Router } from '@angular/router';
+import { SharedService } from '../../shared/shared.service';
 import { environment } from '../../../env/environment';
 
 @Component({
@@ -38,7 +39,7 @@ export class EditProfileComponent implements OnInit {
       );
     } else if (!this.valid) {
       this.sharedService.openSnack('Please fill in all required fields');
-    } 
+    }
     else {
       console.error('Profile not found');
     }
