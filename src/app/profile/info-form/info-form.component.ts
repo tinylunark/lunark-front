@@ -21,7 +21,13 @@ import { Profile } from '../../shared/models/profile.model';
 })
 export class InfoFormComponent  {
   @Output() profileChange = new EventEmitter<Profile>();
-  @Input() profile!: Profile;
+  @Input() profile!: Profile;  
+  
+  @Input()
+  valid: boolean = false;
+
+  @Output() 
+  validChange = new EventEmitter<boolean>();
 
   infoForm = new FormGroup({
     firstName: new FormControl('', [Validators.required]),
