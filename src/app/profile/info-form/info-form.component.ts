@@ -19,7 +19,7 @@ import { Profile } from '../../shared/models/profile.model';
     MatNativeDateModule,
   ],
 })
-export class InfoFormComponent  implements OnChange {
+export class InfoFormComponent  implements OnChanges {
   @Output() profileChange = new EventEmitter<Profile>();
   @Input() profile!: Profile;
 
@@ -29,6 +29,7 @@ export class InfoFormComponent  implements OnChange {
   @Output()
   validChange = new EventEmitter<boolean>();
 
+
   infoForm = new FormGroup({
     firstName: new FormControl('', [Validators.required]),
     lastName: new FormControl('', [Validators.required]),
@@ -36,5 +37,35 @@ export class InfoFormComponent  implements OnChange {
     phoneNumber: new FormControl('', [Validators.required]),
     address: new FormControl('', [Validators.required]),
   });
+
+
+
+  ngOnChanges(): void {
+    if (!this.profile) { return; }
+
+    this.infoForm.setValue({
+      firstName: this.profile.name || '',
+      lastName: this.profile.surname || '',
+      email: this.profile.email || '',
+      phoneNumber: this.profile.phoneNumber || '',
+      address: this.profile.address || '',
+    });
+
+    this.infoForm.valueChanges.subscribe((value) => {
+      this.profile.name = value.firstName || '';
+      this.profile.surname = value.lastName || '';
+      this.profile.email = value.email || '';
+      this.profile.phoneNumber = value.phoneNumber || '';
+      this.profile.address = value.address || '';
+      this.profileChange.emit(this.profile);
+      this.setValid();
+    });
+
+  }
+
+  private setValid(): void {
+    this.valid = this.infoForm.valid;
+    this.validChange.emit(this.valid);
+  }
 
 }
