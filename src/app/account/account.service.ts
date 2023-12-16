@@ -7,7 +7,7 @@ import {JwtHelperService} from "@auth0/angular-jwt";
 import { environment } from '../../env/environment';
 import { ApiPaths } from '../shared/api/api-paths.enum';
 
-
+const notLoggedInRole = "unregistered";
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +18,8 @@ export class AccountService {
     skip: 'true',
   });
 
-  user$ = new BehaviorSubject("unregistered");
+
+  user$ = new BehaviorSubject(notLoggedInRole);
   userState = this.user$.asObservable();
 
   constructor(private http: HttpClient) {
@@ -43,14 +44,25 @@ export class AccountService {
       const helper = new JwtHelperService();
       return helper.decodeToken(accessToken).role[0].authority;
     }
-    return 'unregistered';
+    return notLoggedInRole;
   }
 
   isLoggedIn(): boolean {
-    return localStorage.getItem(environment.userLocalStorageKey) != null;
+    const accessToken: any = localStorage.getItem(environment.userLocalStorageKey);
+    if(accessToken == null || this.isTokenExpired(accessToken)) {
+      localStorage.removeItem(environment.userLocalStorageKey);
+      this.user$.next(notLoggedInRole);
+      return false;
+    }
+    return true;
+  }
+  isTokenExpired(accessToken: any): boolean {
+    const helper = new JwtHelperService();
+    return helper.decodeToken(accessToken).exp < Date.now() / 1000;
   }
 
   setUser(): void {
     this.user$.next(this.getRole());
   }
+    
 }

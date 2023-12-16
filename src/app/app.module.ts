@@ -10,11 +10,12 @@ import { AppRoutingModule } from "./app-routing.module";
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
-import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
-import { PageNotFoundInterceptor } from "./http-interceptors/page-not-found.interceptor";
-import { DateInterceptor } from "./http-interceptors/date.interceptor";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
+import {PageNotFoundInterceptor} from "./http-interceptors/page-not-found.interceptor";
+import {DateInterceptor} from "./http-interceptors/date.interceptor";
 import { JWTInterceptor } from './http-interceptors/jwt.interceptor';
 import { SharedModule } from './shared/shared.module';
+import { UnauthorizedInterceptor } from './http-interceptors/unauthorized.interceptor';
 
 @NgModule({
   declarations: [
@@ -41,12 +42,22 @@ import { SharedModule } from './shared/shared.module';
     HttpClientModule,
     {
       provide: HTTP_INTERCEPTORS,
+      useClass: UnauthorizedInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
       useClass: PageNotFoundInterceptor,
       multi: true
     },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: DateInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JWTInterceptor,
       multi: true
     },
     {

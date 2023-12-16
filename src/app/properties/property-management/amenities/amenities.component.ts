@@ -1,22 +1,39 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { AmenityService } from '../../../amenity.service';
+import Amenity from '../../../shared/models/amenity.model';
 
 @Component({
   selector: 'app-amenities',
   templateUrl: './amenities.component.html',
   styleUrl: './amenities.component.css'
 })
-export class AmenitiesComponent {
-  selectedAmenities: string[] = [];
+export class AmenitiesComponent implements OnInit {
+  @Output()
+  public selectedAmenitiesChange = new EventEmitter<string[]>();
 
-  isSelected(property: string): boolean {
-    return this.selectedAmenities.includes(property);
+  @Input()
+  public selectedAmenities: string[] = [];
+
+  amenities: Amenity[] = [];
+
+  constructor(private amenitiyService: AmenityService) { }
+
+  ngOnInit(): void {
+    this.amenitiyService.getAmenities().subscribe((amenities: Amenity[]) => {
+      this.amenities = amenities;
+    });
   }
 
-  toggleSelection(property: string): void {
-    const index = this.selectedAmenities.indexOf(property);
+  isSelected(amenity: string): boolean {
+    return this.selectedAmenities.includes(amenity);
+  }
+
+  toggleSelection(amenity: string): void {
+    const index = this.selectedAmenities.indexOf(amenity);
     if (index === -1) {
-      this.selectedAmenities.push(property);
+      this.selectedAmenities.push(amenity);
     } else {
       this.selectedAmenities.splice(index, 1);
     }
+    this.selectedAmenitiesChange.emit(this.selectedAmenities);
   }}
