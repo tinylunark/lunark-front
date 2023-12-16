@@ -3,6 +3,7 @@ import { RouterModule, Routes } from "@angular/router";
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: 'session-expired', loadChildren: () => import('./core/core.module').then(m => m.CoreModule) },
   { path: 'home', loadChildren: () => import('./landing/landing.module').then(m => m.LandingModule) },
   { path: 'profile', loadChildren: () => import('./profile/profile.module').then(m => m.ProfileModule) },
   { path: 'properties', loadChildren: () => import('./properties/properties.module').then(m => m.PropertiesModule) },

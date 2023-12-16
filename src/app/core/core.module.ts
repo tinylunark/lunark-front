@@ -9,6 +9,7 @@ import { MaterialModule } from '../../infrastructure/material/material.module';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import {CoreRoutingModule} from "./core-routing.module";
+import { SessionExpiredComponent } from './session-expired/session-expired.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import {CoreRoutingModule} from "./core-routing.module";
     HeaderComponent,
     ContainerComponent,
     PageNotFoundComponent,
+    SessionExpiredComponent
   ],
   imports: [
     CommonModule,
