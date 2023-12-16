@@ -8,22 +8,21 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
   templateUrl: './location.component.html',
   styleUrls: ['./location.component.css']
 })
-export class LocationComponent implements AfterViewInit, OnInit {
+export class LocationComponent implements AfterViewInit {
   private map: any;
   private marker: L.Marker | null = null;
   searchControl = new FormControl();
 
   constructor(private mapService: LocationService) {}
 
-  ngOnInit(): void {
-    this.initMap();
-  }
-
   private initMap(): void {
-    this.map = L.map('map', {
-      center: [45.2396, 19.8227],
-      zoom: 13,
-    });
+    const container = L.DomUtil.get('map');
+    if (container != null) {
+      this.map = L.map('map', {
+        center: [45.2396, 19.8227],
+        zoom: 13,
+      });
+    }
 
     const tiles = L.tileLayer(
       'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
@@ -79,6 +78,7 @@ export class LocationComponent implements AfterViewInit, OnInit {
   }
 
   ngAfterViewInit(): void {
+    this.initMap();
     L.Marker.prototype.options.icon = L.icon({
       iconUrl: 'https://unpkg.com/leaflet@1.6.0/dist/images/marker-icon.png',
     });
