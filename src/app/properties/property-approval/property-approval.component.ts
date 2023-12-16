@@ -24,15 +24,19 @@ export class PropertyApprovalComponent {
     this.getProperties();
   }
 
-approveProperty(property: Property): void {
-    console.log('Approved Property:', property.id);
+  approveProperty(property: Property): void {
+    this.propertyService.updateProperty(property)
+    .subscribe({
+        next:  (_) => {
+          this.getProperties();
+        }
+      })
   }
 
   getProperties(searchDto?: PropertiesSearchDto): void {
     this.propertyService.getUnapprovedProperties(searchDto)
       .subscribe(properties => {
         this.properties = properties;
-        console.log(this.properties);
         this.getImages();
       });
   }
