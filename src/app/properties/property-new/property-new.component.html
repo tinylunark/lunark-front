@@ -4,7 +4,7 @@
     <mat-step [stepControl]="basicInfoFormGroup">
     <form [formGroup]="basicInfoFormGroup">
         <ng-template matStepLabel>Some basic information about your property</ng-template>
-        <app-amenities (selectedAmenitiesChange)="onChange()" [(selectedAmenities)]="amenities"></app-amenities>
+        <app-amenities (selectedAmenityIdsChange)="onChange()" [(selectedAmenityIds)]="amenities"></app-amenities>
         <div>
             <button mat-button matStepperNext>Next</button>
         </div>

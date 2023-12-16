@@ -11,7 +11,7 @@ export class PropertyNewComponent {
   isLinear = true;
   header = 'new property';
   step1Complete = false;
-  amenities: string[] = [];
+  amenities: number[] = [];
   basicInfoFormGroup = new FormGroup({
   });
 
