@@ -32,7 +32,7 @@ export class EditProfileComponent implements OnInit {
     if (this.profile) {
       this.profileService.updateProfile(this.profile).subscribe({
         next: (_) => {
-          console.log("konzolugujem");
+          this.sharedService.openSnack('Profile updated successfully');
         }
       }
       );
