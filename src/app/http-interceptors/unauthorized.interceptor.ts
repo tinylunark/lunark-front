@@ -6,7 +6,7 @@ import {
 import {catchError, Observable, tap, throwError} from 'rxjs';
 import {Router} from "@angular/router";
 
-/** Redirect to home if not authorized */
+/** Redirect to session expired screen if not authorized */
 @Injectable()
 export class UnauthorizedInterceptor implements HttpInterceptor {
   constructor(private router: Router) {
@@ -17,7 +17,7 @@ export class UnauthorizedInterceptor implements HttpInterceptor {
     return next.handle(req).pipe(
       catchError((error: HttpErrorResponse) => {
         if (error.status === 401 && !req.headers.has('skip')) {
-          this.router.navigate(['/home']);
+          this.router.navigate(['/session-expired']);
         }
         return throwError(() => error)
       })
