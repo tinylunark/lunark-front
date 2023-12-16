@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-property-type',
@@ -6,9 +7,14 @@ import { Component } from '@angular/core';
   styleUrl: './property-type.component.css'
 })
 export class PropertyTypeComponent {
-  selectedProperty: string = '';
+  @Input()
+  selectedPropertyType: string = '';
 
-  selectProperty(property: string): void {
-    this.selectedProperty = property;
+  @Output()
+  selectedPropertyTypeChange: EventEmitter<string> = new EventEmitter<string>();
+
+  selectPropertyType(type: string): void {
+    this.selectedPropertyType = type;
+    this.selectedPropertyTypeChange.emit(type);
   }
 }

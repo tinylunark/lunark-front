@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { FormGroup } from '@angular/forms';
-import Amenity from '../../shared/models/amenity.model';
 
 @Component({
   selector: 'app-property-new',
@@ -10,13 +8,14 @@ import Amenity from '../../shared/models/amenity.model';
 export class PropertyNewComponent {
   isLinear = true;
   header = 'new property';
-  step1Complete = false;
+  step1Completed = false;
   amenities: number[] = [];
-  basicInfoFormGroup = new FormGroup({
-  });
+  propertyType: string = '';
 
   onChange(): void {
-    this.step1Complete = this.amenities.length > 0;
+    this.step1Completed = this.propertyType !== '';
     console.log(this.amenities);
+    console.log(this.propertyType);
+    console.log(this.step1Completed);
   }
 }
