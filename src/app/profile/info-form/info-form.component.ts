@@ -29,8 +29,6 @@ export class InfoFormComponent  {
     email: new FormControl('', [Validators.required, Validators.email]),
     phoneNumber: new FormControl('', [Validators.required]),
     address: new FormControl('', [Validators.required]),
-    country: new FormControl('', [Validators.required]),
-    birthday: new FormControl(undefined, [Validators.required]),
   });
 
   onFormChange(): void {
@@ -38,10 +36,8 @@ export class InfoFormComponent  {
       name: this.infoForm.get('firstName')?.value || '',
       surname: this.infoForm.get('lastName')?.value || '',
       email: this.infoForm.get('email')?.value || '',
-      birthday: this.infoForm.get('birthday')?.value || undefined,
       phoneNumber: this.infoForm.get('phoneNumber')?.value || '',
       address: this.infoForm.get('address')?.value || '',
-      country: this.infoForm.get('country')?.value || '',
     };
 
     this.profile = updatedProfile;
