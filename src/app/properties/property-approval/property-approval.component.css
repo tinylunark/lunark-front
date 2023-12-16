@@ -1,0 +1,98 @@
+.grid {
+  max-width: 100%;
+  overflow: hidden;
+  margin-left: 15em;
+  margin-right: 5em;
+  margin-top: 1.5em;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1em;
+}
+
+.card {
+  height: 35em;
+  width: 30em;
+  max-width: 40em;
+  display: flex;
+  flex-direction: column;
+  border-radius: 20px;
+  border: 2px solid #f0edee;
+  margin-right: 1em;
+  background-color: #1d1d1d;
+}
+
+.image {
+  width: 100%;
+  height: 60%;
+}
+
+.card:hover {
+  border: 2px solid #00838f;
+  cursor: pointer;
+}
+
+
+.title {
+  font-family: bayon;
+  font-size: 2em;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-left: 1em;
+  margin-right: 1em;
+  margin-bottom: 1em;
+  margin-top: auto;
+  font-family: rubik-regular;
+}
+
+@media (max-width: 1200px) {
+  .grid {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .card {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.price {
+  align-self: center;
+  font-size: 1.6em;
+}
+
+.header {
+  padding-left: 1em;
+  font-size: 1.3em;
+}
+
+.location {
+  color:  #00838f;
+  font-size: 1.2em;
+}
+
+@media (max-width: 1200px) {
+  .grid {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .card {
+    width: 100%;
+    max-width: none;
+  }
+}
