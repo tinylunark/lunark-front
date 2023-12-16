@@ -10,7 +10,8 @@ import { environment } from '../../../env/environment';
   styleUrls: ['./edit-profile.component.css']
 })
 export class EditProfileComponent implements OnInit {
-  profile: Profile | null;
+  profile: Profile | null = null;
+  valid: boolean = false;
 
   constructor(
     private profileService: ProfileService,
