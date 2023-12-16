@@ -19,6 +19,7 @@ import { InlineRangeCalendarComponent } from './inline-range-calendar/inline-ran
 import {MatTableModule} from '@angular/material/table';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSelectModule } from '@angular/material/select';
+import {MatStepperModule} from '@angular/material/stepper';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { MatSelectModule } from '@angular/material/select';
     MatTableModule,
     MatSnackBarModule,
     MatSelectModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatStepperModule
   ],
   exports: [
     MatDialogModule,
@@ -74,7 +76,8 @@ import { MatSelectModule } from '@angular/material/select';
     MatTableModule,
     MatSnackBarModule,
     MatSelectModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatStepperModule
   ]
 })
 

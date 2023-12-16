@@ -1,3 +1,23 @@
 <app-header [text]="header"></app-header>
-<app-container style="display:flex;flex-direction: column;">
+<app-container>
+<mat-horizontal-stepper [linear]="isLinear">
+    <mat-step [stepControl]="basicInfoFormGroup">
+    <form [formGroup]="basicInfoFormGroup">
+        <ng-template matStepLabel>Some basic information about your property</ng-template>
+        <app-amenities (selectedAmenitiesChange)="onChange()" [(selectedAmenities)]="amenities"></app-amenities>
+        <div>
+            <button mat-button matStepperNext>Next</button>
+        </div>
+        </form>
+    </mat-step>
+    <mat-step label="Let's make your property stand out">
+        Content 2
+    </mat-step>
+    <mat-step label="Availability and pricing">
+        Content 2
+    </mat-step>
+    <mat-step label="Done">
+        Content 2
+    </mat-step>
+</mat-horizontal-stepper>
 </app-container>
