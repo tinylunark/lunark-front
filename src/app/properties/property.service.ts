@@ -44,26 +44,11 @@ export class PropertyService {
   getUnapprovedProperties(searchDto?: PropertiesSearchDto): Observable<Property[]> {
     let url = `${environment.apiHost}/${ApiPaths.UnapprovedProperties}`;
 
-    if (searchDto) {
-      const adaptedSearchDto = {
-        ...searchDto,
-        startDate: searchDto?.startDate?.toISOString(),
-        endDate: searchDto?.endDate?.toISOString(),
-      }
-
-      const tree = this.router.createUrlTree([], { queryParams: adaptedSearchDto });
-      let params = this.serializer.serialize(tree);
-
-      if (params.indexOf('?') !== -1) {
-        params = params.slice(params.indexOf('?'));
-        url = `${url}${params}`;
-      }
-    }
 
     return this.http.get<Property[]>(url);
   }
 
-  updateProperty(property: Property): Observable<Property> {
+  approveProperty(property: Property): Observable<Property> {
     return this.http.post<Property>(`${environment.apiHost}/${ApiPaths.Properties}/${ApiPaths.ApproveProperty}/${property.id}`, {});
   }
 

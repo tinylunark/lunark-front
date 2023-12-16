@@ -13,9 +13,6 @@ export class PropertyApprovalComponent {
   properties: Property[] = [];
   placeholderImage = environment.assetsDir + '/images/placeholder-image.webp';
   images: Map<number, string> = new Map;
-  searchDto: PropertiesSearchDto = {
-    amenityIds: [],
-  };
 
   constructor(private propertyService: PropertyService) {
   }
@@ -33,7 +30,7 @@ export class PropertyApprovalComponent {
       })
   }
 
-  getProperties(searchDto?: PropertiesSearchDto): void {
+  getProperties(): void {
     this.propertyService.getUnapprovedProperties(searchDto)
       .subscribe(properties => {
         this.properties = properties;
