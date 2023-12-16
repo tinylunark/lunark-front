@@ -30,7 +30,7 @@ export class PropertyApprovalComponent {
       })
   }
 
-  getProperties(searchDto?: PropertiesSearchDto): void {
+  getProperties(): void {
     this.propertyService.getUnapprovedProperties(searchDto)
       .subscribe(properties => {
         this.properties = properties;
