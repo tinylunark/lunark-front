@@ -5,6 +5,7 @@
     <ng-template matStepLabel>Some basic information about your property</ng-template>
     <div>
         <app-property-type [(selectedPropertyType)]="propertyType" (selectedPropertyTypeChange)="onChange()"></app-property-type>
+        <app-number-of-guests [(minimum)]="minimumGuests" [(maximum)]="maximumGuests" (isValidChange)="validNumberOfGuests=$event;onChange()"></app-number-of-guests>
         <button mat-button matStepperNext>Next</button>
     </div>
     </mat-step>

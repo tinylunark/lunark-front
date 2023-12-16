@@ -8,12 +8,16 @@ import { Component } from '@angular/core';
 export class PropertyNewComponent {
   isLinear = true;
   header = 'new property';
-  step1Completed = false;
-  amenities: number[] = [];
   propertyType: string = '';
+  minimumGuests = 0;
+  maximumGuests = 0;
+  validNumberOfGuests = false;
+  step1Completed = false;
+
+  amenities: number[] = [];
 
   onChange(): void {
-    this.step1Completed = this.propertyType !== '';
+    this.step1Completed = this.propertyType !== '' && this.validNumberOfGuests;
     console.log(this.amenities);
     console.log(this.propertyType);
     console.log(this.step1Completed);
