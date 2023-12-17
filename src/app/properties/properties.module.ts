@@ -15,6 +15,7 @@ import { FilterDialogComponent } from './filter-dialog/filter-dialog.component';
 import { PropertyPriceAndAvailabilityEditComponent } from './property-price-and-availability-edit/property-price-and-availability-edit.component';
 import { PropertyApprovalComponent } from './property-approval/property-approval.component';
 import { MyPropertiesComponent } from './my-properties/my-properties.component';
+import { PropertyEditComponent } from './property-edit/property-edit.component';
 
 
 @NgModule({
@@ -28,6 +29,7 @@ import { MyPropertiesComponent } from './my-properties/my-properties.component';
     PropertyPriceAndAvailabilityEditComponent,
     PropertyApprovalComponent,
     MyPropertiesComponent,
+    PropertyEditComponent,
   ],
   imports: [
     SharedModule,
@@ -45,6 +47,7 @@ import { MyPropertiesComponent } from './my-properties/my-properties.component';
     PropertyNewComponent,
     PropertyApprovalComponent,
     MyPropertiesComponent,
+    PropertyEditComponent,
   ]
 })
 export class PropertiesModule {
