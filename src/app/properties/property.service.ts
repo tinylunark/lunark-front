@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Observable} from "rxjs";
 import {Property} from "../shared/models/property.model";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpParams} from "@angular/common/http";
 import {environment} from "../../env/environment";
 import {ApiPaths} from "../shared/api/api-paths.enum";
 import PropertiesSearchDto from "./properties-search.dto";
@@ -43,9 +43,13 @@ export class PropertyService {
 
   getUnapprovedProperties(searchDto?: PropertiesSearchDto): Observable<Property[]> {
     let url = `${environment.apiHost}/${ApiPaths.UnapprovedProperties}`;
-
-
     return this.http.get<Property[]>(url);
+  }
+
+  getMyProperties(hostId: number): Observable<Property[]> {
+    let url = `${environment.apiHost}/${ApiPaths.MyProperties}`;
+    const params = new HttpParams().set('hostId', hostId.toString());
+    return this.http.get<Property[]>(url, { params });
   }
 
   approveProperty(property: Property): Observable<Property> {

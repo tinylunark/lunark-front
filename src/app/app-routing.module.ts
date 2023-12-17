@@ -9,6 +9,7 @@ const routes: Routes = [
   { path: 'properties', loadChildren: () => import('./properties/properties.module').then(m => m.PropertiesModule) },
   { path: 'search', loadChildren: () => import('./properties/properties.module').then(m => m.PropertiesModule) },
   { path: 'approve-changes', loadChildren: () => import('./properties/properties.module').then(m => m.PropertiesModule) },
+  { path: 'my-properties', loadChildren: () => import('./properties/properties.module').then(m => m.PropertiesModule) },
   { path: '**', redirectTo: '404' },
   { path: '404', loadChildren: () => import('./core/core.module').then(m => m.CoreModule) },
 ];

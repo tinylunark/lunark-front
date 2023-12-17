@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Profile } from '../../shared/models/profile.model';
-import { ProfileService } from './profile.service';
+import { ProfileService } from '../../shared/profile.service';
 import { Router } from '@angular/router';
 import { SharedService } from '../../shared/shared.service';
 import { environment } from '../../../env/environment';
