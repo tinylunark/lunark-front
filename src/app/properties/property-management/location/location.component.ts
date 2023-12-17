@@ -1,8 +1,8 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, Output } from '@angular/core';
 import * as L from 'leaflet';
 import { LocationService } from './location.service';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { Subject, debounce, debounceTime, distinctUntilChanged } from 'rxjs';
+import { FormControl, Validators } from '@angular/forms';
+import { Subject, debounceTime, distinctUntilChanged } from 'rxjs';
 import { SharedService } from '../../../shared/shared.service';
 
 @Component({
@@ -13,7 +13,7 @@ import { SharedService } from '../../../shared/shared.service';
 export class LocationComponent implements AfterViewInit {
   private map: any;
   private marker: L.Marker | null = null;
-  searchControl = new FormControl();
+  searchControl = new FormControl('', Validators.required);
   private readonly addressChangeDelay = 1000;
   private addressChanged: Subject<string> = new Subject<string>();
 
@@ -47,6 +47,11 @@ export class LocationComponent implements AfterViewInit {
       const lat = coord.lat;
       const lng = coord.lng;
 
+      this.reverseSearch(lat, lng);
+    });
+  }
+
+  reverseSearch(lat: number, lng: number): void {
       this.mapService.reverseSearch(lat, lng).subscribe((res) => {
         console.log(res.display_name);
         this.searchControl.setValue(res.display_name);
@@ -61,8 +66,7 @@ export class LocationComponent implements AfterViewInit {
       } else {
         this.marker.setLatLng([lat, lng]);
       }
-    });
-  }
+    }
 
   search(address: string): void {
     this.mapService.search(address).subscribe({
@@ -102,8 +106,8 @@ export class LocationComponent implements AfterViewInit {
   }
 
   onAddressChanged(event: Event): void {
-    console.log('address changed');
     const addressText = (event.target as HTMLInputElement).value;
     this.addressChanged.next(addressText);
   }
+
 }
