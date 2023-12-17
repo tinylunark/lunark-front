@@ -1,0 +1,44 @@
+<app-header text="Edit Property"></app-header>
+<app-container>
+  <app-helper-menu [items]="menuItems" (selectedItemChange)="selectedMenuItemChanged($event)">
+  </app-helper-menu>
+  <div *ngIf="selectedMenuItem === 'basic information'" class="selectedComponentContainer">
+    <div class="basic-info-container">
+      <app-property-type></app-property-type>
+      <app-number-of-guests></app-number-of-guests>
+    </div>
+  </div>
+
+  <div *ngIf="selectedMenuItem === 'location'" class="selectedComponentContainer">
+    <app-location></app-location>
+  </div>
+
+  <div *ngIf="selectedMenuItem === 'amenities'" class="selectedComponentContainer">
+    <app-amenities></app-amenities>
+  </div>
+
+  <div *ngIf="selectedMenuItem === 'calendar'" class="selectedComponentContainer">
+    <app-availability-pricing (newAvailabilityEntries)="onAvailabilityEntriesAdded($event)"
+      (deletedRange)="onDelete($event)" [cancellationDeadline]="cancellationDeadline"
+      [availabilityEntries]="availabilityEntries" [autoApproveEnabled]="autoApproveEnabled" [pricingMode]="pricingMode">
+    </app-availability-pricing>
+  </div>
+
+
+  <div *ngIf="selectedMenuItem === 'price table'" class="selectedComponentContainer table-avail">
+    <app-availability-table [availabilityEntries]="availabilityEntries" (deletedRange)="onDelete($event)"></app-availability-table>
+  </div>
+
+  <div *ngIf="selectedMenuItem === 'other'" class="selectedComponentContainer" style="flex-direction:column;">
+    <app-name></app-name>
+    <div class="half-div">
+      <div class="component" style="width: 45em;">
+        <app-gallery></app-gallery>
+      </div>
+
+      <div class="component">
+        <app-description></app-description>
+      </div>
+    </div>
+  </div>
+</app-container>
