@@ -1,9 +1,22 @@
 <div id="container">
   <p>DESCRIPTION</p>
+
   <div class="grid-container">
     <div class="grid-item" [formGroup]="infoForm">
-      <mat-form-field class="big-field" appearance="outline" >
-        <input matInput type="text" name="description" formControlName="description" />
+      <mat-form-field
+        subscriptSizing="dynamic"
+        class="big-field stretch-height"
+        appearance="outline"
+      >
+        <textarea
+          (change)="onChange()"
+          cdkTextareaAutosize
+          id="description-textarea"
+          matInput
+          type="text"
+          name="description"
+          formControlName="description"
+        ></textarea>
       </mat-form-field>
     </div>
   </div>

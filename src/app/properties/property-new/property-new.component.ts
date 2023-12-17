@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import ProeprtyRequest from '../../shared/models/property-request.model';
-import { PropertyType } from '../../shared/models/property.model';
+import { FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-property-new',
@@ -10,11 +10,13 @@ import { PropertyType } from '../../shared/models/property.model';
 export class PropertyNewComponent {
   isLinear = true;
   header = 'new property';
-  validNumberOfGuests = false;
   step1Completed = false;
+  step2Completed = false;
+  propertyNameControl: FormControl = new FormControl('', Validators.required);
+
   public property: ProeprtyRequest = {
     id: 0,
-    name: '',
+    name: this.propertyNameControl.value,
     latitude: 0,
     longitude: 0,
     address: {
@@ -32,6 +34,7 @@ export class PropertyNewComponent {
     maxGuests: 0,
     amenityIds: [],
   };
+  propertyImages: File[] = [];
 
   private isNumberOfGuestsValid(): boolean {
     return (
@@ -51,9 +54,16 @@ export class PropertyNewComponent {
   }
 
   onChange(): void {
+    this.property.name = this.propertyNameControl.value;
     this.step1Completed =
       this.property.type !== null &&
-      this.isNumberOfGuestsValid() 
+      this.isNumberOfGuestsValid() &&
+      this.isLocationValid();
+
+    this.step2Completed =
+      this.property.name !== '' &&
+      this.property.description !== '' &&
+      this.propertyImages.length > 0;
     console.log(this.step1Completed);
     console.log(this.property);
   }

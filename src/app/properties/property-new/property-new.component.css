@@ -9,3 +9,50 @@ app-number-of-guests {
 app-location {
     margin-left: 4%;
 }
+
+app-property-type, app-amenities {
+    margin-left: 0.1%;
+}
+
+p {
+  font-family: rubik-bold;
+  text-align: center;
+  font-size: 1.4em;
+}
+
+.field-container {
+    margin-top: 2%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#name-field {
+    width: 33%;
+}
+
+.stepper-button-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 2em;
+}
+
+.stepper-button-container button {
+  width: 6em;
+  font-family: rubik-bold;
+  text-transform: uppercase;
+}
+
+#description-gallery-container {
+    display: flex;
+    justify-content: center;
+    gap: 1em;
+    margin-top: 1em;
+}
+
+app-description, app-gallery {
+    display: inline-block;
+    width: 22em;
+}

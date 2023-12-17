@@ -21,6 +21,9 @@ export class LocationComponent implements AfterViewInit {
   private readonly addressChangeDelay = 1000;
   private addressChanged: Subject<string> = new Subject<string>();
 
+  @Output()
+  change: EventEmitter<string> = new EventEmitter<string>()
+
   @Input()
   latitude: number = 0;
 
@@ -80,6 +83,7 @@ export class LocationComponent implements AfterViewInit {
     this.longitude = lng;
     this.latitudeChange.emit(this.latitude);
     this.longitudeChange.emit(this.longitude);
+    this.change.emit();
   }
 
   private emitFullAddress(address: string, city: string, country: string) {
@@ -89,6 +93,7 @@ export class LocationComponent implements AfterViewInit {
     this.addressChange.emit(this.address);
     this.cityChange.emit(this.city);
     this.countryChange.emit(this.country);
+    this.change.emit();
   }
 
   registerOnClick(): void {
