@@ -2,22 +2,23 @@
 <app-container>
 <mat-horizontal-stepper linear="true">
     <mat-step [completed]="step1Completed">
-    <ng-template matStepLabel>Some basic information about your property</ng-template>
-    <div>
+        <ng-template matStepLabel>Some basic information about your property</ng-template>
         <app-property-type [(selectedPropertyType)]="propertyType" (selectedPropertyTypeChange)="onChange()"></app-property-type>
         <app-number-of-guests [(minimum)]="minimumGuests" [(maximum)]="maximumGuests" (isValidChange)="validNumberOfGuests=$event;onChange()"></app-number-of-guests>
         <button mat-button matStepperNext>Next</button>
-    </div>
     </mat-step>
+
     <mat-step label="Let's make your property stand out">
     <ng-template matStepLabel>Let's make your property stand out</ng-template>
     <app-amenities (selectedAmenityIdsChange)="onChange()" [(selectedAmenityIds)]="amenities"></app-amenities>
         Content 2
     </mat-step>
+
     <mat-step label="Availability and pricing">
     <ng-template matStepLabel>Availability and pricing</ng-template>
         Content 2
     </mat-step>
+
     <mat-step label="Done">
         Content 2
     </mat-step>

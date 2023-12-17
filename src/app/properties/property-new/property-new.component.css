@@ -1,3 +1,7 @@
 mat-horizontal-stepper {
     width: 100%;
 }
+
+app-number-of-guests {
+    margin-left: 5%;
+}
