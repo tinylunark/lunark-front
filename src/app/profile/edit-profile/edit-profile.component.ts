@@ -30,7 +30,7 @@ export class EditProfileComponent implements OnInit {
   }
 
   onSaveClick(): void {
-    if (this.profile) {
+    if (this.profile && this.valid) {
       this.profileService.updateProfile(this.profile).subscribe({
         next: (_) => {
           this.sharedService.openSnack('Profile updated successfully');
