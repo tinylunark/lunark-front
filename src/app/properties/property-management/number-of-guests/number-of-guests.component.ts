@@ -27,6 +27,8 @@ export class NumberOfGuestsComponent {
     } else {
       this.maximum++;
     }
+    this.minimumChange.emit(this.minimum);
+    this.maximumChange.emit(this.maximum);
     this.checkValidity()
   }
 
@@ -36,10 +38,14 @@ export class NumberOfGuestsComponent {
     } else if (type === 'maximum' && this.maximum > 0) {
       this.maximum--;
     }
+    this.minimumChange.emit(this.minimum);
+    this.maximumChange.emit(this.maximum);
     this.checkValidity();
   }
 
   checkValidity(): void {
     this.isValidChange.emit(this.minimum > 0 && this.minimum <= this.maximum);
+    console.log(this.minimum);
+    console.log(this.maximum);
   } 
 }
