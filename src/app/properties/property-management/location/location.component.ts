@@ -24,7 +24,7 @@ export class LocationComponent implements AfterViewInit {
     if (container != null) {
       this.map = L.map('map', {
         center: [45.2396, 19.8227],
-        zoom: 13,
+        zoom: 16,
       });
     }
 
@@ -80,6 +80,7 @@ export class LocationComponent implements AfterViewInit {
         } else {
           this.marker.setLatLng([result[0].lat, result[0].lon]);
         }
+        this.map.panTo([result[0].lat, result[0].lon]);
       },
       error: () => {},
     });
