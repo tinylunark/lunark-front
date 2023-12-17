@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
-import {PropertyService} from "../property.service";
-import {Property} from "../../shared/models/property.model";
-import {environment} from "../../../env/environment";
+import { PropertyService } from "../property.service";
+import { ProfileService } from "../../shared/profile.service";
+import { Profile } from "../../shared/models/profile.model";
+import { Property } from "../../shared/models/property.model";
+import { environment } from "../../../env/environment";
 
 @Component({
   selector: 'app-my-properties',
@@ -13,27 +15,36 @@ export class MyPropertiesComponent {
   placeholderImage = environment.assetsDir + '/images/placeholder-image.webp';
   images: Map<number, string> = new Map;
 
-  constructor(private propertyService: PropertyService) {
+  constructor(private propertyService: PropertyService,
+              private profileService: ProfileService
+  ) {
   }
 
+  profile: Profile | null = null;
   ngOnInit(): void {
-    this.getProperties();
+    this.profileService.getProfile().subscribe({ next: (data: Profile) => {
+      this.profile = data;
+      console.log(this.profile.id);
+      this.getProperties(this.profile.id);
+    } });
   }
 
-  approveProperty(property: Property): void {
-    this.propertyService.approveProperty(property)
-    .subscribe({
-        next:  (_) => {
-          this.getProperties();
+  // approveProperty(property: Property): void {
+  //   this.propertyService.approveProperty(property)
+  //   .subscribe({
+  //       next:  (_) => {
+  //         this.getProperties();
+  //       }
+  //     })
+  // }
+
+  getProperties(hostId: any): void {
+    this.propertyService.getMyProperties(hostId)
+      .subscribe({
+        next: (properties) => {
+          this.properties = properties;
+          this.getImages();
         }
-      })
-  }
-
-  getProperties(): void {
-    this.propertyService.getUnapprovedProperties()
-      .subscribe(properties => {
-        this.properties = properties;
-        this.getImages();
       });
   }
 
@@ -48,5 +59,9 @@ export class MyPropertiesComponent {
           });
       }
     });
+  }
+
+  setProfle(profile: Profile): void {
+    this.profile = profile;
   }
 }

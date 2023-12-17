@@ -12,7 +12,7 @@
         <span class="price">${{property.pricePerNight}} Night</span>
         <div class="button-container">
           <button mat-flat-button class="view-button button" [routerLink]="'/properties/' + property.id">View</button>
-          <button mat-flat-button class="approve-button button" color="primary" (click)="approveProperty(property)">Edit</button>
+          <button mat-flat-button class="approve-button button" [routerLink]="'/my-properties/edit-property/' + property.id" color="primary">Edit</button>
         </div>
       </mat-card-footer>
     </mat-card>
