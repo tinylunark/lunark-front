@@ -5,6 +5,7 @@ import {PropertyDetailComponent} from "./property-detail/property-detail.compone
 import { SearchPageComponent } from './search-page/search-page.component';
 import { PropertyApprovalComponent } from './property-approval/property-approval.component';
 import { MyPropertiesComponent } from './my-properties/my-properties.component';
+import { PropertyEditComponent } from './property-edit/property-edit.component';
 import { PropertyPriceAndAvailabilityEditComponent } from './property-price-and-availability-edit/property-price-and-availability-edit.component';
 import { authGuard } from '../account/guard/auth.guard';
 
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'search', component: SearchPageComponent },
   { path: 'approve-changes', component: PropertyApprovalComponent, canActivate: [authGuard], data: {role: ['ADMIN'] } },
   { path: 'my-properties', component: MyPropertiesComponent, canActivate: [authGuard], data: {role: ['HOST'] } },
+  { path: 'my-properties/edit-property/:id', component: PropertyEditComponent, canActivate: [authGuard], data: {role: ['HOST'] } },
 ];
 
 @NgModule({
