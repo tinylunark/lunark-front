@@ -2,6 +2,8 @@ import { AfterViewInit, Component, OnInit } from '@angular/core';
 import * as L from 'leaflet';
 import { LocationService } from './location.service';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { Subject, debounce, debounceTime, distinctUntilChanged } from 'rxjs';
+import { SharedService } from '../../../shared/shared.service';
 
 @Component({
   selector: 'app-location',
@@ -12,8 +14,10 @@ export class LocationComponent implements AfterViewInit {
   private map: any;
   private marker: L.Marker | null = null;
   searchControl = new FormControl();
+  private readonly addressChangeDelay = 1000;
+  private addressChanged: Subject<string> = new Subject<string>();
 
-  constructor(private mapService: LocationService) {}
+  constructor(private mapService: LocationService, private sharedService: SharedService) {}
 
   private initMap(): void {
     const container = L.DomUtil.get('map');
@@ -60,10 +64,14 @@ export class LocationComponent implements AfterViewInit {
     });
   }
 
-  search(): void {
-    this.mapService.search(this.searchControl.value).subscribe({
+  search(address: string): void {
+    this.mapService.search(address).subscribe({
       next: (result) => {
         console.log(result);
+        if (result.length === 0) {
+          this.sharedService.openSnack('Address not found');
+          return;
+        }
 
         if (!this.marker) {
           this.marker = L.marker([result[0].lat, result[0].lon])
@@ -82,11 +90,19 @@ export class LocationComponent implements AfterViewInit {
     L.Marker.prototype.options.icon = L.icon({
       iconUrl: 'https://unpkg.com/leaflet@1.6.0/dist/images/marker-icon.png',
     });
+    this.subsrcibeAndDebounceAddressChanged();
   }
 
-  handleInputChange(event: Event): void {
-    const value = (event.target as HTMLInputElement).value;
-    this.searchControl.setValue(value);
-    this.search();
+  subsrcibeAndDebounceAddressChanged() {
+    this.addressChanged
+      .asObservable()
+      .pipe(debounceTime(this.addressChangeDelay), distinctUntilChanged())
+      .subscribe((address) => this.search(address));
+  }
+
+  onAddressChanged(event: Event): void {
+    console.log('address changed');
+    const addressText = (event.target as HTMLInputElement).value;
+    this.addressChanged.next(addressText);
   }
 }
