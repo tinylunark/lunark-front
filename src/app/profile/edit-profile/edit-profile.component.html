@@ -1,6 +1,6 @@
 <app-basic-info [profile]="profile!" (profileChange)="onProfileChange($event)"></app-basic-info>
 <hr>
-<app-info-form [profile]="profile!" (profileChange)="onProfileChange($event)"></app-info-form>
+<app-info-form [profile]="profile!" (validChange)="onValidChange($any($event))" (profileChange)="onProfileChange($event)"></app-info-form>
 <hr>
 <div id="container">
   <button mat-flat-button color="primary" class="button save" (click)="onSaveClick()">save</button>

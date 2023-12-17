@@ -50,6 +50,11 @@ export class EditProfileComponent implements OnInit {
     this.profile = updatedProfile;
   }
 
+  onValidChange(valid: boolean) : void {
+    this.valid = valid;
+
+  }
+
   onCancelClick(): void {
     this.router.navigate(['/home']);
   }

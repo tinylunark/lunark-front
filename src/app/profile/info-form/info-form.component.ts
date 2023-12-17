@@ -21,14 +21,10 @@ import { Profile } from '../../shared/models/profile.model';
 })
 export class InfoFormComponent  implements OnChanges {
   @Output() profileChange = new EventEmitter<Profile>();
+  @Output() validChange = new EventEmitter<boolean>();
+
   @Input() profile!: Profile;
-
-  @Input()
-  valid: boolean = false;
-
-  @Output()
-  validChange = new EventEmitter<boolean>();
-
+  @Input() valid: boolean = false;
 
   infoForm = new FormGroup({
     firstName: new FormControl('', [Validators.required]),
@@ -57,8 +53,9 @@ export class InfoFormComponent  implements OnChanges {
       this.profile.email = value.email || '';
       this.profile.phoneNumber = value.phoneNumber || '';
       this.profile.address = value.address || '';
-      this.profileChange.emit(this.profile);
+
       this.setValid();
+      this.profileChange.emit(this.profile);
     });
 
   }
