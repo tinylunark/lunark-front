@@ -14,7 +14,7 @@ export interface Property {
     mimeType: string
   }[];
   description: string;
-  type: PropertyType;
+  type: PropertyType | '';
   averageRating?: number;
   pricePerNight?: number;
   availabilityEntries: PropertyAvailabilityEntry[];
@@ -24,6 +24,7 @@ export interface Property {
 }
 
 export enum PropertyType {
-  Hut = "HUT",
-  Apartment = "APARTMENT"
+  WholeHouse="WHOLE_HOUSE",
+  Room = "ROOM",
+  SharedRoom = "SHARED_ROOM"
 }
