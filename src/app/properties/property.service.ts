@@ -5,8 +5,8 @@ import {HttpClient, HttpParams} from "@angular/common/http";
 import {environment} from "../../env/environment";
 import {ApiPaths} from "../shared/api/api-paths.enum";
 import PropertiesSearchDto from "./properties-search.dto";
-import {Router, UrlSerializer} from "@angular/router";
 import PropertyAvailabilityEntry from '../shared/models/property-availability-entry.model';
+import {Router, UrlSerializer} from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
@@ -46,9 +46,9 @@ export class PropertyService {
     return this.http.get<Property[]>(url);
   }
 
-  getMyProperties(hostId: number): Observable<Property[]> {
-    let url = `${environment.apiHost}/${ApiPaths.MyProperties}`;
-    const params = new HttpParams().set('hostId', hostId.toString());
+  getMyProperties(hostId: any): Observable<Property[]> {
+    let url = `${environment.apiHost}/${ApiPaths.Properties}/${ApiPaths.MyProperties}`;
+    const params = new HttpParams().set('hostId', hostId);
     return this.http.get<Property[]>(url, { params });
   }
 
