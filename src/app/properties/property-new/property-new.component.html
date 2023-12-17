@@ -74,6 +74,14 @@
 
     <mat-step label="Availability and pricing">
       <ng-template matStepLabel>Availability and pricing</ng-template>
+      <div id="availability-container">
+        <app-availability-pricing
+          [(availabilityEntries)]="property.availabilityEntries"
+          (availabilityEntriesChange)="onChange()"></app-availability-pricing>
+        <app-availability-table
+          [(availabilityEntries)]="property.availabilityEntries"
+          (availabilityEntriesChange)="onChange()"></app-availability-table>
+      </div>
       <div class="stepper-button-container">
         <button mat-button matStepperPrevious>Previous</button>
         <button mat-button matStepperNext>Next</button>

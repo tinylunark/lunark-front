@@ -20,10 +20,12 @@ p {
   font-size: 1.4em;
 }
 
-.field-container {
-    margin-top: 2%;
+.field-container, #availability-container {
     text-align: center;
     display: flex;
+}
+.field-container {
+    margin-top: 2%;
     flex-direction: column;
     align-items: center;
 }
@@ -55,4 +57,16 @@ p {
 app-description, app-gallery {
     display: inline-block;
     width: 22em;
+}
+
+app-availability-pricing {
+    display: inline-flex;
+    justify-content: center;
+    width: 30%;
+}
+
+app-availability-table {
+    display: inline;
+    margin-top: 2em;
+    width: 100%;
 }

@@ -42,6 +42,7 @@ export class PropertyPriceAndAvailabilityEditComponent implements OnInit {
   }
 
   onAvailabilityEntriesAdded(event: PropertyAvailabilityEntry[]): void {
+    //TODO: Remove 3 duplicate lines that are now in AvailabilityPricingComponent
     let availabilityEntryMap: Map<string, PropertyAvailabilityEntry> = new Map<string, PropertyAvailabilityEntry>(this.availabilityEntries.map(entry => [entry.date.toISOString(), entry]));
     event.map(entry => availabilityEntryMap.set(entry.date.toISOString(), entry));
 
