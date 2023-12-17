@@ -3,15 +3,15 @@
 <mat-horizontal-stepper linear="true">
     <mat-step [completed]="step1Completed">
         <ng-template matStepLabel>Some basic information about your property</ng-template>
-        <app-property-type [(selectedPropertyType)]="propertyType" (selectedPropertyTypeChange)="onChange()"></app-property-type>
-        <app-number-of-guests [(minimum)]="minimumGuests" [(maximum)]="maximumGuests" (isValidChange)="validNumberOfGuests=$event;onChange()"></app-number-of-guests>
-        <app-location></app-location>
+        <app-property-type [(selectedPropertyType)]="property.type" *ngIf="property" (selectedPropertyTypeChange)="onChange()"></app-property-type>
+        <app-number-of-guests [(minimum)]="property.minGuests" *ngIf="property" [(maximum)]="property.maxGuests" (isValidChange)="validNumberOfGuests=$event;onChange()"></app-number-of-guests>
+        <app-location *ngIf="property"></app-location>
         <button mat-button matStepperNext>Next</button>
     </mat-step>
 
     <mat-step label="Let's make your property stand out">
     <ng-template matStepLabel>Let's make your property stand out</ng-template>
-    <app-amenities (selectedAmenityIdsChange)="onChange()" [(selectedAmenityIds)]="amenities"></app-amenities>
+    <app-amenities *ngIf="property" (selectedAmenityIdsChange)="onChange()" [(selectedAmenityIds)]="property.amenityIds"></app-amenities>
         Content 2
     </mat-step>
 

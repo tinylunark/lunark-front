@@ -1,28 +1,20 @@
 import Location from "./location.model";
 import PropertyAvailabilityEntry from "./property-availability-entry.model";
+import { PropertyType } from "./property.model";
 
-export interface Property {
-  id: number;
+export default interface ProeprtyRequest {
+  id?: number;
   name: string;
+  latitude: number | null;
+  longitude: number | null;
   address: Location;
-  images: {
-    id: number,
-    mimeType: string
-  }[];
   description: string;
-  type: PropertyType | '';
-  averageRating?: number;
-  pricePerNight?: number;
+  type: PropertyType | null;
   availabilityEntries: PropertyAvailabilityEntry[];
-  cancellationDeadline: number;
+  cancellationDeadline: number | null;
   pricingMode: string;
   autoApproveEnabled: boolean;
   minGuests: number;
   maxGuests: number;
-}
-
-export enum PropertyType {
-  WholeHouse = 'WHOLE_HOUSE',
-  Room = 'ROOM',
-  SharedRoom = 'SHARED_ROOM'
+  amenityIds: number[];
 }
