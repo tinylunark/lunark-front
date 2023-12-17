@@ -4,11 +4,7 @@ import PropertyAvailabilityEntry from "./property-availability-entry.model";
 export interface Property {
   id: number;
   name: string;
-  address: {
-    street: string;
-    city: string;
-    country: string;
-  };
+  address: Location;
   images: {
     id: number,
     mimeType: string
@@ -21,6 +17,8 @@ export interface Property {
   cancellationDeadline: number;
   pricingMode: string;
   autoApproveEnabled: boolean;
+  minGuests: number;
+  maxGuests: number;
 }
 
 export enum PropertyType {
