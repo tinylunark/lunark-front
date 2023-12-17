@@ -5,8 +5,8 @@ import { PropertyType } from "./property.model";
 export default interface ProeprtyRequest {
   id?: number;
   name: string;
-  latitude: number | null;
-  longitude: number | null;
+  latitude: number;
+  longitude: number;
   address: Location;
   description: string;
   type: PropertyType | null;

@@ -5,7 +5,7 @@
             <ng-template matStepLabel>Some basic information about your property</ng-template>
             <app-property-type [(selectedPropertyType)]="property.type" (selectedPropertyTypeChange)="onChange()"></app-property-type>
             <app-number-of-guests *ngIf="property" [(minimum)]="property.minGuests" [(maximum)]="property.maxGuests" (isValidChange)="validNumberOfGuests=$event;onChange()"></app-number-of-guests>
-            <app-location></app-location>
+            <app-location [(latitude)]="property.latitude" [(longitude)]="property.longitude" [(address)]="property.address.street" [(city)]="property.address.city" [(country)]="property.address.country"></app-location>
             <button mat-button matStepperNext>Next</button>
         </mat-step>
 
