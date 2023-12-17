@@ -41,6 +41,17 @@ export class PropertyService {
     return this.http.get<Property[]>(url);
   }
 
+  getUnapprovedProperties(searchDto?: PropertiesSearchDto): Observable<Property[]> {
+    let url = `${environment.apiHost}/${ApiPaths.UnapprovedProperties}`;
+
+
+    return this.http.get<Property[]>(url);
+  }
+
+  approveProperty(property: Property): Observable<Property> {
+    return this.http.post<Property>(`${environment.apiHost}/${ApiPaths.Properties}/${ApiPaths.ApproveProperty}/${property.id}`, {});
+  }
+
   getProperty(id: number): Observable<Property> {
     return this.http.get<Property>(`${environment.apiHost}/${ApiPaths.Properties}/${id}`);
   }
