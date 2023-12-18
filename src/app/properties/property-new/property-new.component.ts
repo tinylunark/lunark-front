@@ -6,6 +6,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { PropertyCreatedDialogComponent } from '../property-created-dialog/property-created-dialog.component';
 import { Observable } from 'rxjs';
+import { AccountService } from '../../account/account.service';
 
 @Component({
   selector: 'app-property-new',
@@ -22,6 +23,7 @@ export class PropertyNewComponent {
 
   constructor(
     private propertyService: PropertyService,
+    private accountService: AccountService,
     private router: Router,
     private matDialog: MatDialog
   ) {}
@@ -45,6 +47,7 @@ export class PropertyNewComponent {
     minGuests: 0,
     maxGuests: 0,
     amenityIds: [],
+    hostId: this.accountService.getAccountId() ?? (() => {throw new Error("User is not logged in")})(),
   };
   propertyImages: File[] = [];
 

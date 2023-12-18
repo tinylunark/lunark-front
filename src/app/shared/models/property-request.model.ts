@@ -17,4 +17,5 @@ export default interface PropertyRequest {
   minGuests: number;
   maxGuests: number;
   amenityIds: number[];
+  hostId: number;
 }
