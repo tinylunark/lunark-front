@@ -8,6 +8,7 @@ import {AccountService} from "../../account/account.service";
 import {ReservationService} from "../../reservation.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import ReservationRequestDto from "./dtos/reservation-request.dto";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-property-detail',
@@ -24,11 +25,18 @@ export class PropertyDetailComponent {
     numberOfGuests: new FormControl('', [Validators.required]),
   })
 
+  entryISODates?: string[];
+
+  dateFilter = (d: Date | null): boolean => {
+    return this.entryISODates?.includes(d?.toISOString() ?? '') ?? false;
+  };
+
   constructor(
     private propertyService: PropertyService,
     private route: ActivatedRoute,
     private accountService: AccountService,
     private reservationService: ReservationService,
+    private snackBar: MatSnackBar,
   ) {
   }
 
@@ -42,6 +50,7 @@ export class PropertyDetailComponent {
       .subscribe(property => {
         this.property = property;
         this.getImages();
+        this.entryISODates = property.availabilityEntries.map(entry => entry.date.toISOString());
       });
   }
 
@@ -74,6 +83,10 @@ export class PropertyDetailComponent {
       ...this.reservationFormGroup.value,
     }
 
-    this.reservationService.createReservation(reservationDto);
+    this.reservationService.createReservation(reservationDto)
+      .subscribe(
+        () => this.snackBar.open('Reservation has been created.', 'OK'),
+        () => this.snackBar.open('Failed to create reservaiton.', 'OK'),
+      );
   }
 }

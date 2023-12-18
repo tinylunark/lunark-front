@@ -25,7 +25,7 @@
           [formGroup]="this.reservationFormGroup" (ngSubmit)="createReservation()">
       <mat-form-field appearance="outline">
         <mat-label>Date range</mat-label>
-        <mat-date-range-input [rangePicker]="picker">
+        <mat-date-range-input [rangePicker]="picker" [dateFilter]="this.dateFilter">
           <input formControlName="startDate" matStartDate placeholder="Start date">
           <input formControlName="endDate" matEndDate placeholder="End date">
         </mat-date-range-input>

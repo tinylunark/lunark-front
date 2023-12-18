@@ -3,6 +3,7 @@ import ReservationRequestDto from "./properties/property-detail/dtos/reservation
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../env/environment";
 import {ApiPaths} from "./shared/api/api-paths.enum";
+import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +14,7 @@ export class ReservationService {
     private http: HttpClient,
   ) { }
 
-  createReservation(reservationDto: ReservationRequestDto): void {
-    this.http.post(`${environment.apiHost}/${ApiPaths.Reservations}`, reservationDto)
-      .subscribe(response => console.log(response));
+  createReservation(reservationDto: ReservationRequestDto): Observable<any> {
+    return this.http.post(`${environment.apiHost}/${ApiPaths.Reservations}`, reservationDto);
   }
 }
