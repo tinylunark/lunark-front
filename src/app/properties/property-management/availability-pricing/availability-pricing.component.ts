@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { DateRange } from '@angular/material/datepicker';
 import PropertyAvailabilityEntry from '../../../shared/models/property-availability-entry.model';
 import { SharedService } from '../../../shared/shared.service';
+import { ActivatedRoute } from '@angular/router';
 
 function delay(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -54,7 +55,14 @@ export class AvailabilityPricingComponent {
   @Output()
   change = new EventEmitter<void>();
 
-  constructor(private sharedService: SharedService) {}
+  constructor(private sharedService: SharedService, private route: ActivatedRoute) {}
+
+  isEditPriceAndAvailabilityRoute(): boolean {
+    const currentUrl = this.route.snapshot.url.map(segment => segment.path).join('/');
+    return currentUrl.includes('properties') && currentUrl.includes('edit-price-and-availability');
+  }
+
+
 
   increment() {
     this.cancellationDeadline++;
@@ -119,7 +127,7 @@ export class AvailabilityPricingComponent {
   emitEntriesAfterAddition(newEntries: PropertyAvailabilityEntry[]): void {
     let availabilityEntryMap: Map<string, PropertyAvailabilityEntry> = new Map<string, PropertyAvailabilityEntry>(this.availabilityEntries.map(entry => [entry.date.toISOString(), entry]));
     newEntries.map(entry => availabilityEntryMap.set(entry.date.toISOString(), entry));
-  
+
     let newAvailabilityEntries = Array.from(availabilityEntryMap.values()).sort((a, b) => a.date.getTime() - b.date.getTime())
     this.availabilityEntriesChange.emit(newAvailabilityEntries);
     this.notifyOfChanges();

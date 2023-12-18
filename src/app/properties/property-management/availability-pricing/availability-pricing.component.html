@@ -34,5 +34,5 @@
     <mat-checkbox class="example-margin" [checked]="autoApproveEnabled" (change)="onAutoApproveEnabledChange($event)">Allow instant booking</mat-checkbox>
   </section>
 
-  <button mat-flat-button color="primary" id="save">Save</button>
+  <button mat-flat-button color="primary" id="save" *ngIf="isEditPriceAndAvailabilityRoute()">Save</button>
 </div>

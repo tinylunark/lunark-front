@@ -26,6 +26,10 @@ p {
   height: 100%;
 }
 
+.stretch-height {
+  height: 300px;
+}
+
 :host {
   display: flex;
   flex-direction: column;
