@@ -47,6 +47,16 @@ export class AccountService {
     return notLoggedInRole;
   }
 
+  getAccountId(): number | null {
+    if (this.isLoggedIn()) {
+      const accessToken: any = localStorage.getItem(environment.userLocalStorageKey);
+      const helper = new JwtHelperService();
+      return helper.decodeToken(accessToken).profileId;
+    }
+    return null;
+  }
+
+
   isLoggedIn(): boolean {
     const accessToken: any = localStorage.getItem(environment.userLocalStorageKey);
     if(accessToken == null || this.isTokenExpired(accessToken)) {
