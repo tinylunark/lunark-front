@@ -3,11 +3,10 @@ import { DateRange } from '@angular/material/datepicker';
 import { PropertyService } from '../property.service';
 import { ActivatedRoute } from '@angular/router';
 import { SharedService } from '../../shared/shared.service';
-import { Property } from '../../shared/models/property.model';
 import { FormControl, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { PropertyCreatedDialogComponent } from '../property-created-dialog/property-created-dialog.component';
+import { PropertyUpdatedDialogComponent } from '../property-updated-dialog/property-updated-dialog.component';
 import { Observable } from 'rxjs';
 import PropertyAvailabilityEntry from '../../shared/models/property-availability-entry.model';
 import PropertyRequest from '../../shared/models/property-request.model';
@@ -57,7 +56,6 @@ export class PropertyEditComponent implements OnInit {
   constructor(
     private propertyService: PropertyService,
     private route: ActivatedRoute,
-    private sharedService: SharedService,
     private router: Router,
     private matDialog: MatDialog
   ) { }
@@ -126,8 +124,8 @@ export class PropertyEditComponent implements OnInit {
         console.log(property);
         this.uploadImages(property.id).subscribe({
           complete: () => {
-            const dialogRef = this.matDialog.open(PropertyCreatedDialogComponent, { backdropClass: 'backdropBackground', });
-            dialogRef.afterClosed().subscribe(() => { this.router.navigate(['/my-properties', property.id]); });
+            const dialogRef = this.matDialog.open(PropertyUpdatedDialogComponent, { backdropClass: 'backdropBackground', });
+            dialogRef.afterClosed().subscribe(() => { this.router.navigate(['/my-properties']); });
           },
         });
       },
