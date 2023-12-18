@@ -70,3 +70,19 @@ app-availability-table {
     margin-top: 2em;
     width: 100%;
 }
+
+#final-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2em;
+}
+
+#final-container p {
+    font-size: 2.5em;
+}
+#final-container button {
+    margin-top: 2em;
+    width: 10%;
+}

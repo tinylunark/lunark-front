@@ -25,11 +25,20 @@ export class AvailabilityPricingComponent {
   @Input()
   autoApproveEnabled: boolean = false;
 
+  @Output()
+  autoApproveEnabledChange = new EventEmitter<boolean>();
+
   @Input()
   cancellationDeadline: number = 0;
 
+  @Output()
+  cancellationDeadlineChange = new EventEmitter<number>();
+
   @Input()
   pricingMode: string = 'PER_PERSON';
+
+  @Output()
+  pricingModeChange = new EventEmitter<string>();
 
   dateRange: DateRange<Date> = new DateRange<Date>(null, null);
 
@@ -42,17 +51,22 @@ export class AvailabilityPricingComponent {
   @Output()
   deletedRange = new EventEmitter<DateRange<Date>>();
 
+  @Output()
+  change = new EventEmitter<void>();
+
   constructor(private sharedService: SharedService) {}
 
-  increment(type: 'minimum') {
-    if (type === 'minimum') {
-      this.cancellationDeadline++;
-    }
+  increment() {
+    this.cancellationDeadline++;
+    this.cancellationDeadlineChange.emit(this.cancellationDeadline);
+    this.notifyOfChanges();
   }
 
-  decrement(type: 'minimum') {
-    if (type === 'minimum' && this.cancellationDeadline > 0) {
+  decrement() {
+    if (this.cancellationDeadline > 0) {
       this.cancellationDeadline--;
+      this.cancellationDeadlineChange.emit(this.cancellationDeadline);
+      this.notifyOfChanges();
     }
   }
 
@@ -96,6 +110,7 @@ export class AvailabilityPricingComponent {
 
       this.newAvailabilityEntries.emit(newEntries);
       this.emitEntriesAfterAddition(newEntries);
+      this.notifyOfChanges();
     } else {
       this.sharedService.openSnack('Please fill in all fields');
     }
@@ -107,6 +122,7 @@ export class AvailabilityPricingComponent {
   
     let newAvailabilityEntries = Array.from(availabilityEntryMap.values()).sort((a, b) => a.date.getTime() - b.date.getTime())
     this.availabilityEntriesChange.emit(newAvailabilityEntries);
+    this.notifyOfChanges();
   }
 
   onDelete(): void {
@@ -126,6 +142,7 @@ export class AvailabilityPricingComponent {
       this.deletedRange.emit(this.dateRange);
 
       this.emitEntriesAfterDeletion();
+      this.notifyOfChanges();
     }
   }
 
@@ -151,5 +168,21 @@ export class AvailabilityPricingComponent {
         );
       })
     );
+  }
+
+  onPricingModeChange(event: any): void {
+    this.pricingMode = event.value;
+    this.pricingModeChange.emit(this.pricingMode);
+    this.notifyOfChanges();
+  }
+
+  onAutoApproveEnabledChange(event: any): void {
+    this.autoApproveEnabled = event.checked;
+    this.autoApproveEnabledChange.emit(this.autoApproveEnabled);
+    this.notifyOfChanges();
+  }
+
+  notifyOfChanges(): void {
+    this.change.emit();
   }
 }

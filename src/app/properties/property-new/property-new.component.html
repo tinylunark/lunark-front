@@ -72,15 +72,20 @@
       </div>
     </mat-step>
 
-    <mat-step label="Availability and pricing">
+    <mat-step label="Availability and pricing" [completed]="step3Completed">
       <ng-template matStepLabel>Availability and pricing</ng-template>
       <div id="availability-container">
         <app-availability-pricing
           [(availabilityEntries)]="property.availabilityEntries"
-          (availabilityEntriesChange)="onChange()"></app-availability-pricing>
+          [(cancellationDeadline)]="property.cancellationDeadline"
+          [(autoApproveEnabled)]="property.autoApproveEnabled"
+          [(pricingMode)]="property.pricingMode"
+          (change)="onChange()"
+        ></app-availability-pricing>
         <app-availability-table
           [(availabilityEntries)]="property.availabilityEntries"
-          (availabilityEntriesChange)="onChange()"></app-availability-table>
+          (availabilityEntriesChange)="onChange()"
+        ></app-availability-table>
       </div>
       <div class="stepper-button-container">
         <button mat-button matStepperPrevious>Previous</button>
@@ -88,6 +93,14 @@
       </div>
     </mat-step>
 
-    <mat-step label="Done"> Content 2 </mat-step>
+    <mat-step label="Done"> 
+      <div class="field-container" id="final-container">
+        <p>You are now done</p> 
+        <button mat-flat-button color="primary" (click)="onSubmit()">Submit</button>
+      </div>
+      <div class="stepper-button-container">
+        <button mat-button matStepperPrevious>Previous</button>
+      </div>
+    </mat-step>
   </mat-horizontal-stepper>
 </app-container>

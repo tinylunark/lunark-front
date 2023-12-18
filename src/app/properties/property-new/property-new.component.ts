@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import ProeprtyRequest from '../../shared/models/property-request.model';
+import PropertyRequest from '../../shared/models/property-request.model';
 import { FormControl, Validators } from '@angular/forms';
 
 @Component({
@@ -12,9 +12,10 @@ export class PropertyNewComponent {
   header = 'new property';
   step1Completed = false;
   step2Completed = false;
+  step3Completed = false;
   propertyNameControl: FormControl = new FormControl('', Validators.required);
 
-  public property: ProeprtyRequest = {
+  public property: PropertyRequest = {
     id: 0,
     name: this.propertyNameControl.value,
     latitude: 0,
@@ -53,8 +54,7 @@ export class PropertyNewComponent {
     );
   }
 
-  onChange(): void {
-    this.property.name = this.propertyNameControl.value;
+  checkForStepCompletions(): void {
     this.step1Completed =
       this.property.type !== null &&
       this.isNumberOfGuestsValid() &&
@@ -64,7 +64,21 @@ export class PropertyNewComponent {
       this.property.name !== '' &&
       this.property.description !== '' &&
       this.propertyImages.length > 0;
-    console.log(this.step1Completed);
+
+    this.step3Completed =
+      this.property.availabilityEntries.length > 0 &&
+      this.property.pricingMode !== '' &&
+      this.property.cancellationDeadline >= 0;
+  }
+
+  onChange(): void {
+    this.property.name = this.propertyNameControl.value;
+    this.checkForStepCompletions();
+    console.log(this.property);
+  }
+
+  onSubmit(): void {
+    console.log("Submit");
     console.log(this.property);
   }
 }

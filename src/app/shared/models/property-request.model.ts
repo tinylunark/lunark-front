@@ -2,7 +2,7 @@ import Location from "./location.model";
 import PropertyAvailabilityEntry from "./property-availability-entry.model";
 import { PropertyType } from "./property.model";
 
-export default interface ProeprtyRequest {
+export default interface PropertyRequest {
   id?: number;
   name: string;
   latitude: number;
@@ -11,7 +11,7 @@ export default interface ProeprtyRequest {
   description: string;
   type: PropertyType | null;
   availabilityEntries: PropertyAvailabilityEntry[];
-  cancellationDeadline: number | null;
+  cancellationDeadline: number;
   pricingMode: string;
   autoApproveEnabled: boolean;
   minGuests: number;
