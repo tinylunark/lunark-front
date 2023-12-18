@@ -20,7 +20,7 @@
       <p>{{property?.description}}</p>
     </div>
 
-    <form fxLayout="column" fxLayoutAlign="start stretch">
+    <form fxLayout="column" fxLayoutAlign="start stretch" *ngIf="this.getRole() !== 'unregistered'">
       <mat-form-field appearance="outline">
         <mat-label>Date range</mat-label>
         <mat-date-range-input [rangePicker]="picker">

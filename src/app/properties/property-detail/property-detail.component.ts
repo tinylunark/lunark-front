@@ -4,6 +4,7 @@ import {PropertyService} from "../property.service";
 import {ActivatedRoute} from "@angular/router";
 import {environment} from "../../../env/environment";
 import {take} from "rxjs";
+import {AccountService} from "../../account/account.service";
 
 @Component({
   selector: 'app-property-detail',
@@ -17,7 +18,8 @@ export class PropertyDetailComponent {
 
   constructor(
     private propertyService: PropertyService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private accountService: AccountService,
   ) {
   }
 
@@ -49,5 +51,9 @@ export class PropertyDetailComponent {
           this.images?.push(imageUrl);
         });
     });
+  }
+
+  getRole(): string {
+    return this.accountService.getRole();
   }
 }
