@@ -16,6 +16,7 @@ import { PropertyPriceAndAvailabilityEditComponent } from './property-price-and-
 import { PropertyApprovalComponent } from './property-approval/property-approval.component';
 import { MyPropertiesComponent } from './my-properties/my-properties.component';
 import { PropertyEditComponent } from './property-edit/property-edit.component';
+import { PropertyCreatedDialogComponent } from './property-created-dialog/property-created-dialog.component';
 
 
 @NgModule({
@@ -30,6 +31,7 @@ import { PropertyEditComponent } from './property-edit/property-edit.component';
     PropertyApprovalComponent,
     MyPropertiesComponent,
     PropertyEditComponent,
+    PropertyCreatedDialogComponent
   ],
   imports: [
     SharedModule,
@@ -38,8 +40,7 @@ import { PropertyEditComponent } from './property-edit/property-edit.component';
     MaterialModule,
     PropertyManagementModule,
     CoreModule,
-    AsyncPipe,
-    MaterialModule
+    AsyncPipe
   ],
   exports: [
     SearchComponent,

@@ -62,7 +62,6 @@ export class SignupDialog {
         notificationsEnabled: true,
         blocked: false
       }
-      //this.accountService.add(newAccount);
 
       this.dialogRef.close();
       this.dialog.open(SignupSuccessDialog, {

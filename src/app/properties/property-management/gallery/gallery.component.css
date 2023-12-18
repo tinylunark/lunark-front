@@ -29,6 +29,7 @@ p {
   background-color: #ffffff;
   display: flex;
   flex-direction: column;
+  padding: 2em;
   align-items: center;
   justify-content: center;
   width: 300px;
@@ -52,4 +53,9 @@ p {
   font: rubik-bold;
   font-size: 1em;
   text-decoration: underline;
+}
+
+mat-card-header.header {
+  text-align: center;
+  justify-content: center;
 }
