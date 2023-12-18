@@ -17,6 +17,7 @@ import { PropertyApprovalComponent } from './property-approval/property-approval
 import { MyPropertiesComponent } from './my-properties/my-properties.component';
 import { PropertyEditComponent } from './property-edit/property-edit.component';
 import { PropertyCreatedDialogComponent } from './property-created-dialog/property-created-dialog.component';
+import { PropertyUpdatedDialogComponent } from './property-updated-dialog/property-updated-dialog.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { PropertyCreatedDialogComponent } from './property-created-dialog/proper
     PropertyApprovalComponent,
     MyPropertiesComponent,
     PropertyEditComponent,
-    PropertyCreatedDialogComponent
+    PropertyCreatedDialogComponent,
+    PropertyUpdatedDialogComponent
   ],
   imports: [
     SharedModule,
@@ -49,6 +51,7 @@ import { PropertyCreatedDialogComponent } from './property-created-dialog/proper
     PropertyApprovalComponent,
     MyPropertiesComponent,
     PropertyEditComponent,
+    PropertyUpdatedDialogComponent,
   ]
 })
 export class PropertiesModule {
