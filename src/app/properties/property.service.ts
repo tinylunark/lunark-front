@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Observable} from "rxjs";
+import {Observable, forkJoin} from "rxjs";
 import {Property} from "../shared/models/property.model";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../env/environment";
@@ -7,6 +7,7 @@ import {ApiPaths} from "../shared/api/api-paths.enum";
 import PropertiesSearchDto from "./properties-search.dto";
 import {Router, UrlSerializer} from "@angular/router";
 import PropertyAvailabilityEntry from '../shared/models/property-availability-entry.model';
+import PropertyRequest from '../shared/models/property-request.model';
 
 @Injectable({
   providedIn: 'root'
@@ -54,6 +55,20 @@ export class PropertyService {
 
   getProperty(id: number): Observable<Property> {
     return this.http.get<Property>(`${environment.apiHost}/${ApiPaths.Properties}/${id}`);
+  }
+
+  createProperty(propertyRequest: PropertyRequest): Observable<Property> {
+    return this.http.post<Property>(`${environment.apiHost}/${ApiPaths.Properties}`, propertyRequest);
+  }
+
+  uploadImages(propertyId: number, images: File[]): Observable<Object[]> {
+    const imageUploads = [];
+    for (const image of images) {
+      const formData = new FormData();
+      formData.append('image', image);
+      imageUploads.push(this.http.post(`${environment.apiHost}/${ApiPaths.Properties}/${propertyId}/images`, formData));
+    }
+    return forkJoin(imageUploads);
   }
 
   getImage(imageId: number, propertyId: number): Observable<Blob> {

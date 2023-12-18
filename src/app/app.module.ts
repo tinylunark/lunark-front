@@ -60,11 +60,6 @@ import { UnauthorizedInterceptor } from './http-interceptors/unauthorized.interc
       useClass: JWTInterceptor,
       multi: true
     },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: JWTInterceptor,
-      multi: true
-    },
   ],
   bootstrap: [AppComponent]
 })

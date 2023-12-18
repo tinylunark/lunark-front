@@ -9,10 +9,10 @@ import Amenity from '../../../shared/models/amenity.model';
 })
 export class AmenitiesComponent implements OnInit {
   @Output()
-  public selectedAmenitiesChange = new EventEmitter<string[]>();
+  public selectedAmenityIdsChange = new EventEmitter<number[]>();
 
   @Input()
-  public selectedAmenities: string[] = [];
+  public selectedAmenityIds: number[] = [];
 
   amenities: Amenity[] = [];
 
@@ -24,16 +24,16 @@ export class AmenitiesComponent implements OnInit {
     });
   }
 
-  isSelected(amenity: string): boolean {
-    return this.selectedAmenities.includes(amenity);
+  isSelected(amenityId: number): boolean {
+    return this.selectedAmenityIds.includes(amenityId);
   }
 
-  toggleSelection(amenity: string): void {
-    const index = this.selectedAmenities.indexOf(amenity);
+  toggleSelection(amenityId: number): void {
+    const index = this.selectedAmenityIds.indexOf(amenityId);
     if (index === -1) {
-      this.selectedAmenities.push(amenity);
+      this.selectedAmenityIds.push(amenityId);
     } else {
-      this.selectedAmenities.splice(index, 1);
+      this.selectedAmenityIds.splice(index, 1);
     }
-    this.selectedAmenitiesChange.emit(this.selectedAmenities);
+    this.selectedAmenityIdsChange.emit(this.selectedAmenityIds);
   }}

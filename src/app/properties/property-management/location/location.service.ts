@@ -10,13 +10,13 @@ export class LocationService {
 
   search(street: string): Observable<any> {
     return this.http.get(
-      'https://nominatim.openstreetmap.org/search?format=json&q=' + street
+      'https://nominatim.openstreetmap.org/search?addressdetails=1&format=json&q=' + street
     );
   }
 
   reverseSearch(lat: number, lon: number): Observable<any> {
     return this.http.get(
-      `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`
+      `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}&addressdetails=1`
     );
   }
 

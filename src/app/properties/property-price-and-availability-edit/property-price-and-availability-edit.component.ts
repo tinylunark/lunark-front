@@ -41,14 +41,6 @@ export class PropertyPriceAndAvailabilityEditComponent implements OnInit {
     console.log(item);
   }
 
-  onAvailabilityEntriesAdded(event: PropertyAvailabilityEntry[]): void {
-    let availabilityEntryMap: Map<string, PropertyAvailabilityEntry> = new Map<string, PropertyAvailabilityEntry>(this.availabilityEntries.map(entry => [entry.date.toISOString(), entry]));
-    event.map(entry => availabilityEntryMap.set(entry.date.toISOString(), entry));
-
-    let newAvailabilityEntries = Array.from(availabilityEntryMap.values()).sort((a, b) => a.date.getTime() - b.date.getTime());
-    this.editAvailabilityEntries(newAvailabilityEntries);
-  }
-
   editAvailabilityEntries(newAvailabilityEntries: PropertyAvailabilityEntry[]): void {
     this.propertyService.changeAvailability(this.id, newAvailabilityEntries).subscribe({
       next: (response) => {
@@ -59,15 +51,6 @@ export class PropertyPriceAndAvailabilityEditComponent implements OnInit {
         console.log(error);
         this.sharedService.openSnack("Could not update prices and availability ❌");
       }
-    })
-  }
-
-  onDelete(range: DateRange<Date>): void {
-    let startTime: number = range.start?.getTime() || 0;
-    let endTime: number = range.end?.getTime() || 0;
-    if (startTime && endTime){
-      let newAvailabilityEntries = this.availabilityEntries.filter(entry => entry.date.getTime() < startTime || entry.date.getTime() > endTime);
-      this.editAvailabilityEntries(newAvailabilityEntries);
-    }
+    });
   }
 }

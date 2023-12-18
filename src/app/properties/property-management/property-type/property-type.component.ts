@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { PropertyType } from '../../../shared/models/property.model';
+
 
 @Component({
   selector: 'app-property-type',
@@ -6,9 +8,19 @@ import { Component } from '@angular/core';
   styleUrl: './property-type.component.css'
 })
 export class PropertyTypeComponent {
-  selectedProperty: string = '';
+  @Input()
+  selectedPropertyType: PropertyType | null = null
 
-  selectProperty(property: string): void {
-    this.selectedProperty = property;
+  @Output()
+  selectedPropertyTypeChange: EventEmitter<PropertyType> = new EventEmitter<PropertyType>();
+
+  public get PropertyType() {
+    return PropertyType;
+  }
+
+  selectPropertyType(type: PropertyType): void {
+    this.selectedPropertyType = type;
+    console.log("Selected type", this.selectedPropertyType);
+    this.selectedPropertyTypeChange.emit(type);
   }
 }

@@ -21,6 +21,7 @@ export class AvailabilityTableComponent implements OnInit, OnChanges {
 
   @Input() availabilityEntries: PropertyAvailabilityEntry[] = [];
   @Output() deletedRange = new EventEmitter<DateRange<Date>>();
+  @Output() availabilityEntriesChange = new EventEmitter<PropertyAvailabilityEntry[]>();
 
   constructor() { }
 
@@ -40,6 +41,7 @@ export class AvailabilityTableComponent implements OnInit, OnChanges {
       this.dataSource = [];
       return;
     }
+    availabilityEntries.sort((a, b) => a.date.getTime() - b.date.getTime());
 
     let currentRow: AvailiabilityTableRow = {
       from: availabilityEntries[0].date,
@@ -66,5 +68,13 @@ export class AvailabilityTableComponent implements OnInit, OnChanges {
 
   onDelete(row: AvailiabilityTableRow): void {
     this.deletedRange.emit(new DateRange<Date>(row.from, row.to));
+    this.availabilityEntriesChange.emit(
+      this.availabilityEntries.filter((entry) => {
+        return (
+          entry.date.getTime() < row.from.getTime() ||
+          entry.date.getTime() > row.to.getTime()
+        );
+      })
+    );
   }
 }

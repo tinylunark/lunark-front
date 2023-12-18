@@ -3,7 +3,7 @@
   <div class="grid-container">
     <ng-template ngFor let-amenity [ngForOf]="amenities">
       <div class="grid-item">
-        <button [ngClass]="{'active': isSelected(amenity.name)}" (click)="toggleSelection(amenity.name)">
+        <button [ngClass]="{'active': isSelected(amenity.id)}" (click)="toggleSelection(amenity.id)">
           <span class="material-icons">{{amenity.icon}}</span>
           {{amenity.name}}
         </button>
