@@ -1,6 +1,11 @@
 import { Component } from '@angular/core';
 import PropertyRequest from '../../shared/models/property-request.model';
 import { FormControl, Validators } from '@angular/forms';
+import { PropertyService } from '../property.service';
+import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
+import { PropertyCreatedDialogComponent } from '../property-created-dialog/property-created-dialog.component';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-property-new',
@@ -14,6 +19,12 @@ export class PropertyNewComponent {
   step2Completed = false;
   step3Completed = false;
   propertyNameControl: FormControl = new FormControl('', Validators.required);
+
+  constructor(
+    private propertyService: PropertyService,
+    private router: Router,
+    private matDialog: MatDialog
+  ) {}
 
   public property: PropertyRequest = {
     id: 0,
@@ -77,8 +88,31 @@ export class PropertyNewComponent {
     console.log(this.property);
   }
 
+  private uploadImages(propertyId: number): Observable<Object[]> {
+    return this.propertyService.uploadImages(propertyId, this.propertyImages);
+  }
+
   onSubmit(): void {
-    console.log("Submit");
+    console.log('Submit');
     console.log(this.property);
+    this.propertyService.createProperty(this.property).subscribe({
+      next: (property) => {
+        console.log(property);
+        this.uploadImages(property.id).subscribe({
+          complete: () => {
+            const dialogRef = this.matDialog
+              .open(PropertyCreatedDialogComponent, {
+                backdropClass: 'backdropBackground',
+              });
+              dialogRef.afterClosed().subscribe(() => {
+                this.router.navigate(['/properties', property.id]);
+              });
+          },
+        });
+      },
+      error: (error) => {
+        console.log(error);
+      },
+    });
   }
 }
