@@ -18,6 +18,8 @@
         </div>
       </div>
       <h3>{{ property?.address?.city }}, {{ property?.address?.country }}</h3>
+      <p>Minimum guests: {{ property?.minGuests }}</p>
+      <p>Maximum guests: {{ property?.maxGuests }}</p>
       <p>{{ property?.description }}</p>
     </div>
 
@@ -27,7 +29,8 @@
         <mat-label>Date range</mat-label>
         <mat-date-range-input [rangePicker]="picker" [dateFilter]="this.dateFilter">
           <input formControlName="startDate" matStartDate placeholder="Start date">
-          <input formControlName="endDate" matEndDate placeholder="End date">
+          <input formControlName="endDate" matEndDate placeholder="End date"
+                 (dateChange)="calculatePrice()">
         </mat-date-range-input>
         <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-date-range-picker #picker></mat-date-range-picker>
@@ -40,7 +43,7 @@
       </mat-form-field>
 
       <div fxLayout="row" fxLayoutAlign="space-between center">
-        <span>Total price: ${{ property?.pricePerNight }}</span>
+        <span>Total price: ${{ price }}</span>
         <button mat-raised-button color="primary" type="submit">Book</button>
       </div>
     </form>

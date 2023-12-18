@@ -9,6 +9,7 @@ import {ReservationService} from "../../reservation.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import ReservationRequestDto from "./dtos/reservation-request.dto";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {MatDatepickerInputEvent} from "@angular/material/datepicker";
 
 @Component({
   selector: 'app-property-detail',
@@ -26,6 +27,8 @@ export class PropertyDetailComponent {
   })
 
   entryISODates?: string[];
+
+  price = 0;
 
   dateFilter = (d: Date | null): boolean => {
     return this.entryISODates?.includes(d?.toISOString() ?? '') ?? false;
@@ -88,5 +91,20 @@ export class PropertyDetailComponent {
         () => this.snackBar.open('Reservation has been created.', 'OK'),
         () => this.snackBar.open('Failed to create reservaiton.', 'OK'),
       );
+  }
+
+  calculatePrice(): void {
+    let sum = 0;
+    const startDate: Date = this.reservationFormGroup.controls['startDate'].value;
+    const endDate: Date = this.reservationFormGroup.controls['endDate'].value;
+
+    this.property?.availabilityEntries.forEach(entry => {
+      if (entry.date < startDate || entry.date > endDate) return;
+
+      sum += entry.price;
+    });
+
+    console.log('here')
+    this.price = sum;
   }
 }
