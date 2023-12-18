@@ -2,9 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { DateRange } from '@angular/material/datepicker';
 import { PropertyService } from '../property.service';
 import { ActivatedRoute } from '@angular/router';
-import PropertyAvailabilityEntry from '../../shared/models/property-availability-entry.model';
 import { SharedService } from '../../shared/shared.service';
 import { Property } from '../../shared/models/property.model';
+import { FormControl, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
+import { PropertyCreatedDialogComponent } from '../property-created-dialog/property-created-dialog.component';
+import { Observable } from 'rxjs';
+import PropertyAvailabilityEntry from '../../shared/models/property-availability-entry.model';
+import PropertyRequest from '../../shared/models/property-request.model';
+
 
 
 @Component({
@@ -16,63 +23,118 @@ export class PropertyEditComponent implements OnInit {
   private beginDate: Date = new Date();
   private endDate: Date = new Date();
   menuItems: string[] = ['basic information', 'location', 'amenities', 'calendar', 'price table', 'other'];
-  property: Property | null = null;
-  selectedMenuItem: string = this.menuItems[4];
+  propertyImages: File[] = [];
+  selectedMenuItem: string = this.menuItems[0];
   availabilityEntries: PropertyAvailabilityEntry[] = [];
   autoApproveEnabled: boolean = false;
   cancellationDeadline: number = 0;
   pricingMode: string = 'PER_PERSON';
   id: number = 0;
-
+  propertyNameControl: FormControl = new FormControl('', Validators.required);
   dateRange: DateRange<Date> = new DateRange<Date>(this.beginDate, this.endDate);
 
-  constructor(private propertyService: PropertyService, private route: ActivatedRoute, private sharedService: SharedService) { }
+  public property: PropertyRequest = {
+    id: 0,
+    name: this.propertyNameControl.value,
+    latitude: 0,
+    longitude: 0,
+    address: {
+      street: '',
+      city: '',
+      country: '',
+    },
+    description: '',
+    type: null,
+    availabilityEntries: [],
+    cancellationDeadline: 0,
+    pricingMode: '',
+    autoApproveEnabled: false,
+    minGuests: 0,
+    maxGuests: 0,
+    amenityIds: [],
+  };
+
+  constructor(
+    private propertyService: PropertyService,
+    private route: ActivatedRoute,
+    private sharedService: SharedService,
+    private router: Router,
+    private matDialog: MatDialog
+  ) { }
 
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.id = id;
     this.propertyService.getProperty(id).subscribe(property => {
-      this.availabilityEntries = property.availabilityEntries;
-      this.autoApproveEnabled = property.autoApproveEnabled;
-      this.pricingMode = property.pricingMode;
-      this.cancellationDeadline = property.cancellationDeadline;
-      this.property = property;
+      console.log(property);
+      this.property = {
+        id: property.id,
+        name: property.name,
+        longitude: property.longitude,
+        latitude: property.latitude,
+        address: {
+          street: property.address.street,
+          city: property.address.city,
+          country: property.address.country,
+        },
+        description: property.description,
+        type: property.type,
+        availabilityEntries: property.availabilityEntries,
+        cancellationDeadline: property.cancellationDeadline,
+        pricingMode: property.pricingMode,
+        autoApproveEnabled: property.autoApproveEnabled,
+        minGuests: property.minGuests,
+        maxGuests: property.maxGuests,
+        amenityIds: [],
+      };
+      this.propertyNameControl.setValue(this.property.name);
     });
   }
 
   selectedMenuItemChanged(item: string): void {
     this.selectedMenuItem = item;
-    console.log(item);
   }
 
-  onAvailabilityEntriesAdded(event: PropertyAvailabilityEntry[]): void {
-    let availabilityEntryMap: Map<string, PropertyAvailabilityEntry> = new Map<string, PropertyAvailabilityEntry>(this.availabilityEntries.map(entry => [entry.date.toISOString(), entry]));
-    event.map(entry => availabilityEntryMap.set(entry.date.toISOString(), entry));
-
-    let newAvailabilityEntries = Array.from(availabilityEntryMap.values()).sort((a, b) => a.date.getTime() - b.date.getTime());
-    this.editAvailabilityEntries(newAvailabilityEntries);
+  private isNumberOfGuestsValid(): boolean {
+    return (
+      this.property.minGuests > 0 &&
+      this.property.minGuests <= this.property.maxGuests
+    );
   }
 
-  editAvailabilityEntries(newAvailabilityEntries: PropertyAvailabilityEntry[]): void {
-    this.propertyService.changeAvailability(this.id, newAvailabilityEntries).subscribe({
-      next: (response) => {
-        this.availabilityEntries = response;
-        this.sharedService.openSnack("Changes saved ✅");
+  private isLocationValid(): boolean {
+    return (
+      this.property.address.street !== '' &&
+      this.property.address.city !== '' &&
+      this.property.address.country !== '' &&
+      this.property.latitude !== null &&
+      this.property.longitude !== null
+    );
+  }
+
+  onChange(): void {
+    this.property.name = this.propertyNameControl.value;
+  }
+
+  private uploadImages(propertyId: number): Observable<Object[]> {
+    return this.propertyService.uploadImages(propertyId, this.propertyImages);
+  }
+
+  onSubmit(): void {
+    this.propertyService.updateProperty(this.property).subscribe({
+      next: (property) => {
+        console.log(property);
+        this.uploadImages(property.id).subscribe({
+          complete: () => {
+            const dialogRef = this.matDialog.open(PropertyCreatedDialogComponent, { backdropClass: 'backdropBackground', });
+            dialogRef.afterClosed().subscribe(() => { this.router.navigate(['/my-properties', property.id]); });
+          },
+        });
       },
       error: (error) => {
         console.log(error);
-        this.sharedService.openSnack("Could not update prices and availability ❌");
-      }
-    })
-  }
-
-  onDelete(range: DateRange<Date>): void {
-    let startTime: number = range.start?.getTime() || 0;
-    let endTime: number = range.end?.getTime() || 0;
-    if (startTime && endTime){
-      let newAvailabilityEntries = this.availabilityEntries.filter(entry => entry.date.getTime() < startTime || entry.date.getTime() > endTime);
-      this.editAvailabilityEntries(newAvailabilityEntries);
-    }
+      },
+    });
   }
 
 }
