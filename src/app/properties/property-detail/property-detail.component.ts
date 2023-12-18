@@ -31,7 +31,7 @@ export class PropertyDetailComponent {
   price = 0;
 
   dateFilter = (d: Date | null): boolean => {
-    return this.entryISODates?.includes(d?.toISOString() ?? '') ?? false;
+    return (this.entryISODates?.includes(d?.toISOString() ?? '') ?? false) && !((d ?? new Date()) <= new Date());
   };
 
   constructor(
