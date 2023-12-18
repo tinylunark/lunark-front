@@ -22,6 +22,7 @@ export interface Property {
   minGuests: number;
   amenityIds: number[];
   maxGuests: number;
+  hostId: number;
 }
 
 export enum PropertyType {

@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { DateRange } from '@angular/material/datepicker';
 import { PropertyService } from '../property.service';
 import { ActivatedRoute } from '@angular/router';
-import { SharedService } from '../../shared/shared.service';
 import { FormControl, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
@@ -51,6 +50,7 @@ export class PropertyEditComponent implements OnInit {
     minGuests: 0,
     maxGuests: 0,
     amenityIds: [],
+    hostId: 0,
   };
 
   constructor(
@@ -84,6 +84,7 @@ export class PropertyEditComponent implements OnInit {
         minGuests: property.minGuests,
         maxGuests: property.maxGuests,
         amenityIds: [],
+        hostId: property.hostId,
       };
       this.propertyNameControl.setValue(this.property.name);
     });
