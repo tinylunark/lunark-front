@@ -9,8 +9,8 @@ import { PropertyNewComponent } from './property-new/property-new.component';
 
 const routes: Routes = [
   { path: 'properties/:id', component: PropertyDetailComponent },
-  { path: 'new-property', component: PropertyNewComponent, canActivate: [authGuard], data: { role: ['host'] } },
-  { path: 'properties/:id/edit-price-and-availability', component: PropertyPriceAndAvailabilityEditComponent, canActivate: [authGuard], data: { role: ['host'] } },
+  { path: 'new-property', component: PropertyNewComponent, canActivate: [authGuard], data: { role: ['HOST'] } },
+  { path: 'properties/:id/edit-price-and-availability', component: PropertyPriceAndAvailabilityEditComponent, canActivate: [authGuard], data: { role: ['HOST'] } },
   { path: 'search', component: SearchPageComponent },
   { path: 'approve-changes', component: PropertyApprovalComponent, canActivate: [authGuard], data: {role: ['ADMIN'] } },
 ];
