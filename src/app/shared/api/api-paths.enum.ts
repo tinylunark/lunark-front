@@ -6,4 +6,5 @@ export enum ApiPaths {
   Profile = 'accounts',
   LogIn = 'auth/login',
   LogOut = 'auth/logout',
+  Reservations = 'reservations',
 }
