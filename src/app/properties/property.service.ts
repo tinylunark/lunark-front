@@ -65,6 +65,10 @@ export class PropertyService {
     return this.http.post<Property>(`${environment.apiHost}/${ApiPaths.Properties}`, propertyRequest);
   }
 
+  updateProperty(propertyRequest: PropertyRequest): Observable<Property> {
+    return this.http.put<Property>(`${environment.apiHost}/${ApiPaths.Properties}`, propertyRequest);
+  }
+
   uploadImages(propertyId: number, images: File[]): Observable<Object[]> {
     const imageUploads = [];
     for (const image of images) {
