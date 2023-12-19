@@ -3,7 +3,7 @@
   <inline-range-calendar [selectedRangeValue]="dateRange" (selectedRangeValueChange)="selectedDateRangeChanged($event)"></inline-range-calendar>
   <mat-form-field class="big-field" appearance="outline" [formGroup]="priceForm">
     <mat-label>Price</mat-label>
-    <input matInput type="text" name="price" formControlName="price" />
+    <input matInput type="number" min="0" name="price" formControlName="price" />
   </mat-form-field>
 
   <button mat-flat-button color="primary" id="change-availability-button" (click)="onAddChange()">Add/Change</button>
@@ -34,5 +34,5 @@
     <mat-checkbox class="example-margin" [checked]="autoApproveEnabled" (change)="onAutoApproveEnabledChange($event)">Allow instant booking</mat-checkbox>
   </section>
 
-  <button mat-flat-button color="primary" id="save" *ngIf="isEditPriceAndAvailabilityRoute()">Save</button>
+  <button mat-flat-button color="primary" id="save" *ngIf="isEditPriceAndAvailabilityRoute()" (click)="onSaveClick()">Save</button>
 </div>

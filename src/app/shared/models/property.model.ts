@@ -1,5 +1,7 @@
+import Amenity from "./amenity.model";
 import Location from "./location.model";
 import PropertyAvailabilityEntry from "./property-availability-entry.model";
+import PropertyRequest from "./property-request.model";
 
 export interface Property {
   id: number;
@@ -20,7 +22,7 @@ export interface Property {
   pricingMode: string;
   autoApproveEnabled: boolean;
   minGuests: number;
-  amenityIds: number[];
+  amenities: Amenity[];
   maxGuests: number;
   hostId: number;
 }
@@ -29,4 +31,24 @@ export enum PropertyType {
   WholeHouse = 'WHOLE_HOUSE',
   Room = 'ROOM',
   SharedRoom = 'SHARED_ROOM'
+}
+
+export function convertToPropertyRequest(property: Property): PropertyRequest {
+  return {
+    id: property.id,
+    name: property.name,
+    latitude: property.latitude,
+    longitude: property.longitude,
+    address: property.address,
+    description: property.description,
+    type: property.type,
+    availabilityEntries: property.availabilityEntries,
+    cancellationDeadline: property.cancellationDeadline,
+    pricingMode: property.pricingMode,
+    autoApproveEnabled: property.autoApproveEnabled,
+    minGuests: property.minGuests,
+    maxGuests: property.maxGuests,
+    amenityIds: property.amenities.map(amenity => amenity.id),
+    hostId: property.hostId,
+  }
 }

@@ -55,6 +55,9 @@ export class AvailabilityPricingComponent {
   @Output()
   change = new EventEmitter<void>();
 
+  @Output()
+  save = new EventEmitter<void>();
+
   constructor(private sharedService: SharedService, private route: ActivatedRoute) {}
 
   isEditPriceAndAvailabilityRoute(): boolean {
@@ -192,5 +195,9 @@ export class AvailabilityPricingComponent {
 
   notifyOfChanges(): void {
     this.change.emit();
+  }
+
+  onSaveClick(): void {
+    this.save.emit();
   }
 }
