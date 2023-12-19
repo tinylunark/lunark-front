@@ -4,7 +4,8 @@ import { LoginDialog } from './login-dialog/login-dialog.component';
 import { MaterialModule } from '../../infrastructure/material/material.module';
 import { SignupDialog } from './signup-dialog/signup-dialog.component';
 import { SignupSuccessDialog } from './signup-success-dialog/signup-success-dialog.component';
-
+import { AccountRoutingModule } from './account-routing.module';
+import { VerificationComponent } from './verification/verification.component';
 
 
 @NgModule({
@@ -12,10 +13,12 @@ import { SignupSuccessDialog } from './signup-success-dialog/signup-success-dial
     LoginDialog,
     SignupDialog,
     SignupSuccessDialog,
+    VerificationComponent
   ],
   imports: [
     CommonModule,
-    MaterialModule
+    MaterialModule,
+    AccountRoutingModule,
   ],
   exports: [
     LoginDialog,

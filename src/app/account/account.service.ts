@@ -79,4 +79,10 @@ export class AccountService {
       headers: this.headers,
     });
   }
+
+  verify(verificationLinkId: number) {
+    return this.http.post(`${environment.apiHost}/${ApiPaths.Verification}/${verificationLinkId}`, {
+      headers: this.headers,
+    }, {responseType: 'text'});
+  }
 }

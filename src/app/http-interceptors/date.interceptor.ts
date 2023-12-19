@@ -16,9 +16,11 @@ export class DateInterceptor implements HttpInterceptor {
   private datePipe: DatePipe = new DatePipe('en-US');
 
   intercept(req: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    req = req.clone({
-      body: structuredClone(req.body),
-    });
+    if (req.body === null || req.body === undefined) {
+      req = req.clone({
+        body: structuredClone(req.body),
+      });
+    } 
 
     if (typeof req.body === 'object' && isNotEmpty(req.body)) {
       this.convertRequest(req.body);
