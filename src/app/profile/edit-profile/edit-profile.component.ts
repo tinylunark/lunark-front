@@ -2,7 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Profile } from '../../shared/models/profile.model';
 import { ProfileService } from '../../shared/profile.service';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
 import { SharedService } from '../../shared/shared.service';
+import { AccountService } from '../../account/account.service';
+import { DeleteProfileDialogComponent } from '../delete-profile-dialog/delete-profile-dialog.component';
 import { environment } from '../../../env/environment';
 
 @Component({
@@ -17,7 +20,9 @@ export class EditProfileComponent implements OnInit {
   constructor(
     private profileService: ProfileService,
     private router: Router,
-    private sharedService: SharedService
+    private sharedService: SharedService,
+    private accountService: AccountService,
+    private matDialog: MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -61,16 +66,17 @@ export class EditProfileComponent implements OnInit {
 
   onDeleteClick(): void {
     if (this.profile) {
-      this.profileService.deleteProfile().subscribe(
-        () => {
-          console.log('Profile deleted successfully');
+      this.profileService.deleteProfile().subscribe({
+        next: (_) => {
           localStorage.removeItem(environment.userLocalStorageKey);
-          this.router.navigate(['/home']);
+          this.accountService.setUser();
+          const dialogRef = this.matDialog.open(DeleteProfileDialogComponent, { backdropClass: 'backdropBackground', });
+          dialogRef.afterClosed().subscribe(() => { this.router.navigate(['/my-properties']); });
         },
-        (error) => {
-          console.error('Error deleting profile:', error);
+        error: (error) => {
+          console.log(error);
         }
-      );
+      });
     } else {
       console.error('Profile not found');
     }
