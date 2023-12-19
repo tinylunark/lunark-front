@@ -4,6 +4,7 @@ import { PropertyService } from '../property.service';
 import { ActivatedRoute } from '@angular/router';
 import PropertyAvailabilityEntry from '../../shared/models/property-availability-entry.model';
 import { SharedService } from '../../shared/shared.service';
+import PropertyRequest from '../../shared/models/property-request.model';
 
 @Component({
   selector: 'app-property-price-and-availability-edit',
@@ -15,11 +16,8 @@ export class PropertyPriceAndAvailabilityEditComponent implements OnInit {
   private endDate: Date = new Date();
   menuItems: string[] = ['Calendar', 'Price Table']
   selectedMenuItem: string = this.menuItems[0];
-  availabilityEntries: PropertyAvailabilityEntry[] = [];
-  autoApproveEnabled: boolean = false;
-  cancellationDeadline: number = 0;
-  pricingMode: string = 'PER_PERSON';
   id: number = 0;
+  property: PropertyRequest | null = null;
 
   dateRange: DateRange<Date> = new DateRange<Date>(this.beginDate, this.endDate);
 
@@ -29,10 +27,7 @@ export class PropertyPriceAndAvailabilityEditComponent implements OnInit {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.id = id;
     this.propertyService.getProperty(id).subscribe(property => {
-      this.availabilityEntries = property.availabilityEntries;
-      this.autoApproveEnabled = property.autoApproveEnabled;
-      this.pricingMode = property.pricingMode;
-      this.cancellationDeadline = property.cancellationDeadline;
+      this.property = property;
     });
   }
 
@@ -44,7 +39,10 @@ export class PropertyPriceAndAvailabilityEditComponent implements OnInit {
   editAvailabilityEntries(newAvailabilityEntries: PropertyAvailabilityEntry[]): void {
     this.propertyService.changeAvailability(this.id, newAvailabilityEntries).subscribe({
       next: (response) => {
-        this.availabilityEntries = response;
+        if (this.property == null) {
+          return;
+        }
+        this.property.availabilityEntries = response;
         this.sharedService.openSnack("Changes saved ✅");
       },
       error: (error) => {
@@ -52,5 +50,9 @@ export class PropertyPriceAndAvailabilityEditComponent implements OnInit {
         this.sharedService.openSnack("Could not update prices and availability ❌");
       }
     });
+  }
+
+  onSave(): void {
+
   }
 }
