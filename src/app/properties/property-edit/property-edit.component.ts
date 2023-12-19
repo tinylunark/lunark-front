@@ -18,18 +18,11 @@ import PropertyRequest from '../../shared/models/property-request.model';
   styleUrl: './property-edit.component.css'
 })
 export class PropertyEditComponent implements OnInit {
-  private beginDate: Date = new Date();
-  private endDate: Date = new Date();
-  menuItems: string[] = ['basic information', 'location', 'amenities', 'calendar', 'price table', 'other'];
+    menuItems: string[] = ['basic information', 'location', 'amenities', 'calendar', 'price table', 'other'];
   propertyImages: File[] = [];
   selectedMenuItem: string = this.menuItems[0];
-  availabilityEntries: PropertyAvailabilityEntry[] = [];
-  autoApproveEnabled: boolean = false;
-  cancellationDeadline: number = 0;
-  pricingMode: string = 'PER_PERSON';
   id: number = 0;
   propertyNameControl: FormControl = new FormControl('', Validators.required);
-  dateRange: DateRange<Date> = new DateRange<Date>(this.beginDate, this.endDate);
 
   public property: PropertyRequest = {
     id: 0,
