@@ -56,7 +56,6 @@ export class AccountService {
     return null;
   }
 
-
   isLoggedIn(): boolean {
     const accessToken: any = localStorage.getItem(environment.userLocalStorageKey);
     if(accessToken == null || this.isTokenExpired(accessToken)) {
@@ -74,5 +73,10 @@ export class AccountService {
   setUser(): void {
     this.user$.next(this.getRole());
   }
-    
+
+  signUp(account: Account): Observable<Account> {
+    return this.http.post<Account>(`${environment.apiHost}/${ApiPaths.Profile}`, account, {
+      headers: this.headers,
+    });
+  }
 }
