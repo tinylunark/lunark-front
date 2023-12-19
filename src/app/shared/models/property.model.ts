@@ -1,3 +1,4 @@
+import Amenity from "./amenity.model";
 import Location from "./location.model";
 import PropertyAvailabilityEntry from "./property-availability-entry.model";
 
@@ -20,7 +21,7 @@ export interface Property {
   pricingMode: string;
   autoApproveEnabled: boolean;
   minGuests: number;
-  amenityIds: number[];
+  amenities: Amenity[];
   maxGuests: number;
   hostId: number;
 }
