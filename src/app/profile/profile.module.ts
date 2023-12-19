@@ -14,6 +14,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MaterialModule } from '../../infrastructure/material/material.module';
 import { ProfileRoutingModule } from './profile-routing.module';
+import { DeleteProfileDialogComponent } from './delete-profile-dialog/delete-profile-dialog.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { ProfileRoutingModule } from './profile-routing.module';
     EditProfileComponent,
     ChangePasswordComponent,
     ManagementButtonsComponent,
+    DeleteProfileDialogComponent,
   ],
   imports: [
     CommonModule,
@@ -37,6 +39,7 @@ import { ProfileRoutingModule } from './profile-routing.module';
     EditProfileComponent,
     ChangePasswordComponent,
     ManagementButtonsComponent,
+    DeleteProfileDialogComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

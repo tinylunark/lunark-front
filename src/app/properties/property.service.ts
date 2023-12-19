@@ -1,12 +1,12 @@
 import {Injectable} from '@angular/core';
 import {Observable, forkJoin} from "rxjs";
 import {Property} from "../shared/models/property.model";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpParams} from "@angular/common/http";
 import {environment} from "../../env/environment";
 import {ApiPaths} from "../shared/api/api-paths.enum";
 import PropertiesSearchDto from "./properties-search.dto";
-import {Router, UrlSerializer} from "@angular/router";
 import PropertyAvailabilityEntry from '../shared/models/property-availability-entry.model';
+import {Router, UrlSerializer} from "@angular/router";
 import PropertyRequest from '../shared/models/property-request.model';
 
 @Injectable({
@@ -44,9 +44,13 @@ export class PropertyService {
 
   getUnapprovedProperties(searchDto?: PropertiesSearchDto): Observable<Property[]> {
     let url = `${environment.apiHost}/${ApiPaths.UnapprovedProperties}`;
-
-
     return this.http.get<Property[]>(url);
+  }
+
+  getMyProperties(hostId: any): Observable<Property[]> {
+    let url = `${environment.apiHost}/${ApiPaths.Properties}/${ApiPaths.MyProperties}`;
+    const params = new HttpParams().set('hostId', hostId);
+    return this.http.get<Property[]>(url, { params });
   }
 
   approveProperty(property: Property): Observable<Property> {
@@ -59,6 +63,10 @@ export class PropertyService {
 
   createProperty(propertyRequest: PropertyRequest): Observable<Property> {
     return this.http.post<Property>(`${environment.apiHost}/${ApiPaths.Properties}`, propertyRequest);
+  }
+
+  updateProperty(propertyRequest: PropertyRequest): Observable<Property> {
+    return this.http.put<Property>(`${environment.apiHost}/${ApiPaths.Properties}`, propertyRequest);
   }
 
   uploadImages(propertyId: number, images: File[]): Observable<Object[]> {

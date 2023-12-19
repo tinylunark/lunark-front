@@ -32,7 +32,6 @@ export class PropertiesComponent {
       });
   }
 
-  /** Gets the first image of each property */
   getImages(): void {
     this.properties.forEach(property => {
       const firstImage = property.images.at(0);

@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Profile } from '../../shared/models/profile.model';
-import { ProfileService } from '../edit-profile/profile.service';
+import { ProfileService } from '../../shared/profile.service';
 
 @Component({
   selector: 'app-management-buttons',

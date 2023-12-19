@@ -1,0 +1,64 @@
+<app-header text="Edit Property"></app-header>
+<app-container>
+  <app-helper-menu [items]="menuItems" (selectedItemChange)="selectedMenuItemChanged($event)">
+  </app-helper-menu>
+  <div id="wrapper-div">
+  <div *ngIf="selectedMenuItem === 'basic information'" class="selectedComponentContainer">
+    <div class="basic-info-container">
+      <app-property-type [(selectedPropertyType)]="property.type" (selectedPropertyTypeChange)="onChange()"></app-property-type>
+      <app-number-of-guests [(minimum)]="property.minGuests" [(maximum)]="property.maxGuests" (isValidChange)="onChange()" ></app-number-of-guests>
+    </div>
+  </div>
+
+  <div *ngIf="selectedMenuItem === 'location'" class="selectedComponentContainer">
+    <app-location (change)="onChange()" [(latitude)]="property.latitude" [(longitude)]="property.longitude" [(address)]="property.address.street" [(city)]="property.address.city" [(country)]="property.address.country" ></app-location>
+  </div>
+
+  <div *ngIf="selectedMenuItem === 'amenities'" class="selectedComponentContainer">
+      <app-amenities *ngIf="property" (selectedAmenityIdsChange)="onChange()" [(selectedAmenityIds)]="property.amenityIds"
+      ></app-amenities>
+  </div>
+
+  <div *ngIf="selectedMenuItem === 'calendar'" class="selectedComponentContainer">
+        <app-availability-pricing
+          [(availabilityEntries)]="property.availabilityEntries"
+          [(cancellationDeadline)]="property.cancellationDeadline"
+          [(autoApproveEnabled)]="property.autoApproveEnabled"
+          [(pricingMode)]="property.pricingMode"
+          (change)="onChange()"
+        ></app-availability-pricing>
+  </div>
+
+
+  <div *ngIf="selectedMenuItem === 'price table'" class="selectedComponentContainer table-avail">
+        <app-availability-table
+          [(availabilityEntries)]="property.availabilityEntries"
+          (availabilityEntriesChange)="onChange()"
+        ></app-availability-table>
+  </div>
+
+  <div *ngIf="selectedMenuItem === 'other'" class="selectedComponentContainer" style="flex-direction:column;">
+    <div class="field-container">
+      <p>NAME</p>
+
+      <mat-form-field class="input-field" appearance="outline" id="name-field" >
+        <mat-label>Property Name</mat-label>
+        <input matInput type="text" name="propertyName" [formControl]="propertyNameControl" (change)="onChange()" id="name-input"  />
+      </mat-form-field>
+    </div>
+
+    <div class="half-div">
+      <div class="component" style="width: 45em;">
+        <app-gallery [(files)]="propertyImages" (filesChange)="onChange()" ></app-gallery>
+      </div>
+
+      <div class="component">
+        <app-description [(description)]="property.description"  (description)="onChange()"  ></app-description>
+      </div>
+    </div>
+  </div>
+
+  <button mat-flat-button class="btn-save" color="primary" (click)="onSubmit()">Save</button>
+  </div>
+
+</app-container>

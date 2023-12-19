@@ -5,12 +5,14 @@ export interface Property {
   id: number;
   name: string;
   address: Location;
+  latitude: number;
+  longitude: number;
   images: {
     id: number,
     mimeType: string
   }[];
   description: string;
-  type: PropertyType | '';
+  type: PropertyType | null;
   averageRating?: number;
   pricePerNight?: number;
   availabilityEntries: PropertyAvailabilityEntry[];
@@ -18,7 +20,9 @@ export interface Property {
   pricingMode: string;
   autoApproveEnabled: boolean;
   minGuests: number;
+  amenityIds: number[];
   maxGuests: number;
+  hostId: number;
 }
 
 export enum PropertyType {

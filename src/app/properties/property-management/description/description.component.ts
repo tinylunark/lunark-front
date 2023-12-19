@@ -11,10 +11,10 @@ export class DescriptionComponent {
     description: new FormControl('', [Validators.required]),
   });
 
-  @Input() 
+  @Input()
   description: string = '';
 
-  @Output() 
+  @Output()
   descriptionChange = new EventEmitter<string>();
 
 

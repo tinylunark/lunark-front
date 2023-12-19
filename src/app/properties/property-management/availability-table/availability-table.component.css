@@ -1,8 +1,14 @@
+#container {
+  text-align: center;
+  display:flex;
+  flex-direction: column;
+}
+
 table {
     background-color: transparent;
 }
 
-h2 {
+p {
   font-family: rubik-bold;
   font-size: 1.4em;
   text-align: center;

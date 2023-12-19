@@ -1,0 +1,23 @@
+button {
+  width: 30%;
+}
+
+h1 {
+  font-family: bayon;
+  text-align: center;
+  padding-top: 4%;
+  padding-bottom: 4%;
+  font-size: 3rem;
+}
+span {
+  color : #00B3B3 !important;
+}
+
+p {
+  font-size: 1.5em;
+}
+
+div[mat-dialog-content] {
+  text-align: center;
+  padding: 3em;
+}
