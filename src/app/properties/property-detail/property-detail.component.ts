@@ -104,7 +104,6 @@ export class PropertyDetailComponent {
       sum += entry.price;
     });
 
-    console.log('here')
     this.price = sum;
   }
 }
