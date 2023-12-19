@@ -83,6 +83,6 @@ export class AccountService {
   verify(verificationLinkId: number) {
     return this.http.post(`${environment.apiHost}/${ApiPaths.Verification}/${verificationLinkId}`, {
       headers: this.headers,
-    });
+    }, {responseType: 'text'});
   }
 }
