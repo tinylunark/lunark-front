@@ -29,14 +29,6 @@ export class MyPropertiesComponent {
     } });
   }
 
-  // approveProperty(property: Property): void {
-  //   this.propertyService.approveProperty(property)
-  //   .subscribe({
-  //       next:  (_) => {
-  //         this.getProperties();
-  //       }
-  //     })
-  // }
 
   getProperties(hostId: any): void {
     this.propertyService.getMyProperties(hostId)
