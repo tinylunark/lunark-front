@@ -6,6 +6,7 @@ import {AuthResponse} from "./model/auth-resposne.model";
 import {JwtHelperService} from "@auth0/angular-jwt";
 import { environment } from '../../env/environment';
 import { ApiPaths } from '../shared/api/api-paths.enum';
+import PasswordUpdate from "../shared/models/password-update.model";
 
 const notLoggedInRole = "unregistered";
 
@@ -86,7 +87,7 @@ export class AccountService {
     }, {responseType: 'text'});
   }
 
-  updatePassword(passwordData: any): Observable<any> {
+  updatePassword(passwordData: PasswordUpdate): Observable<any> {
     return this.http.put(`${environment.apiHost}/${ApiPaths.Profile}/update-password`, passwordData);
   }
 

@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { UpdatePasswordErrorDialogComponent } from '../update-password-error-dialog/update-password-error-dialog.component';
 import { UpdatePasswordSuccessDialogComponent } from '../update-password-success-dialog/update-password-success-dialog.component';
+import PasswordUpdate from "../../shared/models/password-update.model";
 
 export const passwordConfrimedValidator: ValidatorFn = (
   control: AbstractControl
@@ -34,12 +35,12 @@ export class ChangePasswordComponent {
 
   updatePassword() {
     if (this.passwordForm.valid) {
-      const accountId = this.accountService.getAccountId();
+      const accountId: any  = this.accountService.getAccountId();
 
-      const passwordData = {
-        accountId: accountId,
-        oldPassword: this.passwordForm.value.oldPassword,
-        newPassword: this.passwordForm.value.newPassword
+      const passwordData : PasswordUpdate = {
+        accountId: accountId ,
+        oldPassword: this.passwordForm.value.oldPassword || '',
+        newPassword: this.passwordForm.value.newPassword || '',
       };
 
       this.accountService.updatePassword(passwordData).subscribe({
