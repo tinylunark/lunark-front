@@ -15,6 +15,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MaterialModule } from '../../infrastructure/material/material.module';
 import { ProfileRoutingModule } from './profile-routing.module';
 import { DeleteProfileDialogComponent } from './delete-profile-dialog/delete-profile-dialog.component';
+import { UpdatePasswordErrorDialogComponent } from './update-password-error-dialog/update-password-error-dialog.component';
+import { UpdatePasswordSuccessDialogComponent } from './update-password-success-dialog/update-password-success-dialog.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,8 @@ import { DeleteProfileDialogComponent } from './delete-profile-dialog/delete-pro
     ChangePasswordComponent,
     ManagementButtonsComponent,
     DeleteProfileDialogComponent,
+    UpdatePasswordSuccessDialogComponent,
+    UpdatePasswordErrorDialogComponent,
   ],
   imports: [
     CommonModule,
@@ -40,6 +44,8 @@ import { DeleteProfileDialogComponent } from './delete-profile-dialog/delete-pro
     ChangePasswordComponent,
     ManagementButtonsComponent,
     DeleteProfileDialogComponent,
+    UpdatePasswordSuccessDialogComponent,
+    UpdatePasswordErrorDialogComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

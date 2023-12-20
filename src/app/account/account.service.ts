@@ -85,4 +85,9 @@ export class AccountService {
       headers: this.headers,
     }, {responseType: 'text'});
   }
+
+  updatePassword(passwordData: any): Observable<any> {
+    return this.http.put(`${environment.apiHost}/${ApiPaths.Profile}/update-password`, passwordData);
+  }
+
 }
