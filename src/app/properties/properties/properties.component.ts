@@ -13,9 +13,8 @@ export class PropertiesComponent {
   properties: Property[] = [];
   placeholderImage = environment.assetsDir + '/images/placeholder-image.webp';
   images: Map<number, string> = new Map;
-  searchDto: PropertiesSearchDto = {
-    amenityIds: [],
-  };
+  startDate?: Date;
+  endDate?: Date;
 
   constructor(private propertyService: PropertyService) {
   }
@@ -25,6 +24,8 @@ export class PropertiesComponent {
   }
 
   getProperties(searchDto?: PropertiesSearchDto): void {
+    this.startDate = searchDto?.startDate;
+    this.endDate = searchDto?.endDate;
     this.propertyService.getProperties(searchDto)
       .subscribe(properties => {
         this.properties = properties;
@@ -43,5 +44,20 @@ export class PropertiesComponent {
           });
       }
     });
+  }
+
+  // TODO: This method is copied from property-detail, find a nicer way...
+  calculatePrice(property: Property): number {
+    let sum = 0;
+
+    if (!this.startDate || !this.endDate) return 0;
+
+    property?.availabilityEntries.forEach(entry => {
+      if (entry.date < this.startDate! || entry.date > this.endDate!) return;
+
+      sum += entry.price;
+    });
+
+    return sum;
   }
 }
