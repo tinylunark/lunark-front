@@ -1,0 +1,15 @@
+<app-header text="Edit Calendar"></app-header>
+<app-container *ngIf="property">
+  <app-helper-menu [items]="menuItems" (selectedItemChange)="selectedMenuItemChanged($event)">
+  </app-helper-menu>
+  <div *ngIf="selectedMenuItem === 'Calendar'" class="selectedComponentContainer">
+    <app-availability-pricing (availabilityEntriesChange)="editAvailabilityEntries($event)"
+      [(cancellationDeadline)]="property.cancellationDeadline"
+      [availabilityEntries]="property.availabilityEntries" [(autoApproveEnabled)]="property.autoApproveEnabled" [(pricingMode)]="property.pricingMode" (save)="onSave()">
+    </app-availability-pricing>
+  </div>
+  <div *ngIf="selectedMenuItem === 'Price Table'" class="selectedComponentContainer">
+    <app-availability-table [availabilityEntries]="property.availabilityEntries" (availabilityEntriesChange)="editAvailabilityEntries($event)">
+    </app-availability-table>
+  </div>
+</app-container>

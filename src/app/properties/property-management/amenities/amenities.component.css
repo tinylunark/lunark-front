@@ -1,0 +1,45 @@
+p {
+  font-family: rubik-bold;
+  text-align: center;
+  font-size: 1.4em;
+}
+
+i {
+  color: #f0edee;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.grid-item {
+  text-align: center;
+}
+
+.grid-item button {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  background-color: #1f1f1f;
+  color: white;
+  border: 2px solid #f0edee;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.grid-item button:hover {
+  border: 2px solid #00838f;
+}
+
+.grid-item button.active {
+  background-color: #00838f;
+}
+
+span {
+  font-size: 1.7em;
+  padding-right: 5px;
+}

@@ -1,11 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Profile } from '../../shared/models/profile.model';
 
 @Component({
   selector: 'app-basic-info',
   templateUrl: './basic-info.component.html',
-  styleUrl: './basic-info.component.css'
+  styleUrls: ['./basic-info.component.css']
 })
 export class BasicInfoComponent {
+  @Input() profile: Profile | undefined = undefined;
+  @Output() profileChange = new EventEmitter<Profile>();
+
   profileImage: string = '../../../assets/jake-gyllenhaal.jpg';
 
   handleFileChange(event: any): void {
@@ -16,8 +20,12 @@ export class BasicInfoComponent {
       const reader = new FileReader();
       reader.onload = (e: any) => {
         this.profileImage = e.target.result;
+        this.profileChange.emit(this.profile); // Emit the updated profile
       };
       reader.readAsDataURL(file);
     }
+
+    this.profileChange.emit(this.profile);
   }
 }
+

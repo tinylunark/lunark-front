@@ -1,0 +1,8 @@
+<div *ngIf="gotResponse && verificationSuccessful" class="verification-success">
+    <h1>You have successfully verified your account</h1>
+    <p>You can log in now.</p>
+</div>
+
+<div *ngIf="gotResponse && !verificationSuccessful" class="verification-fail">
+    <h1>This verification has already been used or has expired.</h1>
+</div>

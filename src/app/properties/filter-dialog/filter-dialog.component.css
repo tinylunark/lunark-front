@@ -1,0 +1,13 @@
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+[mat-dialog-content] {
+  padding-top: 1%;
+}
+
+h1 {
+  padding-top: 4%;
+  padding-bottom: 4%;
+}

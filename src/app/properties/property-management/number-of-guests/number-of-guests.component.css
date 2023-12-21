@@ -1,0 +1,59 @@
+#container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.counter-input {
+  width: 400px;
+  border: 2px solid white;
+  border-radius: 7px;
+  padding: 10px;
+  margin: 10px;
+  background-color: transparent;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.counter-logic {
+  display: flex;
+  gap: 5px;
+}
+
+button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+p, .counter-value {
+  font-family: rubik-bold;
+  text-align: center;
+  font-size: 1.4em;
+}
+
+span {
+  color: #f0edee;
+}
+
+.material-icons {
+  font-size: 24px;
+  color: white;
+}
+
+.counter-input {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.counter-logic {
+  display: flex;
+  align-items: center;
+}
+
+.counter-logic button {
+  margin: 0 5px;
+}

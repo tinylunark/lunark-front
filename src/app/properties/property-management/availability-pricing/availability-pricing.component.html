@@ -1,0 +1,38 @@
+<div id="container">
+  <p>AVAILABILITY AND PRICING</p>
+  <inline-range-calendar [selectedRangeValue]="dateRange" (selectedRangeValueChange)="selectedDateRangeChanged($event)"></inline-range-calendar>
+  <mat-form-field class="big-field" appearance="outline" [formGroup]="priceForm">
+    <mat-label>Price</mat-label>
+    <input matInput type="number" min="0" name="price" formControlName="price" />
+  </mat-form-field>
+
+  <button mat-flat-button color="primary" id="change-availability-button" (click)="onAddChange()">Add/Change</button>
+
+  <button mat-flat-button color="warn" id="delete-availability-button" (click)="onDelete()">Delete</button>
+
+  <div class="price-type-radio">
+    <mat-radio-group aria-label="Select an option" [value]="pricingMode" (change)="onPricingModeChange($event)">
+      <mat-radio-button value="WHOLE_UNIT">Price is for whole unit</mat-radio-button>
+      <mat-radio-button value="PER_PERSON">Price is per person</mat-radio-button>
+    </mat-radio-group>
+  </div>
+
+  <div class="counter-input">
+    <label for="minimum">Cancellation deadline:</label>
+    <div class="counter-logic">
+      <button (click)="decrement()">
+        <span class="material-icons-outlined">do_not_disturb_on</span>
+      </button>
+      <span>{{ cancellationDeadline }}</span>
+      <button (click)="increment()">
+        <span class="material-icons-outlined">add_circle_outline</span>
+      </button>
+    </div>
+  </div>
+
+  <section class="example-section">
+    <mat-checkbox class="example-margin" [checked]="autoApproveEnabled" (change)="onAutoApproveEnabledChange($event)">Allow instant booking</mat-checkbox>
+  </section>
+
+  <button mat-flat-button color="primary" id="save" *ngIf="isEditPriceAndAvailabilityRoute()" (click)="onSaveClick()">Save</button>
+</div>

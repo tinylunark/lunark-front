@@ -1,0 +1,30 @@
+<div id="container">
+  <p>NUMBER OF GUESTS</p>
+
+  <div class="counter-input">
+    <label for="minimum">Minimum:</label>
+    <div class="counter-logic">
+      <button (click)="decrement('minimum')">
+        <span class="material-icons-outlined">do_not_disturb_on</span>
+      </button>
+      <span>{{ minimum }}</span>
+      <button (click)="increment('minimum')">
+        <span class="material-icons-outlined">add_circle_outline</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="counter-input">
+    <label for="maximum">Maximum:</label>
+    <div class="counter-logic">
+      <button (click)="decrement('maximum')">
+        <span class="material-icons-outlined">do_not_disturb_on</span>
+      </button>
+      <span>{{ maximum }}</span>
+      <button (click)="increment('maximum')">
+        <span class="material-icons-outlined">add_circle_outline</span>
+      </button>
+    </div>
+  </div>
+</div>
+

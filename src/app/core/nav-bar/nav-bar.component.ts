@@ -1,25 +1,37 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { LoginDialog } from '../../account/login-dialog/login-dialog.component';
-import { Account } from '../../account/model/account.model';
+import { AccountService } from '../../account/account.service';
+import { environment } from '../../../env/environment';
 
 @Component({
   selector: 'nav-bar',
   templateUrl: './nav-bar.component.html',
   styleUrl: './nav-bar.component.css'
 })
-export class NavBarComponent {
+export class NavBarComponent implements OnInit {
 
   public role: String = "unregistered";
   public activeLink: String = "home";
 
-  constructor (public dialog: MatDialog, public router: Router) {
+  constructor (public dialog: MatDialog, public router: Router, private accountService: AccountService) {
 
   }
 
+  ngOnInit(): void {
+    this.accountService.userState.subscribe((result) => {
+      this.role = result;
+    });
+  }
+
   onLogoutClick() {
-    this.role = "unregistered";
+    this.accountService.logout().subscribe({
+      next: () => {
+        localStorage.removeItem(environment.userLocalStorageKey);
+        this.accountService.setUser();
+      }
+    });
   }
 
   openLoginDialog() {
@@ -27,13 +39,6 @@ export class NavBarComponent {
     const dialogRef = this.dialog.open(LoginDialog,{
       width: "40%",
       backdropClass: "backdropBackground"
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      const account = result as Account;
-      if (!account) {
-        return;
-      }
-      this.role = account.role;
     });
   }
 }

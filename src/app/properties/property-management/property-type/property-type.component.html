@@ -1,0 +1,26 @@
+<div id="container">
+  <p>PROPERTY TYPE</p>
+  <div class="grid-container">
+    <div class="grid-item">
+      <button [ngClass]="{'active': selectedPropertyType === PropertyType.WholeHouse}" (click)="selectPropertyType(PropertyType.WholeHouse)">
+        <span class="material-icons">home</span>
+        Whole house
+      </button>
+    </div>
+
+    <div class="grid-item">
+      <button [ngClass]="{'active': selectedPropertyType === PropertyType.Room}" (click)="selectPropertyType(PropertyType.Room)">
+        <span class="material-icons">door_front</span>
+        Room
+      </button>
+    </div>
+
+    <div class="grid-item">
+      <button [ngClass]="{'active': selectedPropertyType === PropertyType.SharedRoom }" (click)="selectPropertyType(PropertyType.SharedRoom)">
+        <span class="material-icons">group</span>
+        Shared room
+      </button>
+    </div>
+  </div>
+</div>
+

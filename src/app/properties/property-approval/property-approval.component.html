@@ -1,0 +1,24 @@
+<app-header [text]="'approve changes'"></app-header>
+<app-container>
+  <div class="grid">
+    <mat-card class="card" *ngFor="let property of properties">
+      <img mat-card-image class="image" [src]="images.get(property.id) ?? placeholderImage" alt="Image of a property."/>
+      <mat-card-header class="header">
+        <mat-card-title class="title">{{property.name}}</mat-card-title>
+        <mat-card-subtitle class="location">{{property.address.city}}, {{property.address.country}}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <p>{{property.description}}</p>
+      </mat-card-content>
+      <br>
+      <mat-card-footer class="footer">
+        <span class="price">${{property.pricePerNight}} Night</span>
+        <div class="button-container">
+          <button mat-flat-button class="view-button button" [routerLink]="'/properties/' + property.id">View</button>
+          <button mat-flat-button class="approve-button button" color="primary" (click)="approveProperty(property)">Approve</button>
+        </div>
+      </mat-card-footer>
+    </mat-card>
+  </div>
+</app-container>
+

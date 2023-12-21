@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import {Component, EventEmitter, Output} from '@angular/core';
 import {PropertyService} from "../property.service";
-import {map, Observable, startWith} from "rxjs";
-import {FormControl} from "@angular/forms";
+import {MatDialog} from "@angular/material/dialog";
+import {FilterDialogComponent} from "../filter-dialog/filter-dialog.component";
+import PropertiesSearchDto from "../properties-search.dto";
 
 @Component({
   selector: 'app-search',
@@ -9,32 +10,23 @@ import {FormControl} from "@angular/forms";
   styleUrl: './search.component.css'
 })
 export class SearchComponent {
-  locationControl = new FormControl('');
-  locationOptions: string[] = [];
-  filteredOptions?: Observable<string[]>;
+  searchDto: PropertiesSearchDto = {};
 
-  constructor(private propertyService: PropertyService) {
+  @Output() searchEmitter = new EventEmitter<PropertiesSearchDto>();
+
+  constructor(
+    private propertyService: PropertyService,
+    private dialog: MatDialog,
+  ) {
   }
 
-  ngOnInit(): void {
-    this.getLocations();
-
-    this.filteredOptions = this.locationControl.valueChanges.pipe(
-      startWith(''),
-      map(value => this._filter(value || '')),
-    );
+  openFilterDialog(): void {
+    const dialogRef = this.dialog.open(FilterDialogComponent, {
+      data: this.searchDto,
+    });
   }
 
-  getLocations(): void {
-    this.propertyService.getLocations()
-      .subscribe(locations => this.locationOptions = locations.map(
-        (location) => `${location.city}, ${location.country}`
-      ));
-  }
-
-  private _filter(value: string): string[] {
-    const filterValue = value.toLowerCase();
-
-    return this.locationOptions.filter(option => option.toLowerCase().includes(filterValue));
+  onSearchClick(): void {
+    this.searchEmitter.emit(this.searchDto);
   }
 }

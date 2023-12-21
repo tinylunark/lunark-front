@@ -6,8 +6,8 @@ export interface Account {
     surname: string,
     address: string,
     phoneNumber: string,
-    verified: boolean,
+    verified?: boolean,
     role: string,
-    notificationsEnabled: boolean,
-    blocked: boolean,
+    notificationsEnabled?: boolean,
+    blocked?: boolean,
 }

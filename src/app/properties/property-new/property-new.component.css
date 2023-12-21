@@ -1,0 +1,89 @@
+mat-horizontal-stepper {
+    width: 100%;
+    margin: 0.5em;
+}
+
+app-number-of-guests {
+    margin-left: 5%;
+}
+
+app-location {
+    margin-left: 4%;
+}
+
+app-property-type, app-amenities {
+    margin-left: 0.1%;
+}
+
+p {
+  font-family: rubik-bold;
+  text-align: center;
+  font-size: 1.4em;
+}
+
+.field-container, #availability-container {
+    text-align: center;
+    display: flex;
+}
+.field-container {
+    margin-top: 2%;
+    flex-direction: column;
+    align-items: center;
+}
+
+#name-field {
+    width: 33%;
+}
+
+.stepper-button-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 2em;
+}
+
+.stepper-button-container button {
+  width: 6em;
+  font-family: rubik-bold;
+  text-transform: uppercase;
+}
+
+#description-gallery-container {
+    display: flex;
+    justify-content: center;
+    gap: 1em;
+    margin-top: 1em;
+}
+
+app-description, app-gallery {
+    display: inline-block;
+    width: 22em;
+}
+
+app-availability-pricing {
+    display: inline-flex;
+    justify-content: center;
+    width: 30%;
+}
+
+app-availability-table {
+    display: inline;
+    margin-top: 2em;
+    width: 100%;
+}
+
+#final-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2em;
+}
+
+#final-container p {
+    font-size: 2.5em;
+}
+#final-container button {
+    margin-top: 2em;
+    width: 10%;
+}

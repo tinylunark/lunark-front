@@ -8,7 +8,7 @@
     <a href="#" (click)="$event.preventDefault();openLoginDialog()"><i class="at-account"></i></a>
   </div>
 
-  <div *ngIf="role == 'guest'">
+  <div *ngIf="role == 'GUEST'">
     <a [ngClass]="{'active': router.url == '/home' }" routerLink="home"><i class="cil-home"></i></a>
     <a [ngClass]="{'active': router.url == '/search' }" routerLink="search" href="#"><i class="cil-search"></i></a>
     <a [ngClass]="{'active': router.url == '/notifications' }" routerLink="notifications" href="#"><i class="cil-bell"></i></a>
@@ -17,7 +17,7 @@
     <a [ngClass]="{'active': router.url == '/reservations' }" routerLink="reservations"><i class="cil-check"></i></a>
   </div>
 
-  <div *ngIf="role == 'host'">
+  <div *ngIf="role == 'HOST'">
     <a [ngClass]="{'active': router.url == '/home'}" routerLink="home"><i class="cil-home"></i></a>
     <a [ngClass]="{'active': router.url == '/new-property' }" routerLink="new-property" href="#"><i class="cil-plus"></i></a>
     <a [ngClass]="{'active': router.url == '/my-properties' }" routerLink="my-properties" href="#"><i class="cil-folder"></i></a>
@@ -29,9 +29,9 @@
     <a [ngClass]="{'active': router.url == '/profile' }" routerLink="profile" ><i class="at-account"></i></a>
   </div>
 
-  <div *ngIf="role == 'admin'">
+  <div *ngIf="role == 'ADMIN'">
     <a [ngClass]="{'active': router.url == '/home' }" routerLink="home"><i class="cil-home"></i></a>
-    <a [ngClass]="{'active': router.url == '/book' }" routerLink="book" href="#"><i class="cil-book"></i></a>
+    <a [ngClass]="{'active': router.url == '/approve-changes' }" routerLink="approve-changes" href="#"><i class="cil-book"></i></a>
     <a [ngClass]="{'active': router.url == '/comments-and-grades' }" routerLink="comments-and-grades" href="#"><i class="cil-comment-square"></i></a>
     <a [ngClass]="{'active': router.url == '/list-properties' }" routerLink="list-properties" href="#"><i class="cil-list-filter"></i></a>
     <a [ngClass]="{'active': router.url == '/accounts' }" routerLink="accounts" href="#"><i class="cil-globe-alt"></i></a>

@@ -1,0 +1,16 @@
+<div id="container">
+  <p>GALLERY</p>
+  <div class="upload-card" (click)="triggerFileInput()">
+    <mat-card class="card">
+      <span class="material-icons-outlined icon">photo_library</span><br>
+      <mat-card-header class="header">
+        <mat-card-title class="title">Upload your photos</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <br><br>
+        <input type="file" multiple="true" (change)="onFileSelected($event)" accept="image/*" style="display: none;" #fileInput>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
+

@@ -1,0 +1,60 @@
+#container {
+  text-align: center;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.card {
+  min-width: 100%;
+  min-height: 100%;
+  padding-top: 3em;
+}
+
+p {
+  font-family: rubik-bold;
+  text-align: center;
+  font-size: 1.4em;
+  margin-bottom: 20px;
+}
+
+.upload-card:hover {
+  cursor: pointer;
+  border: 1px solid #00838f;
+}
+
+.upload-card {
+  border: 1px solid white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 300px;
+  height: 300px;
+}
+
+.icon {
+  margin-top: 20px;
+  font-size: 90px;
+}
+
+.title {
+  font-size: 1.6em;
+  text-align: center;
+  margin-left: 1.3em;
+  padding-top: 4em;
+  word-spacing: 3px;
+}
+
+.small-text {
+  font: rubik-bold;
+  font-size: 1em;
+  text-decoration: underline;
+}
+
+mat-card-header.header {
+  text-align: center;
+  justify-content: center;
+}

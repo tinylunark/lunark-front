@@ -1,4 +1,8 @@
 <div id="container">
+  <ul *ngIf="items.length > 0">
+      <li *ngFor="let item of items"><a (click)="selectItem(item)" [class.active]="selectedItem === item"
+        ><span>&#x2022; </span>{{item}}</a></li>
+  </ul>
   <ng-content></ng-content>
 </div>
 

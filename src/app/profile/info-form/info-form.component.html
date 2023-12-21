@@ -1,16 +1,17 @@
+<br>
 <form class="example-form" [formGroup]="infoForm">
   <div class="grid-container">
     <div class="grid-item">
       <mat-form-field class="medium-field" appearance="outline" color="accent">
         <mat-label>First Name</mat-label>
-        <input matInput type="text" name="email" formControlName="email" />
+        <input matInput type="text" name="firstName" formControlName="firstName" value="{{profile?.name}}"/>
       </mat-form-field>
     </div>
 
     <div class="grid-item">
       <mat-form-field class="medium-field" appearance="outline" color="accent">
         <mat-label>Last Name</mat-label>
-        <input matInput type="text" name="first_name" formControlName="firstName" />
+        <input matInput type="text" name="lastName" formControlName="lastName" value="{{ profile?.surname }}" />
       </mat-form-field>
     </div>
 
@@ -18,38 +19,22 @@
     <div class="grid-item">
       <mat-form-field class="medium-field" appearance="outline" color="accent">
         <mat-label>Phone</mat-label>
-        <input matInput type="text" name="email" formControlName="email" />
+        <input matInput type="text" name="phoneNumber" formControlName="phoneNumber" value="{{ profile?.phoneNumber }}">
       </mat-form-field>
     </div>
 
-    <div class="grid-item">
-      <mat-form-field class="medium-field" appearance="outline" color="accent">
-        <mat-label>Choose a date</mat-label>
-        <input matInput [matDatepicker]="picker">
-        <mat-datepicker-toggle matIconSuffix [for]="picker" class="datepicker-icon"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-      </mat-form-field>
-    </div>
-
-    <div class="grid-item">
-      <mat-form-field class="big-field" appearance="outline" color="accent">
-        <mat-label>Email</mat-label>
-        <input matInput type="text" name="email" formControlName="email" />
-      </mat-form-field>
-    </div>
 
     <div class="grid-item">
       <mat-form-field class="medium-field" appearance="outline" color="accent">
         <mat-label>Address</mat-label>
-        <input matInput type="text" name="email" formControlName="email" />
+        <input matInput type="text" name="address"  formControlName="address"  value="{{ profile?.address }}"/>
       </mat-form-field>
     </div>
     <div class="grid-item">
-      <mat-form-field class="medium-field" appearance="outline" color="accent">
-        <mat-label>Country</mat-label>
-        <input matInput type="text" name="first_name" formControlName="firstName" />
+      <mat-form-field class="big-field" appearance="outline" color="accent">
+        <mat-label>Email</mat-label>
+        <input matInput type="text" name="email" formControlName="email"  value="{{ profile?.email }}"/>
       </mat-form-field>
     </div>
-
   </div>
 </form>

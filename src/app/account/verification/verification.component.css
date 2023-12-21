@@ -1,0 +1,16 @@
+.verification-fail, .verification-success {
+    width: 100%;
+    text-align: center;
+    font-size: 20px;
+    margin-top: 20%;
+    font-weight: bold;
+    justify-self: center;
+    overflow: hidden;
+}
+.verification-fail {
+    color: red;
+}
+
+h1 {
+    font-weight: bold;
+}

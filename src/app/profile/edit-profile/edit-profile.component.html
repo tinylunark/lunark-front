@@ -1,6 +1,9 @@
-<app-basic-info></app-basic-info>
+<app-basic-info [profile]="profile!" (profileChange)="onProfileChange($event)"></app-basic-info>
 <hr>
-<br>
-<app-info-form></app-info-form>
+<app-info-form [profile]="profile!" (validChange)="onValidChange($any($event))" (profileChange)="onProfileChange($event)"></app-info-form>
 <hr>
-<app-management-buttons></app-management-buttons>
+<div id="container">
+  <button mat-flat-button color="primary" class="button save" (click)="onSaveClick()">save</button>
+  <button mat-stroked-button color="accent" class="button cancel" (click)="onCancelClick()">cancel</button>
+  <button mat-stroked-button color="link" class="button delete" (click)="onDeleteClick()">delete profile</button>
+</div>

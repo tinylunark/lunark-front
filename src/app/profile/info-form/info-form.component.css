@@ -30,3 +30,37 @@
 .datepicker-icon {
   color: #00B3B3;
 }
+
+#container {
+  height: 3em;
+  width: 50em;
+  padding: 1em 2em;
+  display: flex;
+  justify-content: space-between;
+}
+
+.button {
+  border-radius: 100px;
+  height: 4em;
+  width: 13em;
+  font-family: rubik-bold;
+  text-transform: uppercase;
+}
+
+.save {
+  margin-left: 5em;
+}
+
+.delete {
+  margin-right: 5em;
+}
+
+:host ::ng-deep .delete {
+  border-color: #fff;
+  border-width: 3px;
+}
+
+:host ::ng-deep .cancel {
+  border-color: #fff;
+  border-width: 3px;
+}

@@ -1,0 +1,57 @@
+.selectedComponentContainer {
+width: 50em;
+  display: flex;
+  margin-top: 3em;
+  justify-content: center;
+  margin-bottom: 2em;
+}
+
+app-availability-pricing {
+    display: flex;
+    justify-content: center;
+    width: 60%;
+}
+
+app-availability-table {
+    margin-top: 2em;
+    width: 100%;
+}
+
+.basic-info-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+}
+
+.half-div {
+  width: 100%;
+  display: flex;
+  margin-bottom: 24em;
+}
+
+
+.btn-save {
+  margin-bottom: 0;
+  text-align: center;
+  width: 15em;
+  height: 4em;
+  margin-bottom: 2em;
+}
+
+#wrapper-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+p {
+  font-family: rubik-bold;
+  text-align: center;
+  font-size: 1.4em;
+}
+
+.input-field {
+  width: 400px;
+  text-align: center;
+  margin-left: 10em;
+}

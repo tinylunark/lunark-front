@@ -1,9 +1,11 @@
 @import "../node_modules/@coreui/icons/css/free.css";
 @import "../node_modules/@vectopus/atlas-icons/style.css";
+@import "../node_modules/material-icons/iconfont/material-icons.css";
 
 @font-face {
   font-family: 'bayon';
   src: url('./assets/fonts/bayon.ttf') format('truetype'); }
+
 @font-face {
   font-family: 'rubik-regular';
   src: url('./assets/fonts/rubik/Rubik-Regular.ttf') format('truetype');
@@ -130,3 +132,25 @@ button.mdc-button {
   background-color: #1f1f1f;
 }
 
+app-container {
+  margin-top: 8em;
+  margin-left: 6em;
+  margin-right: 4em;
+  margin-bottom: 1em;
+}
+
+mat-vertical-stepper.mat-stepper-vertical, mat-horizontal-stepper.mat-stepper-horizontal {
+  background-color: #1f1f1f;
+}
+
+.mat-form-field.stretch-height,
+.mat-form-field.stretch-height .mat-form-field-flex,
+.mat-form-field.stretch-height textarea {
+  height: 100%;
+}
+.mat-form-field.stretch-height .mat-form-field-wrapper {
+  height: calc(100% - 1.34375em);
+}
+.mat-form-field.stretch-height .mat-form-field-infix {
+  height: calc(100% - 1.34375em - 2px);
+}

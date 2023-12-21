@@ -1,0 +1,17 @@
+.selectedComponentContainer {
+    width: 50em;
+    display: flex;
+    justify-content: center;
+}
+
+app-availability-pricing {
+    display: flex;
+    justify-content: center;
+    width: 60%;
+    margin-top: 2em;
+}
+
+app-availability-table {
+    margin-top: 2em;
+    width: 100%;
+}
