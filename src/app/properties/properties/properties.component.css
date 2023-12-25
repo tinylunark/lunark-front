@@ -83,6 +83,17 @@
   font-size: 1.2em;
 }
 
+.favorite-button {
+  position: absolute;
+  z-index: 2;
+  top: .5em;
+  left: .5em;
+}
+
+.favored {
+  color: #00838f;
+}
+
 @media (max-width: 1200px) {
   .grid {
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));

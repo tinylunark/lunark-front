@@ -2,6 +2,8 @@
   <app-search (searchEmitter)="getProperties($event)"></app-search>
   <div class="grid">
     <mat-card class="card" *ngFor="let property of properties" routerLink="/properties/{{property.id}}">
+      <mat-icon *ngIf="this.accountService.getRole() === 'GUEST'"
+                class="favorite-button" [ngClass]="isFavoriteProperty(property.id) ? ['favored', 'favorite-button'] : ['favorite-button']">favorite</mat-icon>
       <img mat-card-image class="image" [src]="images.get(property.id) ?? placeholderImage" alt="Image of a property." />
       <mat-card-header class="header">
         <mat-card-title class="title">{{property.name}}</mat-card-title>

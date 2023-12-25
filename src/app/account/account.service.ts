@@ -7,6 +7,7 @@ import {JwtHelperService} from "@auth0/angular-jwt";
 import { environment } from '../../env/environment';
 import { ApiPaths } from '../shared/api/api-paths.enum';
 import PasswordUpdate from "../shared/models/password-update.model";
+import {Property} from "../shared/models/property.model";
 
 const notLoggedInRole = "unregistered";
 
@@ -89,6 +90,10 @@ export class AccountService {
 
   updatePassword(passwordData: PasswordUpdate): Observable<any> {
     return this.http.put(`${environment.apiHost}/${ApiPaths.Profile}/update-password`, passwordData);
+  }
+
+  getFavoriteProperties(): Observable<Property[]> {
+    return this.http.get<Property[]>(`${environment.apiHost}/${ApiPaths.Profile}/favorites`);
   }
 
 }
