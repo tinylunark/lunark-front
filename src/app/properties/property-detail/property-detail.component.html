@@ -52,5 +52,8 @@
     [latitude]="property.latitude"
     [longitude]="property.longitude"
   ></app-location>
+  <div class="review-button-wrapper">
+    <button mat-stroked-button id="write-review">Write a review</button>
+  </div>
   <app-review-card *ngFor="let review of property?.reviews" [review]="review"></app-review-card>
 </div>
