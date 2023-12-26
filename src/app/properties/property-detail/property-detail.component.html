@@ -12,9 +12,9 @@
     <div fxLayout="column" fxLayoutAlign="start start">
       <div fxLayout="row" fxLayoutAlign="space-between start" fxLayoutGap="20px">
         <h1>{{ property?.name }}</h1>
-        <div fxLayout="row" fxLayoutAlign="center center" class="rating">
+        <div fxLayout="row" fxLayoutAlign="center center" class="rating" *ngIf="averageRating">
           <mat-icon>star</mat-icon>
-          <span>{{ property?.averageRating?.toPrecision(2) }}</span>
+          <span>{{ averageRating.toPrecision(2) }}</span>
         </div>
       </div>
       <h3>{{ property?.address?.city }}, {{ property?.address?.country }}</h3>

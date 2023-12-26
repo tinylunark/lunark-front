@@ -25,6 +25,7 @@ export class PropertyDetailComponent {
     endDate: new FormControl('', [Validators.required]),
     numberOfGuests: new FormControl('', [Validators.required]),
   })
+  averageRating?: number;
 
   entryISODates?: string[];
 
@@ -54,6 +55,7 @@ export class PropertyDetailComponent {
         this.property = property;
         this.getImages();
         this.entryISODates = property.availabilityEntries.map(entry => entry.date.toISOString());
+        this.calculateAverageRating();
       });
   }
 
@@ -105,5 +107,20 @@ export class PropertyDetailComponent {
     });
 
     this.price = sum;
+  }
+
+  calculateAverageRating() {
+    if (!this.property || !this.property.reviews || this.property.reviews.length <= 0) {
+      return;
+    }
+
+    let sum = 0;
+    let count = 0;
+    this.property.reviews.forEach(review => {
+      sum += review.rating;
+      count++;
+    });
+
+    this.averageRating = sum / count;
   }
 }
