@@ -18,6 +18,7 @@ import { MyPropertiesComponent } from './my-properties/my-properties.component';
 import { PropertyEditComponent } from './property-edit/property-edit.component';
 import { PropertyCreatedDialogComponent } from './property-created-dialog/property-created-dialog.component';
 import { PropertyUpdatedDialogComponent } from './property-updated-dialog/property-updated-dialog.component';
+import { ReviewCardComponent } from './review-card/review-card.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { PropertyUpdatedDialogComponent } from './property-updated-dialog/proper
     MyPropertiesComponent,
     PropertyEditComponent,
     PropertyCreatedDialogComponent,
-    PropertyUpdatedDialogComponent
+    PropertyUpdatedDialogComponent,
+    ReviewCardComponent
   ],
   imports: [
     SharedModule,
