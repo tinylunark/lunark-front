@@ -19,6 +19,7 @@ import { PropertyEditComponent } from './property-edit/property-edit.component';
 import { PropertyCreatedDialogComponent } from './property-created-dialog/property-created-dialog.component';
 import { PropertyUpdatedDialogComponent } from './property-updated-dialog/property-updated-dialog.component';
 import { FavoriteActionComponent } from './favorite-action/favorite-action.component';
+import { FavoritesComponent } from './favorites/favorites.component';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { FavoriteActionComponent } from './favorite-action/favorite-action.compo
     PropertyEditComponent,
     PropertyCreatedDialogComponent,
     PropertyUpdatedDialogComponent,
-    FavoriteActionComponent
+    FavoriteActionComponent,
+    FavoritesComponent
   ],
   imports: [
     SharedModule,
