@@ -1,0 +1,32 @@
+<div class="review-card">
+    <div class="review-header">
+        <div class="reviewer-and-time">
+            <img src="assets/jake-gyllenhaal.jpg" class="circular-image">
+            <div class="reviewer-name-and-time">
+                <h3 class="reviewer-name">{{review.author}}</h3>
+                <p class="review-time">{{review.date | date:'longDate'}}</p> 
+            </div>
+        </div>
+        <div class="review-rating">
+            <div class="rating">
+                <mat-icon>star</mat-icon>
+                <span>{{review.rating}}</span>
+            </div>
+            <div class="report" *ngIf="review.authorId != accountService.getAccountId()">
+                <button mat-button (click)="onReport()">
+                    <mat-icon>flag</mat-icon>
+                    <span>Report</span>
+                </button>
+            </div>
+            <div class="delete" *ngIf="review.authorId == accountService.getAccountId()">
+                <button mat-button (click)="onDelete()">
+                    <mat-icon>delete</mat-icon>
+                    <span>Delete</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <p class="review-content">
+        {{review.description}}
+    </p>
+</div>

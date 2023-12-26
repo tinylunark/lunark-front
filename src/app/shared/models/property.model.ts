@@ -2,6 +2,7 @@ import Amenity from "./amenity.model";
 import Location from "./location.model";
 import PropertyAvailabilityEntry from "./property-availability-entry.model";
 import PropertyRequest from "./property-request.model";
+import { Review } from "./review.model";
 
 export interface Property {
   id: number;
@@ -25,6 +26,7 @@ export interface Property {
   amenities: Amenity[];
   maxGuests: number;
   hostId: number;
+  reviews?: Review[];
 }
 
 export enum PropertyType {
