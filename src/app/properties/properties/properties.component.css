@@ -83,15 +83,12 @@
   font-size: 1.2em;
 }
 
-.favorite-button {
+.favorite-action {
   position: absolute;
   z-index: 2;
-  top: .5em;
-  left: .5em;
-}
-
-.favored {
-  color: #00838f;
+  padding-top: 1em;
+  padding-left: 1em;
+  transform: scale(1.5);
 }
 
 @media (max-width: 1200px) {
