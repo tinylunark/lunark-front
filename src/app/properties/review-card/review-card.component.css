@@ -61,7 +61,7 @@
 .rating {
   margin-right: 3em;
 }
-.rating, .report {
+.rating, .report, .delete {
   display: flex;
   align-items: center;
 }
