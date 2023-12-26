@@ -12,8 +12,8 @@
                 <mat-icon>star</mat-icon>
                 <span>{{review.rating}}</span>
             </div>
-            <div class="report">
-                <button mat-button>
+            <div class="report" *ngIf="review.authorId != accountService.getAccountId()">
+                <button mat-button (click)="onReport()">
                     <mat-icon>flag</mat-icon>
                     <span>Report</span>
                 </button>

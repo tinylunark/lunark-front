@@ -21,4 +21,8 @@ export class ReviewCardComponent {
   onDelete(): void {
     this.deleted.emit(this.review.id);
   }
+
+  onReport(): void {
+    this.reported.emit(this.review.id);
+  }
 }
