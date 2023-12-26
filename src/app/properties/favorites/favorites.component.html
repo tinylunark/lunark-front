@@ -2,7 +2,10 @@
 <app-container>
   <div fxLayout="row wrap" fxLayoutAlign="start start" style="padding: 3em; row-gap: 2em; column-gap: 2em">
     <mat-card class="card" *ngFor="let property of favorites">
-      <app-favorite-action class="favorite-action"></app-favorite-action>
+      <app-favorite-action
+        class="favorite-action"
+        [isChecked]="true"
+        (isCheckedChange)="toggleFavorite($event, property.id)"></app-favorite-action>
       <div routerLink="/properties/{{property.id}}">
         <img mat-card-image class="image" [src]="images.get(property.id) ?? placeholderImage" alt="Image of a property." />
         <mat-card-header class="header">

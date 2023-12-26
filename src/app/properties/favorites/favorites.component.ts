@@ -3,6 +3,7 @@ import {AccountService} from "../../account/account.service";
 import {Property} from "../../shared/models/property.model";
 import {environment} from "../../../env/environment";
 import {PropertyService} from "../property.service";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-favorites',
@@ -17,6 +18,7 @@ export class FavoritesComponent {
   constructor(
     private propertyService: PropertyService,
     private accountService: AccountService,
+    private snackBar: MatSnackBar,
   ) {
   }
 
@@ -45,5 +47,19 @@ export class FavoritesComponent {
           });
       }
     });
+  }
+
+  toggleFavorite(isChecked: boolean, propertyId: number) {
+    if (isChecked) {
+      this.accountService.addFavoriteProperty(propertyId)
+        .subscribe(data => {
+          this.snackBar.open('Property added to favorites.', 'OK', {duration: 3000});
+        });
+    } else {
+      this.accountService.deleteFavoriteProperty(propertyId)
+        .subscribe(data => {
+          this.snackBar.open('Property removed from favorites.', 'OK', {duration: 3000});
+        });
+    }
   }
 }

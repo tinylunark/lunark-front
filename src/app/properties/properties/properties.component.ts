@@ -81,7 +81,6 @@ export class PropertiesComponent {
   }
 
   toggleFavorite(isChecked: boolean, propertyId: number) {
-    console.log(isChecked);
     if (isChecked) {
       this.accountService.addFavoriteProperty(propertyId)
         .subscribe(data => {
