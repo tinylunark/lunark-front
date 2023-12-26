@@ -4,6 +4,7 @@ import {Property} from "../../shared/models/property.model";
 import {environment} from "../../../env/environment";
 import PropertiesSearchDto from "../properties-search.dto";
 import {AccountService} from "../../account/account.service";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-properties',
@@ -21,6 +22,7 @@ export class PropertiesComponent {
   constructor(
     private propertyService: PropertyService,
     public accountService: AccountService,
+    private snackBar: MatSnackBar,
     ) {
   }
 
@@ -76,5 +78,20 @@ export class PropertiesComponent {
     });
 
     return sum;
+  }
+
+  toggleFavorite(isChecked: boolean, propertyId: number) {
+    console.log(isChecked);
+    if (isChecked) {
+      this.accountService.addFavoriteProperty(propertyId)
+        .subscribe(data => {
+          this.snackBar.open('Property added to favorites.', 'OK', {duration: 3000});
+        });
+    } else {
+      this.accountService.deleteFavoriteProperty(propertyId)
+        .subscribe(data => {
+          this.snackBar.open('Property removed from favorites.', 'OK', {duration: 3000});
+        });
+    }
   }
 }

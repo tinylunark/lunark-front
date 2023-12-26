@@ -4,7 +4,9 @@
     <mat-card class="card" *ngFor="let property of properties">
       <app-favorite-action
         class="favorite-action"
-        *ngIf="this.accountService.getRole() === 'GUEST'"></app-favorite-action>
+        *ngIf="this.accountService.getRole() === 'GUEST'"
+        [isChecked]="isFavoriteProperty(property.id) ?? false"
+        (isCheckedChange)="toggleFavorite($event, property.id)"></app-favorite-action>
       <div routerLink="/properties/{{property.id}}">
         <img mat-card-image class="image" [src]="images.get(property.id) ?? placeholderImage" alt="Image of a property." />
         <mat-card-header class="header">

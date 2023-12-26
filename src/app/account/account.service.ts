@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Account } from './model/account.model';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {BehaviorSubject, Observable} from "rxjs";
+import {BehaviorSubject, catchError, Observable, tap} from "rxjs";
 import {AuthResponse} from "./model/auth-resposne.model";
 import {JwtHelperService} from "@auth0/angular-jwt";
 import { environment } from '../../env/environment';
@@ -94,6 +94,14 @@ export class AccountService {
 
   getFavoriteProperties(): Observable<Property[]> {
     return this.http.get<Property[]>(`${environment.apiHost}/${ApiPaths.Profile}/favorites`);
+  }
+
+  addFavoriteProperty(propertyId: number) {
+    return this.http.post(`${environment.apiHost}/${ApiPaths.Profile}/favorites/${propertyId}`, null);
+  }
+
+  deleteFavoriteProperty(propertyId: number) {
+    return this.http.delete(`${environment.apiHost}/${ApiPaths.Profile}/favorites/${propertyId}`);
   }
 
 }
