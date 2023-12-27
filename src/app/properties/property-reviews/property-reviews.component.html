@@ -1,0 +1,4 @@
+<div class="review-button-wrapper" *ngIf="userIsEligibleToReview()">
+<button mat-stroked-button id="write-review">Write a review</button>
+</div>
+<app-review-card *ngFor="let review of reviews" [review]="review"></app-review-card>
