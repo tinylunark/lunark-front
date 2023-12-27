@@ -3,6 +3,8 @@ import {PropertyService} from "../property.service";
 import {Property} from "../../shared/models/property.model";
 import {environment} from "../../../env/environment";
 import PropertiesSearchDto from "../properties-search.dto";
+import {AccountService} from "../../account/account.service";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-properties',
@@ -15,12 +17,18 @@ export class PropertiesComponent {
   images: Map<number, string> = new Map;
   startDate?: Date;
   endDate?: Date;
+  favoritePropertyIds?: number[]; // We only need ids to know if the favorite button should be filled or not
 
-  constructor(private propertyService: PropertyService) {
+  constructor(
+    private propertyService: PropertyService,
+    public accountService: AccountService,
+    private snackBar: MatSnackBar,
+    ) {
   }
 
   ngOnInit(): void {
     this.getProperties();
+    this.getFavoriteProperties();
   }
 
   getProperties(searchDto?: PropertiesSearchDto): void {
@@ -31,6 +39,17 @@ export class PropertiesComponent {
         this.properties = properties;
         this.getImages();
       });
+  }
+
+  getFavoriteProperties(): void {
+    this.accountService.getFavoriteProperties()
+      .subscribe(favorites => {
+        this.favoritePropertyIds = favorites.map(favorite => favorite.id);
+      });
+  }
+
+  isFavoriteProperty(id: number): boolean | undefined {
+    return this.favoritePropertyIds?.includes(id);
   }
 
   getImages(): void {
@@ -59,5 +78,13 @@ export class PropertiesComponent {
     });
 
     return sum;
+  }
+
+  toggleFavorite(isChecked: boolean, propertyId: number) {
+    if (isChecked) {
+      this.accountService.addFavoriteProperty(propertyId).subscribe((_) => { });
+    } else {
+      this.accountService.deleteFavoriteProperty(propertyId).subscribe((_) => { });
+    }
   }
 }

@@ -1,0 +1,18 @@
+.toggled {
+  color: #00838f;
+}
+
+mat-icon.toggled {
+  position: relative;
+  color: #00838f;
+}
+
+mat-icon.toggled::before {
+  content: 'favorite';
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: #f0edee;
+  transform: scale(1.2);
+  z-index: -1;
+}

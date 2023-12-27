@@ -18,6 +18,8 @@ import { MyPropertiesComponent } from './my-properties/my-properties.component';
 import { PropertyEditComponent } from './property-edit/property-edit.component';
 import { PropertyCreatedDialogComponent } from './property-created-dialog/property-created-dialog.component';
 import { PropertyUpdatedDialogComponent } from './property-updated-dialog/property-updated-dialog.component';
+import { FavoriteActionComponent } from './favorite-action/favorite-action.component';
+import { FavoritesComponent } from './favorites/favorites.component';
 import { ReviewCardComponent } from './review-card/review-card.component';
 
 
@@ -35,6 +37,8 @@ import { ReviewCardComponent } from './review-card/review-card.component';
     PropertyEditComponent,
     PropertyCreatedDialogComponent,
     PropertyUpdatedDialogComponent,
+    FavoriteActionComponent,
+    FavoritesComponent
     ReviewCardComponent
   ],
   imports: [

@@ -1,11 +1,10 @@
-<div id="container">
-  <app-search (searchEmitter)="getProperties($event)"></app-search>
-  <div class="grid">
-    <mat-card class="card" *ngFor="let property of properties">
+<app-header text="Favorites"></app-header>
+<app-container>
+  <div fxLayout="row wrap" fxLayoutAlign="start start" style="padding: 3em; row-gap: 2em; column-gap: 2em">
+    <mat-card class="card" *ngFor="let property of favorites">
       <app-favorite-action
         class="favorite-action"
-        *ngIf="this.accountService.getRole() === 'GUEST'"
-        [isChecked]="isFavoriteProperty(property.id) ?? false"
+        [isChecked]="true"
         (isCheckedChange)="toggleFavorite($event, property.id)"></app-favorite-action>
       <div routerLink="/properties/{{property.id}}">
         <img mat-card-image class="image" [src]="images.get(property.id) ?? placeholderImage" alt="Image of a property." />
@@ -16,10 +15,7 @@
         <mat-card-content>
           <p>{{property.description}}</p>
         </mat-card-content>
-        <mat-card-footer class="footer">
-          <span class="price" *ngIf="startDate && endDate">${{calculatePrice(property)}} Night</span>
-        </mat-card-footer>
       </div>
     </mat-card>
   </div>
-</div>
+</app-container>

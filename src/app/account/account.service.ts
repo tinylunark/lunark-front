@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Account } from './model/account.model';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {BehaviorSubject, Observable} from "rxjs";
+import {BehaviorSubject, catchError, Observable, tap} from "rxjs";
 import {AuthResponse} from "./model/auth-resposne.model";
 import {JwtHelperService} from "@auth0/angular-jwt";
 import { environment } from '../../env/environment';
 import { ApiPaths } from '../shared/api/api-paths.enum';
 import PasswordUpdate from "../shared/models/password-update.model";
+import {Property} from "../shared/models/property.model";
 
 const notLoggedInRole = "unregistered";
 
@@ -89,6 +90,18 @@ export class AccountService {
 
   updatePassword(passwordData: PasswordUpdate): Observable<any> {
     return this.http.put(`${environment.apiHost}/${ApiPaths.Profile}/update-password`, passwordData);
+  }
+
+  getFavoriteProperties(): Observable<Property[]> {
+    return this.http.get<Property[]>(`${environment.apiHost}/${ApiPaths.Profile}/favorites`);
+  }
+
+  addFavoriteProperty(propertyId: number) {
+    return this.http.post(`${environment.apiHost}/${ApiPaths.Profile}/favorites/${propertyId}`, null);
+  }
+
+  deleteFavoriteProperty(propertyId: number) {
+    return this.http.delete(`${environment.apiHost}/${ApiPaths.Profile}/favorites/${propertyId}`);
   }
 
 }

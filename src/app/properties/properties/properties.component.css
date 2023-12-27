@@ -13,7 +13,9 @@
 }
 
 .card {
+  position: relative;
   height: 35em;
+  overflow: hidden;
   width: 30em;
   max-width: 40em;
   display: flex;
@@ -81,6 +83,15 @@
 .location {
   color:  #00838f;
   font-size: 1.2em;
+}
+
+
+.favorite-action {
+  position: absolute;
+  top: 1em;
+  left: 1em;
+  z-index: 2;
+  transform: scale(1.5);
 }
 
 @media (max-width: 1200px) {
