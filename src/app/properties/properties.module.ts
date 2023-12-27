@@ -38,7 +38,7 @@ import { ReviewCardComponent } from './review-card/review-card.component';
     PropertyCreatedDialogComponent,
     PropertyUpdatedDialogComponent,
     FavoriteActionComponent,
-    FavoritesComponent
+    FavoritesComponent,
     ReviewCardComponent
   ],
   imports: [
