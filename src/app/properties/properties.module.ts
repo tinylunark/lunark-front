@@ -22,6 +22,7 @@ import { FavoriteActionComponent } from './favorite-action/favorite-action.compo
 import { FavoritesComponent } from './favorites/favorites.component';
 import { ReviewCardComponent } from './review-card/review-card.component';
 import { PropertyReviewsComponent } from './property-reviews/property-reviews.component';
+import { ReviewsModule } from '../reviews/reviews.module';
 
 
 @NgModule({
@@ -50,7 +51,8 @@ import { PropertyReviewsComponent } from './property-reviews/property-reviews.co
     MaterialModule,
     PropertyManagementModule,
     CoreModule,
-    AsyncPipe
+    AsyncPipe,
+    ReviewsModule
   ],
   exports: [
     SearchComponent,

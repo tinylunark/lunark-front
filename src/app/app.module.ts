@@ -16,6 +16,7 @@ import {DateInterceptor} from "./http-interceptors/date.interceptor";
 import { JWTInterceptor } from './http-interceptors/jwt.interceptor';
 import { SharedModule } from './shared/shared.module';
 import { UnauthorizedInterceptor } from './http-interceptors/unauthorized.interceptor';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { UnauthorizedInterceptor } from './http-interceptors/unauthorized.interc
     FlexLayoutModule,
     ReactiveFormsModule,
     MatAutocompleteModule,
-    SharedModule
+    SharedModule,
+    NgbModule
   ],
   providers: [
     importProvidersFrom(HttpClientModule),

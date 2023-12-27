@@ -1,0 +1,24 @@
+ngb-rating {
+    font-size: 2em;
+}
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#comment-field {
+    margin-top: 1em;
+    width: 80%;
+    height: 10em;
+}
+
+#submit-review {
+    width: 30%;
+    height: 3em;
+}
+
+h1 {
+    padding-top: 4%;
+    padding-bottom: 4%;
+}

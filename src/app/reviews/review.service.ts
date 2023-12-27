@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ApiPaths } from '../app/shared/api/api-paths.enum';
+import { ApiPaths } from '../shared/api/api-paths.enum';
 import { PropertyReviewEligibility } from './property-review-eligibility';
 import { Observable, of, onErrorResumeNext, map } from 'rxjs';
-import { environment } from '../env/environment';
+import { environment } from '../../env/environment';
 
 @Injectable({
   providedIn: 'root'
