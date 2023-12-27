@@ -1,19 +1,22 @@
-import { Component, Input } from '@angular/core';
-import { Review } from '../../shared/models/review.model';
-import { AccountService } from '../../account/account.service';
+import { Component, Input, OnInit } from '@angular/core';
+import { ReviewService } from '../../../reviews/review.service';
 
 @Component({
   selector: 'app-property-reviews',
   templateUrl: './property-reviews.component.html',
   styleUrl: './property-reviews.component.css'
 })
-export class PropertyReviewsComponent {
-  @Input() reviews: Review[] = [];
+export class PropertyReviewsComponent implements OnInit {
+  @Input() property: any;
+  eligibleToReview = false;
 
-  constructor(private accountService: AccountService) {
+  constructor(private reviewService: ReviewService) {
   } 
 
-  userIsEligibleToReview(): boolean {
-    return this.accountService.getRole() === 'GUEST';
+  ngOnInit(): void {
+    this.reviewService.userIsEligibleToReviewProperty(this.property.id)
+      .subscribe(eligible => {
+        this.eligibleToReview = eligible;
+      });
   }
 }

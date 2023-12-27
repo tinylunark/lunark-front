@@ -52,5 +52,5 @@
     [latitude]="property.latitude"
     [longitude]="property.longitude"
   ></app-location>
-  <app-property-reviews [reviews]="property?.reviews || []"></app-property-reviews>
+  <app-property-reviews [property]="property" *ngIf="property"></app-property-reviews>
 </div>
