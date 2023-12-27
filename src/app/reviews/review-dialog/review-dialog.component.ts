@@ -1,6 +1,6 @@
-import { DialogRef } from '@angular/cdk/dialog';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-review-dialog',
@@ -11,10 +11,10 @@ export class ReviewDialogComponent {
 
   reviewForm: FormGroup = new FormGroup({
     rating: new FormControl('', Validators.required),
-    comment: new FormControl('', Validators.required),
+    description: new FormControl('', Validators.required),
   });
   rating: number = 0;
-  constructor(private dialogRef: DialogRef) { }
+  constructor(public dialogRef: MatDialogRef<ReviewDialogComponent>) { }
 
   submitReview() {
     if (this.reviewForm.valid) {
