@@ -1,6 +1,8 @@
 .card {
+  position: relative;
   height: 35em;
   width: 30em;
+  overflow: hidden;
   max-width: 40em;
   display: flex;
   flex-direction: column;
@@ -44,7 +46,7 @@
 .favorite-action {
   position: absolute;
   z-index: 2;
-  padding-top: 1em;
-  padding-left: 1em;
+  top: 1em;
+  left: 1em;
   transform: scale(1.5);
 }
