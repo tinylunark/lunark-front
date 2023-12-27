@@ -3,6 +3,7 @@ import { ReviewService } from '../../reviews/review.service';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ReviewDialogComponent } from '../../reviews/review-dialog/review-dialog.component';
 import { Review } from '../../shared/models/review.model';
+import { SharedService } from '../../shared/shared.service';
 
 @Component({
   selector: 'app-property-reviews',
@@ -13,7 +14,7 @@ export class PropertyReviewsComponent implements OnInit {
   @Input() property: any;
   eligibleToReview = false;
 
-  constructor(private reviewService: ReviewService, private matDialog: MatDialog) {
+  constructor(private reviewService: ReviewService, private matDialog: MatDialog, private sharedService: SharedService) {
   } 
 
   ngOnInit(): void {
@@ -36,6 +37,7 @@ export class PropertyReviewsComponent implements OnInit {
       next: (review: Review) => {
         this.eligibleToReview = false;
         this.property.reviews.push(review);
+        this.sharedService.openSnack("Review added successfully!");
       },
       error: (err: any) => console.log(err)
     });
