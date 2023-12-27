@@ -4,6 +4,7 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ReviewDialogComponent } from '../../reviews/review-dialog/review-dialog.component';
 import { Review } from '../../shared/models/review.model';
 import { SharedService } from '../../shared/shared.service';
+import { ConfirmDeleteReviewComponent } from '../../reviews/confirm-delete-review/confirm-delete-review.component';
 
 @Component({
   selector: 'app-property-reviews',
@@ -45,6 +46,17 @@ export class PropertyReviewsComponent implements OnInit {
   }
   
   onDelete(reviewId: number): void {
+
+    let dialogRef = this.matDialog.open(ConfirmDeleteReviewComponent, {
+      width: "35%",
+      backdropClass: "backdropBackground"
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) this.delete(reviewId);
+    });
+  }
+
+  private delete(reviewId: number): void {
     this.reviewService.delete(reviewId).subscribe({
       next: () => {
         this.property.reviews = this.property.reviews.filter((review: Review) => review.id !== reviewId);
