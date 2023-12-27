@@ -49,7 +49,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     MatTableModule,
     MatSnackBarModule,
     MatSelectModule,
-    ReactiveFormsModule,
     MatStepperModule,
     NgbModule
   ],
@@ -78,7 +77,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     MatTableModule,
     MatSnackBarModule,
     MatSelectModule,
-    ReactiveFormsModule,
     MatStepperModule,
     NgbModule
   ]
