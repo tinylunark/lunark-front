@@ -21,6 +21,7 @@ import { PropertyUpdatedDialogComponent } from './property-updated-dialog/proper
 import { FavoriteActionComponent } from './favorite-action/favorite-action.component';
 import { FavoritesComponent } from './favorites/favorites.component';
 import { ReviewCardComponent } from './review-card/review-card.component';
+import { PropertyReviewsComponent } from './property-reviews/property-reviews.component';
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import { ReviewCardComponent } from './review-card/review-card.component';
     PropertyUpdatedDialogComponent,
     FavoriteActionComponent,
     FavoritesComponent,
-    ReviewCardComponent
+    ReviewCardComponent,
+    PropertyReviewsComponent
   ],
   imports: [
     SharedModule,
