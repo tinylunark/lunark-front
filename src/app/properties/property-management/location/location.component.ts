@@ -60,7 +60,7 @@ export class LocationComponent implements AfterViewInit {
     const container = L.DomUtil.get('map');
     if (container != null) {
       this.map = L.map('map', {
-        center: [45.2396, 19.8227],
+        ...(this.longitude && this.latitude ? {center: [this.latitude, this.longitude], } : {center: [45.2396, 19.8227]}),
         zoom: 16,
       });
     }
@@ -76,6 +76,10 @@ export class LocationComponent implements AfterViewInit {
     );
     tiles.addTo(this.map);
     this.registerOnClick();
+
+    if (this.latitude && this.longitude) {
+      setTimeout(() => this.reverseSearch(this.latitude, this.longitude), 100);
+    }
   }
 
   private emitLatitudeLongitude(lat: number, lng: number) {

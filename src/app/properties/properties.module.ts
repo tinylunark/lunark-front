@@ -20,6 +20,7 @@ import { PropertyCreatedDialogComponent } from './property-created-dialog/proper
 import { PropertyUpdatedDialogComponent } from './property-updated-dialog/property-updated-dialog.component';
 import { FavoriteActionComponent } from './favorite-action/favorite-action.component';
 import { FavoritesComponent } from './favorites/favorites.component';
+import { ReviewCardComponent } from './review-card/review-card.component';
 
 
 @NgModule({
@@ -38,6 +39,7 @@ import { FavoritesComponent } from './favorites/favorites.component';
     PropertyUpdatedDialogComponent,
     FavoriteActionComponent,
     FavoritesComponent
+    ReviewCardComponent
   ],
   imports: [
     SharedModule,
