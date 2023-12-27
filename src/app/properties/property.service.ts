@@ -91,4 +91,8 @@ export class PropertyService {
   changeAvailability(propertyId: number, availabilityEntries: PropertyAvailabilityEntry[]): Observable<PropertyAvailabilityEntry[]> {
     return this.http.put<PropertyAvailabilityEntry[]>(`${environment.apiHost}/${ApiPaths.Properties}/${propertyId}/pricesAndAvailability`, availabilityEntries);
   }
+
+  getAverageRating(propertyId: number): Observable<number> {
+    return this.http.get<number>(`${environment.apiHost}/${ApiPaths.Properties}/average/${propertyId}`);
+  }
 }

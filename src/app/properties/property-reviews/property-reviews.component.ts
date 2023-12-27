@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ReviewService } from '../../reviews/review.service';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ReviewDialogComponent } from '../../reviews/review-dialog/review-dialog.component';
@@ -12,6 +12,7 @@ import { SharedService } from '../../shared/shared.service';
 })
 export class PropertyReviewsComponent implements OnInit {
   @Input() property: any;
+  @Output() reviewDeleted: EventEmitter<void> = new EventEmitter<void>();
   eligibleToReview = false;
 
   constructor(private reviewService: ReviewService, private matDialog: MatDialog, private sharedService: SharedService) {
@@ -48,6 +49,7 @@ export class PropertyReviewsComponent implements OnInit {
       next: () => {
         this.property.reviews = this.property.reviews.filter((review: Review) => review.id !== reviewId);
         this.sharedService.openSnack("Review deleted successfully!");
+        this.reviewDeleted.emit();
       },
       error: (err: any) => console.log(err)
     });
