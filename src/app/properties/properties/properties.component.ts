@@ -82,15 +82,9 @@ export class PropertiesComponent {
 
   toggleFavorite(isChecked: boolean, propertyId: number) {
     if (isChecked) {
-      this.accountService.addFavoriteProperty(propertyId)
-        .subscribe(data => {
-          this.snackBar.open('Property added to favorites.', 'OK', {duration: 3000});
-        });
+      this.accountService.addFavoriteProperty(propertyId).subscribe((_) => { });
     } else {
-      this.accountService.deleteFavoriteProperty(propertyId)
-        .subscribe(data => {
-          this.snackBar.open('Property removed from favorites.', 'OK', {duration: 3000});
-        });
+      this.accountService.deleteFavoriteProperty(propertyId).subscribe((_) => { });
     }
   }
 }

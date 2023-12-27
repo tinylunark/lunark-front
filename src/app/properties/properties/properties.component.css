@@ -13,7 +13,9 @@
 }
 
 .card {
+  position: relative;
   height: 35em;
+  overflow: hidden;
   width: 30em;
   max-width: 40em;
   display: flex;
@@ -83,11 +85,12 @@
   font-size: 1.2em;
 }
 
+
 .favorite-action {
   position: absolute;
+  top: 1em;
+  left: 1em;
   z-index: 2;
-  padding-top: 1em;
-  padding-left: 1em;
   transform: scale(1.5);
 }
 
