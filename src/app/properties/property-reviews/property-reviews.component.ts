@@ -42,4 +42,14 @@ export class PropertyReviewsComponent implements OnInit {
       error: (err: any) => console.log(err)
     });
   }
+  
+  onDelete(reviewId: number): void {
+    this.reviewService.delete(reviewId).subscribe({
+      next: () => {
+        this.property.reviews = this.property.reviews.filter((review: Review) => review.id !== reviewId);
+        this.sharedService.openSnack("Review deleted successfully!");
+      },
+      error: (err: any) => console.log(err)
+    });
+  }
 }

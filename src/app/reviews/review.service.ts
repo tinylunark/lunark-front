@@ -18,7 +18,11 @@ export class ReviewService {
       .pipe(map((eligibility: PropertyReviewEligibility) => eligibility.eligible));
   }
 
-  addPropertyReview(review: Review, propertyId: number): Observable<any> {
+  addPropertyReview(review: Review, propertyId: number): Observable<Review> {
     return this.http.post<Review>(`${environment.apiHost}/${ApiPaths.Reviews}/property/${propertyId}`, review);
+  }
+
+  delete(reviewId: number): Observable<void> {
+    return this.http.delete<void>(`${environment.apiHost}/${ApiPaths.Reviews}/${reviewId}`);
   }
 }
