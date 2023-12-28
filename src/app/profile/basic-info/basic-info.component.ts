@@ -1,5 +1,7 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { Profile } from '../../shared/models/profile.model';
+import {Component, Input, Output, EventEmitter} from '@angular/core';
+import {Profile} from '../../shared/models/profile.model';
+import {AccountService} from "../../account/account.service";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-basic-info',
@@ -10,22 +12,38 @@ export class BasicInfoComponent {
   @Input() profile: Profile | undefined = undefined;
   @Output() profileChange = new EventEmitter<Profile>();
 
-  profileImage: string = '../../../assets/jake-gyllenhaal.jpg';
+  profileImage: string = '';
 
-  handleFileChange(event: any): void {
+  constructor(
+    private accountService: AccountService,
+    private snackBar: MatSnackBar,
+  ) {
+  }
+
+  ngOnInit(): void {
+    this.getProfileImage();
+  }
+
+  onFileChange(event: any) {
     const fileInput = event.target;
     const file = fileInput.files[0];
 
     if (file) {
-      const reader = new FileReader();
-      reader.onload = (e: any) => {
-        this.profileImage = e.target.result;
-        this.profileChange.emit(this.profile); // Emit the updated profile
-      };
-      reader.readAsDataURL(file);
+      this.accountService.updateProfileImage(file)
+        .subscribe(() => {
+          this.snackBar.open('Profile image updated', 'OK', {duration: 3000})
+          this.getProfileImage();
+          this.profileChange.emit(this.profile);
+        });
     }
+  }
 
-    this.profileChange.emit(this.profile);
+  getProfileImage() {
+    this.accountService.getProfileImage()
+      .subscribe(image => {
+        const imageUrl = URL.createObjectURL(image);
+        this.profileImage = imageUrl;
+      })
   }
 }
 

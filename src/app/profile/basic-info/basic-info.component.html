@@ -2,7 +2,7 @@
   <div class="upload">
     <img [src]="profileImage" class="circular-image">
     <div class="round">
-      <input type="file">
+      <input type="file" (change)="onFileChange($event)">
       <i class="cil-pencil"></i>
     </div>
   </div>
