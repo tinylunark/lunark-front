@@ -42,6 +42,7 @@ export class PropertiesComponent {
   }
 
   getFavoriteProperties(): void {
+    if (this.accountService.getRole() !== 'GUEST') return;
     this.accountService.getFavoriteProperties()
       .subscribe(favorites => {
         this.favoritePropertyIds = favorites.map(favorite => favorite.id);

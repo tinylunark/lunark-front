@@ -3,13 +3,11 @@ import {Property} from "../../shared/models/property.model";
 import {PropertyService} from "../property.service";
 import {ActivatedRoute} from "@angular/router";
 import {environment} from "../../../env/environment";
-import {take} from "rxjs";
 import {AccountService} from "../../account/account.service";
 import {ReservationService} from "../../reservation.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import ReservationRequestDto from "./dtos/reservation-request.dto";
 import {MatSnackBar} from "@angular/material/snack-bar";
-import {MatDatepickerInputEvent} from "@angular/material/datepicker";
 
 @Component({
   selector: 'app-property-detail',
@@ -113,14 +111,10 @@ export class PropertyDetailComponent {
     if (!this.property || !this.property.reviews || this.property.reviews.length <= 0) {
       return;
     }
-
-    let sum = 0;
-    let count = 0;
-    this.property.reviews.forEach(review => {
-      sum += review.rating;
-      count++;
-    });
-
-    this.averageRating = sum / count;
+    this.propertyService.getAverageRating(this.property.id).subscribe(
+      (averageRating: number) => {
+        this.averageRating = averageRating;
+      }
+    );
   }
 }
