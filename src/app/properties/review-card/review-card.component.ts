@@ -1,6 +1,8 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Review } from '../../shared/models/review.model';
 import { AccountService } from '../../account/account.service';
+import { environment } from '../../../env/environment';
+import { ApiPaths } from '../../shared/api/api-paths.enum';
 
 @Component({
   selector: 'app-review-card',
@@ -24,5 +26,9 @@ export class ReviewCardComponent {
 
   onReport(): void {
     this.reported.emit(this.review.id);
+  }
+
+  getProfileImageURL(): string {
+    return `${environment.apiHost}/${ApiPaths.Profile}/${this.review.authorId}/profile-image`;
   }
 }

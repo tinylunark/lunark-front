@@ -1,7 +1,7 @@
 <div class="review-card">
     <div class="review-header">
         <div class="reviewer-and-time">
-            <img src="assets/jake-gyllenhaal.jpg" class="circular-image">
+            <img [src]="getProfileImageURL()" class="circular-image">
             <div class="reviewer-name-and-time">
                 <h3 class="reviewer-name">{{review.author}}</h3>
                 <p class="review-time">{{review.date | date:'longDate'}}</p> 

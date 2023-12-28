@@ -46,7 +46,6 @@ export class PropertyReviewsComponent implements OnInit {
   }
   
   onDelete(reviewId: number): void {
-
     let dialogRef = this.matDialog.open(ConfirmDeleteReviewComponent, {
       width: "35%",
       backdropClass: "backdropBackground"
