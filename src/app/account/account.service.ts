@@ -104,4 +104,14 @@ export class AccountService {
     return this.http.delete(`${environment.apiHost}/${ApiPaths.Profile}/favorites/${propertyId}`);
   }
 
+  getProfileImage(): Observable<Blob> {
+    return this.http.get(`${environment.apiHost}/${ApiPaths.Profile}/profile-image`,
+      {responseType: 'blob'});
+  }
+
+  updateProfileImage(image: File): Observable<any> {
+    const formData = new FormData();
+    formData.append('image', image);
+    return this.http.post(`${environment.apiHost}/${ApiPaths.Profile}/profile-image`, formData);
+  }
 }
