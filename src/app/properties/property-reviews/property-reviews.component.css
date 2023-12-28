@@ -1,0 +1,7 @@
+.review-button-wrapper {
+  display: flex;
+  justify-content: flex-start;
+  padding-bottom: 1em;
+  padding-right: 2em;
+  padding-left: 2em;
+}

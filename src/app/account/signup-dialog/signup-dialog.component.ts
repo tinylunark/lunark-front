@@ -9,7 +9,6 @@ import {
 } from '@angular/forms';
 import {
   MatDialog,
-  MatDialogConfig,
   MatDialogRef,
 } from '@angular/material/dialog';
 import { AccountService } from '../account.service';

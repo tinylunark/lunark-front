@@ -20,6 +20,7 @@ import {MatTableModule} from '@angular/material/table';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSelectModule } from '@angular/material/select';
 import {MatStepperModule} from '@angular/material/stepper';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -48,8 +49,8 @@ import {MatStepperModule} from '@angular/material/stepper';
     MatTableModule,
     MatSnackBarModule,
     MatSelectModule,
-    ReactiveFormsModule,
-    MatStepperModule
+    MatStepperModule,
+    NgbModule
   ],
   exports: [
     MatDialogModule,
@@ -76,8 +77,8 @@ import {MatStepperModule} from '@angular/material/stepper';
     MatTableModule,
     MatSnackBarModule,
     MatSelectModule,
-    ReactiveFormsModule,
-    MatStepperModule
+    MatStepperModule,
+    NgbModule
   ]
 })
 

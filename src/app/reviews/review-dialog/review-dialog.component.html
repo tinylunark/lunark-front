@@ -1,0 +1,15 @@
+<h1 mat-dialog-title>Write review</h1>
+<div mat-dialog-content>
+  <form [formGroup]="reviewForm">
+      <p>Rate your stay</p>
+      <ngb-rating [max]="5" [(rate)]="rating" [readonly]="false" formControlName="rating"></ngb-rating>
+      <mat-form-field  id="comment-field" subscriptSizing="dynamic" class="big-field" appearance="outline">
+        <mat-label>Comment</mat-label>
+        <textarea cdkTextareaAutosize formControlName="description" matInput type="text" name="description"></textarea>
+      </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-flat-button color="primary" id="submit-review" (click)="submitReview()">Submit</button>
+</div>
+

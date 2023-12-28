@@ -52,5 +52,5 @@
     [latitude]="property.latitude"
     [longitude]="property.longitude"
   ></app-location>
-  <app-review-card *ngFor="let review of property?.reviews" [review]="review"></app-review-card>
+  <app-property-reviews [property]="property" *ngIf="property"></app-property-reviews>
 </div>
