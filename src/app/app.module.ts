@@ -1,4 +1,4 @@
-import {importProvidersFrom, NgModule} from '@angular/core';
+import {Host, importProvidersFrom, NgModule} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -17,6 +17,7 @@ import { JWTInterceptor } from './http-interceptors/jwt.interceptor';
 import { SharedModule } from './shared/shared.module';
 import { UnauthorizedInterceptor } from './http-interceptors/unauthorized.interceptor';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { HostModule } from './host/host.module';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     BrowserAnimationsModule,
     CoreModule,
     PropertiesModule,
+    HostModule,
     AppRoutingModule,
     FlexLayoutModule,
     ReactiveFormsModule,

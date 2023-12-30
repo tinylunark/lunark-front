@@ -11,6 +11,7 @@ const routes: Routes = [
   { path: 'approve-changes', loadChildren: () => import('./properties/properties.module').then(m => m.PropertiesModule) },
   { path: 'my-properties', loadChildren: () => import('./properties/properties.module').then(m => m.PropertiesModule) },
   { path: 'verify/:id', loadChildren: () => import('./account/account.module').then(m => m.AccountModule) },
+  { path: 'host/:id', loadChildren: () => import('./host/host.module').then(m => m.HostModule) },
   { path: '**', redirectTo: '404' },
   { path: '404', loadChildren: () => import('./core/core.module').then(m => m.CoreModule) },
 ];
