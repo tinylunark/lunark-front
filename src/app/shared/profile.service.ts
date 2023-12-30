@@ -41,6 +41,12 @@ export class ProfileService {
     });
   }
 
+  getProfileById(profileId: number): Observable<Profile> {
+    const headers = this.createAuthorizationHeaders();
+    const url = `${this.apiUrl}/${profileId}`;
+    return this.http.get<Profile>(url, { headers });
+  }
+
   private createProfileUrl(): string {
     const profileId = this.extractProfileIdFromToken();
     return `${this.apiUrl}/${profileId}`;
