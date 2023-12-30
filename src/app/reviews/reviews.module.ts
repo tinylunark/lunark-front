@@ -3,13 +3,15 @@ import { CommonModule } from '@angular/common';
 import { MaterialModule } from '../../infrastructure/material/material.module';
 import { ReviewDialogComponent } from './review-dialog/review-dialog.component';
 import { ConfirmDeleteReviewComponent } from './confirm-delete-review/confirm-delete-review.component';
+import { ReviewCardComponent } from './review-card/review-card.component';
 
 
 
 @NgModule({
   declarations: [
     ReviewDialogComponent,
-    ConfirmDeleteReviewComponent
+    ConfirmDeleteReviewComponent,
+    ReviewCardComponent
   ],
   imports: [
     MaterialModule,
@@ -17,7 +19,8 @@ import { ConfirmDeleteReviewComponent } from './confirm-delete-review/confirm-de
   ],
   exports: [
     ReviewDialogComponent,
-    ConfirmDeleteReviewComponent
+    ConfirmDeleteReviewComponent,
+    ReviewCardComponent
   ]
 })
 export class ReviewsModule { }
