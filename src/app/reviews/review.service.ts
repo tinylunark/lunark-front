@@ -25,4 +25,8 @@ export class ReviewService {
   delete(reviewId: number): Observable<void> {
     return this.http.delete<void>(`${environment.apiHost}/${ApiPaths.Reviews}/${reviewId}`);
   }
+
+  getReviewsForHost(hostId: number): Observable<Review[]> {
+    return this.http.get<Review[]>(`${environment.apiHost}/${ApiPaths.Reviews}/host/${hostId}`);
+  }
 }
