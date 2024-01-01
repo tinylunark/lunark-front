@@ -1,6 +1,7 @@
 import { PropertyService } from "../../properties/property.service";
 import { ReservationService } from "../reservation.service";
 import { ProfileService } from "../../shared/profile.service";
+import { SharedService } from "../../shared/shared.service";
 import { Property } from "../../shared/models/property.model";
 import { Reservation } from "../../shared/models/reservation.model";
 import { Profile } from "../../shared/models/profile.model";
@@ -23,7 +24,9 @@ export class HostIncomingReservationsComponent {
   constructor(
     private reservationService: ReservationService,
     private profileService: ProfileService,
-    private propertyService: PropertyService) {
+    private propertyService: PropertyService,
+    private sharedService: SharedService,
+  ) {
   }
 
  ngOnInit(): void {
@@ -92,6 +95,7 @@ export class HostIncomingReservationsComponent {
     .subscribe({
         next: (_) => {
           this.getReservations();
+          this.sharedService.openSnack('Reservation accepted.');
         }
       })
   }
@@ -101,6 +105,7 @@ export class HostIncomingReservationsComponent {
     .subscribe({
         next: (_) => {
           this.getReservations();
+          this.sharedService.openSnack('Reservation declined.');
         }
       })
   }
