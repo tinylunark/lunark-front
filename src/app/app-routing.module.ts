@@ -11,6 +11,7 @@ const routes: Routes = [
   { path: 'approve-changes', loadChildren: () => import('./properties/properties.module').then(m => m.PropertiesModule) },
   { path: 'my-properties', loadChildren: () => import('./properties/properties.module').then(m => m.PropertiesModule) },
   { path: 'incoming-reservations', loadChildren: () => import('./reservations/reservations.module').then(m => m.ReservationsModule) },
+  { path: 'accepted-reservations', loadChildren: () => import('./reservations/reservations.module').then(m => m.ReservationsModule) },
   { path: 'verify/:id', loadChildren: () => import('./account/account.module').then(m => m.AccountModule) },
   { path: '**', redirectTo: '404' },
   { path: '404', loadChildren: () => import('./core/core.module').then(m => m.CoreModule) },
