@@ -1,6 +1,6 @@
 <app-header text="Host Reviews For John Doe"></app-header>
 <app-container>
     <div class="reviews">
-        <app-review-card *ngFor="let review of reviews" [review]="review"></app-review-card>
+        <app-reviews [reviews]="reviews" [id]="host?.id || 0" *ngIf="reviews.length > 0"></app-reviews>
     </div>
 </app-container>

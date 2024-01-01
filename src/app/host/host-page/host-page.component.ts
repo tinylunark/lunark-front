@@ -26,6 +26,7 @@ export class HostPageComponent implements OnInit {
 
       this.reviewService.getReviews(+id).subscribe(reviews => {
         this.reviews = reviews;
+        console.log(reviews);
       });
 
     });
