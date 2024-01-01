@@ -1,3 +1,4 @@
+import { Component } from '@angular/core';
 import { PropertyService } from "../../properties/property.service";
 import { ReservationService } from "../reservation.service";
 import { ProfileService } from "../../shared/profile.service";
@@ -6,7 +7,7 @@ import { Property } from "../../shared/models/property.model";
 import { Reservation } from "../../shared/models/reservation.model";
 import { Profile } from "../../shared/models/profile.model";
 import { environment } from "../../../env/environment";
-import { forkJoin } from 'rxjs'; import { Component } from '@angular/core';
+import { forkJoin } from 'rxjs';
 import { switchMap, map } from 'rxjs/operators';
 
 @Component({
