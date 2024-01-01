@@ -20,7 +20,7 @@ import { PropertyCreatedDialogComponent } from './property-created-dialog/proper
 import { PropertyUpdatedDialogComponent } from './property-updated-dialog/property-updated-dialog.component';
 import { FavoriteActionComponent } from './favorite-action/favorite-action.component';
 import { FavoritesComponent } from './favorites/favorites.component';
-import { PropertyReviewsComponent } from './property-reviews/property-reviews.component';
+import { ReviewsComponent } from '../reviews/reviews/reviews.component';
 import { ReviewsModule } from '../reviews/reviews.module';
 
 
@@ -40,7 +40,6 @@ import { ReviewsModule } from '../reviews/reviews.module';
     PropertyUpdatedDialogComponent,
     FavoriteActionComponent,
     FavoritesComponent,
-    PropertyReviewsComponent
   ],
   imports: [
     SharedModule,
