@@ -1,0 +1,6 @@
+<app-header text="Host Reviews For John Doe"></app-header>
+<app-container>
+    <div class="reviews">
+        <app-review-card *ngFor="let review of reviews" [review]="review"></app-review-card>
+    </div>
+</app-container>
