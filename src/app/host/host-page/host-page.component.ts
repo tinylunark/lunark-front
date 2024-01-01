@@ -12,19 +12,20 @@ import { HostReviewService } from '../../reviews/host-review.service';
   providers: [{ provide: ReviewService, useClass: HostReviewService }]
 })
 export class HostPageComponent implements OnInit {
-  reviews: Review[] = [];
+  reviews: Review[] | null = null;
   host: Account | null = null;
+  id: number | null = null;
   averageRating?: number;
   constructor(private route: ActivatedRoute, private reviewService: ReviewService) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
-      let id = params.get('id');
-      if (id === null) {
+      this.id = Number(params.get('id'));
+      if (this.id === null) {
         return;
       }
 
-      this.reviewService.getReviews(+id).subscribe(reviews => {
+      this.reviewService.getReviews(+this.id).subscribe(reviews => {
         this.reviews = reviews;
         this.calculateAverageRating();
       });
@@ -32,7 +33,7 @@ export class HostPageComponent implements OnInit {
   }
 
   calculateAverageRating() {
-    if (this.reviews.length <= 0) {
+    if (!this.reviews || this.reviews.length <= 0) {
       return;
     }
 
