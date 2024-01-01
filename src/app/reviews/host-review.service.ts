@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { ReviewService } from './review.service';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { Review } from '../shared/models/review.model';
 import { HttpClient } from '@angular/common/http';
 import { ApiPaths } from '../shared/api/api-paths.enum';
 import { environment } from '../../env/environment';
+import { HostReviewEligibility } from './host-review-eligiblity';
 
 @Injectable()
 export class HostReviewService extends ReviewService {
@@ -19,6 +20,7 @@ export class HostReviewService extends ReviewService {
     return this.http.get<Review[]>(`${environment.apiHost}/${ApiPaths.Reviews}/host/${hostId}`);
   }
   override eligibleToReview(hostId: number): Observable<boolean> {
-    throw new Error('Method not implemented.');
+    return this.http.get<HostReviewEligibility>(`${environment.apiHost}/${ApiPaths.Reviews}/host-review-eligibility/${hostId}`)
+    .pipe(map((eligibility: HostReviewEligibility) => eligibility.eligible));
   }
 }
