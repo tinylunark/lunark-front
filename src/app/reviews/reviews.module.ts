@@ -4,6 +4,7 @@ import { MaterialModule } from '../../infrastructure/material/material.module';
 import { ReviewDialogComponent } from './review-dialog/review-dialog.component';
 import { ConfirmDeleteReviewComponent } from './confirm-delete-review/confirm-delete-review.component';
 import { ReviewCardComponent } from './review-card/review-card.component';
+import { ReviewsComponent } from './reviews/reviews.component';
 
 
 
@@ -11,7 +12,8 @@ import { ReviewCardComponent } from './review-card/review-card.component';
   declarations: [
     ReviewDialogComponent,
     ConfirmDeleteReviewComponent,
-    ReviewCardComponent
+    ReviewCardComponent,
+    ReviewsComponent
   ],
   imports: [
     MaterialModule,
@@ -20,7 +22,8 @@ import { ReviewCardComponent } from './review-card/review-card.component';
   exports: [
     ReviewDialogComponent,
     ConfirmDeleteReviewComponent,
-    ReviewCardComponent
+    ReviewCardComponent,
+    ReviewsComponent
   ]
 })
 export class ReviewsModule { }

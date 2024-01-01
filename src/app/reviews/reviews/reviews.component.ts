@@ -1,17 +1,17 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { ReviewService } from '../../reviews/review.service';
+import { ReviewService } from '../review.service';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { ReviewDialogComponent } from '../../reviews/review-dialog/review-dialog.component';
+import { ReviewDialogComponent } from '../review-dialog/review-dialog.component';
 import { Review } from '../../shared/models/review.model';
 import { SharedService } from '../../shared/shared.service';
-import { ConfirmDeleteReviewComponent } from '../../reviews/confirm-delete-review/confirm-delete-review.component';
+import { ConfirmDeleteReviewComponent } from '../confirm-delete-review/confirm-delete-review.component';
 
 @Component({
-  selector: 'app-property-reviews',
-  templateUrl: './property-reviews.component.html',
-  styleUrl: './property-reviews.component.css'
+  selector: 'app-reviews',
+  templateUrl: './reviews.component.html',
+  styleUrl: './reviews.component.css'
 })
-export class PropertyReviewsComponent implements OnInit {
+export class ReviewsComponent implements OnInit {
   @Input() property: any;
   @Output() reviewDeleted: EventEmitter<void> = new EventEmitter<void>();
   eligibleToReview = false;
