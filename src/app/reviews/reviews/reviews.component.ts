@@ -6,13 +6,15 @@ import { Review } from '../../shared/models/review.model';
 import { SharedService } from '../../shared/shared.service';
 import { ConfirmDeleteReviewComponent } from '../confirm-delete-review/confirm-delete-review.component';
 
+
 @Component({
   selector: 'app-reviews',
   templateUrl: './reviews.component.html',
   styleUrl: './reviews.component.css'
 })
 export class ReviewsComponent implements OnInit {
-  @Input() property: any;
+  @Input() reviews: Review[] = [];
+  @Input() id: number;
   @Output() reviewDeleted: EventEmitter<void> = new EventEmitter<void>();
   eligibleToReview = false;
 
@@ -20,7 +22,7 @@ export class ReviewsComponent implements OnInit {
   } 
 
   ngOnInit(): void {
-    this.reviewService.eligibleToReview(this.property.id)
+    this.reviewService.eligibleToReview(this.id)
       .subscribe(eligible => {
         this.eligibleToReview = eligible;
       });
@@ -35,10 +37,10 @@ export class ReviewsComponent implements OnInit {
   }
 
   private uploadReview(review: Review) {
-    this.reviewService.add(review, this.property.id).subscribe({
+    this.reviewService.add(review, this.id).subscribe({
       next: (review: Review) => {
         this.eligibleToReview = false;
-        this.property.reviews.push(review);
+        this.reviews.push(review);
         this.sharedService.openSnack("Review added successfully!");
       },
       error: (err: any) => console.log(err)
@@ -58,7 +60,7 @@ export class ReviewsComponent implements OnInit {
   private delete(reviewId: number): void {
     this.reviewService.delete(reviewId).subscribe({
       next: () => {
-        this.property.reviews = this.property.reviews.filter((review: Review) => review.id !== reviewId);
+        this.reviews.splice(0, this.reviews.length,...this.reviews.filter((review: Review) => review.id !== reviewId))
         this.sharedService.openSnack("Review deleted successfully!");
         this.reviewDeleted.emit();
       },
