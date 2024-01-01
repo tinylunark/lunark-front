@@ -1,32 +1,21 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ApiPaths } from '../shared/api/api-paths.enum';
-import { PropertyReviewEligibility } from './property-review-eligibility';
-import { Observable, map } from 'rxjs';
+import { Observable} from 'rxjs';
 import { environment } from '../../env/environment';
 import { Review } from '../shared/models/review.model';
 
-@Injectable({
-  providedIn: 'root'
-})
-export class ReviewService {
+export abstract class ReviewService {
 
-  constructor(private http: HttpClient) { }
+  constructor(protected http: HttpClient) { }
 
-  userIsEligibleToReviewProperty(propertyId: number): Observable<boolean> {
-      return this.http.get<PropertyReviewEligibility>(`${environment.apiHost}/${ApiPaths.Reviews}/property-review-eligibility/${propertyId}`)
-      .pipe(map((eligibility: PropertyReviewEligibility) => eligibility.eligible));
-  }
+  abstract add(review: Review, reviewableEntityId: number): Observable<Review>;
 
-  addPropertyReview(review: Review, propertyId: number): Observable<Review> {
-    return this.http.post<Review>(`${environment.apiHost}/${ApiPaths.Reviews}/property/${propertyId}`, review);
-  }
+  abstract getReviews(reviewableEntityId: number): Observable<Review[]>;
+
+  abstract eligibleToReview(reviewableEntityId: number): Observable<boolean>;
 
   delete(reviewId: number): Observable<void> {
     return this.http.delete<void>(`${environment.apiHost}/${ApiPaths.Reviews}/${reviewId}`);
   }
 
-  getReviewsForHost(hostId: number): Observable<Review[]> {
-    return this.http.get<Review[]>(`${environment.apiHost}/${ApiPaths.Reviews}/host/${hostId}`);
-  }
 }
