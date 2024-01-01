@@ -3,7 +3,6 @@ import { ActivatedRoute } from '@angular/router';
 import { Review } from '../../shared/models/review.model';
 import { ReviewService } from '../../reviews/review.service';
 import { Account } from '../../account/model/account.model';
-import { AccountService } from '../../account/account.service';
 import { HostReviewService } from '../../reviews/host-review.service';
 
 @Component({
@@ -15,6 +14,7 @@ import { HostReviewService } from '../../reviews/host-review.service';
 export class HostPageComponent implements OnInit {
   reviews: Review[] = [];
   host: Account | null = null;
+  averageRating?: number;
   constructor(private route: ActivatedRoute, private reviewService: ReviewService) { }
 
   ngOnInit(): void {
@@ -26,10 +26,18 @@ export class HostPageComponent implements OnInit {
 
       this.reviewService.getReviews(+id).subscribe(reviews => {
         this.reviews = reviews;
-        console.log(reviews);
+        this.calculateAverageRating();
       });
-
     });
+  }
+
+  calculateAverageRating() {
+    if (this.reviews.length <= 0) {
+      return;
+    }
+
+    //TODO: Get average rating for host from server (User story 5.3)
+    this.averageRating = this.reviews.map(review => review.rating).reduce((a, b) => a + b) / this.reviews.length;
   }
 
 }

@@ -1,6 +1,7 @@
 <app-header text="Host Reviews For John Doe"></app-header>
 <app-container>
+    <p *ngIf="averageRating != null">Average Rating: {{ averageRating }}</p>
     <div class="reviews">
-        <app-reviews [reviews]="reviews" [id]="host?.id || 0" *ngIf="reviews.length > 0"></app-reviews>
+        <app-reviews [reviews]="reviews" [id]="host?.id || 0" *ngIf="reviews.length > 0" (reviewDeleted)="calculateAverageRating()"></app-reviews>
     </div>
 </app-container>
