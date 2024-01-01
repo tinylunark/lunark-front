@@ -20,7 +20,7 @@ export class PropertyReviewsComponent implements OnInit {
   } 
 
   ngOnInit(): void {
-    this.reviewService.userIsEligibleToReviewProperty(this.property.id)
+    this.reviewService.eligibleToReview(this.property.id)
       .subscribe(eligible => {
         this.eligibleToReview = eligible;
       });
@@ -35,7 +35,7 @@ export class PropertyReviewsComponent implements OnInit {
   }
 
   private uploadReview(review: Review) {
-    this.reviewService.addPropertyReview(review, this.property.id).subscribe({
+    this.reviewService.add(review, this.property.id).subscribe({
       next: (review: Review) => {
         this.eligibleToReview = false;
         this.property.reviews.push(review);

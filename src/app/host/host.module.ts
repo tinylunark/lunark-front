@@ -5,6 +5,8 @@ import { HostRoutingModule } from './host-routing.module';
 import { MaterialModule } from '../../infrastructure/material/material.module';
 import { CoreModule } from '../core/core.module';
 import { CommonModule } from '@angular/common';
+import { HostReviewService } from '../reviews/host-review.service';
+import { ReviewService } from '../reviews/review.service';
 
 
 
@@ -19,5 +21,8 @@ import { CommonModule } from '@angular/common';
     ReviewsModule,
     HostRoutingModule
   ],
+  providers: [
+    { provide: ReviewService, useClass: HostReviewService }
+  ]
 })
 export class HostModule { }

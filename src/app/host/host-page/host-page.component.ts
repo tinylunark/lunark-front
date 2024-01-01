@@ -4,11 +4,13 @@ import { Review } from '../../shared/models/review.model';
 import { ReviewService } from '../../reviews/review.service';
 import { Account } from '../../account/model/account.model';
 import { AccountService } from '../../account/account.service';
+import { HostReviewService } from '../../reviews/host-review.service';
 
 @Component({
   selector: 'app-host-page',
   templateUrl: './host-page.component.html',
-  styleUrl: './host-page.component.css'
+  styleUrl: './host-page.component.css',
+  providers: [{ provide: ReviewService, useClass: HostReviewService }]
 })
 export class HostPageComponent implements OnInit {
   reviews: Review[] = [];
@@ -22,7 +24,7 @@ export class HostPageComponent implements OnInit {
         return;
       }
 
-      this.reviewService.getReviewsForHost(+id).subscribe(reviews => {
+      this.reviewService.getReviews(+id).subscribe(reviews => {
         this.reviews = reviews;
       });
 
