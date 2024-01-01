@@ -9,6 +9,7 @@ export enum ApiPaths {
   LogOut = 'auth/logout',
   Reservations = 'reservations',
   IncomingReservations = 'incoming-reservations',
+  AcceptedReservations = 'accepted-reservations',
   Verification = 'accounts/verify',
   Reviews = 'reviews',
 }
