@@ -14,7 +14,7 @@
     <a [ngClass]="{'active': router.url == '/notifications' }" routerLink="notifications" href="#"><i class="cil-bell"></i></a>
     <a [ngClass]="{'active': router.url == '/favorites' }" routerLink="favorites" href="#"><i class="cil-heart"></i></a>
     <a [ngClass]="{'active': router.url == '/profile' }" routerLink="profile"><i class="at-account"></i></a>
-    <a [ngClass]="{'active': router.url == '/reservations' }" routerLink="reservations"><i class="cil-check"></i></a>
+    <a [ngClass]="{'active': router.url == '/accepted-reservations' }" routerLink="accepted-reservations"><i class="cil-check"></i></a>
   </div>
 
   <div *ngIf="role == 'HOST'">
