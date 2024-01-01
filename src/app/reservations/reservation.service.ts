@@ -55,12 +55,22 @@ export class ReservationService {
     return this.http.get<Reservation[]>(url, { params });
   }
 
+  getAcceptedReservations(guestId: any): Observable<Reservation[]> {
+    let url = `${environment.apiHost}/${ApiPaths.Reservations}/${ApiPaths.AcceptedReservations}`;
+    const params = new HttpParams().set('guestId', guestId);
+    return this.http.get<Reservation[]>(url, { params });
+  }
+
   acceptReservation(reservation: Reservation): Observable<Reservation> {
     return this.http.post<Reservation>(`${environment.apiHost}/${ApiPaths.Reservations}/accept/${reservation.id}`, {});
   }
 
   declineReservation(reservation: Reservation): Observable<Reservation> {
     return this.http.post<Reservation>(`${environment.apiHost}/${ApiPaths.Reservations}/reject/${reservation.id}`, {});
+  }
+
+  cancelReservation(reservation: Reservation): Observable<Reservation> {
+    return this.http.post<Reservation>(`${environment.apiHost}/${ApiPaths.Reservations}/cancel/${reservation.id}`, {});
   }
 
   uploadImages(propertyId: number, images: File[]): Observable<Object[]> {
