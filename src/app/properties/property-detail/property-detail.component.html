@@ -52,5 +52,5 @@
     [latitude]="property.latitude"
     [longitude]="property.longitude"
   ></app-location>
-  <app-reviews [property]="property" *ngIf="property" (reviewDeleted)="calculateAverageRating()"></app-reviews>
+  <app-reviews [reviews]="property.reviews || []" *ngIf="property" (reviewDeleted)="calculateAverageRating()"></app-reviews>
 </div>
