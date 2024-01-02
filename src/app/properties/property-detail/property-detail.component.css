@@ -50,3 +50,21 @@ p {
 .rating {
   font-size: 1.5rem;
 }
+
+app-profile-image {
+  width: 3em;
+  height: 3em;
+  display: inline-block;
+}
+
+.host {
+  margin-bottom: 1em;
+  display: flex;
+  align-items: center;
+}
+
+.host-name {
+  margin-left: 0.5em;
+  font-size: 1.5em;
+  font-weight: 500;
+}

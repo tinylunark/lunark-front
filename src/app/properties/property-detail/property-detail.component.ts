@@ -10,6 +10,7 @@ import ReservationRequestDto from "./dtos/reservation-request.dto";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import { ReviewService } from '../../reviews/review.service';
 import { PropertyReviewService } from '../../reviews/property-review.service';
+import { ApiPaths } from '../../shared/api/api-paths.enum';
 
 @Component({
   selector: 'app-property-detail',
@@ -27,7 +28,6 @@ export class PropertyDetailComponent {
     numberOfGuests: new FormControl('', [Validators.required]),
   })
   averageRating?: number;
-
   entryISODates?: string[];
 
   price = 0;
