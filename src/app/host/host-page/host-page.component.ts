@@ -4,6 +4,7 @@ import { Review } from '../../shared/models/review.model';
 import { ReviewService } from '../../reviews/review.service';
 import { Account } from '../../account/model/account.model';
 import { HostReviewService } from '../../reviews/host-review.service';
+import { AccountService } from '../../account/account.service';
 
 @Component({
   selector: 'app-host-page',
@@ -13,10 +14,10 @@ import { HostReviewService } from '../../reviews/host-review.service';
 })
 export class HostPageComponent implements OnInit {
   reviews: Review[] | null = null;
-  host: Account | null = null;
   id: number | null = null;
   averageRating?: number;
-  constructor(private route: ActivatedRoute, private reviewService: ReviewService) { }
+  header: string = "";
+  constructor(private route: ActivatedRoute, private reviewService: ReviewService, private accountService: AccountService) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
@@ -28,6 +29,10 @@ export class HostPageComponent implements OnInit {
       this.reviewService.getReviews(+this.id).subscribe(reviews => {
         this.reviews = reviews;
         this.calculateAverageRating();
+      });
+
+      this.accountService.getAccount(this.id).subscribe(host => {
+        this.header = `Host reviews for ${host.name} ${host.surname}`;
       });
     });
   }
