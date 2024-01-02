@@ -39,6 +39,7 @@ export class HostPageComponent implements OnInit {
 
   calculateAverageRating() {
     if (!this.reviews || this.reviews.length <= 0) {
+      this.averageRating = undefined;
       return;
     }
 
