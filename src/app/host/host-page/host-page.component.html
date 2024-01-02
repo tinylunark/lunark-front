@@ -1,4 +1,4 @@
-<app-header text="Host Reviews For John Doe"></app-header>
+<app-header [text]="header"></app-header>
 <app-container>
     <p *ngIf="averageRating != null">Average Rating: {{ averageRating }}</p>
     <div class="reviews">
