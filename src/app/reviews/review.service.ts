@@ -18,6 +18,10 @@ export class ReviewService {
       .pipe(map((eligibility: PropertyReviewEligibility) => eligibility.eligible));
   }
 
+  getUnapprovedReviews() : Observable<Review[]> {
+    return this.http.get<Review[]>(`${environment.apiHost}/${ApiPaths.Reviews}/${ApiPaths.UnapprovedReviews}`);
+  }
+
   addPropertyReview(review: Review, propertyId: number): Observable<Review> {
     return this.http.post<Review>(`${environment.apiHost}/${ApiPaths.Reviews}/property/${propertyId}`, review);
   }
