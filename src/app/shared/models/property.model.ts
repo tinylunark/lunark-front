@@ -1,3 +1,4 @@
+import { Account } from "../../account/model/account.model";
 import Amenity from "./amenity.model";
 import Location from "./location.model";
 import PropertyAvailabilityEntry from "./property-availability-entry.model";
@@ -27,6 +28,7 @@ export interface Property {
   maxGuests: number;
   hostId: number;
   reviews?: Review[];
+  host?: Account;
 }
 
 export enum PropertyType {

@@ -18,6 +18,12 @@
         </div>
       </div>
       <h3>{{ property?.address?.city }}, {{ property?.address?.country }}</h3>
+      <div class="host" *ngIf="property && property.host && property.host.id">
+        <a [routerLink]="'/host/' + property.host.id">
+          <app-profile-image [id]="property.host.id"></app-profile-image>
+        </a>
+        <span class="host-name">Hosted by {{property.host.name}} {{property.host.surname}}</span>
+      </div>
       <p>Minimum guests: {{ property?.minGuests }}</p>
       <p>Maximum guests: {{ property?.maxGuests }}</p>
       <p>{{ property?.description }}</p>
