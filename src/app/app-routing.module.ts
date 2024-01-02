@@ -9,6 +9,7 @@ const routes: Routes = [
   { path: 'properties', loadChildren: () => import('./properties/properties.module').then(m => m.PropertiesModule) },
   { path: 'search', loadChildren: () => import('./properties/properties.module').then(m => m.PropertiesModule) },
   { path: 'approve-changes', loadChildren: () => import('./properties/properties.module').then(m => m.PropertiesModule) },
+  { path: 'unapproved-reviews', loadChildren: () => import('./reviews/reviews.module').then(m => m.ReviewsModule) },
   { path: 'my-properties', loadChildren: () => import('./properties/properties.module').then(m => m.PropertiesModule) },
   { path: 'verify/:id', loadChildren: () => import('./account/account.module').then(m => m.AccountModule) },
   { path: '**', redirectTo: '404' },
