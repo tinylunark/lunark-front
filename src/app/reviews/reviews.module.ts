@@ -7,6 +7,9 @@ import { ReviewDialogComponent } from './review-dialog/review-dialog.component';
 import { ConfirmDeleteReviewComponent } from './confirm-delete-review/confirm-delete-review.component';
 import { ApproveCommentsGradesComponent } from './approve-comments-grades/approve-comments-grades.component';
 import { ReportedCommentsGradesComponent} from './reported-comments-grades/reported-comments-grades.component';
+import { ReviewCardComponent } from './review-card/review-card.component';
+import { ReviewsComponent } from './reviews/reviews.component';
+
 
 
 @NgModule({
@@ -15,6 +18,8 @@ import { ReportedCommentsGradesComponent} from './reported-comments-grades/repor
     ConfirmDeleteReviewComponent,
     ReportedCommentsGradesComponent,
     ApproveCommentsGradesComponent,
+    ReviewCardComponent,
+    ReviewsComponent
   ],
   imports: [
     MaterialModule,
@@ -27,6 +32,8 @@ import { ReportedCommentsGradesComponent} from './reported-comments-grades/repor
     ConfirmDeleteReviewComponent,
     ReportedCommentsGradesComponent,
     ApproveCommentsGradesComponent,
+    ReviewCardComponent,
+    ReviewsComponent
   ]
 })
 export class ReviewsModule { }

@@ -1,0 +1,7 @@
+<app-header [text]="header"></app-header>
+<app-container>
+    <p *ngIf="averageRating != null">Average Rating: {{ averageRating }}</p>
+    <div class="reviews">
+        <app-reviews [reviews]="reviews" [id]="id || 0" *ngIf="reviews != null" (reviewDeleted)="calculateAverageRating()"></app-reviews>
+    </div>
+</app-container>

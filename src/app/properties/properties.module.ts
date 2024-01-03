@@ -20,9 +20,9 @@ import { PropertyCreatedDialogComponent } from './property-created-dialog/proper
 import { PropertyUpdatedDialogComponent } from './property-updated-dialog/property-updated-dialog.component';
 import { FavoriteActionComponent } from './favorite-action/favorite-action.component';
 import { FavoritesComponent } from './favorites/favorites.component';
-import { ReviewCardComponent } from './review-card/review-card.component';
-import { PropertyReviewsComponent } from './property-reviews/property-reviews.component';
+import { ReviewsComponent } from '../reviews/reviews/reviews.component';
 import { ReviewsModule } from '../reviews/reviews.module';
+import { AccountModule } from '../account/account.module';
 
 
 @NgModule({
@@ -41,8 +41,6 @@ import { ReviewsModule } from '../reviews/reviews.module';
     PropertyUpdatedDialogComponent,
     FavoriteActionComponent,
     FavoritesComponent,
-    ReviewCardComponent,
-    PropertyReviewsComponent
   ],
   imports: [
     SharedModule,
@@ -52,7 +50,8 @@ import { ReviewsModule } from '../reviews/reviews.module';
     PropertyManagementModule,
     CoreModule,
     AsyncPipe,
-    ReviewsModule
+    ReviewsModule,
+    AccountModule
   ],
   exports: [
     SearchComponent,
