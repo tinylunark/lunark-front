@@ -26,6 +26,16 @@ export class ReviewService {
     return this.http.post<Review>(`${environment.apiHost}/${ApiPaths.Reviews}/property/${propertyId}`, review);
   }
 
+
+  approveReview(review: Review): Observable<Review> {
+    return this.http.post<Review>(`${environment.apiHost}/${ApiPaths.Reviews}/${review.id}/${ApiPaths.ApproveReview}`, {});
+  }
+
+  deleteReview(review: Review): Observable<Review> {
+    return this.http.delete<Review>(`${environment.apiHost}/${ApiPaths.Reviews}/${review.id}`, {});
+  }
+
+
   delete(reviewId: number): Observable<void> {
     return this.http.delete<void>(`${environment.apiHost}/${ApiPaths.Reviews}/${reviewId}`);
   }
