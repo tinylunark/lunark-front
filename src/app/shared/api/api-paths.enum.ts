@@ -11,4 +11,5 @@ export enum ApiPaths {
   Reservations = 'reservations',
   Verification = 'accounts/verify',
   Reviews = 'reviews',
+  ApproveReview = 'approve',
 }
