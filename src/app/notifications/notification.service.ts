@@ -48,6 +48,8 @@ export class NotificationService {
     if (this.isLoaded) {
       this.stompClient.disconnect();
       this.isLoaded = false;
+      this.receivedUnreadNotificationCount = false;
+      this.unreadNotificationCount$.next(0);
     }
   }
 
@@ -56,7 +58,6 @@ export class NotificationService {
       let notificationCount: number = JSON.parse(message.body).unreadNotificationCount;
       this.unreadNotificationCount$.next(notificationCount);
       this.receivedUnreadNotificationCount = true;
-      console.log(notificationCount);
     }
     else if (message.body) {
       let messageResult: Notification = JSON.parse(message.body);
