@@ -114,4 +114,8 @@ export class AccountService {
     formData.append('image', image);
     return this.http.post(`${environment.apiHost}/${ApiPaths.Profile}/profile-image`, formData);
   }
+
+  getAccount(id: number): Observable<Account> {
+    return this.http.get<Account>(`${environment.apiHost}/${ApiPaths.Profile}/${id}`);
+  }
 }

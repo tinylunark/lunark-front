@@ -8,11 +8,15 @@ import {ReservationService} from "../../reservation.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import ReservationRequestDto from "./dtos/reservation-request.dto";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import { ReviewService } from '../../reviews/review.service';
+import { PropertyReviewService } from '../../reviews/property-review.service';
+import { ApiPaths } from '../../shared/api/api-paths.enum';
 
 @Component({
   selector: 'app-property-detail',
   templateUrl: './property-detail.component.html',
-  styleUrl: './property-detail.component.css'
+  styleUrl: './property-detail.component.css',
+  providers: [{ provide: ReviewService, useClass: PropertyReviewService }]
 })
 export class PropertyDetailComponent {
   property?: Property;
@@ -24,7 +28,6 @@ export class PropertyDetailComponent {
     numberOfGuests: new FormControl('', [Validators.required]),
   })
   averageRating?: number;
-
   entryISODates?: string[];
 
   price = 0;
