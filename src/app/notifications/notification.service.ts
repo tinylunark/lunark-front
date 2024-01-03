@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import * as Stomp from 'stompjs';
 import SockJS from 'sockjs-client';
 import { environment } from '../../env/environment';
+import { Notification } from '../shared/models/notification.model';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +14,10 @@ export class NotificationService {
   private stompClient: any;
 
   isLoaded: boolean = false;
+  receivedUnreadNotificationCount: boolean = false;
+  notifications: Notification[] = [];
+  unreadNotificationCount$: BehaviorSubject<number> = new BehaviorSubject<number>(0);
+  unreadNotificationCountState = this.unreadNotificationCount$.asObservable();
 
   constructor() { }
 
@@ -45,9 +51,16 @@ export class NotificationService {
     }
   }
 
-  // Funkcija koja se poziva kada server posalje poruku na topic na koji se klijent pretplatio
   handleResult(message: { body: string; }) {
-    console.log("Message received:");
-    console.log(message);
+    if (!this.receivedUnreadNotificationCount && message.body) {
+      let notificationCount: number = JSON.parse(message.body).unreadNotificationCount;
+      this.unreadNotificationCount$.next(notificationCount);
+      this.receivedUnreadNotificationCount = true;
+      console.log(notificationCount);
+    }
+    else if (message.body) {
+      let messageResult: Notification = JSON.parse(message.body);
+      console.log(messageResult);
+    }
   }
 }
