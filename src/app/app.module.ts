@@ -7,6 +7,7 @@ import { LandingModule } from './landing/landing.module';
 import { ProfileModule } from './profile/profile.module';
 import { PropertiesModule } from "./properties/properties.module";
 import { ReviewsModule } from './reviews/reviews.module';
+import { ReservationsModule } from "./reservations/reservations.module";
 import { AppRoutingModule } from "./app-routing.module";
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -34,6 +35,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     CoreModule,
     PropertiesModule,
     ReviewsModule,
+    ReservationsModule,
     AppRoutingModule,
     FlexLayoutModule,
     ReactiveFormsModule,
