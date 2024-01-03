@@ -1,0 +1,12 @@
+<app-header text="Notifications"></app-header>
+<app-container>
+    <div class="notification" *ngFor="let notification of notifications">
+        <div class="notification__icon">
+            <mat-icon class="material-icons">{{icons.get(notification.type)}}</mat-icon>
+        </div>
+        <div class="notification__content">
+            <div class="notification__title">{{notification.text}}</div>
+            <div class="notification__time">{{notification.date | relativeTimeFilter }}</div>
+        </div>
+    </div>
+</app-container>

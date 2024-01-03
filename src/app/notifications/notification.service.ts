@@ -4,7 +4,8 @@ import * as Stomp from 'stompjs';
 import SockJS from 'sockjs-client';
 import { environment } from '../../env/environment';
 import { Notification } from '../shared/models/notification.model';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +20,11 @@ export class NotificationService {
   unreadNotificationCount$: BehaviorSubject<number> = new BehaviorSubject<number>(0);
   unreadNotificationCountState = this.unreadNotificationCount$.asObservable();
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
+
+  getNotifications(): Observable<Notification[]> {
+    return this.http.get<Notification[]>(environment.apiHost + '/notifications');
+  }
 
   // Funkcija za otvaranje konekcije sa serverom
   initializeWebSocketConnection() {
@@ -34,7 +39,6 @@ export class NotificationService {
     });
 
   }
-
 
   openSocket() {
     if (this.isLoaded) {
