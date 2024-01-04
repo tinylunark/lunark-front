@@ -5,6 +5,7 @@ import { LoginDialog } from '../../account/login-dialog/login-dialog.component';
 import { AccountService } from '../../account/account.service';
 import { environment } from '../../../env/environment';
 import { NotificationService } from '../../notifications/notification.service';
+import { UnreadNotificationCount, isUnreadNotificationCount } from '../../shared/models/notification.model';
 
 @Component({
   selector: 'nav-bar',
@@ -28,9 +29,12 @@ export class NavBarComponent implements OnInit {
     this.accountService.userState.subscribe((result) => {
       this.role = result;
     });
-    this.notificationService.unreadNotificationCountState.subscribe((result) => {
-      this.unreadNotificationCount = result;
-      console.log("Updated navbar");
+    this.notificationService.newNotificationState.subscribe((result) => {
+      if(isUnreadNotificationCount(result)) {
+        this.unreadNotificationCount = result.unreadNotificationCount;
+      } else {
+        this.unreadNotificationCount++;
+      }
     });
   }
 

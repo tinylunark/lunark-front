@@ -3,10 +3,9 @@ import { Injectable } from '@angular/core';
 import * as Stomp from 'stompjs';
 import SockJS from 'sockjs-client';
 import { environment } from '../../env/environment';
-import { Notification } from '../shared/models/notification.model';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { Notification, UnreadNotificationCount } from '../shared/models/notification.model';
+import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { SharedService } from '../shared/shared.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,17 +15,19 @@ export class NotificationService {
   private stompClient: any;
 
   isLoaded: boolean = false;
-  receivedUnreadNotificationCount: boolean = false;
-  newNotification?: Notification;
-  unreadNotificationCount$: BehaviorSubject<number> = new BehaviorSubject<number>(0);
-  unreadNotificationCountState = this.unreadNotificationCount$.asObservable();
-  newNotification$: BehaviorSubject<Notification | null> = new BehaviorSubject<Notification | null>(null);
+  newNotification$: BehaviorSubject<Notification | UnreadNotificationCount> = new BehaviorSubject<Notification | UnreadNotificationCount>({
+    unreadNotificationCount: 0
+  });
   newNotificationState = this.newNotification$.asObservable();
 
-  constructor(private http: HttpClient, private sharedService: SharedService) { }
+  constructor(private http: HttpClient) {}
 
   getNotifications(): Observable<Notification[]> {
-    return this.http.get<Notification[]>(environment.apiHost + '/notifications');
+    return this.http.get<Notification[]>(environment.apiHost + '/notifications').pipe(
+      tap(() => {
+        this.resetUnreadNotificationCount();
+      })
+    );
   }
 
   // Funkcija za otvaranje konekcije sa serverom
@@ -55,29 +56,23 @@ export class NotificationService {
     if (this.isLoaded) {
       this.stompClient.disconnect();
       this.isLoaded = false;
-      this.receivedUnreadNotificationCount = false;
-      this.unreadNotificationCount$.next(0);
+      this.resetUnreadNotificationCount();
     }
   }
 
   handleResult(message: { body: string; }) {
-    if (!this.receivedUnreadNotificationCount && message.body) {
-      let notificationCount: number = JSON.parse(message.body).unreadNotificationCount;
-      this.unreadNotificationCount$.next(notificationCount);
-      this.receivedUnreadNotificationCount = true;
-    }
-    else if (message.body) {
-      let notification: Notification = JSON.parse(message.body);
-      this.unreadNotificationCount$.next(Number(this.unreadNotificationCount$.getValue()) + 1);
-
+    if (message.body) {
+      let notification: Notification | UnreadNotificationCount = JSON.parse(message.body);
       this.newNotification$.next(notification);
-
-      this.sharedService.openSnack(notification.text);
       console.log(notification);
     }
   }
 
   markAsRead(notificationId: number) {
     this.stompClient.send("/socket-subscriber/notification/read", {}, notificationId);
+  }
+
+  resetUnreadNotificationCount() {
+    this.newNotification$.next({unreadNotificationCount: 0});
   }
 }

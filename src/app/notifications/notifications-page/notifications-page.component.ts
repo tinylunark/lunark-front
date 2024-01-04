@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NotificationService } from '../notification.service';
-import { Notification } from '../../shared/models/notification.model';
+import { Notification, UnreadNotificationCount, isNotification } from '../../shared/models/notification.model';
 
 @Component({
   selector: 'app-notifications-page',
@@ -23,12 +23,12 @@ export class NotificationsPageComponent implements OnInit {
     this.notificationService.getNotifications().subscribe({
       next: (result) => {
         this.notifications = result;
-        console.log(this.notifications);
         this.notificationService.newNotificationState.subscribe({
-          next: (notification) => {
-            if (notification){
+          next: (notification: Notification | UnreadNotificationCount) => {
+            if (isNotification(notification)) {
               this.notifications.unshift(notification);
               this.notificationService.markAsRead(notification.id);
+              this.notificationService.resetUnreadNotificationCount();
             }
           }
         });
