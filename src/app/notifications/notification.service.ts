@@ -6,6 +6,7 @@ import { environment } from '../../env/environment';
 import { Notification } from '../shared/models/notification.model';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { SharedService } from '../shared/shared.service';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +21,7 @@ export class NotificationService {
   unreadNotificationCount$: BehaviorSubject<number> = new BehaviorSubject<number>(0);
   unreadNotificationCountState = this.unreadNotificationCount$.asObservable();
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private sharedService: SharedService) { }
 
   getNotifications(): Observable<Notification[]> {
     return this.http.get<Notification[]>(environment.apiHost + '/notifications');
@@ -66,6 +67,7 @@ export class NotificationService {
     else if (message.body) {
       let messageResult: Notification = JSON.parse(message.body);
       this.unreadNotificationCount$.next(Number(this.unreadNotificationCount$.getValue()) + 1);
+      this.sharedService.openSnack(messageResult.text);
       console.log(messageResult);
     }
   }
