@@ -9,6 +9,7 @@ export class RelativeTimeFilterPipe implements PipeTransform {
     console.log(input);
     var current = new Date().valueOf();
     var inputTimestamp = new Date(input).valueOf();
+    var msPerSecond = 1000;
     var msPerMinute = 60 * 1000;
     var msPerHour = msPerMinute * 60;
     var msPerDay = msPerHour * 24;
@@ -16,6 +17,10 @@ export class RelativeTimeFilterPipe implements PipeTransform {
     var msPerYear = msPerDay * 365;
 
     var elapsed = current - inputTimestamp;
+
+    if (elapsed < msPerSecond) {
+        return 'just now';
+    }
 
     if (elapsed < msPerMinute) {
         return Math.round(elapsed / 1000) + ' seconds ago';

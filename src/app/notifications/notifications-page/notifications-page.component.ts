@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { NotificationService } from '../notification.service';
 import { Notification } from '../../shared/models/notification.model';
 
