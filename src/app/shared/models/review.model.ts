@@ -3,7 +3,7 @@ export interface Review {
     description: string;
     date: Date;
     authorId?: number;
-    author?: string;
+    author: string;
     type: ReviewType,
     id?: number;
 }
