@@ -17,7 +17,7 @@ export class NotificationToastsComponent {
         this.notifications.unshift(notification);
         setTimeout(() => {
           this.notifications.pop();
-        }, 10000);
+        }, 5000);
       }
     });
   }
