@@ -5,13 +5,15 @@ import { NotificationsRoutingModule } from './notifications-routing.module';
 import { CoreModule } from '../core/core.module';
 import { MaterialModule } from '../../infrastructure/material/material.module';
 import { RelativeTimeFilterPipe } from './relative-time-filter.pipe';
+import { NotificationCardComponent } from './notification-card/notification-card.component';
 
 
 
 @NgModule({
   declarations: [
     NotificationsPageComponent,
-    RelativeTimeFilterPipe
+    RelativeTimeFilterPipe,
+    NotificationCardComponent
   ],
   imports: [
     CommonModule,
@@ -20,7 +22,8 @@ import { RelativeTimeFilterPipe } from './relative-time-filter.pipe';
     MaterialModule
   ],
   exports: [
-    NotificationsPageComponent
+    NotificationsPageComponent,
+    NotificationCardComponent
   ]
 })
 export class NotificationsModule { }

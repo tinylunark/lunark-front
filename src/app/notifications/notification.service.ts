@@ -17,7 +17,7 @@ export class NotificationService {
 
   isLoaded: boolean = false;
   receivedUnreadNotificationCount: boolean = false;
-  notifications: Notification[] = [];
+  newNotification?: Notification;
   unreadNotificationCount$: BehaviorSubject<number> = new BehaviorSubject<number>(0);
   unreadNotificationCountState = this.unreadNotificationCount$.asObservable();
 
