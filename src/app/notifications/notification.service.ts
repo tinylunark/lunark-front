@@ -30,9 +30,7 @@ export class NotificationService {
     );
   }
 
-  // Funkcija za otvaranje konekcije sa serverom
   initializeWebSocketConnection() {
-    // serverUrl je vrednost koju smo definisali u registerStompEndpoints() metodi na serveru
     let ws = new SockJS(this.serverUrl);
     this.stompClient = Stomp.over(ws);
     let that = this;
