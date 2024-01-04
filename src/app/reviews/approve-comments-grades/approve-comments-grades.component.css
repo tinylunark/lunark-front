@@ -1,19 +1,20 @@
 .grid {
   min-width: 100%;
-  overflow: hidden;
   margin: 3em;
-  display: grid;
   grid-template-columns: repeat(1, 1fr);
-  justify-content: center;
-  gap: 2.5em;
-  width: 80em;
+  gap: 1em;
+  align-items: start;
+  justify-content: start;
 }
 
 .card {
-  height: 20em;
+  height: 23em;
   background-color: #1f1f1f;
   width: 95%;
   display: flex;
+  padding-top: 2em;
+  padding-bottom: 2em;
+  margin-top: 2em;
   flex-direction: row;
   border-radius: 20px;
   border: 2px solid #F0EDEE;
@@ -59,8 +60,8 @@ span {
 
 .button {
   font-family: rubik-bold;
-  font-size: 1em;
-  width: 10em;
+  font-size: 0.8em;
+  width: 15em;
   padding: 1.8em;
   text-transform: uppercase;
 }
@@ -70,7 +71,7 @@ span {
   justify-content: space-between;
 }
 
-.approve-button, .remove-button {
+.approve-button {
   flex: 1;
   margin-right: 0.5em;
   margin-bottom: 1em;
@@ -85,3 +86,4 @@ span {
   object-fit: cover;
   overflow: hidden;
 }
+
