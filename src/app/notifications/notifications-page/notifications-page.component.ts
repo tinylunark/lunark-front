@@ -28,6 +28,7 @@ export class NotificationsPageComponent implements OnInit {
           next: (notification) => {
             if (notification){
               this.notifications.unshift(notification);
+              this.notificationService.markAsRead(notification.id);
             }
           }
         });

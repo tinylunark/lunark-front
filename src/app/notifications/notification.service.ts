@@ -76,4 +76,8 @@ export class NotificationService {
       console.log(notification);
     }
   }
+
+  markAsRead(notificationId: number) {
+    this.stompClient.send("/socket-subscriber/notification/read", {}, notificationId);
+  }
 }
