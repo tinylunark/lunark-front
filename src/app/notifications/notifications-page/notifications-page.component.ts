@@ -25,6 +25,13 @@ export class NotificationsPageComponent implements OnInit {
       next: (result) => {
         this.notifications = result;
         console.log(this.notifications);
+        this.notificationService.newNotificationState.subscribe({
+          next: (notification) => {
+            if (notification){
+              this.notifications.unshift(notification);
+            }
+          }
+        });
       },
       error: (error) => {
         console.log(error);
