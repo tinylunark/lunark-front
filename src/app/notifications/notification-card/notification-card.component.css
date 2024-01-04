@@ -32,3 +32,19 @@
     font-family: rubik-regular;
     font-size: 0.8em;
 }
+
+.unread_indicator {
+    width: 0.7em;
+    margin-right: 0.8em;
+    display: flex;
+    align-items: center;
+    justify-items: center;
+}
+
+.unread_indicator__dot {
+    width: 0.7em;
+    height: 0.7em;
+    border-radius: 50%;
+    background-color: #00b3b3;
+    margin: 0 auto;
+}
