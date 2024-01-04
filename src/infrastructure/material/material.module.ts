@@ -21,6 +21,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSelectModule } from '@angular/material/select';
 import {MatStepperModule} from '@angular/material/stepper';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { MatBadgeModule } from '@angular/material/badge';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     MatSnackBarModule,
     MatSelectModule,
     MatStepperModule,
-    NgbModule
+    NgbModule,
+    MatBadgeModule
   ],
   exports: [
     MatDialogModule,
@@ -78,7 +80,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     MatSnackBarModule,
     MatSelectModule,
     MatStepperModule,
-    NgbModule
+    NgbModule,
+    MatBadgeModule
   ]
 })
 

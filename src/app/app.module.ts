@@ -19,6 +19,7 @@ import { SharedModule } from './shared/shared.module';
 import { UnauthorizedInterceptor } from './http-interceptors/unauthorized.interceptor';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HostModule } from './host/host.module';
+import { NotificationsModule } from './notifications/notifications.module';
 
 @NgModule({
   declarations: [
@@ -36,12 +37,13 @@ import { HostModule } from './host/host.module';
     PropertiesModule,
     ReservationsModule,
     HostModule,
+    NotificationsModule,
     AppRoutingModule,
     FlexLayoutModule,
     ReactiveFormsModule,
     MatAutocompleteModule,
     SharedModule,
-    NgbModule
+    NgbModule,
   ],
   providers: [
     importProvidersFrom(HttpClientModule),

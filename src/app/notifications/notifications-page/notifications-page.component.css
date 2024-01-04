@@ -1,0 +1,7 @@
+app-container {
+    flex-direction: column;
+}
+
+app-notification-card:first-child {
+    margin-top: 1.2em;
+}
