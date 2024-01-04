@@ -1,0 +1,32 @@
+<app-header [text]="'comments/grades'"></app-header>
+<app-container>
+  <div class="grid">
+    <mat-card class="card" *ngFor="let report of reviewReports">
+      <div class="image-div">
+        <img [src]="getProfileImageURL(report.reporter.id)"
+           (error)="handleImageError($event)"
+           class="circular-image">
+        <mat-card-title class="time">{{ getTimeDifference(report.date) }}</mat-card-title>
+      </div>
+      <mat-card-content>
+        <mat-card-subtitle class="text-row">
+          <span>
+            {{ report.reporter.name }} {{ report.reporter.surname }}
+          </span>
+          <ng-container *ngIf="report.reviewType === 'PROPERTY'">
+            has reported a comment on a property.
+          </ng-container>
+          <ng-container *ngIf="report.reviewType === 'HOST'">
+            has reported a comment on his/her profile.
+          </ng-container>
+        </mat-card-subtitle>
+        <mat-card-subtitle class="text-row"><span>Comment: </span>{{ report.review.description }}</mat-card-subtitle>
+        <mat-card-subtitle class="text-row"><span>Rating: </span>{{ report.review.rating }} / 5</mat-card-subtitle>
+        <div class="button-container">
+          <button mat-flat-button class="approve-button button" color="primary" (click)="removeReview(report)" >Remove</button>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</app-container>
+
