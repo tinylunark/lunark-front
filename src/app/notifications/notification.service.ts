@@ -65,6 +65,7 @@ export class NotificationService {
     }
     else if (message.body) {
       let messageResult: Notification = JSON.parse(message.body);
+      this.unreadNotificationCount$.next(Number(this.unreadNotificationCount$.getValue()) + 1);
       console.log(messageResult);
     }
   }

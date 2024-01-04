@@ -11,7 +11,7 @@
   <div *ngIf="role == 'GUEST'">
     <a [ngClass]="{'active': router.url == '/home' }" routerLink="home"><i class="cil-home"></i></a>
     <a [ngClass]="{'active': router.url == '/search' }" routerLink="search" href="#"><i class="cil-search"></i></a>
-    <a  [ngClass]="{'active': router.url == '/notifications' }" routerLink="notifications" href="#"><i [matBadge]="unreadNotificationCount" [matBadgeHidden]="hideNotificationCount" class="cil-bell"></i></a>
+    <a  [ngClass]="{'active': router.url == '/notifications' }" routerLink="notifications" href="#"><i [matBadge]="unreadNotificationCount" [matBadgeHidden]="unreadNotificationCount == 0" class="cil-bell"></i></a>
     <a [ngClass]="{'active': router.url == '/favorites' }" routerLink="favorites" href="#"><i class="cil-heart"></i></a>
     <a [ngClass]="{'active': router.url == '/profile' }" routerLink="profile"><i class="at-account"></i></a>
     <a [ngClass]="{'active': router.url == '/accepted-reservations' }" routerLink="accepted-reservations"><i class="cil-check"></i></a>
@@ -23,7 +23,7 @@
     <a [ngClass]="{'active': router.url == '/my-properties' }" routerLink="my-properties" href="#"><i class="cil-folder"></i></a>
     <a [ngClass]="{'active': router.url == '/list-properties' }" routerLink="list-properties" href="#"><i class="cil-list-filter"></i></a>
     <a [ngClass]="{'active': router.url == '/incoming-reservations' }" routerLink="incoming-reservations" href="#"><i class="cil-check"></i></a>
-    <a [ngClass]="{'active': router.url == '/notifications' }" routerLink="notifications" href="#"><i [matBadge]="unreadNotificationCount" [matBadgeHidden]="hideNotificationCount" class="cil-bell"></i></a>
+    <a [ngClass]="{'active': router.url == '/notifications' }" routerLink="notifications" href="#"><i [matBadge]="unreadNotificationCount" [matBadgeHidden]="unreadNotificationCount == 0" class="cil-bell"></i></a>
     <a [ngClass]="{'active': router.url == '/favorites' }" routerLink="favorites" href="#"><i class="cil-heart"></i></a>
     <a [ngClass]="{'active': router.url == '/reports' }" routerLink="reports" href="#"><i class="cil-fax"></i></a>
     <a [ngClass]="{'active': router.url == '/profile' }" routerLink="profile" ><i class="at-account"></i></a>

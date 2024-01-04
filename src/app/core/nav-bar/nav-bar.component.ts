@@ -16,7 +16,6 @@ export class NavBarComponent implements OnInit {
   public role: String = "unregistered";
   public activeLink: String = "home";
   public unreadNotificationCount: number = 0;
-  public hideNotificationCount: boolean = true;
 
   constructor (public dialog: MatDialog, public router: Router, private accountService: AccountService, private notificationService: NotificationService) {
 
@@ -31,7 +30,6 @@ export class NavBarComponent implements OnInit {
     });
     this.notificationService.unreadNotificationCountState.subscribe((result) => {
       this.unreadNotificationCount = result;
-      this.hideNotificationCount = this.unreadNotificationCount == 0;
       console.log("Updated navbar");
     });
   }
