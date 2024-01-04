@@ -6,6 +6,7 @@ import { CoreModule } from '../core/core.module';
 import { MaterialModule } from '../../infrastructure/material/material.module';
 import { RelativeTimeFilterPipe } from './relative-time-filter.pipe';
 import { NotificationCardComponent } from './notification-card/notification-card.component';
+import { NotificationToastsComponent } from './notification-toasts/notification-toasts.component';
 
 
 
@@ -13,7 +14,8 @@ import { NotificationCardComponent } from './notification-card/notification-card
   declarations: [
     NotificationsPageComponent,
     RelativeTimeFilterPipe,
-    NotificationCardComponent
+    NotificationCardComponent,
+    NotificationToastsComponent
   ],
   imports: [
     CommonModule,
@@ -23,7 +25,8 @@ import { NotificationCardComponent } from './notification-card/notification-card
   ],
   exports: [
     NotificationsPageComponent,
-    NotificationCardComponent
+    NotificationCardComponent,
+    NotificationToastsComponent
   ]
 })
 export class NotificationsModule { }

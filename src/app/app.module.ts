@@ -43,7 +43,7 @@ import { NotificationsModule } from './notifications/notifications.module';
     ReactiveFormsModule,
     MatAutocompleteModule,
     SharedModule,
-    NgbModule
+    NgbModule,
   ],
   providers: [
     importProvidersFrom(HttpClientModule),

@@ -20,6 +20,8 @@ export class NotificationService {
   newNotification?: Notification;
   unreadNotificationCount$: BehaviorSubject<number> = new BehaviorSubject<number>(0);
   unreadNotificationCountState = this.unreadNotificationCount$.asObservable();
+  newNotification$: BehaviorSubject<Notification | null> = new BehaviorSubject<Notification | null>(null);
+  newNotificationState = this.newNotification$.asObservable();
 
   constructor(private http: HttpClient, private sharedService: SharedService) { }
 
@@ -65,10 +67,13 @@ export class NotificationService {
       this.receivedUnreadNotificationCount = true;
     }
     else if (message.body) {
-      let messageResult: Notification = JSON.parse(message.body);
+      let notification: Notification = JSON.parse(message.body);
       this.unreadNotificationCount$.next(Number(this.unreadNotificationCount$.getValue()) + 1);
-      this.sharedService.openSnack(messageResult.text);
-      console.log(messageResult);
+
+      this.newNotification$.next(notification);
+
+      this.sharedService.openSnack(notification.text);
+      console.log(notification);
     }
   }
 }
