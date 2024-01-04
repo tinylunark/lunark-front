@@ -10,6 +10,7 @@ const routes: Routes = [
   { path: 'search', loadChildren: () => import('./properties/properties.module').then(m => m.PropertiesModule) },
   { path: 'approve-changes', loadChildren: () => import('./properties/properties.module').then(m => m.PropertiesModule) },
   { path: 'unapproved-reviews', loadChildren: () => import('./reviews/reviews.module').then(m => m.ReviewsModule) },
+  { path: 'comments-and-grades', loadChildren: () => import('./reviews/reviews.module').then(m => m.ReviewsModule) },
   { path: 'my-properties', loadChildren: () => import('./properties/properties.module').then(m => m.PropertiesModule) },
   { path: 'incoming-reservations', loadChildren: () => import('./reservations/reservations.module').then(m => m.ReservationsModule) },
   { path: 'accepted-reservations', loadChildren: () => import('./reservations/reservations.module').then(m => m.ReservationsModule) },
