@@ -1,6 +1,6 @@
 <div class="notification">
-    <div class="unread_indicator" >
-        <span *ngIf="notification.read != null && !notification.read" class="unread_indicator__dot"></span>
+    <div class="unread_indicator" *ngIf="displayReadIndicator" >
+        <span *ngIf="notification.read === false" class="unread_indicator__dot"></span>
     </div>
     <div class="notification__icon">
         <mat-icon class="material-icons">{{icons.get(notification.type)}}</mat-icon>

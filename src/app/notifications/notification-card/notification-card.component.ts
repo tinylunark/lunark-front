@@ -8,6 +8,7 @@ import { Notification } from '../../shared/models/notification.model';
 })
 export class NotificationCardComponent {
   @Input() notification: Notification;
+  @Input() displayReadIndicator: boolean = true;
   icons: Map<string, string> = new Map<string, string>([
     ['PROPERTY_REVIEW', 'grade'],
     ['HOST_REVIEW', 'workspace_premium'],
