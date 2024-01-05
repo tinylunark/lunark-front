@@ -35,41 +35,15 @@ export class ReservationListComponent {
   }
 
   getReservations() : void {
-    // this.profileService.getProfile().pipe(
-    //   switchMap((profile: Profile) => {
-    //     this.profile = profile;
-    //     return this.reservationService.getAcceptedReservations(this.profile.id);
-    //   }),
-    //   switchMap((reservations: Reservation[]) => {
-    //     const observables = reservations.map(reservation => {
-    //       const propertyObservable = this.propertyService.getProperty(reservation.propertyId);
-    //       const guestObservable = this.profileService.getProfileById(reservation.guestId);
-    //       return forkJoin([propertyObservable, guestObservable]).pipe(
-    //         map(results => {
-    //           reservation.property = results[0];
-    //           reservation.guest = results[1];
-    //           if (reservation.property && typeof reservation.property.id === 'number') {
-    //             this.getImages(reservation.property.id);
-    //           }
-    //           return reservation;
-    //         })
-    //       );
-    //     });
-    //     return forkJoin(observables);
-    //   })
-    // ).subscribe({
-    //   next: (reservations: Reservation[]) => {
-    //     this.reservations = reservations;
-    //   },
-    //   error: (err) => {
-    //     console.log('Error fetching reservations.', err);
-    //   }
-    // });
     this.reservationService.getReservationsForCurrentUser()
-      .subscribe(reservations => this.reservations = reservations);
+      .subscribe(reservations =>
+      {
+        this.reservations = reservations;
+        reservations.forEach(reservation => this.getImages(reservation.property.id));
+      });
   }
 
-  getImages(propertyId: any): void {
+  getImages(propertyId: number) {
     this.propertyService.getProperty(propertyId).pipe(
       switchMap((property: Property) => {
         const firstImage = property.images.at(0);
