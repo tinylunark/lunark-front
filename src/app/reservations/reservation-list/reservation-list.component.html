@@ -1,4 +1,4 @@
-<app-header [text]="'accepted reservations'"></app-header>
+<app-header [text]="'your reservations'"></app-header>
 <app-container>
   <div class="grid">
     <mat-card class="card" *ngFor="let reservation of reservations">
@@ -13,7 +13,8 @@
       </mat-card-header>
       <mat-card-content>
         <h2>{{ reservation.property.address.city }}, {{ reservation.property.address.country }}</h2>
-        <p class="date-range">{{ formatDate(reservation.startDate) }} - {{ formatDate(reservation.endDate) }}</p>
+        <p class="date-range"><mat-icon>event</mat-icon> {{ formatDate(reservation.startDate) }} - {{ formatDate(reservation.endDate) }}</p>
+        <p class="date-range"><mat-icon>group</mat-icon> {{ reservation.numberOfGuests }}</p>
         <p class="price">{{ reservation.price }}$</p>
       </mat-card-content>
         <mat-card-footer class="footer">

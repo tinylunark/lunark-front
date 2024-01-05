@@ -87,4 +87,8 @@ export class ReservationService {
     return this.http.get(`${environment.apiHost}/${ApiPaths.Properties}/${propertyId}/images/${imageId}`,
       {responseType: 'blob'});
   }
+
+  getReservationsForCurrentUser() {
+    return this.http.get<Reservation[]>(`${environment.apiHost}/${ApiPaths.Reservations}/current`);
+  }
 }

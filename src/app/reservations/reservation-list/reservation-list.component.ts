@@ -11,11 +11,11 @@ import { forkJoin } from 'rxjs';
 import { switchMap, map } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-guest-accepted-reservations',
-  templateUrl: './guest-accepted-reservations.component.html',
-  styleUrl: './guest-accepted-reservations.component.css'
+  selector: 'app-reservation-list',
+  templateUrl: './reservation-list.component.html',
+  styleUrl: './reservation-list.component.css'
 })
-export class GuestAcceptedReservationsComponent {
+export class ReservationListComponent {
   properties: Property[] = [];
   reservations: Reservation[] = [];
   placeholderImage = environment.assetsDir + '/images/placeholder-image.webp';
@@ -35,36 +35,38 @@ export class GuestAcceptedReservationsComponent {
   }
 
   getReservations() : void {
-    this.profileService.getProfile().pipe(
-      switchMap((profile: Profile) => {
-        this.profile = profile;
-        return this.reservationService.getAcceptedReservations(this.profile.id);
-      }),
-      switchMap((reservations: Reservation[]) => {
-        const observables = reservations.map(reservation => {
-          const propertyObservable = this.propertyService.getProperty(reservation.propertyId);
-          const guestObservable = this.profileService.getProfileById(reservation.guestId);
-          return forkJoin([propertyObservable, guestObservable]).pipe(
-            map(results => {
-              reservation.property = results[0];
-              reservation.guest = results[1];
-              if (reservation.property && typeof reservation.property.id === 'number') {
-                this.getImages(reservation.property.id);
-              }
-              return reservation;
-            })
-          );
-        });
-        return forkJoin(observables);
-      })
-    ).subscribe({
-      next: (reservations: Reservation[]) => {
-        this.reservations = reservations;
-      },
-      error: (err) => {
-        console.log('Error fetching reservations.', err);
-      }
-    });
+    // this.profileService.getProfile().pipe(
+    //   switchMap((profile: Profile) => {
+    //     this.profile = profile;
+    //     return this.reservationService.getAcceptedReservations(this.profile.id);
+    //   }),
+    //   switchMap((reservations: Reservation[]) => {
+    //     const observables = reservations.map(reservation => {
+    //       const propertyObservable = this.propertyService.getProperty(reservation.propertyId);
+    //       const guestObservable = this.profileService.getProfileById(reservation.guestId);
+    //       return forkJoin([propertyObservable, guestObservable]).pipe(
+    //         map(results => {
+    //           reservation.property = results[0];
+    //           reservation.guest = results[1];
+    //           if (reservation.property && typeof reservation.property.id === 'number') {
+    //             this.getImages(reservation.property.id);
+    //           }
+    //           return reservation;
+    //         })
+    //       );
+    //     });
+    //     return forkJoin(observables);
+    //   })
+    // ).subscribe({
+    //   next: (reservations: Reservation[]) => {
+    //     this.reservations = reservations;
+    //   },
+    //   error: (err) => {
+    //     console.log('Error fetching reservations.', err);
+    //   }
+    // });
+    this.reservationService.getReservationsForCurrentUser()
+      .subscribe(reservations => this.reservations = reservations);
   }
 
   getImages(propertyId: any): void {
