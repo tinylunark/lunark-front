@@ -4,7 +4,7 @@ import { ReservationService } from "../reservation.service";
 import { ProfileService } from "../../shared/profile.service";
 import { SharedService } from "../../shared/shared.service";
 import { Property } from "../../shared/models/property.model";
-import { Reservation } from "../../shared/models/reservation.model";
+import {Reservation, ReservationStatus} from "../../shared/models/reservation.model";
 import { Profile } from "../../shared/models/profile.model";
 import { environment } from "../../../env/environment";
 import { forkJoin } from 'rxjs';
@@ -94,4 +94,6 @@ export class ReservationListComponent {
     return num < 10 ? `0${num}` : `${num}`;
   }
 
+  protected readonly Object = Object;
+  protected readonly ReservationStatus = ReservationStatus;
 }
