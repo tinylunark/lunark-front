@@ -24,6 +24,6 @@ export class PropertyReviewService extends ReviewService {
   }
 
   getReviews(hostId: number): Observable<Review[]> {
-    return this.http.get<Review[]>(`${environment.apiHost}/${ApiPaths.Reviews}/host/${hostId}`);
+    return this.http.get<Review[]>(`${environment.apiHost}/${ApiPaths.Reviews}/property/${hostId}`);
   }
 }

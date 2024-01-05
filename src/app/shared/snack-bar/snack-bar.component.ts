@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {MatSnackBar} from "@angular/material/snack-bar";
-import {SharedService} from "../shared.service";
+import {SharedService, SnackMessage} from "../shared.service";
 
 @Component({
   selector: 'app-snack-bar',
@@ -10,16 +10,16 @@ import {SharedService} from "../shared.service";
 export class SnackBarComponent {
 
   constructor(private snackBar: MatSnackBar, private sharedService: SharedService) {
-    this.sharedService.newSnackMessage.subscribe((message: string) => {
-      if(message !== '') {
-        this.openSnackBar(message, "OK")
+    this.sharedService.newSnackMessage.subscribe((message: SnackMessage) => {
+      if(message.message !== '') {
+        this.openSnackBar(message.message, 'OK', message.duration)
       }
     })
   }
 
-  private openSnackBar(message: string, action: string) {
+  private openSnackBar(message: string, action: string, duration: number = 3000) {
     this.snackBar.open(message, action, {
-      duration: 3000,
+      duration: duration,
     });
   }
 }

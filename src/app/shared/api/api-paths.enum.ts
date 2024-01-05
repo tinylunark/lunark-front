@@ -1,6 +1,7 @@
 export enum ApiPaths {
   Properties = 'properties',
   UnapprovedProperties = 'properties/unapproved',
+  UnapprovedReviews = 'unapproved',
   MyProperties = 'my-properties',
   ApproveProperty = 'approve',
   Amenities = 'amenities',
@@ -12,4 +13,6 @@ export enum ApiPaths {
   AcceptedReservations = 'accepted-reservations',
   Verification = 'accounts/verify',
   Reviews = 'reviews',
+  ApproveReview = 'approve',
+  CommentsGrades = 'reports/reviews'
 }

@@ -1,0 +1,24 @@
+<app-header [text]="'unapproved reviews'"></app-header>
+<app-container>
+  <div class="grid">
+    <mat-card class="card" *ngFor="let review of reviews">
+      <div class="image-div">
+        <img [src]="getProfileImageURL(review.authorId)"
+           (error)="handleImageError($event)"
+           class="circular-image">
+        <mat-card-title class="time">{{ getTimeDifference(review.date) }}</mat-card-title>
+      </div>
+  <mat-card-header class="header">
+      </mat-card-header>
+      <mat-card-content>
+        <mat-card-subtitle class="text-row"><span>From: </span> {{ review.author }}</mat-card-subtitle>
+        <mat-card-subtitle class="text-row"><span>Comment: </span>{{ review.description }}</mat-card-subtitle>
+        <mat-card-subtitle class="text-row"><span>Rating: </span> {{ review.rating }} / 5 </mat-card-subtitle>
+        <mat-card-subtitle class="text-row"><span>Review Type: </span> {{ review.type }}</mat-card-subtitle>
+        <div class="button-container">
+          <button mat-flat-button class="remove-button button" color="primary" (click)="approveReview(review)" >Approve</button>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</app-container>
