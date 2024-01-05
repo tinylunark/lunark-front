@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Account } from './model/account.model';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {BehaviorSubject, Observable} from "rxjs";
+import {BehaviorSubject, Observable, tap} from "rxjs";
 import {AuthResponse} from "./model/auth-resposne.model";
 import {JwtHelperService} from "@auth0/angular-jwt";
 import { environment } from '../../env/environment';
 import { ApiPaths } from '../shared/api/api-paths.enum';
 import PasswordUpdate from "../shared/models/password-update.model";
 import {Property} from "../shared/models/property.model";
+import { NotificationService } from '../notifications/notification.service';
 
 const notLoggedInRole = "unregistered";
 
@@ -24,20 +25,30 @@ export class AccountService {
   user$ = new BehaviorSubject(notLoggedInRole);
   userState = this.user$.asObservable();
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private notificationService: NotificationService) {
     this.user$.next(this.getRole());
   }
 
   login(auth: any): Observable<AuthResponse> {
     return this.http.post<AuthResponse>(`${environment.apiHost}/${ApiPaths.LogIn}`, auth, {
       headers: this.headers,
-    });
+    }).pipe(
+      tap((response: AuthResponse) => {
+        localStorage.setItem(environment.userLocalStorageKey, response.accessToken);
+        this.setUser();
+        this.notificationService.initializeWebSocketConnection();
+      })
+    );
   }
 
   logout(): Observable<string> {
     return this.http.get(`${environment.apiHost}/${ApiPaths.LogOut}`, {
       responseType: 'text',
-    });
+    }).pipe(
+      tap(() => {
+        this.notificationService.closeSocket();
+      })
+    );
   }
 
   getRole(): any {
