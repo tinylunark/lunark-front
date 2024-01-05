@@ -44,7 +44,7 @@ export class ReviewsComponent implements OnInit {
     this.reviewService.add(review, this.id).subscribe({
       next: () => {
         this.eligibleToReview = false;
-        this.sharedService.openSnack("Your review has been uploaded successfully! It will be visible after it is approved by the administrator.");
+        this.sharedService.openSnack("Your review has been uploaded successfully! It will be visible after it is approved by the administrator.", 10000);
       },
       error: (err: any) => console.log(err)
     });
