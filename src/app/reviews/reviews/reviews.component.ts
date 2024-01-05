@@ -16,6 +16,7 @@ import { ReviewReportService } from '../review-report.service';
 export class ReviewsComponent implements OnInit {
   reviews: Review[] = [];
   @Input() id: number;
+  @Input() reportingAllowed: boolean = false;
   @Output() reviewDeleted: EventEmitter<void> = new EventEmitter<void>();
   eligibleToReview = false;
 
