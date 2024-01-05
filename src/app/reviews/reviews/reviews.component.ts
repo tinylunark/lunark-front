@@ -89,7 +89,12 @@ export class ReviewsComponent implements OnInit {
       next: () => {
         this.sharedService.openSnack("Review reported successfully!");
       },
-      error: (err: any) => console.log(err)
+      error: (err: any) => {
+        console.log(err)
+        if (err.status === 409) {
+          this.sharedService.openSnack("You have already reported this review ❌");
+        }
+      }
     });
   }
 }
