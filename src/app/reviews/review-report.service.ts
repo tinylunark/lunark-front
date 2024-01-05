@@ -30,6 +30,6 @@ export class ReviewReportService {
   }
 
   removeReview(id: number): Observable<void> {
-    return this.http.delete<void>(`${environment.apiHost}/${ApiPaths.CommentsGrades}/${id}`);
+    return this.http.delete<void>(`${environment.apiHost}/${ApiPaths.ReviewReports}/${id}`);
   }
 }
