@@ -1,14 +1,14 @@
-import { Component } from '@angular/core';
-import { PropertyService } from "../../properties/property.service";
-import { ReservationService } from "../reservation.service";
-import { ProfileService } from "../../shared/profile.service";
-import { SharedService } from "../../shared/shared.service";
-import { Property } from "../../shared/models/property.model";
+import {Component} from '@angular/core';
+import {PropertyService} from "../../properties/property.service";
+import {ReservationService} from "../reservation.service";
+import {ProfileService} from "../../shared/profile.service";
+import {SharedService} from "../../shared/shared.service";
+import {Property} from "../../shared/models/property.model";
 import {Reservation, ReservationStatus} from "../../shared/models/reservation.model";
-import { Profile } from "../../shared/models/profile.model";
-import { environment } from "../../../env/environment";
-import { forkJoin } from 'rxjs';
-import { switchMap, map } from 'rxjs/operators';
+import {Profile} from "../../shared/models/profile.model";
+import {environment} from "../../../env/environment";
+import {switchMap} from 'rxjs/operators';
+import {FormBuilder, FormControl} from "@angular/forms";
 
 @Component({
   selector: 'app-reservation-list',
@@ -22,11 +22,19 @@ export class ReservationListComponent {
   profile: Profile | null = null;
   images: Map<number, string> = new Map;
 
+  filterForm = this.formBuilder.group({
+    propertyName: '',
+    startDate: new FormControl<Date | null>(null),
+    endDate: new FormControl<Date | null>(null),
+    status: ReservationStatus.NONE,
+  });
+
   constructor(
     private reservationService: ReservationService,
     private profileService: ProfileService,
     private propertyService: PropertyService,
     private sharedService: SharedService,
+    private formBuilder: FormBuilder,
   ) {
   }
 
@@ -92,6 +100,18 @@ export class ReservationListComponent {
 
   formatNumber(num: number): string {
     return num < 10 ? `0${num}` : `${num}`;
+  }
+
+  onSubmit() {
+    this.reservationService.getReservationsForCurrentUser({
+      propertyName: this.filterForm.value.propertyName ?? '',
+      startDate: this.filterForm.value.startDate?.toISOString().substring(0, 10) ?? '',
+      endDate: this.filterForm.value.endDate?.toISOString().substring(0, 10) ?? '',
+      status: this.filterForm.value.status ?? ReservationStatus.NONE,
+    }).subscribe(reservations => {
+      this.reservations = reservations;
+      reservations.forEach(reservation => this.getImages(reservation.property.id));
+    });
   }
 
   protected readonly Object = Object;

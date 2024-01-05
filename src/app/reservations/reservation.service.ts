@@ -9,6 +9,7 @@ import {Router, UrlSerializer} from "@angular/router";
 import { Reservation } from '../shared/models/reservation.model';
 import PropertyAvailabilityEntry from '../shared/models/property-availability-entry.model';
 import PropertyRequest from '../shared/models/property-request.model';
+import ReservationSearchDto from "./reservation-list/reservation-search.dto";
 
 @Injectable({
   providedIn: 'root'
@@ -88,7 +89,11 @@ export class ReservationService {
       {responseType: 'blob'});
   }
 
-  getReservationsForCurrentUser() {
-    return this.http.get<Reservation[]>(`${environment.apiHost}/${ApiPaths.Reservations}/current`);
+  getReservationsForCurrentUser(filter?: ReservationSearchDto) {
+    return this.http.get<Reservation[]>(`${environment.apiHost}/${ApiPaths.Reservations}/current`, {
+      params: {
+        ...filter
+      }
+    });
   }
 }
