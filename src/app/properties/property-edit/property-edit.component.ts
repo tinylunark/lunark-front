@@ -77,7 +77,7 @@ export class PropertyEditComponent implements OnInit {
         minGuests: property.minGuests,
         maxGuests: property.maxGuests,
         amenityIds: [],
-        hostId: property.hostId,
+        hostId: property.host?.id || 0,
       };
       this.propertyNameControl.setValue(this.property.name);
     });
