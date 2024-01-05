@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { ReviewReport } from '../shared/models/review-report.model';
 import { environment } from '../../env/environment';
 import { ApiPaths } from '../shared/api/api-paths.enum';
+import { AccountService } from '../account/account.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ import { ApiPaths } from '../shared/api/api-paths.enum';
 export class ReviewReportService {
   private baseUrl = 'http://localhost:8080/api/reports/reviews';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private accountService: AccountService) { }
 
   getReviewReportById(id: number): Observable<ReviewReport> {
     return this.http.get<ReviewReport>(`${this.baseUrl}/${id}`);
@@ -21,8 +22,15 @@ export class ReviewReportService {
     return this.http.get<ReviewReport[]>(this.baseUrl);
   }
 
-  createReviewReport(dto: any): Observable<ReviewReport> {
-    return this.http.post<ReviewReport>(this.baseUrl, dto);
+  createReviewReport(reviewId: number): Observable<ReviewReport> {
+    let reporterId: number | null = this.accountService.getAccountId(); 
+    if (reporterId == null) throw new Error("User is not logged in!");
+    return this.http.post<ReviewReport>(this.baseUrl, {
+      //date-time without timezone component
+      date: new Date().toISOString().slice(0, 19),
+      reviewId: reviewId,
+      reporterId: reporterId
+    });
   }
 
   updateReviewReport(id: number, dto: any): Observable<ReviewReport> {
