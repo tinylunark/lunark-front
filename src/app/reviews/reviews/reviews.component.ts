@@ -13,7 +13,7 @@ import { ConfirmDeleteReviewComponent } from '../confirm-delete-review/confirm-d
   styleUrl: './reviews.component.css'
 })
 export class ReviewsComponent implements OnInit {
-  @Input() reviews: Review[] = [];
+  reviews: Review[] = [];
   @Input() id: number;
   @Output() reviewDeleted: EventEmitter<void> = new EventEmitter<void>();
   eligibleToReview = false;
@@ -25,6 +25,10 @@ export class ReviewsComponent implements OnInit {
     this.reviewService.eligibleToReview(this.id)
       .subscribe(eligible => {
         this.eligibleToReview = eligible;
+      });
+    this.reviewService.getReviews(this.id)
+      .subscribe(reviews => {
+        this.reviews = reviews;
       });
   }
 
