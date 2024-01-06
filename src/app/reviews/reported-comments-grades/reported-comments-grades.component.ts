@@ -7,7 +7,7 @@ import { SharedService } from '../../shared/shared.service';
 import { ReviewReportDisplay } from './review-report-display.model';
 import { ApiPaths } from '../../shared/api/api-paths.enum';
 import { switchMap, map } from 'rxjs/operators';
-import { forkJoin, of, Observable } from 'rxjs';
+import { forkJoin, Observable } from 'rxjs';
 import { environment } from '../../../env/environment';
 import moment from 'moment';
 
