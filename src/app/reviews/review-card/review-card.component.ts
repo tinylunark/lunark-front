@@ -11,6 +11,7 @@ import { ApiPaths } from '../../shared/api/api-paths.enum';
 })
 export class ReviewCardComponent {
   @Input() review: Review;
+  @Input() reportingAllowed: boolean = false;
   @Output() deleted: EventEmitter<number> = new EventEmitter<number>();
   @Output() reported: EventEmitter<number> = new EventEmitter<number>();
 

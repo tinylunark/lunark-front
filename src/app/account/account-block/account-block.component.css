@@ -1,0 +1,137 @@
+#header {
+  display: flex;
+  justify-content: left;
+  padding-left: 9em;
+  padding-top: 4em;
+  position: absolute;
+  top: 0;
+}
+
+h1 {
+  font-family: bayon;
+  letter-spacing: 1px;
+  font-weight: regular;
+  color: #fff;
+  margin: 0;
+  font-size: 4em;
+}
+
+#container-comp {
+  display: flex;
+  position: relative;
+  min-width: 92vw;
+  min-height: 85vh;
+  max-width: 90%;
+  border: 2px solid #fff;
+  margin-top: 8.4em;
+  margin-left: 7em;
+  margin-right: 6em;
+  margin-bottom: 0.5em;
+  box-shadow: 0 0px 20px #fff, 0 0 9px #fff;
+  border-radius: 15px;
+  flex-wrap: wrap;
+  flex-direction: inherit;
+  gap: inherit;
+}
+
+.grid {
+  min-width: 100%;
+  margin: 3em;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 1em;
+  align-items: start;
+  justify-content: start;
+}
+
+.card {
+  height: 23em;
+  background-color: #1f1f1f;
+  width: 95%;
+  display: flex;
+  padding-top: 2em;
+  padding-bottom: 2em;
+  margin-top: 2em;
+  flex-direction: row;
+  border-radius: 20px;
+  border: 2px solid #F0EDEE;
+  background-color: #1d1d1d;
+}
+
+span {
+  color: #00b3b3;
+}
+
+.card:hover {
+  border: 2px solid #00b3b3;
+}
+
+.image-div {
+  padding: 2em;
+}
+
+.card:hover .image {
+  transition: transform 0.2s ease-in-out;
+}
+
+.time {
+  font-size: 1.2em;
+  margin-left: 1.3em;
+}
+
+.text-row {
+  padding: 0.5em;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-top: auto;
+  font-family: rubik-regular;
+}
+
+.header {
+  padding-left: 1em;
+  font-size: 1.3em;
+}
+
+.button {
+  font-family: rubik-bold;
+  font-size: 0.8em;
+  width: 15em;
+  padding: 1.8em;
+  text-transform: uppercase;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.content {
+  padding-left: 2em;
+  padding-top:2em;
+
+}
+
+.remove-button {
+  flex: 1;
+  margin-right: 0.5em;
+  margin-bottom: 1em;
+}
+
+
+.circular-image {
+  width: 8em;
+  height: 8em;
+  border: 2px solid #00b3b3;
+  border-radius: 50%;
+  object-fit: cover;
+  overflow: hidden;
+}
+
+.account-name {
+  color: #f0edee;
+  font-size: 2em;
+}
+

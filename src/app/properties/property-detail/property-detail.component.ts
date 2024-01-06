@@ -31,6 +31,7 @@ export class PropertyDetailComponent {
   entryISODates?: string[];
 
   price = 0;
+  reportingAllowed = false;
 
   dateFilter = (d: Date | null): boolean => {
     return (this.entryISODates?.includes(d?.toISOString() ?? '') ?? false) && !((d ?? new Date()) <= new Date());
@@ -57,6 +58,7 @@ export class PropertyDetailComponent {
         this.getImages();
         this.entryISODates = property.availabilityEntries.map(entry => entry.date.toISOString());
         this.calculateAverageRating();
+        this.reportingAllowed = this.accountService.getAccountId() === property.host?.id;
       });
   }
 

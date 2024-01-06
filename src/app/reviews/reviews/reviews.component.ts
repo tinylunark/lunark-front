@@ -5,6 +5,7 @@ import { ReviewDialogComponent } from '../review-dialog/review-dialog.component'
 import { Review } from '../../shared/models/review.model';
 import { SharedService } from '../../shared/shared.service';
 import { ConfirmDeleteReviewComponent } from '../confirm-delete-review/confirm-delete-review.component';
+import { ReviewReportService } from '../review-report.service';
 
 
 @Component({
@@ -15,10 +16,11 @@ import { ConfirmDeleteReviewComponent } from '../confirm-delete-review/confirm-d
 export class ReviewsComponent implements OnInit {
   reviews: Review[] = [];
   @Input() id: number;
+  @Input() reportingAllowed: boolean = false;
   @Output() reviewDeleted: EventEmitter<void> = new EventEmitter<void>();
   eligibleToReview = false;
 
-  constructor(private reviewService: ReviewService, private matDialog: MatDialog, private sharedService: SharedService) {
+  constructor(private reviewService: ReviewService, private matDialog: MatDialog, private sharedService: SharedService, private reviewReportService: ReviewReportService) {
   } 
 
   ngOnInit(): void {
@@ -68,6 +70,31 @@ export class ReviewsComponent implements OnInit {
         this.reviewDeleted.emit();
       },
       error: (err: any) => console.log(err)
+    });
+  }
+
+  onReport(reviewId: number): void {
+    let dialogRef = this.matDialog.open(ConfirmDeleteReviewComponent, {
+      width: "35%",
+      backdropClass: "backdropBackground",
+      data: {message: "Are you sure you want to report this review?"}
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) this.report(reviewId);
+    });
+  }
+
+  private report(reviewId: number): void {
+    this.reviewReportService.createReviewReport(reviewId).subscribe({
+      next: () => {
+        this.sharedService.openSnack("Review reported successfully!");
+      },
+      error: (err: any) => {
+        console.log(err)
+        if (err.status === 409) {
+          this.sharedService.openSnack("You have already reported this review ❌");
+        }
+      }
     });
   }
 }

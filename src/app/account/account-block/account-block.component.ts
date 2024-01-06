@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ReviewReport } from '../../shared/models/review-report.model';
-import { ReviewReportService } from '../../reviews/review-report.service';
-import { ReviewService } from '../../reviews/review.service';
-import { ProfileService } from '../../shared/profile.service'; // Import the ProfileService
+import { AccountReport } from '../../shared/models/account-report.model';
+import { AccountReportService } from '../../account/account-report.service';
+import { ProfileService } from '../../shared/profile.service';
 import { SharedService } from '../../shared/shared.service';
-import { ReviewReportDisplay } from './review-report-display.model';
+import { ReportedAccountDisplay } from './reported-account-display.model';
 import { ApiPaths } from '../../shared/api/api-paths.enum';
 import { switchMap, map } from 'rxjs/operators';
 import { forkJoin, Observable } from 'rxjs';
@@ -12,41 +11,39 @@ import { environment } from '../../../env/environment';
 import moment from 'moment';
 
 @Component({
-  selector: 'app-reported-comments-grades',
-  templateUrl: './reported-comments-grades.component.html',
-  styleUrls: ['./reported-comments-grades.component.css']
+  selector: 'app-account-block',
+  templateUrl: './account-block.component.html',
+  styleUrl: './account-block.component.css'
 })
-export class ReportedCommentsGradesComponent implements OnInit {
-  reviewReports: ReviewReportDisplay[] = [];
+export class AccountBlockComponent implements OnInit {
+  accountReports: ReportedAccountDisplay[] = [];
   placeholderImage = `${environment.assetsDir}/images/placeholder-profile.png`;
 
   constructor(
-    private reviewReportService: ReviewReportService,
-    private reviewService: ReviewService,
+    private accountReportService: AccountReportService,
     private profileService: ProfileService,
     private sharedService: SharedService
   ) {}
 
   ngOnInit(): void {
-    this.getReviewReports();
+    this.getAccountReports();
   }
 
-  getReviewReports(): void {
-    this.reviewReportService.getAllReviewReports()
+  getAccountReports(): void {
+    this.accountReportService.getAllAccountReports()
       .pipe(
-        switchMap((reports: ReviewReport[]) => {
-          const requests: Observable<ReviewReportDisplay>[] = reports.map(report =>
+        switchMap((reports: AccountReport[]) => {
+          const requests: Observable<ReportedAccountDisplay>[] = reports.map(report =>
             forkJoin({
               reporter: this.profileService.getProfileById(report.reporterId),
-              review: this.reviewService.getReviewById(report.reviewId)
+              reported: this.profileService.getProfileById(report.reportedId)
             }).pipe(
-              map(({ reporter, review }) => {
-                const displayModel = new ReviewReportDisplay();
+              map(({ reporter, reported }) => {
+                const displayModel = new ReportedAccountDisplay();
                 displayModel.id = report.id;
                 displayModel.date = report.date;
                 displayModel.reporter = reporter;
-                displayModel.review = review;
-                displayModel.reviewType = review.type;
+                displayModel.reported = reported;
                 return displayModel;
               })
             )
@@ -55,11 +52,11 @@ export class ReportedCommentsGradesComponent implements OnInit {
         })
       )
       .subscribe({
-        next: (data: ReviewReportDisplay[]) => {
-          this.reviewReports = data;
+        next: (data: ReportedAccountDisplay[]) => {
+          this.accountReports = data;
         },
         error: (error) => {
-          console.error('Error fetching review reports:', error);
+          console.error('Error fetching account reports:', error);
         }
       });
   }
@@ -68,12 +65,12 @@ export class ReportedCommentsGradesComponent implements OnInit {
     return `${environment.apiHost}/${ApiPaths.Profile}/${authorId}/profile-image`;
   }
 
-  removeReview(review: ReviewReportDisplay) : void {
-    this.reviewReportService.removeReview(review.id)
+  blockAccount(report: ReportedAccountDisplay) : void {
+    this.accountReportService.blockAccount(report.id)
       .subscribe({
         next: (_) => {
-          this.getReviewReports();
-          this.sharedService.openSnack("Review approved.");
+          this.getAccountReports();
+          this.sharedService.openSnack("Account blocked.");
         }
       })
   }
@@ -82,9 +79,9 @@ export class ReportedCommentsGradesComponent implements OnInit {
     event.target.src = this.placeholderImage;
   }
 
-  getTimeDifference(reviewDate: Date): string {
+  getTimeDifference(reportDate: Date): string {
     const currentDate = moment();
-    const reviewDateTime = moment(reviewDate);
+    const reviewDateTime = moment(reportDate);
 
     const diffInMinutes = currentDate.diff(reviewDateTime, 'minutes');
     if (diffInMinutes < 60) {
@@ -99,4 +96,5 @@ export class ReportedCommentsGradesComponent implements OnInit {
       }
     }
   }
+
 }

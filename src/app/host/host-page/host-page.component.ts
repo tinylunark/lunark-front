@@ -17,6 +17,7 @@ export class HostPageComponent implements OnInit {
   id: number | null = null;
   averageRating?: number;
   header: string = "";
+  reportingAllowed = false;
   constructor(private route: ActivatedRoute, private reviewService: ReviewService, private accountService: AccountService) { }
 
   ngOnInit(): void {
@@ -25,6 +26,8 @@ export class HostPageComponent implements OnInit {
       if (this.id === null) {
         return;
       }
+
+      this.reportingAllowed = this.accountService.getAccountId() === this.id;
 
       this.reviewService.getReviews(+this.id).subscribe(reviews => {
         this.reviews = reviews;
