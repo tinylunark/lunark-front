@@ -5,6 +5,7 @@ import { ReviewService } from '../../reviews/review.service';
 import { Account } from '../../account/model/account.model';
 import { HostReviewService } from '../../reviews/host-review.service';
 import { AccountService } from '../../account/account.service';
+import { AccountReportService } from '../../account/account-report.service';
 
 @Component({
   selector: 'app-host-page',
@@ -18,7 +19,7 @@ export class HostPageComponent implements OnInit {
   averageRating?: number;
   header: string = "";
   reportingAllowed = false;
-  constructor(private route: ActivatedRoute, private reviewService: ReviewService, private accountService: AccountService) { }
+  constructor(private route: ActivatedRoute, private reviewService: ReviewService, private accountService: AccountService, private accountReportService: AccountReportService) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
@@ -48,6 +49,22 @@ export class HostPageComponent implements OnInit {
 
     //TODO: Get average rating for host from server (User story 5.3)
     this.averageRating = this.reviews.map(review => review.rating).reduce((a, b) => a + b) / this.reviews.length;
+  }
+
+  report() {
+    if (this.id === null) {
+      return;
+    }
+
+    this.accountReportService.reportAccount(this.id).subscribe({
+      next: () => {
+        alert("Account reported successfully");
+      },
+      error: (err) => {
+        console.log(err);
+        alert("Error while reporting account");
+      }
+    });
   }
 
 }

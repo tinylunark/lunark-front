@@ -3,5 +3,6 @@ export class AccountReport {
   date: Date;
   reporterId: number;
   reportedId: number;
+  reason: string;
 }
 

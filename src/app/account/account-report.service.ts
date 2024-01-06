@@ -4,12 +4,14 @@ import { Observable } from 'rxjs';
 import { AccountReport } from '../shared/models/account-report.model';
 import { environment } from '../../env/environment';
 import { ApiPaths } from '../shared/api/api-paths.enum';
+import { AccountReportDto } from './account-report-dto';
+import { AccountService } from './account.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AccountReportService {
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private accountService: AccountService) { }
 
   getReviewReportById(id: number): Observable<AccountReport> {
     return this.http.get<AccountReport>(`${environment.apiHost}/${ApiPaths.ReportedAccounts}/${id}`);
@@ -20,5 +22,14 @@ export class AccountReportService {
   }
   blockAccount(id: number): Observable<void> {
     return this.http.delete<void>(`${environment.apiHost}/${ApiPaths.ReportedAccounts}/${id}`);
+  }
+
+  reportAccount(id: number): Observable<AccountReport> {
+    let report: AccountReportDto = {
+      reportedId: id,
+      date: new Date().toISOString().slice(0, 19),
+      reason: "Random reason",
+    }
+    return this.http.post<AccountReport>(`${environment.apiHost}/${ApiPaths.ReportedAccounts}`, report);
   }
 }

@@ -1,6 +1,10 @@
 <app-header [text]="header"></app-header>
 <app-container>
     <p *ngIf="averageRating != null">Average Rating: {{ averageRating }}</p>
+    <button mat-button (click)="report()">
+        <mat-icon>flag</mat-icon>
+        <span>Report</span>
+    </button>
     <div class="reviews">
         <app-reviews [id]="id || 0" [reportingAllowed]="reportingAllowed" *ngIf="reviews != null" (reviewDeleted)="calculateAverageRating()"></app-reviews>
     </div>
