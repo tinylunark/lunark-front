@@ -9,24 +9,14 @@ import { ApiPaths } from '../shared/api/api-paths.enum';
   providedIn: 'root'
 })
 export class ReviewReportService {
-  private baseUrl = 'http://localhost:8080/api/reports/reviews';
-
   constructor(private http: HttpClient) { }
 
   getReviewReportById(id: number): Observable<ReviewReport> {
-    return this.http.get<ReviewReport>(`${this.baseUrl}/${id}`);
+    return this.http.get<ReviewReport>(`${environment.apiHost}/${ApiPaths.CommentsGrades}/${id}`);
   }
 
   getAllReviewReports(): Observable<ReviewReport[]> {
-    return this.http.get<ReviewReport[]>(this.baseUrl);
-  }
-
-  createReviewReport(dto: any): Observable<ReviewReport> {
-    return this.http.post<ReviewReport>(this.baseUrl, dto);
-  }
-
-  updateReviewReport(id: number, dto: any): Observable<ReviewReport> {
-    return this.http.put<ReviewReport>(`${this.baseUrl}/${id}`, dto);
+    return this.http.get<ReviewReport[]>(`${environment.apiHost}/${ApiPaths.CommentsGrades}`);
   }
 
   removeReview(id: number): Observable<void> {
