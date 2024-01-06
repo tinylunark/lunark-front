@@ -1,1 +1,34 @@
-<p>account-block works!</p>
+<div id="header">
+    <h1>reported users</h1>
+</div>
+<div id="container-comp">
+  <div class="grid">
+    <mat-card class="card" *ngFor="let account of accountReports">
+      <div class="image-div">
+        <img [src]="getProfileImageURL(account.reported.id)"
+             (error)="handleImageError($event)"
+             class="circular-image" alt="Profile Image">
+        <mat-card-title class="time">{{ getTimeDifference(account.date) }}</mat-card-title>
+      </div>
+      <mat-card-content class="content">
+        <mat-card-subtitle class="text-row">
+          <span>{{ account.reported.name }} {{ account.reported.surname }}</span>
+          has been reported by
+          <span>{{ account.reporter.name }} {{ account.reporter.surname }}</span>.
+        </mat-card-subtitle>
+        <mat-card-subtitle class="text-row account-name">
+          {{ account.reported.name }} {{ account.reported.surname }}<br>
+        </mat-card-subtitle>
+        <mat-card-subtitle class="text-row">
+          &nbsp;&nbsp;<i class="at-account">&nbsp;</i>{{ account.reported.role }}
+        </mat-card-subtitle>
+        <mat-card-subtitle class="text-row">
+        </mat-card-subtitle>
+        <div class="button-container">
+          <button mat-flat-button class="approve-button button" color="primary" (click)="blockAccount(account)">Block</button>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
+
