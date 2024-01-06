@@ -7,6 +7,7 @@ import { SignupSuccessDialog } from './signup-success-dialog/signup-success-dial
 import { AccountRoutingModule } from './account-routing.module';
 import { VerificationComponent } from './verification/verification.component';
 import { ProfileImageComponent } from './profile-image/profile-image.component';
+import { AccountBlockComponent } from './account-block/account-block.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { ProfileImageComponent } from './profile-image/profile-image.component';
     SignupDialog,
     SignupSuccessDialog,
     VerificationComponent,
-    ProfileImageComponent
+    ProfileImageComponent,
+    AccountBlockComponent,
   ],
   imports: [
     CommonModule,
@@ -25,7 +27,8 @@ import { ProfileImageComponent } from './profile-image/profile-image.component';
   exports: [
     LoginDialog,
     SignupDialog,
-    ProfileImageComponent
+    ProfileImageComponent,
+    AccountBlockComponent,
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA

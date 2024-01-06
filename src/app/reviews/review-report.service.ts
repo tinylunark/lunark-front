@@ -15,7 +15,7 @@ export class ReviewReportService {
   constructor(private http: HttpClient, private accountService: AccountService) { }
 
   getReviewReportById(id: number): Observable<ReviewReport> {
-    return this.http.get<ReviewReport>(`${this.baseUrl}/${id}`);
+    return this.http.get<ReviewReport>(`${environment.apiHost}/${ApiPaths.CommentsGrades}/${id}`);
   }
 
   getAllReviewReports(): Observable<ReviewReport[]> {
