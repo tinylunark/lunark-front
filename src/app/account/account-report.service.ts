@@ -25,11 +25,11 @@ export class AccountReportService {
     return this.http.delete<void>(`${environment.apiHost}/${ApiPaths.ReportedAccounts}/${id}`);
   }
 
-  reportAccount(id: number): Observable<AccountReport> {
+  reportAccount(id: number, reason: string): Observable<AccountReport> {
     let report: AccountReportDto = {
       reportedId: id,
       date: new Date().toISOString().slice(0, 19),
-      reason: "Random reason",
+      reason: reason,
     }
     return this.http.post<AccountReport>(`${environment.apiHost}/${ApiPaths.ReportedAccounts}`, report);
   }

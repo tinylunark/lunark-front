@@ -8,6 +8,7 @@ import { AccountRoutingModule } from './account-routing.module';
 import { VerificationComponent } from './verification/verification.component';
 import { ProfileImageComponent } from './profile-image/profile-image.component';
 import { AccountBlockComponent } from './account-block/account-block.component';
+import { ReportDialogComponent } from '../report-dialog/report-dialog.component';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { AccountBlockComponent } from './account-block/account-block.component';
     VerificationComponent,
     ProfileImageComponent,
     AccountBlockComponent,
+    ReportDialogComponent
   ],
   imports: [
     CommonModule,

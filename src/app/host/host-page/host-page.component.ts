@@ -6,6 +6,8 @@ import { Account } from '../../account/model/account.model';
 import { HostReviewService } from '../../reviews/host-review.service';
 import { AccountService } from '../../account/account.service';
 import { AccountReportService } from '../../account/account-report.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ReportDialogComponent } from '../../report-dialog/report-dialog.component';
 
 @Component({
   selector: 'app-host-page',
@@ -20,7 +22,7 @@ export class HostPageComponent implements OnInit {
   header: string = "";
   reportingAllowed = false;
   eligibleToReport: boolean = false;
-  constructor(private route: ActivatedRoute, private reviewService: ReviewService, private accountService: AccountService, private accountReportService: AccountReportService) { }
+  constructor(private route: ActivatedRoute, private reviewService: ReviewService, private accountService: AccountService, private accountReportService: AccountReportService, private matDialog: MatDialog) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
@@ -61,15 +63,19 @@ export class HostPageComponent implements OnInit {
       return;
     }
 
-    this.accountReportService.reportAccount(this.id).subscribe({
-      next: () => {
-        alert("Account reported successfully");
-      },
-      error: (err) => {
-        console.log(err);
-        alert("Error while reporting account");
+    this.matDialog.open(ReportDialogComponent, {
+      backdropClass: "backdropBackground",
+      height: "fit-content",
+      data: {
+        reportedUserId: this.id
+      }
+    }).afterClosed().subscribe((reported: boolean) => {
+      if (reported) {
+        this.eligibleToReport = false;
       }
     });
+
+
   }
 
 }
