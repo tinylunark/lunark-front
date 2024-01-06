@@ -44,6 +44,7 @@ export class AccountBlockComponent implements OnInit {
                 displayModel.date = report.date;
                 displayModel.reporter = reporter;
                 displayModel.reported = reported;
+                displayModel.reason = report.reason;
                 return displayModel;
               })
             )
