@@ -16,7 +16,7 @@ export enum ApiPaths {
   Verification = 'accounts/verify',
   Reviews = 'reviews',
   ApproveReview = 'approve',
-  ReviewReports = 'reports/reviews'
+  ReviewReports = 'reports/reviews',
   CommentsGrades = 'reports/reviews',
-  ReportedAccounts = 'reports/accounts'
+  ReportedAccounts = 'reports/accounts',
 }
