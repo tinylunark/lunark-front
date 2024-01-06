@@ -1,4 +1,4 @@
 <div class="review-button-wrapper" *ngIf="eligibleToReview">
 <button mat-stroked-button id="write-review" (click)="openReviewDialog()">Write a review</button>
 </div>
-<app-review-card *ngFor="let review of reviews" [review]="review" (deleted)="onDelete($event)"></app-review-card>
+<app-review-card *ngFor="let review of reviews" [review]="review" [reportingAllowed]="reportingAllowed"  (deleted)="onDelete($event)" (reported)="onReport($event)"></app-review-card>

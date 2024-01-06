@@ -2,6 +2,6 @@
 <app-container>
     <p *ngIf="averageRating != null">Average Rating: {{ averageRating }}</p>
     <div class="reviews">
-        <app-reviews [id]="id || 0" *ngIf="reviews != null" (reviewDeleted)="calculateAverageRating()"></app-reviews>
+        <app-reviews [id]="id || 0" [reportingAllowed]="reportingAllowed" *ngIf="reviews != null" (reviewDeleted)="calculateAverageRating()"></app-reviews>
     </div>
 </app-container>

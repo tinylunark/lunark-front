@@ -12,7 +12,7 @@
                 <mat-icon>star</mat-icon>
                 <span>{{review.rating}}</span>
             </div>
-            <div class="report" *ngIf="review.authorId != accountService.getAccountId()">
+            <div class="report" *ngIf="review.authorId != accountService.getAccountId() && reportingAllowed">
                 <button mat-button (click)="onReport()">
                     <mat-icon>flag</mat-icon>
                     <span>Report</span>
