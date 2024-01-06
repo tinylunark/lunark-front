@@ -19,6 +19,7 @@ export class HostPageComponent implements OnInit {
   averageRating?: number;
   header: string = "";
   reportingAllowed = false;
+  eligibleToReport: boolean = false;
   constructor(private route: ActivatedRoute, private reviewService: ReviewService, private accountService: AccountService, private accountReportService: AccountReportService) { }
 
   ngOnInit(): void {
@@ -37,6 +38,10 @@ export class HostPageComponent implements OnInit {
 
       this.accountService.getAccount(this.id).subscribe(host => {
         this.header = `Host reviews for ${host.name} ${host.surname}`;
+      });
+
+      this.accountReportService.isEligibleToReportHost(this.id).subscribe(eligible => {
+        this.eligibleToReport = eligible;
       });
     });
   }

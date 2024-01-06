@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { AccountReport } from '../shared/models/account-report.model';
 import { environment } from '../../env/environment';
 import { ApiPaths } from '../shared/api/api-paths.enum';
 import { AccountReportDto } from './account-report-dto';
 import { AccountService } from './account.service';
+import { HostReportEligibility } from './host-report-eligiblity';
 
 @Injectable({
   providedIn: 'root'
@@ -31,5 +32,17 @@ export class AccountReportService {
       reason: "Random reason",
     }
     return this.http.post<AccountReport>(`${environment.apiHost}/${ApiPaths.ReportedAccounts}`, report);
+  }
+
+  isEligibleToReportHost(id: number): Observable<boolean> {
+    if (this.accountService.getRole() != "GUEST") {
+      return new Observable((observer) => {
+        observer.next(false);
+        observer.complete();
+      });
+    }
+    return this.http.get<HostReportEligibility>(`${environment.apiHost}/${ApiPaths.HostReportEligibility}/${id}`).pipe(
+      map((eligibility: HostReportEligibility) => eligibility.eligible)
+    );
   }
 }
