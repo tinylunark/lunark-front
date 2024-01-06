@@ -11,7 +11,7 @@ describe('AccountBlockComponent', () => {
       declarations: [AccountBlockComponent]
     })
     .compileComponents();
-    
+
     fixture = TestBed.createComponent(AccountBlockComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
