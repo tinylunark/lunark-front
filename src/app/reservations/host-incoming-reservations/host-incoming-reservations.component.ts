@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { PropertyService } from "../../properties/property.service";
 import { ReservationService } from "../reservation.service";
 import { ProfileService } from "../../shared/profile.service";
@@ -27,6 +28,7 @@ export class HostIncomingReservationsComponent {
     private profileService: ProfileService,
     private propertyService: PropertyService,
     private sharedService: SharedService,
+    private router: Router
   ) {
   }
 
@@ -58,7 +60,7 @@ export class HostIncomingReservationsComponent {
         return forkJoin(observables);
       })
     ).subscribe({
-      next: (reservations: Reservation[]) => {
+      next: (reservations: Reservation[] | any) => {
         this.reservations = reservations;
       },
       error: (err) => {
@@ -95,8 +97,8 @@ export class HostIncomingReservationsComponent {
     this.reservationService.acceptReservation(reservation)
     .subscribe({
         next: (_) => {
-          this.getReservations();
           this.sharedService.openSnack('Reservation accepted.');
+          this.getReservations();
         }
       })
   }
@@ -105,8 +107,8 @@ export class HostIncomingReservationsComponent {
     this.reservationService.declineReservation(reservation)
     .subscribe({
         next: (_) => {
-          this.getReservations();
           this.sharedService.openSnack('Reservation declined.');
+          this.getReservations();
         }
       })
   }

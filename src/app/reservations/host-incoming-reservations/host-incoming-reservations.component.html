@@ -1,30 +1,39 @@
 <app-header [text]="'incoming reservations'"></app-header>
 <app-container>
   <div class="grid">
-    <mat-card class="card" *ngFor="let reservation of reservations">
-      <img mat-card-image class="image" [src]="images.get(reservation.property.id) ?? placeholderImage" alt="Image of a property."/>
-      <mat-card-header class="header">
-        <div class="reviewer-and-time">
-          <img src="assets/jake-gyllenhaal.jpg" class="circular-image">
-          <div class="reviewer-name-and-time">
-            <h3 class="reviewer-name"><span>From: </span>{{ reservation.guest?.name }} {{ reservation.guest?.surname }}</h3>
-            <p class="review-time"></p>
+    <ng-container *ngIf="reservations && reservations.length > 0; else noReservations">
+      <mat-card class="card" *ngFor="let reservation of reservations">
+        <img mat-card-image class="image" [src]="images.get(reservation.property.id) ?? placeholderImage" alt="Image of a property."/>
+        <mat-card-header class="header">
+          <div class="reviewer-and-time">
+            <img src="assets/jake-gyllenhaal.jpg" class="circular-image">
+            <div class="reviewer-name-and-time">
+              <h3 class="reviewer-name"><span>From: </span>{{ reservation.guest?.name }} {{ reservation.guest?.surname }}</h3>
+              <p class="review-time"></p>
+            </div>
           </div>
-        </div>
-        <mat-card-subtitle class="subtitle"></mat-card-subtitle>
-      </mat-card-header>
-      <mat-card-content>
-        <h2>{{ reservation.property.address.city }}, {{ reservation.property.address.country }}</h2>
-        <p class="date-range">{{ formatDate(reservation.startDate) }} - {{ formatDate(reservation.endDate) }}</p>
-        <p class="price">{{ reservation.price }}$</p>
-      </mat-card-content>
+          <mat-card-subtitle class="subtitle"></mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <h2>{{ reservation.property.address.city }}, {{ reservation.property.address.country }}</h2>
+          <p class="date-range">{{ formatDate(reservation.startDate) }} - {{ formatDate(reservation.endDate) }}</p>
+          <p class="price">{{ reservation.price }}$</p>
+          <p class="price">{{ reservation.status }}$</p>
+        </mat-card-content>
         <mat-card-footer class="footer">
           <div class="button-container">
             <button mat-flat-button class="approve-button button" color="primary" (click)="acceptReservation(reservation)">Accept</button>
             <button mat-stroked-button class="approve-button button cancel" color="primary" (click)="declineReservation(reservation)">Decline</button>
           </div>
-      </mat-card-footer>
-    </mat-card>
-  </div>
-</app-container>
+        </mat-card-footer>
+      </mat-card>
+    </ng-container>
 
+    <ng-template #noReservations>
+      <div class="center-content">
+        <p>Nothing to show.</p>
+      </div>
+    </ng-template>
+  </div>
+
+</app-container>
