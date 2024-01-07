@@ -30,11 +30,7 @@
           <mat-icon>pending</mat-icon>
           {{ reservation.status }}
         </p>
-        <p class="date-range"
-           *ngIf="this.accountService.getRole() === 'HOST' && reservation.guest.cancelCount && reservation.guest.cancelCount > 0">
-          <mat-icon>warning</mat-icon>
-          This guest has cancelled {{ reservation.guest.cancelCount }} times
-        </p>
+
         <p class="price">{{ reservation.price }}$</p>
       </mat-card-content>
       <mat-card-footer class="footer">

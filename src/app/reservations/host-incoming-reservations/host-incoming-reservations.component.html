@@ -1,28 +1,44 @@
 <app-header [text]="'incoming reservations'"></app-header>
 <app-container>
+  <app-reservation-search
+    (reservationsEmitter)="onReservationsEmitted($event)"
+    style="width: 100%; padding-top: 2em"
+    fxLayout="row" fxLayoutAlign="center start" fxLayoutGap="1em">
+  </app-reservation-search>
   <div class="grid">
     <mat-card class="card" *ngFor="let reservation of reservations">
-      <img mat-card-image class="image" [src]="images.get(reservation.property.id) ?? placeholderImage" alt="Image of a property."/>
+      <img mat-card-image class="image" [src]="images.get(reservation.property.id) ?? placeholderImage"
+           alt="Image of a property."/>
       <mat-card-header class="header">
         <div class="reviewer-and-time">
           <img src="assets/jake-gyllenhaal.jpg" class="circular-image">
           <div class="reviewer-name-and-time">
-            <h3 class="reviewer-name"><span>From: </span>{{ reservation.guest?.name }} {{ reservation.guest?.surname }}</h3>
+            <h3 class="reviewer-name"><span>From: </span>{{ reservation.guest?.name }} {{ reservation.guest?.surname }}
+            </h3>
             <p class="review-time"></p>
           </div>
         </div>
         <mat-card-subtitle class="subtitle"></mat-card-subtitle>
       </mat-card-header>
       <mat-card-content>
-        <h2>{{ reservation.property.address.city }}, {{ reservation.property.address.country }}</h2>
+        <h2>{{ reservation.property.name }}</h2>
         <p class="date-range">{{ formatDate(reservation.startDate) }} - {{ formatDate(reservation.endDate) }}</p>
+        <p class="date-range"
+           *ngIf="reservation.guest.cancelCount && reservation.guest.cancelCount > 0">
+          <mat-icon>warning</mat-icon>
+          This guest has cancelled {{ reservation.guest.cancelCount }} times
+        </p>
         <p class="price">{{ reservation.price }}$</p>
       </mat-card-content>
-        <mat-card-footer class="footer">
-          <div class="button-container">
-            <button mat-flat-button class="approve-button button" color="primary" (click)="acceptReservation(reservation)">Accept</button>
-            <button mat-stroked-button class="approve-button button cancel" color="primary" (click)="declineReservation(reservation)">Decline</button>
-          </div>
+      <mat-card-footer class="footer">
+        <div class="button-container">
+          <button mat-flat-button class="approve-button button" color="primary"
+                  (click)="acceptReservation(reservation)">Accept
+          </button>
+          <button mat-stroked-button class="approve-button button cancel" color="primary"
+                  (click)="declineReservation(reservation)">Decline
+          </button>
+        </div>
       </mat-card-footer>
     </mat-card>
   </div>

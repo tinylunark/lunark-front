@@ -1,14 +1,15 @@
-import { Component } from '@angular/core';
-import { PropertyService } from "../../properties/property.service";
-import { ReservationService } from "../reservation.service";
-import { ProfileService } from "../../shared/profile.service";
-import { SharedService } from "../../shared/shared.service";
-import { Property } from "../../shared/models/property.model";
-import { Reservation } from "../../shared/models/reservation.model";
-import { Profile } from "../../shared/models/profile.model";
-import { environment } from "../../../env/environment";
-import { forkJoin } from 'rxjs';
-import { switchMap, map } from 'rxjs/operators';
+import {Component} from '@angular/core';
+import {PropertyService} from "../../properties/property.service";
+import {ReservationService} from "../reservation.service";
+import {ProfileService} from "../../shared/profile.service";
+import {SharedService} from "../../shared/shared.service";
+import {Property} from "../../shared/models/property.model";
+import {Reservation} from "../../shared/models/reservation.model";
+import {Profile} from "../../shared/models/profile.model";
+import {environment} from "../../../env/environment";
+import {forkJoin} from 'rxjs';
+import {switchMap, map} from 'rxjs/operators';
+import {AccountService} from "../../account/account.service";
 
 @Component({
   selector: 'app-host-incoming-reservations',
@@ -27,44 +28,20 @@ export class HostIncomingReservationsComponent {
     private profileService: ProfileService,
     private propertyService: PropertyService,
     private sharedService: SharedService,
+    public accountService: AccountService,
   ) {
   }
 
- ngOnInit(): void {
+  ngOnInit(): void {
     this.getReservations();
   }
 
-  getReservations() : void {
-    this.profileService.getProfile().pipe(
-      switchMap((profile: Profile) => {
-        this.profile = profile;
-        return this.reservationService.getIncomingReservations(this.profile.id);
-      }),
-      switchMap((reservations: Reservation[]) => {
-        const observables = reservations.map(reservation => {
-          const propertyObservable = this.propertyService.getProperty(reservation.propertyId);
-          const guestObservable = this.profileService.getProfileById(reservation.guestId);
-          return forkJoin([propertyObservable, guestObservable]).pipe(
-            map(results => {
-              reservation.property = results[0];
-              reservation.guest = results[1];
-              if (reservation.property && typeof reservation.property.id === 'number') {
-                this.getImages(reservation.property.id);
-              }
-              return reservation;
-            })
-          );
-        });
-        return forkJoin(observables);
-      })
-    ).subscribe({
-      next: (reservations: Reservation[]) => {
+  getReservations(): void {
+    this.reservationService.getReservationsForCurrentUser()
+      .subscribe(reservations => {
         this.reservations = reservations;
-      },
-      error: (err) => {
-        console.log('Error fetching reservations.', err);
-      }
-    });
+        reservations.forEach(reservation => this.getImages(reservation.property.id));
+      });
   }
 
   getImages(propertyId: any): void {
@@ -90,10 +67,9 @@ export class HostIncomingReservationsComponent {
   }
 
 
-
   acceptReservation(reservation: Reservation): void {
     this.reservationService.acceptReservation(reservation)
-    .subscribe({
+      .subscribe({
         next: (_) => {
           this.getReservations();
           this.sharedService.openSnack('Reservation accepted.');
@@ -103,7 +79,7 @@ export class HostIncomingReservationsComponent {
 
   declineReservation(reservation: Reservation): void {
     this.reservationService.declineReservation(reservation)
-    .subscribe({
+      .subscribe({
         next: (_) => {
           this.getReservations();
           this.sharedService.openSnack('Reservation declined.');
@@ -125,5 +101,10 @@ export class HostIncomingReservationsComponent {
 
   formatNumber(num: number): string {
     return num < 10 ? `0${num}` : `${num}`;
+  }
+
+  onReservationsEmitted(reservations: Reservation[]) {
+    this.reservations = reservations;
+    reservations.forEach(reservation => this.getImages(reservation.property.id));
   }
 }
