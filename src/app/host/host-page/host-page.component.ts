@@ -5,6 +5,9 @@ import { ReviewService } from '../../reviews/review.service';
 import { Account } from '../../account/model/account.model';
 import { HostReviewService } from '../../reviews/host-review.service';
 import { AccountService } from '../../account/account.service';
+import { AccountReportService } from '../../account/account-report.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ReportDialogComponent } from '../../report-dialog/report-dialog.component';
 
 @Component({
   selector: 'app-host-page',
@@ -18,7 +21,8 @@ export class HostPageComponent implements OnInit {
   averageRating?: number;
   header: string = "";
   reportingAllowed = false;
-  constructor(private route: ActivatedRoute, private reviewService: ReviewService, private accountService: AccountService) { }
+  eligibleToReport: boolean = false;
+  constructor(private route: ActivatedRoute, private reviewService: ReviewService, private accountService: AccountService, private accountReportService: AccountReportService, private matDialog: MatDialog) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
@@ -37,6 +41,10 @@ export class HostPageComponent implements OnInit {
       this.accountService.getAccount(this.id).subscribe(host => {
         this.header = `Host reviews for ${host.name} ${host.surname}`;
       });
+
+      this.accountReportService.isEligibleToReportHost(this.id).subscribe(eligible => {
+        this.eligibleToReport = eligible;
+      });
     });
   }
 
@@ -48,6 +56,27 @@ export class HostPageComponent implements OnInit {
 
     //TODO: Get average rating for host from server (User story 5.3)
     this.averageRating = this.reviews.map(review => review.rating).reduce((a, b) => a + b) / this.reviews.length;
+  }
+
+  report() {
+    if (this.id === null) {
+      return;
+    }
+
+    this.matDialog.open(ReportDialogComponent, {
+      backdropClass: "backdropBackground",
+      height: "fit-content",
+      data: {
+        reportedUserId: this.id,
+        title: "Report host"
+      }
+    }).afterClosed().subscribe((reported: boolean) => {
+      if (reported) {
+        this.eligibleToReport = false;
+      }
+    });
+
+
   }
 
 }

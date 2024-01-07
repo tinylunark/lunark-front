@@ -16,8 +16,10 @@
           has been reported by
           <span>{{ account.reporter.name }} {{ account.reporter.surname }}</span>.
         </mat-card-subtitle>
-        <mat-card-subtitle class="text-row account-name">
-          {{ account.reported.name }} {{ account.reported.surname }}<br>
+        <mat-card-subtitle class="text-row">
+          <span>Reason:</span> {{ account.reason }} <br>
+        </mat-card-subtitle>
+        <mat-card-subtitle class="text-row account-name">{{ account.reported.name }} {{ account.reported.surname }}<br>
         </mat-card-subtitle>
         <mat-card-subtitle class="text-row">
           &nbsp;&nbsp;<i class="at-account">&nbsp;</i>{{ account.reported.role }}
