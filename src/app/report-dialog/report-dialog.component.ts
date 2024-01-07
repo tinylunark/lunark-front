@@ -14,14 +14,16 @@ export class ReportDialogComponent {
     reason: new FormControl('', [Validators.required]),
   });
   reportedUserId: number | null = null;
+  title: string = "Report host";
 
   constructor(
     private accountReportService: AccountReportService,
     private dialogRef: MatDialogRef<ReportDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) protected data: { reportedUserId: number },
+    @Inject(MAT_DIALOG_DATA) protected data: { reportedUserId: number, title: string },
     private sharedService: SharedService
   ) {
     this.reportedUserId = data.reportedUserId;
+    this.title = data.title;
   }
 
   submitReport() {

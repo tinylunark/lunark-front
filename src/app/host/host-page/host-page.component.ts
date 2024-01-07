@@ -67,7 +67,8 @@ export class HostPageComponent implements OnInit {
       backdropClass: "backdropBackground",
       height: "fit-content",
       data: {
-        reportedUserId: this.id
+        reportedUserId: this.id,
+        title: "Report host"
       }
     }).afterClosed().subscribe((reported: boolean) => {
       if (reported) {
