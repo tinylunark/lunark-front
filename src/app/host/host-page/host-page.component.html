@@ -1,6 +1,6 @@
 <app-header [text]="header"></app-header>
 <app-container>
-    <p *ngIf="averageRating != null">Average Rating: {{ averageRating }}</p>
+    <p *ngIf="host.averageRating" class="mat-headline-5" style="margin-left: 1em; margin-top: 1em">Average Rating: {{ host.averageRating }}</p>
     <div class="reviews">
         <app-reviews [id]="id || 0" [reportingAllowed]="reportingAllowed" *ngIf="reviews != null" (reviewDeleted)="calculateAverageRating()"></app-reviews>
     </div>
