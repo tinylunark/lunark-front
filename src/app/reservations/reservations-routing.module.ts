@@ -6,7 +6,7 @@ import { authGuard } from '../account/guard/auth.guard';
 
 const routes: Routes = [
   { path: 'incoming-reservations', component: HostIncomingReservationsComponent, canActivate: [authGuard], data: { role: ['HOST'] } },
-  { path: 'accepted-reservations', component: ReservationListComponent, canActivate: [authGuard], data: { role: ['GUEST'] } },
+  { path: 'accepted-reservations', component: ReservationListComponent, canActivate: [authGuard], data: { role: ['GUEST', 'HOST'] } },
 ];
 
 @NgModule({

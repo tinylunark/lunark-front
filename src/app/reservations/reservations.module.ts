@@ -9,11 +9,13 @@ import { SharedModule } from "../shared/shared.module";
 import { ReservationsRoutingModule } from "./reservations-routing.module";
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { MaterialModule } from "../../infrastructure/material/material.module";
+import {ReservationSearchComponent} from "./reservation-list/reservation-search/reservation-search.component";
 
 @NgModule({
   declarations: [
     HostIncomingReservationsComponent,
     ReservationListComponent,
+    ReservationSearchComponent,
   ],
   imports: [
     CommonModule,
@@ -28,6 +30,7 @@ import { MaterialModule } from "../../infrastructure/material/material.module";
   exports: [
     HostIncomingReservationsComponent,
     ReservationListComponent,
+    ReservationSearchComponent,
   ]
 })
 export class ReservationsModule { }

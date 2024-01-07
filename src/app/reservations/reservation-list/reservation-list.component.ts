@@ -8,7 +8,8 @@ import {Reservation, ReservationStatus} from "../../shared/models/reservation.mo
 import {Profile} from "../../shared/models/profile.model";
 import {environment} from "../../../env/environment";
 import {switchMap} from 'rxjs/operators';
-import {FormBuilder, FormControl} from "@angular/forms";
+import {FormBuilder} from "@angular/forms";
+import {AccountService} from "../../account/account.service";
 
 @Component({
   selector: 'app-reservation-list',
@@ -22,19 +23,12 @@ export class ReservationListComponent {
   profile: Profile | null = null;
   images: Map<number, string> = new Map;
 
-  filterForm = this.formBuilder.group({
-    propertyName: '',
-    startDate: new FormControl<Date | null>(null),
-    endDate: new FormControl<Date | null>(null),
-    status: ReservationStatus.NONE,
-  });
-
   constructor(
     private reservationService: ReservationService,
     private profileService: ProfileService,
     private propertyService: PropertyService,
     private sharedService: SharedService,
-    private formBuilder: FormBuilder,
+    public accountService: AccountService,
   ) {
   }
 
@@ -102,18 +96,11 @@ export class ReservationListComponent {
     return num < 10 ? `0${num}` : `${num}`;
   }
 
-  onSubmit() {
-    this.reservationService.getReservationsForCurrentUser({
-      propertyName: this.filterForm.value.propertyName ?? '',
-      startDate: this.filterForm.value.startDate?.toISOString().substring(0, 10) ?? '',
-      endDate: this.filterForm.value.endDate?.toISOString().substring(0, 10) ?? '',
-      status: this.filterForm.value.status ?? ReservationStatus.NONE,
-    }).subscribe(reservations => {
-      this.reservations = reservations;
-      reservations.forEach(reservation => this.getImages(reservation.property.id));
-    });
-  }
-
   protected readonly Object = Object;
   protected readonly ReservationStatus = ReservationStatus;
+
+  onReservationsEmitted(reservations: Reservation[]) {
+    this.reservations = reservations;
+    reservations.forEach(reservation => this.getImages(reservation.property.id));
+  }
 }

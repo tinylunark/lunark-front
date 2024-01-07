@@ -1,36 +1,13 @@
 <app-header [text]="'your reservations'"></app-header>
 <app-container>
-  <form style="width: 100%; padding-top: 2em" action="" method="get" fxLayout="row" fxLayoutAlign="center start" fxLayoutGap="1em" [formGroup]="filterForm" (ngSubmit)="onSubmit()">
-    <mat-form-field appearance="outline">
-      <mat-label>Property name</mat-label>
-      <input matInput name="propertyName" type="text" formControlName="propertyName">
-      <mat-icon matSuffix>apartment</mat-icon>
-    </mat-form-field>
-    <mat-form-field appearance="outline">
-      <mat-label>Date range</mat-label>
-      <mat-date-range-input [rangePicker]="picker">
-        <input matStartDate name="startDate" placeholder="Start date" formControlName="startDate">
-        <input matEndDate name="endDate" placeholder="End date" formControlName="endDate">
-      </mat-date-range-input>
-      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-date-range-picker #picker></mat-date-range-picker>
-    </mat-form-field>
-    <mat-form-field appearance="outline">
-      <mat-label>Status</mat-label>
-      <mat-select formControlName="status">
-        <mat-option [value]="ReservationStatus.NONE">--</mat-option>
-        @for (status of Object.values(ReservationStatus); track status) {
-          <mat-option *ngIf="status !== ReservationStatus.NONE" [value]="status">{{status}}</mat-option>
-        }
-      </mat-select>
-    </mat-form-field>
-    <button mat-fab color="primary" type="submit">
-      <mat-icon>search</mat-icon>
-    </button>
-  </form>
+  <app-reservation-search
+    (reservationsEmitter)="onReservationsEmitted($event)"
+    style="width: 100%; padding-top: 2em"
+    fxLayout="row" fxLayoutAlign="center start" fxLayoutGap="1em"></app-reservation-search>
   <div class="grid">
     <mat-card class="card" *ngFor="let reservation of reservations">
-      <img mat-card-image class="image" [src]="images.get(reservation.property.id) ?? placeholderImage" alt="Image of a property."/>
+      <img mat-card-image class="image" [src]="images.get(reservation.property.id) ?? placeholderImage"
+           alt="Image of a property."/>
       <mat-card-header class="header">
         <div class="reviewer-and-time">
           <div class="reviewer-name-and-time">
@@ -41,15 +18,31 @@
       </mat-card-header>
       <mat-card-content>
         <h2 routerLink="/properties/{{ reservation.property.id }}">{{ reservation.property.name }}</h2>
-        <p class="date-range"><mat-icon>event</mat-icon> {{ formatDate(reservation.startDate) }} - {{ formatDate(reservation.endDate) }}</p>
-        <p class="date-range"><mat-icon>group</mat-icon> {{ reservation.numberOfGuests }}</p>
-        <p class="date-range"><mat-icon>pending</mat-icon> {{ reservation.status }}</p>
+        <p class="date-range">
+          <mat-icon>event</mat-icon>
+          {{ formatDate(reservation.startDate) }} - {{ formatDate(reservation.endDate) }}
+        </p>
+        <p class="date-range">
+          <mat-icon>group</mat-icon>
+          {{ reservation.numberOfGuests }}
+        </p>
+        <p class="date-range">
+          <mat-icon>pending</mat-icon>
+          {{ reservation.status }}
+        </p>
+        <p class="date-range"
+           *ngIf="this.accountService.getRole() === 'HOST' && reservation.guest.cancelCount && reservation.guest.cancelCount > 0">
+          <mat-icon>warning</mat-icon>
+          This guest has cancelled {{ reservation.guest.cancelCount }} times
+        </p>
         <p class="price">{{ reservation.price }}$</p>
       </mat-card-content>
-        <mat-card-footer class="footer">
-          <div class="button-container">
-            <button mat-flat-button class="approve-button button" color="primary" (click)="cancelReservation(reservation)">Cancel</button>
-          </div>
+      <mat-card-footer class="footer">
+        <div class="button-container">
+          <button mat-flat-button class="approve-button button" color="primary"
+                  (click)="cancelReservation(reservation)">Cancel
+          </button>
+        </div>
       </mat-card-footer>
     </mat-card>
   </div>
