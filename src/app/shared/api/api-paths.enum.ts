@@ -19,4 +19,5 @@ export enum ApiPaths {
   ReviewReports = 'reports/reviews',
   CommentsGrades = 'reports/reviews',
   ReportedAccounts = 'reports/accounts',
+  HostReportEligibility = 'reports/accounts/host-report-eligibility'
 }

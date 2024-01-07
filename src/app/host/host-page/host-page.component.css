@@ -8,3 +8,15 @@
 app-container {
     flex-direction: column;
 }
+
+.report-button-wrapper {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 1em;
+    padding-right: 2em;
+    padding-left: 2em;
+}
+
+#report-host-button {
+    color: red;
+}

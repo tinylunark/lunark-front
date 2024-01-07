@@ -5,4 +5,5 @@ export class ReportedAccountDisplay {
   date: Date;
   reporter: Profile;
   reported: Profile;
+  reason: string;
 }
