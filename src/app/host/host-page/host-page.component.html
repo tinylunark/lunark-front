@@ -8,6 +8,6 @@
         </button>
     </div>
     <div class="reviews">
-        <app-reviews [id]="id || 0" [reportingAllowed]="reportingAllowed" *ngIf="reviews != null" (reviewDeleted)="calculateAverageRating()"></app-reviews>
+        <app-reviews [id]="id || 0" [reportingAllowed]="reportingAllowed" *ngIf="reviews != null"></app-reviews>
     </div>
 </app-container>
