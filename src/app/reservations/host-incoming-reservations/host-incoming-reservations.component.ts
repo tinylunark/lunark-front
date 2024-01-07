@@ -1,15 +1,16 @@
-import {Component} from '@angular/core';
-import {PropertyService} from "../../properties/property.service";
-import {ReservationService} from "../reservation.service";
-import {ProfileService} from "../../shared/profile.service";
-import {SharedService} from "../../shared/shared.service";
-import {Property} from "../../shared/models/property.model";
-import {Reservation} from "../../shared/models/reservation.model";
-import {Profile} from "../../shared/models/profile.model";
-import {environment} from "../../../env/environment";
-import {forkJoin} from 'rxjs';
-import {switchMap, map} from 'rxjs/operators';
+import { Component } from '@angular/core';
+import { PropertyService } from "../../properties/property.service";
+import { ReservationService } from "../reservation.service";
+import { ProfileService } from "../../shared/profile.service";
+import { SharedService } from "../../shared/shared.service";
+import { Property } from "../../shared/models/property.model";
+import { Reservation } from "../../shared/models/reservation.model";
+import { Profile } from "../../shared/models/profile.model";
+import { environment } from "../../../env/environment";
+import { forkJoin } from 'rxjs';
+import { switchMap, map } from 'rxjs/operators';
 import {AccountService} from "../../account/account.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-host-incoming-reservations',
@@ -29,6 +30,7 @@ export class HostIncomingReservationsComponent {
     private propertyService: PropertyService,
     private sharedService: SharedService,
     public accountService: AccountService,
+    private router: Router
   ) {
   }
 
@@ -67,6 +69,7 @@ export class HostIncomingReservationsComponent {
   }
 
 
+
   acceptReservation(reservation: Reservation): void {
     this.reservationService.acceptReservation(reservation)
       .subscribe({
@@ -83,6 +86,7 @@ export class HostIncomingReservationsComponent {
         next: (_) => {
           this.getReservations();
           this.sharedService.openSnack('Reservation declined.');
+          this.getReservations();
         }
       })
   }

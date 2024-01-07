@@ -178,3 +178,18 @@ span {
   border-color: #fff;
   border-width: 3px;
 }
+.center-content {
+  display: flex;
+  align-items: center;
+  top: 0;
+  left: 0;
+  font-size: 4em;
+}
+
+.center-content p {
+  color: #333;
+  font-family: 'Bayon', serif;
+  text-align: center;
+  max-width: 100%;
+}
+
