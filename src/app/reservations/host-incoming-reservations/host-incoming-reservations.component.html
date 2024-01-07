@@ -32,6 +32,11 @@
       </mat-card-content>
       <mat-card-footer class="footer">
         <div class="button-container">
+          <button color="warn" class="approve-button button" mat-flat-button mat-button (click)="report(reservation.guest.id)"
+                  *ngIf="reservation.status == 'ACCEPTED' && reservation.guest.id && reservation.endDate < currentDate">
+                  <mat-icon>flag</mat-icon>
+                  Report guest
+          </button>
           <button mat-flat-button class="approve-button button" color="primary"
                   (click)="acceptReservation(reservation)"
                   *ngIf="reservation.status == 'PENDING'"
