@@ -18,10 +18,10 @@ import { ReportDialogComponent } from '../../report-dialog/report-dialog.compone
 export class HostPageComponent implements OnInit {
   reviews: Review[] | null = null;
   id: number | null = null;
-  averageRating?: number;
   header: string = "";
   reportingAllowed = false;
   eligibleToReport: boolean = false;
+  host: Account;
   constructor(private route: ActivatedRoute, private reviewService: ReviewService, private accountService: AccountService, private accountReportService: AccountReportService, private matDialog: MatDialog) { }
 
   ngOnInit(): void {
@@ -35,10 +35,10 @@ export class HostPageComponent implements OnInit {
 
       this.reviewService.getReviews(+this.id).subscribe(reviews => {
         this.reviews = reviews;
-        this.calculateAverageRating();
       });
 
       this.accountService.getAccount(this.id).subscribe(host => {
+        this.host = host;
         this.header = `Host reviews for ${host.name} ${host.surname}`;
       });
 
@@ -46,16 +46,6 @@ export class HostPageComponent implements OnInit {
         this.eligibleToReport = eligible;
       });
     });
-  }
-
-  calculateAverageRating() {
-    if (!this.reviews || this.reviews.length <= 0) {
-      this.averageRating = undefined;
-      return;
-    }
-
-    //TODO: Get average rating for host from server (User story 5.3)
-    this.averageRating = this.reviews.map(review => review.rating).reduce((a, b) => a + b) / this.reviews.length;
   }
 
   report() {
