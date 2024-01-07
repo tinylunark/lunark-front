@@ -16,9 +16,10 @@ export interface Reservation {
 }
 
 export enum ReservationStatus {
+  NONE = '',
   PENDING = 'PENDING',
-  CONFIRMED = 'CONFIRMED',
-  CANCELED = 'CANCELED',
-  COMPLETED = 'COMPLETED'
+  ACCEPTED = 'ACCEPTED',
+  CANCELLED = 'CANCELLED',
+  REJECTED = 'REJECTED',
 }
 

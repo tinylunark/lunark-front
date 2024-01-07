@@ -1,23 +1,22 @@
-import { Component } from '@angular/core';
-import { PropertyService } from "../../properties/property.service";
-import { ReservationService } from "../reservation.service";
-import { ProfileService } from "../../shared/profile.service";
-import { SharedService } from "../../shared/shared.service";
-import { Property } from "../../shared/models/property.model";
-import { Reservation } from "../../shared/models/reservation.model";
-import { Profile } from "../../shared/models/profile.model";
-import { environment } from "../../../env/environment";
-import { forkJoin } from 'rxjs';
-import { switchMap, map } from 'rxjs/operators';
+import {Component} from '@angular/core';
+import {PropertyService} from "../../properties/property.service";
+import {ReservationService} from "../reservation.service";
+import {ProfileService} from "../../shared/profile.service";
+import {SharedService} from "../../shared/shared.service";
+import {Property} from "../../shared/models/property.model";
+import {Reservation, ReservationStatus} from "../../shared/models/reservation.model";
+import {Profile} from "../../shared/models/profile.model";
+import {environment} from "../../../env/environment";
+import {switchMap} from 'rxjs/operators';
+import {FormBuilder} from "@angular/forms";
 import {AccountService} from "../../account/account.service";
-import {Router} from "@angular/router";
 
 @Component({
-  selector: 'app-host-incoming-reservations',
-  templateUrl: './host-incoming-reservations.component.html',
-  styleUrl: './host-incoming-reservations.component.css'
+  selector: 'app-reservation-list',
+  templateUrl: './reservation-list.component.html',
+  styleUrl: './reservation-list.component.css'
 })
-export class HostIncomingReservationsComponent {
+export class ReservationListComponent {
   properties: Property[] = [];
   reservations: Reservation[] = [];
   placeholderImage = environment.assetsDir + '/images/placeholder-image.webp';
@@ -30,23 +29,23 @@ export class HostIncomingReservationsComponent {
     private propertyService: PropertyService,
     private sharedService: SharedService,
     public accountService: AccountService,
-    private router: Router
   ) {
   }
 
-  ngOnInit(): void {
+ ngOnInit(): void {
     this.getReservations();
   }
 
-  getReservations(): void {
+  getReservations() : void {
     this.reservationService.getReservationsForCurrentUser()
-      .subscribe(reservations => {
+      .subscribe(reservations =>
+      {
         this.reservations = reservations;
         reservations.forEach(reservation => this.getImages(reservation.property.id));
       });
   }
 
-  getImages(propertyId: any): void {
+  getImages(propertyId: number) {
     this.propertyService.getProperty(propertyId).pipe(
       switchMap((property: Property) => {
         const firstImage = property.images.at(0);
@@ -70,34 +69,24 @@ export class HostIncomingReservationsComponent {
 
 
 
-  acceptReservation(reservation: Reservation): void {
-    this.reservationService.acceptReservation(reservation)
-      .subscribe({
+  cancelReservation(reservation: Reservation): void {
+    this.reservationService.cancelReservation(reservation)
+    .subscribe({
         next: (_) => {
           this.getReservations();
-          this.sharedService.openSnack('Reservation accepted.');
+          this.sharedService.openSnack('Reservation canceled.');
+        },
+      error: (_) => {
+          this.sharedService.openSnack('Reservation can not be canceled.');
         }
       })
   }
-
-  declineReservation(reservation: Reservation): void {
-    this.reservationService.declineReservation(reservation)
-      .subscribe({
-        next: (_) => {
-          this.getReservations();
-          this.sharedService.openSnack('Reservation declined.');
-          this.getReservations();
-        }
-      })
-  }
-
 
   formatDate(date: Date): string {
     if (date) {
       const day = this.formatNumber(date.getDate());
       const month = this.formatNumber(date.getMonth() + 1);
       const year = date.getFullYear();
-
       return `${day}/${month}/${year}`;
     }
     return '';
@@ -106,6 +95,9 @@ export class HostIncomingReservationsComponent {
   formatNumber(num: number): string {
     return num < 10 ? `0${num}` : `${num}`;
   }
+
+  protected readonly Object = Object;
+  protected readonly ReservationStatus = ReservationStatus;
 
   onReservationsEmitted(reservations: Reservation[]) {
     this.reservations = reservations;

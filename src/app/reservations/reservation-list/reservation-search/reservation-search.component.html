@@ -1,0 +1,29 @@
+<form action="" method="get" fxLayout="row" fxLayoutAlign="center start"
+      fxLayoutGap="1em" [formGroup]="filterForm" (ngSubmit)="onSubmit()">
+  <mat-form-field appearance="outline">
+    <mat-label>Property name</mat-label>
+    <input matInput name="propertyName" type="text" formControlName="propertyName">
+    <mat-icon matSuffix>apartment</mat-icon>
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Date range</mat-label>
+    <mat-date-range-input [rangePicker]="picker">
+      <input matStartDate name="startDate" placeholder="Start date" formControlName="startDate">
+      <input matEndDate name="endDate" placeholder="End date" formControlName="endDate">
+    </mat-date-range-input>
+    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-date-range-picker #picker></mat-date-range-picker>
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Status</mat-label>
+    <mat-select formControlName="status">
+      <mat-option [value]="ReservationStatus.NONE">--</mat-option>
+      @for (status of Object.values(ReservationStatus); track status) {
+        <mat-option *ngIf="status !== ReservationStatus.NONE" [value]="status">{{ status }}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+  <button mat-fab color="primary" type="submit">
+    <mat-icon>search</mat-icon>
+  </button>
+</form>

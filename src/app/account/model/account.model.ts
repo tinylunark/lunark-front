@@ -10,4 +10,5 @@ export interface Account {
     role: string,
     notificationsEnabled?: boolean,
     blocked?: boolean,
+    cancelCount?: number,
 }
