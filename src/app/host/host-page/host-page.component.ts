@@ -1,28 +1,29 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Review } from '../../shared/models/review.model';
-import { ReviewService } from '../../reviews/review.service';
-import { Account } from '../../account/model/account.model';
-import { HostReviewService } from '../../reviews/host-review.service';
-import { AccountService } from '../../account/account.service';
-import { AccountReportService } from '../../account/account-report.service';
-import { MatDialog } from '@angular/material/dialog';
-import { ReportDialogComponent } from '../../report-dialog/report-dialog.component';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
+import {Review} from '../../shared/models/review.model';
+import {ReviewService} from '../../reviews/review.service';
+import {HostReviewService} from '../../reviews/host-review.service';
+import {AccountService} from '../../account/account.service';
+import {AccountReportService} from '../../account/account-report.service';
+import {MatDialog} from '@angular/material/dialog';
+import {ReportDialogComponent} from "../../report-dialog/report-dialog.component";
 
 @Component({
   selector: 'app-host-page',
   templateUrl: './host-page.component.html',
   styleUrl: './host-page.component.css',
-  providers: [{ provide: ReviewService, useClass: HostReviewService }]
+  providers: [{provide: ReviewService, useClass: HostReviewService}]
 })
 export class HostPageComponent implements OnInit {
   reviews: Review[] | null = null;
   id: number | null = null;
-  averageRating?: number;
   header: string = "";
   reportingAllowed = false;
+  averageRating: number;
   eligibleToReport: boolean = false;
-  constructor(private route: ActivatedRoute, private reviewService: ReviewService, private accountService: AccountService, private accountReportService: AccountReportService, private matDialog: MatDialog) { }
+
+  constructor(private route: ActivatedRoute, private reviewService: ReviewService, private accountService: AccountService, private accountReportService: AccountReportService, private matDialog: MatDialog) {
+  }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
@@ -35,12 +36,9 @@ export class HostPageComponent implements OnInit {
 
       this.reviewService.getReviews(+this.id).subscribe(reviews => {
         this.reviews = reviews;
-        this.calculateAverageRating();
       });
 
-      this.accountService.getAccount(this.id).subscribe(host => {
-        this.header = `Host reviews for ${host.name} ${host.surname}`;
-      });
+      this.getAccount();
 
       this.accountReportService.isEligibleToReportHost(this.id).subscribe(eligible => {
         this.eligibleToReport = eligible;
@@ -48,14 +46,13 @@ export class HostPageComponent implements OnInit {
     });
   }
 
-  calculateAverageRating() {
-    if (!this.reviews || this.reviews.length <= 0) {
-      this.averageRating = undefined;
-      return;
-    }
+  public getAccount() {
+    if (!this.id) return;
 
-    //TODO: Get average rating for host from server (User story 5.3)
-    this.averageRating = this.reviews.map(review => review.rating).reduce((a, b) => a + b) / this.reviews.length;
+    this.accountService.getAccount(this.id).subscribe(account => {
+      this.averageRating = account.averageRating ?? 0.0;
+      this.header = `Host reviews for ${account.name} ${account.surname}`;
+    });
   }
 
   report() {
@@ -75,8 +72,5 @@ export class HostPageComponent implements OnInit {
         this.eligibleToReport = false;
       }
     });
-
-
   }
-
 }

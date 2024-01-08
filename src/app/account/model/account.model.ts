@@ -11,4 +11,5 @@ export interface Account {
     notificationsEnabled?: boolean,
     blocked?: boolean,
     cancelCount?: number,
+    averageRating?: number,
 }
