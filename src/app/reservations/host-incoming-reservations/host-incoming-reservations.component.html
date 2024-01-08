@@ -33,10 +33,14 @@
       <mat-card-footer class="footer">
         <div class="button-container">
           <button mat-flat-button class="approve-button button" color="primary"
-                  (click)="acceptReservation(reservation)">Accept
+                  (click)="acceptReservation(reservation)"
+                  *ngIf="reservation.status == 'PENDING'"
+                  >Accept
           </button>
           <button mat-stroked-button class="approve-button button cancel" color="primary"
-                  (click)="declineReservation(reservation)">Decline
+                  (click)="declineReservation(reservation)"
+                  *ngIf="reservation.status == 'PENDING'"
+                  >Decline
           </button>
         </div>
       </mat-card-footer>
