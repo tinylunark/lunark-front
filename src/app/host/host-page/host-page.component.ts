@@ -2,9 +2,10 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {Review} from '../../shared/models/review.model';
 import {ReviewService} from '../../reviews/review.service';
-import {Account} from '../../account/model/account.model';
 import {HostReviewService} from '../../reviews/host-review.service';
 import {AccountService} from '../../account/account.service';
+import {AccountReportService} from '../../account/account-report.service';
+import {MatDialog} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-host-page',
@@ -18,8 +19,9 @@ export class HostPageComponent implements OnInit {
   header: string = "";
   reportingAllowed = false;
   averageRating: number;
+  eligibleToReport: boolean = false;
 
-  constructor(private route: ActivatedRoute, private reviewService: ReviewService, private accountService: AccountService) {
+  constructor(private route: ActivatedRoute, private reviewService: ReviewService, private accountService: AccountService, private accountReportService: AccountReportService, private matDialog: MatDialog) {
   }
 
   ngOnInit(): void {
@@ -36,6 +38,10 @@ export class HostPageComponent implements OnInit {
       });
 
       this.getAccount();
+
+      this.accountReportService.isEligibleToReportHost(this.id).subscribe(eligible => {
+        this.eligibleToReport = eligible;
+      });
     });
   }
 
@@ -45,6 +51,25 @@ export class HostPageComponent implements OnInit {
     this.accountService.getAccount(this.id).subscribe(account => {
       this.averageRating = account.averageRating ?? 0.0;
       this.header = `Host reviews for ${account.name} ${account.surname}`;
+    });
+  }
+
+  report() {
+    if (this.id === null) {
+      return;
+    }
+
+    this.matDialog.open(ReportDialogComponent, {
+      backdropClass: "backdropBackground",
+      height: "fit-content",
+      data: {
+        reportedUserId: this.id,
+        title: "Report host"
+      }
+    }).afterClosed().subscribe((reported: boolean) => {
+      if (reported) {
+        this.eligibleToReport = false;
+      }
     });
   }
 }

@@ -1,0 +1,14 @@
+<h1 mat-dialog-title>{{title}}</h1>
+<div mat-dialog-content>
+  <form [formGroup]="reportForm">
+      <p>Please tell us how this user broke the rules of the platform</p>
+      <mat-form-field  id="reason-field" subscriptSizing="dynamic" class="big-field" appearance="outline">
+        <mat-label>Reason for reporting</mat-label>
+        <textarea cdkTextareaAutosize formControlName="reason" matInput type="text" name="reason"></textarea>
+      </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-flat-button color="warn" id="submit-report" (click)="submitReport()">Submit</button>
+</div>
