@@ -11,6 +11,8 @@ import { forkJoin } from 'rxjs';
 import { switchMap, map } from 'rxjs/operators';
 import {AccountService} from "../../account/account.service";
 import {Router} from "@angular/router";
+import { MatDialog } from '@angular/material/dialog';
+import { ReportDialogComponent } from '../../report-dialog/report-dialog.component';
 
 @Component({
   selector: 'app-host-incoming-reservations',
@@ -23,6 +25,7 @@ export class HostIncomingReservationsComponent {
   placeholderImage = environment.assetsDir + '/images/placeholder-image.webp';
   profile: Profile | null = null;
   images: Map<number, string> = new Map;
+  currentDate = new Date();
 
   constructor(
     private reservationService: ReservationService,
@@ -30,7 +33,8 @@ export class HostIncomingReservationsComponent {
     private propertyService: PropertyService,
     private sharedService: SharedService,
     public accountService: AccountService,
-    private router: Router
+    private router: Router,
+    private matDialog: MatDialog
   ) {
   }
 
@@ -110,5 +114,19 @@ export class HostIncomingReservationsComponent {
   onReservationsEmitted(reservations: Reservation[]) {
     this.reservations = reservations;
     reservations.forEach(reservation => this.getImages(reservation.property.id));
+  }
+
+  report(guestId: number) {
+    this.matDialog.open(ReportDialogComponent, {
+      backdropClass: "backdropBackground",
+      data: {
+        reportedUserId: guestId,
+        title: "Report guest"
+      }
+      }).afterClosed().subscribe((reported: boolean) => {
+        if (reported) {
+          this.getReservations();
+        }
+      });
   }
 }
