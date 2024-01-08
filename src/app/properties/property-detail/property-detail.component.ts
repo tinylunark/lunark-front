@@ -56,7 +56,9 @@ export class PropertyDetailComponent {
       .subscribe(property => {
         this.property = property;
         this.getImages();
-        this.entryISODates = property.availabilityEntries.map(entry => entry.date.toISOString());
+        this.entryISODates = property.availabilityEntries
+          .filter(entry => !entry.reserved)
+          .map(entry => entry.date.toISOString());
         this.calculateAverageRating();
         this.reportingAllowed = this.accountService.getAccountId() === property.host?.id;
       });
