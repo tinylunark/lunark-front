@@ -6,6 +6,7 @@ import {HostReviewService} from '../../reviews/host-review.service';
 import {AccountService} from '../../account/account.service';
 import {AccountReportService} from '../../account/account-report.service';
 import {MatDialog} from '@angular/material/dialog';
+import {ReportDialogComponent} from "../../report-dialog/report-dialog.component";
 
 @Component({
   selector: 'app-host-page',
