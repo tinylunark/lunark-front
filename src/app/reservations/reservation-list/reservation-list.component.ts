@@ -103,4 +103,6 @@ export class ReservationListComponent {
     this.reservations = reservations;
     reservations.forEach(reservation => this.getImages(reservation.property.id));
   }
+
+    protected readonly console = console;
 }

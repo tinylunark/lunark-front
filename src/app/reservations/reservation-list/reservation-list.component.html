@@ -38,6 +38,9 @@
           <button mat-flat-button class="approve-button button" color="primary"
                   (click)="cancelReservation(reservation)">Cancel
           </button>
+          <button *ngIf="reservation.status != ReservationStatus.ACCEPTED" mat-stroked-button class="approve-button button" color="warn"
+                  (click)="console.log?.('delete')">Delete
+          </button>
         </div>
       </mat-card-footer>
     </mat-card>
