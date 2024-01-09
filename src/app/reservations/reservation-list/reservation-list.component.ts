@@ -10,6 +10,7 @@ import {environment} from "../../../env/environment";
 import {switchMap} from 'rxjs/operators';
 import {FormBuilder} from "@angular/forms";
 import {AccountService} from "../../account/account.service";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-reservation-list',
@@ -29,17 +30,17 @@ export class ReservationListComponent {
     private propertyService: PropertyService,
     private sharedService: SharedService,
     public accountService: AccountService,
+    private snackBar: MatSnackBar,
   ) {
   }
 
- ngOnInit(): void {
+  ngOnInit(): void {
     this.getReservations();
   }
 
-  getReservations() : void {
+  getReservations(): void {
     this.reservationService.getReservationsForCurrentUser()
-      .subscribe(reservations =>
-      {
+      .subscribe(reservations => {
         this.reservations = reservations;
         reservations.forEach(reservation => this.getImages(reservation.property.id));
       });
@@ -68,15 +69,14 @@ export class ReservationListComponent {
   }
 
 
-
   cancelReservation(reservation: Reservation): void {
     this.reservationService.cancelReservation(reservation)
-    .subscribe({
+      .subscribe({
         next: (_) => {
           this.getReservations();
           this.sharedService.openSnack('Reservation canceled.');
         },
-      error: (_) => {
+        error: (_) => {
           this.sharedService.openSnack('Reservation can not be canceled.');
         }
       })
@@ -104,5 +104,16 @@ export class ReservationListComponent {
     reservations.forEach(reservation => this.getImages(reservation.property.id));
   }
 
-    protected readonly console = console;
+  protected readonly console = console;
+
+  deleteReservation(id: number) {
+    this.reservationService.deleteReservation(id)
+      .subscribe(
+        () => {
+          this.snackBar.open("Reservation has been deleted.", "OK", {duration: 3000});
+          this.getReservations();
+        },
+        () => this.snackBar.open("Failed to delete reservation.", "OK", {duration: 3000}),
+      )
+  }
 }

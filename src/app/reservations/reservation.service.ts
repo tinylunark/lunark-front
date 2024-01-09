@@ -96,4 +96,8 @@ export class ReservationService {
       }
     });
   }
+
+  deleteReservation(id: number) {
+    return this.http.delete(`${environment.apiHost}/${ApiPaths.Reservations}/${id}`);
+  }
 }
