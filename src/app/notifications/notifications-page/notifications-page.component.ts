@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { NotificationService } from '../notification.service';
-import { Notification, UnreadNotificationCount, isNotification } from '../../shared/models/notification.model';
+import {Component, OnInit} from '@angular/core';
+import {NotificationService} from '../notification.service';
+import {Notification, UnreadNotificationCount, isNotification} from '../../shared/models/notification.model';
 import {MatSlideToggleChange} from "@angular/material/slide-toggle";
+import {AccountService} from "../../account/account.service";
+import {ProfileService} from "../../shared/profile.service";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-notifications-page',
@@ -12,7 +15,14 @@ export class NotificationsPageComponent implements OnInit {
   notifications: Notification[] = [];
   notificationsEnabled: boolean;
 
-  constructor(private notificationService: NotificationService) { }
+  constructor(
+    private notificationService: NotificationService,
+    private accountService: AccountService,
+    private profileService: ProfileService,
+    private snackBar: MatSnackBar,
+  ) {
+  }
+
   icons: Map<string, string> = new Map<string, string>([
     ['PROPERTY_REVIEW', 'grade'],
     ['HOST_REVIEW', 'workspace_premium'],
@@ -45,11 +55,17 @@ export class NotificationsPageComponent implements OnInit {
   }
 
   getNotificationsEnabled() {
-    this.notificationsEnabled = true;
+    this.profileService.getProfile()
+      .subscribe(profile => this.notificationsEnabled = profile.notificationsEnabled ?? true);
   }
 
   onNotificationsEnabledToggle($event: MatSlideToggleChange) {
-    console.log(`Checked: ${$event.checked}`);
-    this.notificationsEnabled = !this.notificationsEnabled;
+    this.accountService.toggleNotificationsEnabled()
+      .subscribe(account => {
+        this.notificationsEnabled = account.notificationsEnabled ?? true;
+        this.snackBar.open(account.notificationsEnabled
+          ? "Notifications have been enabled"
+          : "Notifications have been disabled", "OK", {duration: 3000});
+      });
   }
 }

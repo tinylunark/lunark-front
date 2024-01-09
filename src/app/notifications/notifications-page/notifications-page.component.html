@@ -1,6 +1,6 @@
 <app-header text="Notifications"></app-header>
 <app-container>
-  <mat-slide-toggle style="margin: 2em 0 1em 2em" color="primary" [ngModel]="notificationsEnabled" (change)="onNotificationsEnabledToggle($event)">Notifications enabled</mat-slide-toggle>
+  <mat-slide-toggle style="margin: 2em 0 1em 2em" color="primary" [ngModel]="notificationsEnabled" (change)="onNotificationsEnabledToggle($event)">Notifications {{ notificationsEnabled ? 'enabled' : 'disabled' }}</mat-slide-toggle>
   <app-notification-card *ngFor="let notification of notifications"
                          [notification]="notification"></app-notification-card>
 </app-container>

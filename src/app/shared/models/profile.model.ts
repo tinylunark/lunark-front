@@ -8,5 +8,6 @@ export interface Profile {
   role?: string;
   verified?: boolean;
   blocked?: boolean;
-  cancelCount?: number,
+  cancelCount?: number;
+  notificationsEnabled?: boolean;
 }

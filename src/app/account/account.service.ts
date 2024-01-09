@@ -129,4 +129,8 @@ export class AccountService {
   getAccount(id: number): Observable<Account> {
     return this.http.get<Account>(`${environment.apiHost}/${ApiPaths.Profile}/${id}`);
   }
+
+  toggleNotificationsEnabled() {
+    return this.http.put<Account>(`${environment.apiHost}/${ApiPaths.Profile}/notifications`, null);
+  }
 }
