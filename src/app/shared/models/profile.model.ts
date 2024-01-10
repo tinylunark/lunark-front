@@ -1,3 +1,6 @@
+import GuestNotificationSettings from "./guest-notification-settings.model";
+import HostNotificationSettings from "./host-notification-settings.model";
+
 export interface Profile {
   id?: number;
   email?: string;
@@ -8,5 +11,8 @@ export interface Profile {
   role?: string;
   verified?: boolean;
   blocked?: boolean;
-  cancelCount?: number,
+  cancelCount?: number;
+  notificationsEnabled?: boolean;
+  guestNotificationSettings?: GuestNotificationSettings,
+  hostNotificationSettings?: HostNotificationSettings,
 }

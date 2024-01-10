@@ -1,4 +1,44 @@
 <app-header text="Notifications"></app-header>
 <app-container>
-    <app-notification-card *ngFor="let notification of notifications" [notification]="notification"></app-notification-card>
+  <div *ngIf="accountService.getRole() == 'GUEST'">
+    <mat-slide-toggle
+      style="margin: 2em 0 1em 2em"
+      color="primary"
+      [ngModel]="guestNotificationSettings.notifyOnReservationRequestResponse"
+      (change)="onNotificationsEnabledToggle($event, NotificationType.RESERVATION_ACCEPTED)">
+      Reservation request response notifications
+    </mat-slide-toggle>
+  </div>
+  <div *ngIf="accountService.getRole() == 'HOST'">
+    <mat-slide-toggle
+      style="margin: 2em 0 1em 2em"
+      color="primary"
+      [ngModel]="hostNotificationSettings.notifyOnHostReview"
+      (change)="onNotificationsEnabledToggle($event, NotificationType.HOST_REVIEW)">
+      Host review notifications
+    </mat-slide-toggle>
+    <mat-slide-toggle
+      style="margin: 2em 0 1em 2em"
+      color="primary"
+      [ngModel]="hostNotificationSettings.notifyOnPropertyReview"
+      (change)="onNotificationsEnabledToggle($event, NotificationType.PROPERTY_REVIEW)">
+      Property review notifications
+    </mat-slide-toggle>
+    <mat-slide-toggle
+      style="margin: 2em 0 1em 2em"
+      color="primary"
+      [ngModel]="hostNotificationSettings.notifyOnReservationCreation"
+      (change)="onNotificationsEnabledToggle($event, NotificationType.RESERVATION_CREATED)">
+      Reservation creation notifications
+    </mat-slide-toggle>
+    <mat-slide-toggle
+      style="margin: 2em 0 1em 2em"
+      color="primary"
+      [ngModel]="hostNotificationSettings.notifyOnReservationCancellation"
+      (change)="onNotificationsEnabledToggle($event, NotificationType.RESERVATION_CANCELED)">
+      Reservation cancellation notifications
+    </mat-slide-toggle>
+  </div>
+  <app-notification-card *ngFor="let notification of notifications"
+                         [notification]="notification"></app-notification-card>
 </app-container>
