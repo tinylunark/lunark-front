@@ -16,4 +16,5 @@ export interface Account {
     cancelCount?: number,
     guestNotificationSettings?: GuestNotificationSettings,
     hostNotificationSettings?: HostNotificationSettings,
+    averageRating?: number,
 }
