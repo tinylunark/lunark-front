@@ -5,6 +5,10 @@ import {MatSlideToggleChange} from "@angular/material/slide-toggle";
 import {AccountService} from "../../account/account.service";
 import {ProfileService} from "../../shared/profile.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import NotificationType from "../../shared/models/notification-type.enum";
+import GuestNotificationSettings from "../../shared/models/guest-notification-settings.model";
+import HostNotificationSettings from "../../shared/models/host-notification-settings.model";
+import {SharedService} from "../../shared/shared.service";
 
 @Component({
   selector: 'app-notifications-page',
@@ -13,13 +17,13 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 })
 export class NotificationsPageComponent implements OnInit {
   notifications: Notification[] = [];
-  notificationsEnabled: boolean;
+  guestNotificationSettings: GuestNotificationSettings;
+  hostNotificationSettings: HostNotificationSettings;
 
   constructor(
     private notificationService: NotificationService,
-    private accountService: AccountService,
+    public accountService: AccountService,
     private profileService: ProfileService,
-    private snackBar: MatSnackBar,
   ) {
   }
 
@@ -56,16 +60,20 @@ export class NotificationsPageComponent implements OnInit {
 
   getNotificationsEnabled() {
     this.profileService.getProfile()
-      .subscribe(profile => this.notificationsEnabled = profile.notificationsEnabled ?? true);
-  }
-
-  onNotificationsEnabledToggle($event: MatSlideToggleChange) {
-    this.accountService.toggleNotificationsEnabled()
-      .subscribe(account => {
-        this.notificationsEnabled = account.notificationsEnabled ?? true;
-        this.snackBar.open(account.notificationsEnabled
-          ? "Notifications have been enabled"
-          : "Notifications have been disabled", "OK", {duration: 3000});
+      .subscribe(profile => {
+        this.guestNotificationSettings = profile.guestNotificationSettings!;
+        this.hostNotificationSettings = profile.hostNotificationSettings!;
       });
   }
+
+  onNotificationsEnabledToggle($event: MatSlideToggleChange, type: NotificationType) {
+    this.accountService.toggleNotificationsEnabled(type)
+      .subscribe(account => {
+        this.guestNotificationSettings = account.guestNotificationSettings!;
+        this.hostNotificationSettings = account.hostNotificationSettings!;
+      });
+  }
+
+  protected readonly Object = Object;
+  protected readonly NotificationType = NotificationType;
 }

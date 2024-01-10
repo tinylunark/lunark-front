@@ -1,3 +1,6 @@
+import GuestNotificationSettings from "../../shared/models/guest-notification-settings.model";
+import HostNotificationSettings from "../../shared/models/host-notification-settings.model";
+
 export interface Account {
     id?: number,
     email: string,
@@ -11,4 +14,6 @@ export interface Account {
     notificationsEnabled?: boolean,
     blocked?: boolean,
     cancelCount?: number,
+    guestNotificationSettings?: GuestNotificationSettings,
+    hostNotificationSettings?: HostNotificationSettings,
 }

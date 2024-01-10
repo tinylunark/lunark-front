@@ -9,6 +9,7 @@ import { ApiPaths } from '../shared/api/api-paths.enum';
 import PasswordUpdate from "../shared/models/password-update.model";
 import {Property} from "../shared/models/property.model";
 import { NotificationService } from '../notifications/notification.service';
+import NotificationType from "../shared/models/notification-type.enum";
 
 const notLoggedInRole = "unregistered";
 
@@ -130,7 +131,7 @@ export class AccountService {
     return this.http.get<Account>(`${environment.apiHost}/${ApiPaths.Profile}/${id}`);
   }
 
-  toggleNotificationsEnabled() {
-    return this.http.put<Account>(`${environment.apiHost}/${ApiPaths.Profile}/notifications`, null);
+  toggleNotificationsEnabled(type: NotificationType) {
+    return this.http.put<Account>(`${environment.apiHost}/${ApiPaths.Profile}/notifications`, {type});
   }
 }
