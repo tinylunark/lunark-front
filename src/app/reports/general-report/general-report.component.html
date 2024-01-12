@@ -1,4 +1,4 @@
-<form method="get" action="" [formGroup]="form" (ngSubmit)="onSubmit()">
+<form method="get" action="" [formGroup]="form" (ngSubmit)="onSubmit()" fxLayout="column" fxLayoutAlign="start start">
   <mat-form-field appearance="outline">
     <mat-label>Date range</mat-label>
     <mat-date-range-input [rangePicker]="picker">

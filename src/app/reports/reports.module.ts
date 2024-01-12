@@ -7,6 +7,7 @@ import {MaterialModule} from "../../infrastructure/material/material.module";
 import { PropertyReportComponent } from './property-report/property-report.component';
 import { GeneralReportComponent } from './general-report/general-report.component';
 import {NgChartsModule} from "ng2-charts";
+import {FlexModule} from "@angular/flex-layout";
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import {NgChartsModule} from "ng2-charts";
     CoreModule,
     MaterialModule,
     NgChartsModule,
+    FlexModule,
   ],
   exports: [
     ReportsComponent,

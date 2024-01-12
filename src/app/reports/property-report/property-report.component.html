@@ -1,19 +1,22 @@
-<form method="get" action="" [formGroup]="form"
-      (ngSubmit)="onSubmit(propertySelection.selectedOptions.selected[0].value)">
-  <mat-selection-list #propertySelection [multiple]="false">
-    @for (property of properties; track property) {
-      <mat-list-option [value]="property.id">{{ property.name }}</mat-list-option>
-    }
-  </mat-selection-list>
-  <mat-form-field appearance="outline">
-    <mat-label>Enter year</mat-label>
-    <input matInput formControlName="year" type="number">
-  </mat-form-field>
-  <button mat-raised-button color="primary" type="submit">Get report
-  </button>
+<div fxLayout="row">
+  <form method="get" action="" [formGroup]="form"
+        (ngSubmit)="onSubmit(propertySelection.selectedOptions.selected[0].value)"
+        fxLayout="column" fxLayoutAlign="start start">
+    <mat-selection-list #propertySelection [multiple]="false">
+      @for (property of properties; track property) {
+        <mat-list-option [value]="property.id">{{ property.name }}</mat-list-option>
+      }
+    </mat-selection-list>
+    <mat-form-field appearance="outline">
+      <mat-label>Enter year</mat-label>
+      <input matInput formControlName="year" type="number">
+    </mat-form-field>
+    <button mat-raised-button color="primary" type="submit">Get report
+    </button>
+  </form>
   <canvas baseChart
-  [data]="barChartData"
-  [options]="barChartOptions"
-  [legend]="barChartLegend"
-  [type]="'bar'"></canvas>
-</form>
+          [data]="barChartData"
+          [options]="barChartOptions"
+          [legend]="barChartLegend"
+          [type]="'bar'"></canvas>
+</div>
