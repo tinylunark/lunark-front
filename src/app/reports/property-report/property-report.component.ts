@@ -4,6 +4,9 @@ import {PropertyService} from "../../properties/property.service";
 import {AccountService} from "../../account/account.service";
 import {FormBuilder, FormControl, Validators} from "@angular/forms";
 import {ReportService} from "../report.service";
+import {ChartConfiguration} from "chart.js";
+import MonthlyReport from "../monthly-report.model";
+import {numberToMonth} from "../../shared/util/number-to-month";
 
 @Component({
   selector: 'app-property-report',
@@ -16,6 +19,14 @@ export class PropertyReportComponent implements OnInit {
   form = this.formBuilder.group({
     year: new FormControl(0, [Validators.required])
   })
+  monthlyReports: MonthlyReport[] = [];
+
+  // Chart setup
+  barChartLegend = true;
+  barChartData: ChartConfiguration<'bar'>['data'];
+  barChartOptions: ChartConfiguration<'bar'>['options'] = {
+    responsive: false
+  };
 
   constructor(
     private propertyService: PropertyService,
@@ -41,6 +52,25 @@ export class PropertyReportComponent implements OnInit {
       || !this.form.value.year) return;
 
     this.reportService.getPropertyReport(propertyId, this.form.value.year)
-      .subscribe(result => console.log(result));
+      .subscribe(result => this.loadBarChartData(result.monthlyReports));
+  }
+
+  loadBarChartData(monthlyReports: MonthlyReport[]) {
+    console.log(monthlyReports);
+
+    const months: string[] = [], profits: number[] = [], reservationCounts: number[] = [];
+    monthlyReports.forEach(report => {
+      months.push(numberToMonth(report.month));
+      profits.push(report.profit);
+      reservationCounts.push(report.reservationCount);
+    });
+
+    this.barChartData = {
+      labels: months,
+      datasets: [
+        {data: profits, label: 'Profit'},
+        {data: reservationCounts, label: 'Number of reservations'}
+      ]
+    }
   }
 }

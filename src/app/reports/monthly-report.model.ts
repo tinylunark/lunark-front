@@ -1,5 +1,5 @@
 export default interface MonthlyReport {
-  month?: number;
-  profit?: number;
-  reservationCount?: number;
+  month: number;
+  profit: number;
+  reservationCount: number;
 }

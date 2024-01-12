@@ -11,4 +11,9 @@
   </mat-form-field>
   <button mat-raised-button color="primary" type="submit">Get report
   </button>
+  <canvas baseChart
+  [data]="barChartData"
+  [options]="barChartOptions"
+  [legend]="barChartLegend"
+  [type]="'bar'"></canvas>
 </form>
