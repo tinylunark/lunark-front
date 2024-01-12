@@ -10,4 +10,5 @@
   </mat-form-field>
   <button mat-raised-button type="submit" color="primary">Get report</button>
 </form>
-<p>general-report works!</p>
+<p>Number of reservations: {{data?.reservationCount ?? 0}}</p>
+<p>Profit: {{data?.profit ?? 0}}</p>
