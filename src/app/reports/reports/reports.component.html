@@ -8,4 +8,7 @@
       ><span>&#x2022; </span>PROPERTY REPORT</a></li>
     </ul>
   </app-helper-menu>
+
+  <app-general-report *ngIf="selectedMenuItem === 'generalReport'"></app-general-report>
+  <app-property-report *ngIf="selectedMenuItem === 'propertyReport'"></app-property-report>
 </app-container>
