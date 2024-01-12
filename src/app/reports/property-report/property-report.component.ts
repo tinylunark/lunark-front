@@ -3,6 +3,7 @@ import {Property} from "../../shared/models/property.model";
 import {PropertyService} from "../../properties/property.service";
 import {AccountService} from "../../account/account.service";
 import {FormBuilder, FormControl, Validators} from "@angular/forms";
+import {ReportService} from "../report.service";
 
 @Component({
   selector: 'app-property-report',
@@ -19,7 +20,8 @@ export class PropertyReportComponent implements OnInit {
   constructor(
     private propertyService: PropertyService,
     private accountService: AccountService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private reportService: ReportService
   ) {
   }
 
@@ -38,6 +40,7 @@ export class PropertyReportComponent implements OnInit {
     if (this.form.invalid
       || !this.form.value.year) return;
 
-    console.log(propertyId, this.form.value.year);
+    this.reportService.getPropertyReport(propertyId, this.form.value.year)
+      .subscribe(result => console.log(result));
   }
 }

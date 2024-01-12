@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {environment} from "../../env/environment";
 import {ApiPaths} from "../shared/api/api-paths.enum";
 import GeneralReport from "./general-report.model";
+import PropertyReport from "./property-report.model";
 
 @Injectable({
   providedIn: 'root'
@@ -24,5 +25,14 @@ export class ReportService {
         'end': endString
       }
     });
+  }
+
+  getPropertyReport(propertyId: number, year: number) {
+    return this.http.get<PropertyReport>(`${environment.apiHost}/${ApiPaths.Reports}/property`, {
+      params: {
+        propertyId,
+        year
+      }
+    })
   }
 }
