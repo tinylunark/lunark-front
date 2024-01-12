@@ -21,6 +21,7 @@ import { UnauthorizedInterceptor } from './http-interceptors/unauthorized.interc
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HostModule } from './host/host.module';
 import { NotificationsModule } from './notifications/notifications.module';
+import { NgChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { NotificationsModule } from './notifications/notifications.module';
     MatAutocompleteModule,
     SharedModule,
     NgbModule,
+    NgChartsModule,
   ],
   providers: [
     importProvidersFrom(HttpClientModule),
