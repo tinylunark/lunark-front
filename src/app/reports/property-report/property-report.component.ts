@@ -7,6 +7,7 @@ import {ReportService} from "../report.service";
 import {ChartConfiguration} from "chart.js";
 import MonthlyReport from "../monthly-report.model";
 import {numberToMonth} from "../../shared/util/number-to-month";
+import {jsPDF} from "jspdf";
 
 @Component({
   selector: 'app-property-report',
@@ -71,5 +72,19 @@ export class PropertyReportComponent implements OnInit {
         {data: reservationCounts, label: 'Number of reservations'}
       ]
     };
+  }
+
+  onExport(content: HTMLElement) {
+    const doc = new jsPDF();
+    content.style.color = 'black';
+    doc.html(content, {
+      html2canvas: {
+        scale: 0.5
+      },
+      callback: function (doc) {
+        doc.save('property_report.pdf');
+        content.style.color = 'white';
+      }
+    });
   }
 }
