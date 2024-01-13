@@ -18,8 +18,7 @@ export class PropertyReportComponent implements OnInit {
   properties: Property[] = [];
   form = this.formBuilder.group({
     year: new FormControl(0, [Validators.required])
-  })
-  monthlyReports: MonthlyReport[] = [];
+  });
 
   // Chart setup
   barChartLegend = true;
@@ -71,6 +70,6 @@ export class PropertyReportComponent implements OnInit {
         {data: profits, label: 'Profit'},
         {data: reservationCounts, label: 'Number of reservations'}
       ]
-    }
+    };
   }
 }

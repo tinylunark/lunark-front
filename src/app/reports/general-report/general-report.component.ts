@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import GeneralReport from "../general-report.model";
 import {ReportService} from "../report.service";
 import {FormBuilder, FormControl, Validators} from "@angular/forms";
+import {ChartConfiguration} from "chart.js";
+import DailyReport from "../daily-report.model";
 
 @Component({
   selector: 'app-general-report',
@@ -16,6 +18,13 @@ export class GeneralReportComponent implements OnInit {
     endDate: new FormControl(new Date(), [Validators.required])
   });
 
+  // Chart setup
+  lineChartLegend = true;
+  lineChartData: ChartConfiguration<'line'>['data'];
+  lineChartOptions: ChartConfiguration<'line'>['options'] = {
+    responsive: false
+  };
+
   constructor(
     private reportService: ReportService,
     private formBuilder: FormBuilder
@@ -28,17 +37,39 @@ export class GeneralReportComponent implements OnInit {
 
   getGeneralReport(start: Date, end: Date) {
     this.reportService.getGeneralReport(start, end)
-      .subscribe(result => this.data = result);
+      .subscribe(result => {
+        this.data = result;
+        this.loadLineChartData(result.dailyReports);
+      });
   }
 
   onSubmit() {
     if (!this.form.valid
-    || !this.form.value.startDate
-    || !this.form.value.endDate) return;
+      || !this.form.value.startDate
+      || !this.form.value.endDate) return;
 
     this.getGeneralReport(
       this.form.value.startDate,
       this.form.value.endDate
     );
+  }
+
+  loadLineChartData(dailyReports: DailyReport[]) {
+    console.log(dailyReports);
+
+    const dates: string[] = [], profits: number[] = [], reservationCounts: number[] = [];
+    dailyReports.forEach(report => {
+      dates.push(report.date.toISOString().slice(0, 10));
+      profits.push(report.profit);
+      reservationCounts.push(report.reservationCount);
+    });
+
+    this.lineChartData = {
+      labels: dates,
+      datasets: [
+        {data: profits, label: 'Profit'},
+        {data: reservationCounts, label: 'Number of reservations'}
+      ]
+    };
   }
 }

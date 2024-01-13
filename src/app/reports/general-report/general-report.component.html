@@ -1,14 +1,26 @@
-<form method="get" action="" [formGroup]="form" (ngSubmit)="onSubmit()" fxLayout="column" fxLayoutAlign="start start">
-  <mat-form-field appearance="outline">
-    <mat-label>Date range</mat-label>
-    <mat-date-range-input [rangePicker]="picker">
-      <input matStartDate placeholder="Start date" formControlName="startDate">
-      <input matEndDate placeholder="End date" formControlName="endDate">
-    </mat-date-range-input>
-    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-    <mat-date-range-picker #picker></mat-date-range-picker>
-  </mat-form-field>
-  <button mat-raised-button type="submit" color="primary">Get report</button>
-</form>
-<p>Number of reservations: {{data?.totalReservationCount ?? 0}}</p>
-<p>Profit: {{data?.totalProfit ?? 0}}</p>
+<div fxLayout="row">
+  <div>
+    <form method="get" action="" [formGroup]="form" (ngSubmit)="onSubmit()" fxLayout="column"
+          fxLayoutAlign="start start">
+      <mat-form-field appearance="outline">
+        <mat-label>Date range</mat-label>
+        <mat-date-range-input [rangePicker]="picker">
+          <input matStartDate placeholder="Start date" formControlName="startDate">
+          <input matEndDate placeholder="End date" formControlName="endDate">
+        </mat-date-range-input>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-date-range-picker #picker></mat-date-range-picker>
+      </mat-form-field>
+      <button mat-raised-button type="submit" color="primary">Get report</button>
+    </form>
+    <p>Total number of reservations: {{ data?.totalReservationCount ?? 0 }}</p>
+    <p>Total profit: {{ data?.totalProfit ?? 0 }}</p>
+  </div>
+  <canvas baseChart
+          [type]="'line'"
+          [data]="lineChartData"
+          [options]="lineChartOptions"
+          [legend]="lineChartLegend"
+          style="margin-left: 3em">
+  </canvas>
+</div>
