@@ -4,6 +4,7 @@ import {ReportService} from "../report.service";
 import {FormBuilder, FormControl, Validators} from "@angular/forms";
 import {ChartConfiguration} from "chart.js";
 import DailyReport from "../daily-report.model";
+import {jsPDF} from 'jspdf';
 
 @Component({
   selector: 'app-general-report',
@@ -71,5 +72,19 @@ export class GeneralReportComponent implements OnInit {
         {data: reservationCounts, label: 'Number of reservations'}
       ]
     };
+  }
+
+  onExport(content: HTMLElement) {
+    const doc = new jsPDF();
+    content.style.color = 'black';
+    doc.html(content, {
+      html2canvas: {
+        scale: 0.5
+      },
+      callback: function (doc) {
+        doc.save('general_report.pdf');
+        content.style.color = 'white';
+      }
+    });
   }
 }
