@@ -1,4 +1,7 @@
+import DailyReport from "./daily-report.model";
+
 export default interface GeneralReport {
-  reservationCount: number;
-  profit: number;
+  dailyReports: DailyReport[];
+  totalProfit: number;
+  totalReservationCount: number;
 }
