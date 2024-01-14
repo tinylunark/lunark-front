@@ -1,0 +1,16 @@
+<app-header text="reports"></app-header>
+<app-container>
+  <app-helper-menu>
+    <ul>
+      <li><a (click)="selectMenuItem('generalReport')" [class.active]="selectedMenuItem === 'generalReport'"
+      ><span>&#x2022; </span>GENERAL REPORT</a></li>
+      <li><a (click)="selectMenuItem('propertyReport')" [class.active]="selectedMenuItem === 'propertyReport'"
+      ><span>&#x2022; </span>PROPERTY REPORT</a></li>
+    </ul>
+  </app-helper-menu>
+
+  <div>
+    <app-general-report *ngIf="selectedMenuItem === 'generalReport'"></app-general-report>
+    <app-property-report *ngIf="selectedMenuItem === 'propertyReport'"></app-property-report>
+  </div>
+</app-container>

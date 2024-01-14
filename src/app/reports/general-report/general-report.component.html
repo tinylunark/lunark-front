@@ -1,0 +1,30 @@
+<div fxLayout="row">
+  <form method="get" action="" [formGroup]="form" (ngSubmit)="onSubmit()" fxLayout="column"
+        fxLayoutAlign="start start" fxLayoutGap="1em" style="margin-right: 2em">
+    <mat-form-field appearance="outline">
+      <mat-label>Date range</mat-label>
+      <mat-date-range-input [rangePicker]="picker">
+        <input matStartDate placeholder="Start date" formControlName="startDate">
+        <input matEndDate placeholder="End date" formControlName="endDate">
+      </mat-date-range-input>
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-date-range-picker #picker></mat-date-range-picker>
+    </mat-form-field>
+    <button mat-raised-button type="submit" color="primary">Get report</button>
+    <button mat-flat-button color="accent" (click)="onExport(pdf)">
+      <mat-icon>ios_share</mat-icon>
+      Export
+    </button>
+  </form>
+  <div #pdf>
+    <h3>General report</h3>
+    <canvas baseChart
+            [type]="'line'"
+            [data]="lineChartData"
+            [options]="lineChartOptions"
+            [legend]="lineChartLegend">
+    </canvas>
+    <p style="margin-top: 1em">Total number of reservations: {{ data?.totalReservationCount ?? 0 }}</p>
+    <p>Total profit: {{ data?.totalProfit ?? 0 }}</p>
+  </div>
+</div>

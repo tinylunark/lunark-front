@@ -1,0 +1,31 @@
+<div fxLayout="row">
+  <form method="get" action="" [formGroup]="form"
+        (ngSubmit)="onSubmit(propertySelection.selectedOptions.selected[0].value.id)"
+        fxLayout="column" fxLayoutAlign="start start"
+  style="margin-right: 2em;">
+    <mat-selection-list #propertySelection [multiple]="false">
+      @for (property of properties; track property) {
+        <mat-list-option [value]="{id: property.id, name: property.name}">{{ property.name }}</mat-list-option>
+      }
+    </mat-selection-list>
+    <mat-form-field appearance="outline">
+      <mat-label>Enter year</mat-label>
+      <input #yearInput matInput formControlName="year" type="number">
+    </mat-form-field>
+    <button mat-raised-button color="primary" type="submit">Get report
+    </button>
+    <button style="margin-top: 1em" mat-flat-button color="accent" (click)="onExport(pdf)">
+      <mat-icon>ios_share</mat-icon>
+      Export
+    </button>
+  </form>
+  <div #pdf>
+    <h3>{{propertySelection.selectedOptions.hasValue() ? propertySelection.selectedOptions.selected[0].value.name : 'Property '}} report</h3>
+    <h4>Year: {{yearInput.value}}</h4>
+    <canvas baseChart
+            [data]="barChartData"
+            [options]="barChartOptions"
+            [legend]="barChartLegend"
+            [type]="'bar'"></canvas>
+  </div>
+</div>

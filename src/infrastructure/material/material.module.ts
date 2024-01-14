@@ -22,6 +22,7 @@ import { MatSelectModule } from '@angular/material/select';
 import {MatStepperModule} from '@angular/material/stepper';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatBadgeModule } from '@angular/material/badge';
+import {MatListModule} from "@angular/material/list";
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { MatBadgeModule } from '@angular/material/badge';
     MatSelectModule,
     MatStepperModule,
     NgbModule,
-    MatBadgeModule
+    MatBadgeModule,
+    MatListModule
   ],
   exports: [
     MatDialogModule,
@@ -81,7 +83,8 @@ import { MatBadgeModule } from '@angular/material/badge';
     MatSelectModule,
     MatStepperModule,
     NgbModule,
-    MatBadgeModule
+    MatBadgeModule,
+    MatListModule,
   ]
 })
 
