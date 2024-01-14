@@ -60,7 +60,7 @@ export class GeneralReportComponent implements OnInit {
 
     const dates: string[] = [], profits: number[] = [], reservationCounts: number[] = [];
     dailyReports.forEach(report => {
-      dates.push(report.date.toISOString().slice(0, 10));
+      dates.push(report.date.toLocaleDateString('sv'));
       profits.push(report.profit);
       reservationCounts.push(report.reservationCount);
     });
