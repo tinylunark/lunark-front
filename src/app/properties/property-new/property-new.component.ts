@@ -20,6 +20,9 @@ export class PropertyNewComponent {
   step2Completed = false;
   step3Completed = false;
   propertyNameControl: FormControl = new FormControl('', Validators.required);
+  streetControl: FormControl = new FormControl('', [Validators.required, Validators.pattern('^[^<>%$]*$')]);
+  cityControl: FormControl = new FormControl('', [Validators.required, Validators.pattern('^[^<>%$]*$')]);
+  countryControl: FormControl = new FormControl('', [Validators.required, Validators.pattern('^[^<>%$]*$')]);
 
   constructor(
     private propertyService: PropertyService,
@@ -59,10 +62,14 @@ export class PropertyNewComponent {
   }
 
   private isLocationValid(): boolean {
+    console.log(this.property.address);
     return (
       this.property.address.street !== '' &&
       this.property.address.city !== '' &&
       this.property.address.country !== '' &&
+      this.property.address.street.match(/^[^<>%$]*$/) !== null &&
+      this.property.address.city.match(/^[^<>%$]*$/) !== null &&
+      this.property.address.country.match(/^[^<>%$]*$/) !== null &&
       this.property.latitude !== null &&
       this.property.longitude !== null
     );
@@ -87,6 +94,9 @@ export class PropertyNewComponent {
 
   onChange(): void {
     this.property.name = this.propertyNameControl.value;
+    this.streetControl.setValue(this.property.address.street);
+    this.cityControl.setValue(this.property.address.city);
+    this.countryControl.setValue(this.property.address.country);
     this.checkForStepCompletions();
     console.log(this.property);
   }
