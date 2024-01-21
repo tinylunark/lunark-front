@@ -30,4 +30,4 @@ jobs:
     - run: npm ci
     - run: npm run build --if-present
     - name: Run tests
-      run: ng-test --source-map=false --no-watch
+      run: ng test --source-map=false --no-watch
