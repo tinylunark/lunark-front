@@ -23,12 +23,14 @@ import {MatStepperModule} from '@angular/material/stepper';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatBadgeModule } from '@angular/material/badge';
 import {MatListModule} from "@angular/material/list";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
     InlineRangeCalendarComponent
   ],
   imports: [
+    BrowserAnimationsModule,
     CommonModule,
     MatDialogModule,
     MatInputModule,
