@@ -87,3 +87,7 @@ app-availability-table {
     margin-top: 2em;
     width: 10%;
 }
+
+.address-field mat-form-field {
+    width: 30em;
+}

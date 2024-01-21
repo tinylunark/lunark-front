@@ -12,6 +12,63 @@
 
   <div *ngIf="selectedMenuItem === 'location'" class="selectedComponentContainer">
     <app-location (change)="onChange()" [(latitude)]="property.latitude" [(longitude)]="property.longitude" [(address)]="property.address.street" [(city)]="property.address.city" [(country)]="property.address.country" ></app-location>
+      <div class="field-container address-field">
+        <p>Street</p>
+        <mat-form-field
+          class="input-field"
+          appearance="outline"
+          id="street-field"
+        >
+          <mat-label>Street</mat-label>
+          <input
+            matInput
+            type="text"
+            name="street"
+            [(ngModel)]="property.address.street"
+            pattern="^[^<>%$]*$"
+            required
+            id="street-input"
+          />
+        </mat-form-field>
+      </div>
+      <div class="field-container address-field">
+        <p>City</p>
+        <mat-form-field
+          class="input-field"
+          appearance="outline"
+          id="city-field"
+        >
+          <mat-label>City</mat-label>
+          <input
+            matInput
+            type="text"
+            name="city"
+            [(ngModel)]="property.address.city"
+            pattern="^[^<>%$]*$"
+            required
+            id="city-input"
+          />
+        </mat-form-field>
+      </div>
+      <div class="field-container address-field">
+        <p>Country</p>
+        <mat-form-field
+          class="input-field"
+          appearance="outline"
+          id="country-field"
+        >
+          <mat-label>Country</mat-label>
+          <input
+            matInput
+            type="text"
+            name="street"
+            [(ngModel)]="property.address.country"
+            pattern="^[^<>%$]*$"
+            required
+            id="country-input"
+          />
+        </mat-form-field>
+      </div>
   </div>
 
   <div *ngIf="selectedMenuItem === 'amenities'" class="selectedComponentContainer">
