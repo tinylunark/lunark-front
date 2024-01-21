@@ -50,7 +50,7 @@ export class SignupDialog {
         Validators.required,
         Validators.pattern('[- +()0-9]+'),
       ]),
-      role: new FormControl('', [Validators.required]),
+      role: new FormControl('', [Validators.required, Validators.pattern('GUEST|HOST')]),
     },
     {
       validators: passwordConfrimedValidator,
