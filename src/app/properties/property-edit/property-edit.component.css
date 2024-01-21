@@ -6,6 +6,10 @@ width: 50em;
   margin-bottom: 2em;
 }
 
+.selectedComponentContainer:has(app-location) {
+  flex-direction: column;
+}
+
 app-availability-pricing {
     display: flex;
     justify-content: center;
