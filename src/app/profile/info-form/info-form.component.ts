@@ -34,8 +34,6 @@ export class InfoFormComponent  implements OnChanges {
     address: new FormControl('', [Validators.required]),
   });
 
-
-
   ngOnChanges(): void {
     if (!this.profile) { return; }
 
