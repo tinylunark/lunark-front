@@ -36,5 +36,5 @@
   </form>
 </div>
 <div mat-dialog-actions>
-  <button mat-flat-button color="primary" (click)="signUp()" id="sign-up">Sign up</button>
+  <button mat-flat-button color="primary" [disabled]="!signupForm.valid"  (click)="signUp()" id="sign-up">Sign up</button>
 </div>
