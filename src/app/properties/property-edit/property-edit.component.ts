@@ -9,6 +9,7 @@ import { PropertyUpdatedDialogComponent } from '../property-updated-dialog/prope
 import { Observable } from 'rxjs';
 import PropertyAvailabilityEntry from '../../shared/models/property-availability-entry.model';
 import PropertyRequest from '../../shared/models/property-request.model';
+import { SharedService } from '../../shared/shared.service';
 
 
 
@@ -50,7 +51,8 @@ export class PropertyEditComponent implements OnInit {
     private propertyService: PropertyService,
     private route: ActivatedRoute,
     private router: Router,
-    private matDialog: MatDialog
+    private matDialog: MatDialog,
+    private sharedService: SharedService
   ) { }
 
   ngOnInit(): void {
@@ -125,6 +127,12 @@ export class PropertyEditComponent implements OnInit {
       },
       error: (error) => {
         console.log(error);
+        if (error.status === 400) {
+            this.sharedService.openSnack('One of the fields you have edited is not valid.');
+        }
+        if (error.status === 409) {
+            this.sharedService.openSnack('You have closed the property for a date on which there is a reservation.');
+        }
       },
     });
   }
