@@ -1,4 +1,4 @@
-<img src="MainPageScreenshot.png"/>
+<img src="https://github.com/tinylunark/lunark-front/raw/doc/readme/MainPageScreenshot.png"/>
 
 # Lunark
 
