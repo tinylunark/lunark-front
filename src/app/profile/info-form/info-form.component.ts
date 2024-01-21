@@ -1,25 +1,13 @@
-import { Component, Input, OnInit, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
-import { MatSelectModule } from '@angular/material/select';
-import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
+import { Component, Input, OnInit, Output, EventEmitter, OnChanges } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Profile } from '../../shared/models/profile.model';
 
 @Component({
   selector: 'app-info-form',
   templateUrl: './info-form.component.html',
-  styleUrls: ['./info-form.component.css'],
-  providers: [
-    MatFormFieldModule,
-    MatInputModule,
-    MatSelectModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-  ],
+  styleUrls: ['./info-form.component.css']
 })
-export class InfoFormComponent  implements OnChanges {
+export class InfoFormComponent implements OnChanges {
   @Output() profileChange = new EventEmitter<Profile>();
   @Output() validChange = new EventEmitter<boolean>();
 
@@ -31,10 +19,8 @@ export class InfoFormComponent  implements OnChanges {
     lastName: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required, Validators.email]),
     phoneNumber: new FormControl('', [Validators.required]),
-    address: new FormControl('', [Validators.required]),
+    address: new FormControl('', [Validators.required])
   });
-
-
 
   ngOnChanges(): void {
     if (!this.profile) { return; }
@@ -44,7 +30,7 @@ export class InfoFormComponent  implements OnChanges {
       lastName: this.profile.surname || '',
       email: this.profile.email || '',
       phoneNumber: this.profile.phoneNumber || '',
-      address: this.profile.address || '',
+      address: this.profile.address || ''
     });
 
     this.infoForm.valueChanges.subscribe((value) => {
@@ -57,12 +43,11 @@ export class InfoFormComponent  implements OnChanges {
       this.setValid();
       this.profileChange.emit(this.profile);
     });
-
   }
 
   private setValid(): void {
     this.valid = this.infoForm.valid;
     this.validChange.emit(this.valid);
   }
-
 }
+
