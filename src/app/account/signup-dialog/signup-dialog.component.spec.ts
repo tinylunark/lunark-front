@@ -138,10 +138,52 @@ describe('SignupDialogComponent', () => {
     expect(accountServiceSpy).toHaveBeenCalledTimes(0);
   });
 
+  it('should not call signUp method nor be valid nor close itself nor open confirmation dialog if first name contains non-alphanumeric characters', () => {
+    component.signupForm.controls['firstName'].setValue('<script>console.log("PWNED")</script>');
+    component.signupForm.controls['lastName'].setValue('Test');
+    component.signupForm.controls['email'].setValue('test@test.com');
+    component.signupForm.controls['password'].setValue('password');
+    component.signupForm.controls['confirmPassword'].setValue('password');
+    component.signupForm.controls['address'].setValue('Test');
+    component.signupForm.controls['phoneNumber'].setValue('123456789');
+    component.signupForm.controls['role'].setValue('GUEST');
+
+    fixture.detectChanges();
+    expect(component.signupForm.valid).toBeFalsy();
+    let button = fixture.debugElement.nativeElement.querySelector('#sign-up');
+    button.click();
+    fixture.detectChanges();
+    expect(component.signUp).toHaveBeenCalledTimes(0);
+    expect(matDialogRef.close).toHaveBeenCalledTimes(0);
+    expect(matDialog.open).toHaveBeenCalledTimes(0);
+    expect(accountServiceSpy).toHaveBeenCalledTimes(0);
+  });
+
   it('should not call signUp method nor be valid nor close itself nor open confirmation dialog if last name is empty', () => {
     component.signupForm.controls['firstName'].setValue('Test');
     component.signupForm.controls['lastName'].setValue('');
-    component.signupForm.controls['email'].setValue('');
+    component.signupForm.controls['email'].setValue('test@example.com');
+    component.signupForm.controls['password'].setValue('password');
+    component.signupForm.controls['confirmPassword'].setValue('password');
+    component.signupForm.controls['address'].setValue('Test');
+    component.signupForm.controls['phoneNumber'].setValue('123456789');
+    component.signupForm.controls['role'].setValue('GUEST');
+
+    fixture.detectChanges();
+    expect(component.signupForm.valid).toBeFalsy();
+    let button = fixture.debugElement.nativeElement.querySelector('#sign-up');
+    button.click();
+    fixture.detectChanges();
+    expect(component.signUp).toHaveBeenCalledTimes(0);
+    expect(matDialogRef.close).toHaveBeenCalledTimes(0);
+    expect(matDialog.open).toHaveBeenCalledTimes(0);
+    expect(accountServiceSpy).toHaveBeenCalledTimes(0);
+  });
+
+  it('should not call signUp method nor be valid nor close itself nor open confirmation dialog if last name contains non-alphanumeric characters', () => {
+    component.signupForm.controls['firstName'].setValue('Test');
+    component.signupForm.controls['lastName'].setValue('<script>console.log("PWNED")</script>');
+    component.signupForm.controls['email'].setValue('test@example.com');
     component.signupForm.controls['password'].setValue('password');
     component.signupForm.controls['confirmPassword'].setValue('password');
     component.signupForm.controls['address'].setValue('Test');
@@ -250,6 +292,27 @@ describe('SignupDialogComponent', () => {
     component.signupForm.controls['password'].setValue('password');
     component.signupForm.controls['confirmPassword'].setValue('password');
     component.signupForm.controls['address'].setValue('');
+    component.signupForm.controls['phoneNumber'].setValue('123456789');
+    component.signupForm.controls['role'].setValue('GUEST');
+
+    fixture.detectChanges();
+    expect(component.signupForm.valid).toBeFalsy();
+    let button = fixture.debugElement.nativeElement.querySelector('#sign-up');
+    button.click();
+    fixture.detectChanges();
+    expect(component.signUp).toHaveBeenCalledTimes(0);
+    expect(matDialogRef.close).toHaveBeenCalledTimes(0);
+    expect(matDialog.open).toHaveBeenCalledTimes(0);
+    expect(accountServiceSpy).toHaveBeenCalledTimes(0);
+  });
+
+  it('should not call signUp method nor be valid nor close itself nor open confirmation dialog if the address contains non-alphanumeric characters', () => {
+    component.signupForm.controls['firstName'].setValue('Test');
+    component.signupForm.controls['lastName'].setValue('Test');
+    component.signupForm.controls['email'].setValue('test@example.com');
+    component.signupForm.controls['password'].setValue('password');
+    component.signupForm.controls['confirmPassword'].setValue('password');
+    component.signupForm.controls['address'].setValue('<script>console.log("PWNED")</script>');
     component.signupForm.controls['phoneNumber'].setValue('123456789');
     component.signupForm.controls['role'].setValue('GUEST');
 
