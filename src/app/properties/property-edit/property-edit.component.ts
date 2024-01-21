@@ -76,7 +76,7 @@ export class PropertyEditComponent implements OnInit {
         autoApproveEnabled: property.autoApproveEnabled,
         minGuests: property.minGuests,
         maxGuests: property.maxGuests,
-        amenityIds: [],
+        amenityIds: property.amenities.map((amenity) => amenity.id),
         hostId: property.host?.id || 0,
       };
       this.propertyNameControl.setValue(this.property.name);
