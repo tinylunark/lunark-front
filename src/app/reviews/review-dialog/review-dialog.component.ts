@@ -11,7 +11,7 @@ export class ReviewDialogComponent {
 
   reviewForm: FormGroup = new FormGroup({
     rating: new FormControl('', [Validators.required, Validators.min(1), Validators.max(5)]),
-    description: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z0-9 \\.!\\?]+')]),
+    description: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z0-9 \.!\?\'\"]+')]),
   });
   rating: number = 0;
   constructor(public dialogRef: MatDialogRef<ReviewDialogComponent>) { }

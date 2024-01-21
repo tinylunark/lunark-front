@@ -8,7 +8,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class DescriptionComponent {
   infoForm = new FormGroup({
-    description: new FormControl('', [Validators.required]),
+    description: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z0-9 \.!\?\'\"]+')]),
   });
 
   @Input()

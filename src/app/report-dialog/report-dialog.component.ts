@@ -11,7 +11,7 @@ import { SharedService } from '../shared/shared.service';
 })
 export class ReportDialogComponent {
   reportForm: FormGroup = new FormGroup({
-    reason: new FormControl('', [Validators.required]),
+    reason: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z0-9 \.!\?\'\"]+')]),
   });
   reportedUserId: number | null = null;
   title: string = "Report host";
