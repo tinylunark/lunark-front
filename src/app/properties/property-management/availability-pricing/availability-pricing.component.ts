@@ -101,6 +101,7 @@ export class AvailabilityPricingComponent {
       this.sharedService.openSnack(
         'You cannot add availability for past dates ❌'
       );
+      this.resetAvailabilityAddForm();
       return;
     }
     if (this.dateRange.start && this.priceForm.valid) {
@@ -146,6 +147,7 @@ export class AvailabilityPricingComponent {
       this.sharedService.openSnack(
         'You cannot delete availability for past dates ❌'
       );
+      this.resetAvailabilityAddForm();
       return;
     }
 
@@ -154,6 +156,7 @@ export class AvailabilityPricingComponent {
 
       this.emitEntriesAfterDeletion();
       this.notifyOfChanges();
+      this.resetAvailabilityAddForm();
     }
   }
 
