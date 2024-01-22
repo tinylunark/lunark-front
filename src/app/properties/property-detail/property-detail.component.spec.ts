@@ -47,7 +47,7 @@ describe('PropertyDetailComponent', () => {
     component.reservationFormGroup.setValue({
       "startDate": '',
       "endDate": '',
-      "numberOfGuests": '',
+      "numberOfGuests": '3',
     });
     expect(component.reservationFormGroup.controls['numberOfGuests'].valid).toBeTruthy();
   });
