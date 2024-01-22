@@ -23,9 +23,17 @@ export class AccountServiceMock {
     return of(this.mockResponse).pipe(delay(1000));
   }
 
+  updatePassword(account: Account): Observable<Account> {
+    return of(this.mockResponse).pipe(delay(1000));
+  }
+
   getProfileImage(): Observable<Blob> {
     const mockImageData = new Uint8Array([1, 2, 3]);
     return of(new Blob([mockImageData], { type: 'image/jpeg' }));
+  }
+
+  getAccountId(): number {
+    return 1;
   }
 
   setUser(): void {
