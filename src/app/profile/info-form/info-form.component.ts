@@ -15,11 +15,14 @@ export class InfoFormComponent implements OnChanges {
   @Input() valid: boolean = false;
 
   infoForm = new FormGroup({
-    firstName: new FormControl('', [Validators.required]),
-    lastName: new FormControl('', [Validators.required]),
-    email: new FormControl('', [Validators.required, Validators.email]),
-    phoneNumber: new FormControl('', [Validators.required]),
-    address: new FormControl('', [Validators.required])
+    firstName: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z0-9 ]+')]),
+    lastName: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z0-9 ]+')], ),
+    email: new FormControl('', [
+      Validators.required,
+        Validators.pattern( "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$"),
+     ]),
+    phoneNumber: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z0-9 ]+')]),
+    address: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z0-9 ]+')])
   });
 
   ngOnChanges(): void {
