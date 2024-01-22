@@ -53,7 +53,6 @@ describe('EditProfileComponent', () => {
     fixture.detectChanges();
     profileService = TestBed.inject(ProfileService);
     sharedService = TestBed.inject(SharedService);
-    accountService = TestBed.inject(AccountService);
   });
 
   it('should create', () => {
