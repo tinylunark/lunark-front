@@ -1,5 +1,4 @@
 import { Host, importProvidersFrom, NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CoreModule } from './core/core.module';
@@ -22,18 +21,19 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HostModule } from './host/host.module';
 import { NotificationsModule } from './notifications/notifications.module';
 import { NgChartsModule } from 'ng2-charts';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
     AppComponent,
   ],
   imports: [
+    CommonModule,
     LandingModule,
     CoreModule,
     FormsModule,
     HttpClientModule,
     ProfileModule,
-    BrowserModule,
     BrowserAnimationsModule,
     CoreModule,
     PropertiesModule,
