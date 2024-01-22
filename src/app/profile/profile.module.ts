@@ -9,6 +9,7 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
 import { ManagementButtonsComponent } from './management-buttons/management-buttons.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -35,6 +36,12 @@ import { UpdatePasswordSuccessDialogComponent } from './update-password-success-
     CoreModule,
     MaterialModule,
     ProfileRoutingModule,
+    MatFormFieldModule,
+    MatNativeDateModule,
+    MatDatepickerModule,
+    MatInputModule,
+    MatButtonModule,
+    BrowserAnimationsModule
   ],
   exports: [
     ProfileComponent,
@@ -46,6 +53,11 @@ import { UpdatePasswordSuccessDialogComponent } from './update-password-success-
     DeleteProfileDialogComponent,
     UpdatePasswordSuccessDialogComponent,
     UpdatePasswordErrorDialogComponent,
+    MatFormFieldModule,
+    MatNativeDateModule,
+    MatDatepickerModule,
+    MatInputModule,
+    MatButtonModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
