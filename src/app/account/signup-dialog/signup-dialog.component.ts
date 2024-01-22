@@ -35,8 +35,8 @@ export const passwordConfrimedValidator: ValidatorFn = (
 export class SignupDialog {
   signupForm = new FormGroup(
     {
-      firstName: new FormControl('', [Validators.required]),
-      lastName: new FormControl('', [Validators.required]),
+      firstName: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z0-9 ]+')]),
+      lastName: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z0-9 ]+')]),
       email: new FormControl('', [
         Validators.required,
         Validators.pattern(
@@ -45,12 +45,12 @@ export class SignupDialog {
       ]),
       password: new FormControl('', [Validators.required]),
       confirmPassword: new FormControl('', [Validators.required]),
-      address: new FormControl('', [Validators.required]),
+      address: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z0-9 ]+')]),
       phoneNumber: new FormControl('', [
         Validators.required,
         Validators.pattern('[- +()0-9]+'),
       ]),
-      role: new FormControl('', [Validators.required]),
+      role: new FormControl('', [Validators.required, Validators.pattern('GUEST|HOST')]),
     },
     {
       validators: passwordConfrimedValidator,

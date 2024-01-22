@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -6,9 +6,9 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   templateUrl: './description.component.html',
   styleUrl: './description.component.css'
 })
-export class DescriptionComponent {
+export class DescriptionComponent implements OnInit {
   infoForm = new FormGroup({
-    description: new FormControl('', [Validators.required]),
+    description: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z0-9 \.!\?\'\"]+')]),
   });
 
   @Input()
@@ -17,6 +17,9 @@ export class DescriptionComponent {
   @Output()
   descriptionChange = new EventEmitter<string>();
 
+  ngOnInit(): void {
+    this.infoForm.get('description')?.setValue(this.description);
+  }
 
   onChange(): void {
     console.log("description changed");

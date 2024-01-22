@@ -12,7 +12,7 @@ export class ProfileImageComponent implements OnInit {
   profileImageURL?: string;
 
   ngOnInit(): void {
-      this.profileImageURL = `${environment.apiHost}/api/${ApiPaths.Profile}/${this.id}/profile-image`;
+      this.profileImageURL = `${environment.apiHost}/${ApiPaths.Profile}/${this.id}/profile-image`;
   }
 
 }
