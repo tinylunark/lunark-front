@@ -8,6 +8,7 @@ import { PropertyReportComponent } from './property-report/property-report.compo
 import { GeneralReportComponent } from './general-report/general-report.component';
 import {NgChartsModule} from "ng2-charts";
 import {FlexModule} from "@angular/flex-layout";
+import { CommonModule } from '@angular/common';
 
 
 @NgModule({
@@ -17,6 +18,7 @@ import {FlexModule} from "@angular/flex-layout";
     GeneralReportComponent,
   ],
   imports: [
+    CommonModule,
     SharedModule,
     ReportsRoutingModule,
     CoreModule,
